@@ -80,8 +80,7 @@ export function Chat() {
   // On a hand-built case study the assistant also gets that project's full detail.
   const current = app.route.page === "case" ? getCase(app.route.id) : null;
   const caseId = current?.page ? current.id : undefined;
-  const suggestions =
-    caseId === "dtrpg" ? DT_CHAT_SUGGESTIONS[lang] : PERSON.chatSuggestions[lang];
+  const suggestions = caseId === "dtrpg" ? DT_CHAT_SUGGESTIONS[lang] : PERSON.chatSuggestions[lang];
 
   useEffect(() => {
     const l = listRef.current;
@@ -144,16 +143,15 @@ export function Chat() {
           tabIndex={onHero ? -1 : undefined}
           aria-hidden={onHero || undefined}
         >
-          <span className={pulseDot({ class: "h-[10px] w-[10px] glass:bg-white" })} aria-hidden="true" />
+          <span
+            className={pulseDot({ class: "h-[10px] w-[10px] glass:bg-white" })}
+            aria-hidden="true"
+          />
           {t.chatLauncher}
         </button>
       )}
       {app.chatOpen && (
-        <section
-          className={s.root()}
-          role="dialog"
-          aria-label={fmt(t.chatTitle)}
-        >
+        <section className={s.root()} role="dialog" aria-label={fmt(t.chatTitle)}>
           <div className={s.head()}>
             <div className={s.titles()}>
               <span className={s.title()}>
@@ -187,10 +185,7 @@ export function Chat() {
               </div>
             )}
             {msgs.map((m, i) => (
-              <div
-                key={i}
-                className={msg({ role: m.role, error: m.error })}
-              >
+              <div key={i} className={msg({ role: m.role, error: m.error })}>
                 {m.content}
               </div>
             ))}

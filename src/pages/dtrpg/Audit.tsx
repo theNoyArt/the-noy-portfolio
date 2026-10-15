@@ -12,7 +12,10 @@ const TYPES: { id: AuditType; label: string }[] = [
   { id: "improvement", label: "Improvement" },
   { id: "idea", label: "Idea" },
 ];
-const TYPE_LABEL = Object.fromEntries(TYPES.map((t) => [t.id, t.label])) as Record<AuditType, string>;
+const TYPE_LABEL = Object.fromEntries(TYPES.map((t) => [t.id, t.label])) as Record<
+  AuditType,
+  string
+>;
 const PAGE_LABEL = Object.fromEntries(AUDIT_PAGES.map((p) => [p.id, p.label]));
 const TYPE_ORDER: Record<AuditType, number> = { fix: 0, improvement: 1, idea: 2 };
 const PAGE_ORDER = Object.fromEntries(AUDIT_PAGES.map((p, i) => [p.id, i]));
@@ -35,8 +38,17 @@ const TYPE_BG: Record<AuditType, string> = {
 };
 
 /* Stat tiles: one block in Cyber dark; separate glass cards in Glass light, numbers in their type colour (--sc). */
-const STAT_COLOR: Record<string, string> = { "c-fix": "text-fix", "c-improvement": "text-improvement", "c-idea": "text-idea" };
-const STAT_SC = ["[--sc:#7a5cf0]", "[--sc:var(--fix)]", "[--sc:var(--improvement)]", "[--sc:var(--idea)]"];
+const STAT_COLOR: Record<string, string> = {
+  "c-fix": "text-fix",
+  "c-improvement": "text-improvement",
+  "c-idea": "text-idea",
+};
+const STAT_SC = [
+  "[--sc:#7a5cf0]",
+  "[--sc:var(--fix)]",
+  "[--sc:var(--improvement)]",
+  "[--sc:var(--idea)]",
+];
 const STAT =
   "flex flex-col gap-[6px] bg-bg p-5 " +
   "glass:relative glass:overflow-hidden glass:rounded-[16px] glass:border glass:border-white/95 glass:bg-transparent " +
@@ -125,7 +137,9 @@ export function Audit() {
         >
           {DT_STATS.map((s, i) => (
             <div className={cn(STAT, STAT_SC[i])} key={s.l}>
-              <span className={cn(STAT_V, s.c && STAT_COLOR[s.c], STAT_V_GRADIENT[i ? 1 : 0])}>{s.v}</span>
+              <span className={cn(STAT_V, s.c && STAT_COLOR[s.c], STAT_V_GRADIENT[i ? 1 : 0])}>
+                {s.v}
+              </span>
               <span className="text-[13.5px] text-muted">{tr(s.l)}</span>
             </div>
           ))}
@@ -245,12 +259,21 @@ function Report() {
         </div>
       </div>
 
-      {cur && <PageSummary name={tr(cur.label)} summary={cur.summary} total={inPage.length} critical={count("fix")} />}
+      {cur && (
+        <PageSummary
+          name={tr(cur.label)}
+          summary={cur.summary}
+          total={inPage.length}
+          critical={count("fix")}
+        />
+      )}
 
       {/* Type mix: one stacked bar that doubles as the legend. */}
       <div className="flex flex-col gap-[10px]" aria-live="polite">
         <div className="flex flex-wrap items-baseline justify-between gap-2 font-mono text-[12px] text-muted">
-          <span>{f.showing(shown.length, inPage.length, cur ? tr(cur.label) : null, AUDIT_PAGES.length)}</span>
+          <span>
+            {f.showing(shown.length, inPage.length, cur ? tr(cur.label) : null, AUDIT_PAGES.length)}
+          </span>
           <button
             type="button"
             className="cursor-pointer border-0 border-b border-line-2 bg-transparent px-0 py-1 text-ink hover:border-ink"
@@ -285,7 +308,10 @@ function Report() {
           {TYPES.map((t) => (
             <span
               key={t.id}
-              className={cn(TYPE_TEXT[t.id], "glass:[text-shadow:0_0_12px_color-mix(in_srgb,currentColor_35%,transparent)]")}
+              className={cn(
+                TYPE_TEXT[t.id],
+                "glass:[text-shadow:0_0_12px_color-mix(in_srgb,currentColor_35%,transparent)]",
+              )}
             >
               <b className="mr-[6px] font-mono font-semibold tabular-nums">{count(t.id)}</b>
               {tr(t.label)}
@@ -295,7 +321,9 @@ function Report() {
       </div>
 
       {sorted.length === 0 ? (
-        <p className="border border-dashed border-line-2 p-6 text-muted">{tr("No insights of this type on this page.")}</p>
+        <p className="border border-dashed border-line-2 p-6 text-muted">
+          {tr("No insights of this type on this page.")}
+        </p>
       ) : (
         // Expandable insight table: one scannable line per insight, details on demand.
         <div className="border-t border-line-2">
@@ -336,12 +364,21 @@ function Report() {
                   <span className="font-mono text-[12px] text-muted tabular-nums max-[699px]:col-start-1 max-[699px]:row-[1/span_3] max-[699px]:pt-[2px]">
                     {pad(i + 1)}
                   </span>
-                  <span className={cn(TYPE_TAG, "justify-self-start max-[699px]:col-start-2 max-[699px]:row-start-1")}>
+                  <span
+                    className={cn(
+                      TYPE_TAG,
+                      "justify-self-start max-[699px]:col-start-2 max-[699px]:row-start-1",
+                    )}
+                  >
                     {tr(TYPE_LABEL[x.t])}
                   </span>
-                  <span className="text-[16px] leading-[1.35] font-semibold max-[699px]:col-start-2 max-[699px]:row-start-2">{x.title}</span>
+                  <span className="text-[16px] leading-[1.35] font-semibold max-[699px]:col-start-2 max-[699px]:row-start-2">
+                    {x.title}
+                  </span>
                   {allPages && (
-                    <span className="text-[13.5px] text-muted max-[699px]:col-start-2 max-[699px]:row-start-3">{tr(PAGE_LABEL[x.p])}</span>
+                    <span className="text-[13.5px] text-muted max-[699px]:col-start-2 max-[699px]:row-start-3">
+                      {tr(PAGE_LABEL[x.p])}
+                    </span>
                   )}
                   <span
                     className={
@@ -369,7 +406,9 @@ function Report() {
                     </>
                   ) : (
                     <p className={INSIGHT_P}>
-                      <span className={INSIGHT_K_FIX}>{tr(x.t === "idea" ? "Idea" : "Recommendation")}</span>
+                      <span className={INSIGHT_K_FIX}>
+                        {tr(x.t === "idea" ? "Idea" : "Recommendation")}
+                      </span>
                       {x.body}
                     </p>
                   )}
@@ -417,7 +456,9 @@ function PageSummary({
         </span>
       </header>
       <div className="flex min-w-0 flex-col gap-3">
-        <p className="text-[clamp(18px,1.6vw,21px)] leading-[1.45] font-medium text-pretty">{lead}</p>
+        <p className="text-[clamp(18px,1.6vw,21px)] leading-[1.45] font-medium text-pretty">
+          {lead}
+        </p>
         <p className={label({ class: "pt-1" })}>{tr("What the audit found")}</p>
         <ul className="grid list-none grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-x-7 gap-y-0 border-t border-line p-0">
           {points.map((p) => (

@@ -38,8 +38,7 @@ const CARD_IMG_BG = {
 /** The screen-by-screen viewer: one frame with its title, controls and notes. */
 const screen = tv({
   slots: {
-    root:
-      "glass-blur flex scroll-mt-6 flex-col gap-5 rounded-card border border-glass-edge bg-surface p-[clamp(16px,2.4vw,28px)] shadow-glass max-[899px]:scroll-mt-[130px]",
+    root: "glass-blur flex scroll-mt-6 flex-col gap-5 rounded-card border border-glass-edge bg-surface p-[clamp(16px,2.4vw,28px)] shadow-glass max-[899px]:scroll-mt-[130px]",
     head: "flex flex-wrap items-end justify-between gap-x-6 gap-y-3",
     titles: "flex flex-col gap-[6px]",
     name: "case-heading text-[clamp(30px,3vw,46px)] leading-none",
@@ -53,7 +52,8 @@ function useViewer() {
   const [jump, setJump] = useState(0);
   const screen = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (jump) screen.current?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+    if (jump)
+      screen.current?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
     // eslint-disable-next-line react-hooks/exhaustive-deps -- only on a new jump request
   }, [jump]);
   const openAndScroll = () => {
@@ -70,11 +70,21 @@ function Cards({
   onPick,
 }: {
   label: string;
-  items: { key: string; src: string; title: string; meta: string; aria: string; bg?: keyof typeof CARD_IMG_BG }[];
+  items: {
+    key: string;
+    src: string;
+    title: string;
+    meta: string;
+    aria: string;
+    bg?: keyof typeof CARD_IMG_BG;
+  }[];
   onPick: (key: string) => void;
 }) {
   return (
-    <ol className="grid list-none grid-cols-[repeat(auto-fill,minmax(min(100%,200px),1fr))] gap-3 p-0" aria-label={label}>
+    <ol
+      className="grid list-none grid-cols-[repeat(auto-fill,minmax(min(100%,200px),1fr))] gap-3 p-0"
+      aria-label={label}
+    >
       {items.map((x, i) => (
         <li key={x.key}>
           <button
@@ -87,7 +97,12 @@ function Cards({
             aria-label={x.aria}
             onClick={() => onPick(x.key)}
           >
-            <span className={cn("block aspect-[480/340] overflow-hidden border-b border-line", CARD_IMG_BG[x.bg ?? "stripes"])}>
+            <span
+              className={cn(
+                "block aspect-[480/340] overflow-hidden border-b border-line",
+                CARD_IMG_BG[x.bg ?? "stripes"],
+              )}
+            >
               <img
                 className="block h-full w-full max-w-full object-cover object-top"
                 src={x.src}
@@ -203,7 +218,9 @@ export function Wireframes() {
         </Ext>
       </div>
       <div className={twoCol({ end: true })}>
-        <h2 className={secTitle}>{tr("From audit findings to a new structure, screen by screen.")}</h2>
+        <h2 className={secTitle}>
+          {tr("From audit findings to a new structure, screen by screen.")}
+        </h2>
         <p className={bodyMuted()}>
           {tr(
             "Based on the UX audit and research findings, the wireframes were generated iteratively with Claude. They aren’t final: they show the proposed structure and explore layout and component ideas for the final mockups.",
@@ -274,10 +291,17 @@ export function Wireframes() {
                   className={row.preview()}
                   kind={tr("Desktop")}
                   caption={`${dimg.name}.webp · ${dimg.w}×${dimg.h}`}
-                  shot={{ img: dimg, dir: "wireframes/", ext: ".webp", alt: `${cur.label} wireframe, desktop` }}
+                  shot={{
+                    img: dimg,
+                    dir: "wireframes/",
+                    ext: ".webp",
+                    alt: `${cur.label} wireframe, desktop`,
+                  }}
                 />
                 <div className={row.side()}>
-                  <p className={label({ class: row.sideLabel() })}>{tr("Desktop · numbered on the wireframe")}</p>
+                  <p className={label({ class: row.sideLabel() })}>
+                    {tr("Desktop · numbered on the wireframe")}
+                  </p>
                   <Steps items={cur.desktop} />
                 </div>
               </div>
@@ -287,10 +311,17 @@ export function Wireframes() {
                   className={row.preview()}
                   kind={tr("Mobile")}
                   caption={`${cur.mimg.name}.webp · ${cur.mimg.w}×${cur.mimg.h}`}
-                  shot={{ img: cur.mimg, dir: "wireframes/", ext: ".webp", alt: `${cur.label} wireframe, mobile` }}
+                  shot={{
+                    img: cur.mimg,
+                    dir: "wireframes/",
+                    ext: ".webp",
+                    alt: `${cur.label} wireframe, mobile`,
+                  }}
                 />
                 <div className={row.side()}>
-                  <p className={label({ class: row.sideLabel() })}>{tr("Mobile · numbered on the wireframe")}</p>
+                  <p className={label({ class: row.sideLabel() })}>
+                    {tr("Mobile · numbered on the wireframe")}
+                  </p>
                   {cur.mobile.length ? (
                     <Steps items={cur.mobile} mobile />
                   ) : (
@@ -345,7 +376,9 @@ export function Mockups() {
   return (
     <section className={sec()} id="c-mockups" data-nav-section>
       <div className={secHead}>
-        <span className={label({ tone: "accent", star: true })}>{tr("[05] Mockups · light and dark")}</span>
+        <span className={label({ tone: "accent", star: true })}>
+          {tr("[05] Mockups · light and dark")}
+        </span>
         <span className="inline-flex flex-wrap gap-x-4 gap-y-[6px]">
           <Ext className={secLink} href={DT_LINKS.mockupsLight}>
             {tr("Light theme in Figma ↗")}
@@ -357,7 +390,9 @@ export function Mockups() {
       </div>
       <div className={twoCol({ end: true })}>
         <h2 className={secTitle}>
-          {tr("Twelve screens, designed for desktop and mobile, with the reasoning next to each one.")}
+          {tr(
+            "Twelve screens, designed for desktop and mobile, with the reasoning next to each one.",
+          )}
         </h2>
         <p className={bodyMuted()}>
           {tr(
@@ -402,7 +437,9 @@ export function Mockups() {
         onToggle={() => v.setOpen(!v.open)}
         controls="mk-detail"
         label={tr(v.open ? "Hide the screen-by-screen view" : "Explore screen by screen")}
-        hint={tr("Full-size desktop and mobile mockups, every state, with the design notes from Figma")}
+        hint={tr(
+          "Full-size desktop and mobile mockups, every state, with the design notes from Figma",
+        )}
       />
       {v.open && (
         <div className={viewer} id="mk-detail">

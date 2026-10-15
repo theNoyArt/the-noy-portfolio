@@ -34,7 +34,8 @@ const ui = tv({
     back:
       "mx-0 mt-[-8px] mb-[-4px] cursor-pointer self-start border-0 bg-transparent px-0 py-[6px] font-mono text-[11.5px] tracking-[0.06em] text-accent uppercase " +
       "transition-[translate,color] duration-[250ms] hover:translate-x-[-3px] hover:text-ink",
-    brand: "flex cursor-pointer flex-col items-start gap-[6px] border-0 bg-transparent p-0 text-left",
+    brand:
+      "flex cursor-pointer flex-col items-start gap-[6px] border-0 bg-transparent p-0 text-left",
     brandName: "display text-[22px] leading-none",
     brandRole: "font-mono text-[11px] text-muted",
     nav: "flex flex-col",
@@ -61,7 +62,9 @@ export function Sidebar({ current }: { current: ResolvedCase | null }) {
           <path d="m3.5 6.5 8.5 7 8.5-7" />
         </svg>
         <span className={cl.text()}>{t.emailMe}</span>
-        <span className={cl.arrow()} aria-hidden="true">↗</span>
+        <span className={cl.arrow()} aria-hidden="true">
+          ↗
+        </span>
       </a>
       <a className={cl.link()} href={PERSON.cv.url} download>
         <svg className={cl.icon()} viewBox="0 0 24 24" aria-hidden="true">
@@ -69,7 +72,9 @@ export function Sidebar({ current }: { current: ResolvedCase | null }) {
           <path d="M5 19h14" />
         </svg>
         <span className={cl.text()}>{t.cvDownload}</span>
-        <span className={cl.arrow()} aria-hidden="true">↓</span>
+        <span className={cl.arrow()} aria-hidden="true">
+          ↓
+        </span>
       </a>
     </div>
   );

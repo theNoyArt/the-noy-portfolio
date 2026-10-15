@@ -15,12 +15,15 @@ const prefsBtn = tv({
     left: "flex items-center gap-[10px]",
     swatch:
       "h-4 w-4 rounded-full bg-[conic-gradient(oklch(0.5_0.19_292)_0_50%,var(--accent2)_0)] shadow-[0_0_0_1px_var(--line2)]",
-    label: "font-mono text-[11.5px] tracking-[0.08em] whitespace-nowrap uppercase glass:tracking-[0.04em]",
+    label:
+      "font-mono text-[11.5px] tracking-[0.08em] whitespace-nowrap uppercase glass:tracking-[0.04em]",
     caret: "font-mono text-[11px] text-muted",
   },
   variants: {
     compact: { true: { root: "h-11 w-auto" } },
-    dark: { true: { swatch: "bg-[conic-gradient(oklch(0.7_0.21_302)_0_50%,oklch(0.82_0.13_200)_0)]" } },
+    dark: {
+      true: { swatch: "bg-[conic-gradient(oklch(0.7_0.21_302)_0_50%,oklch(0.82_0.13_200)_0)]" },
+    },
   },
 });
 
@@ -43,7 +46,8 @@ const prefs = tv({
 const modeCard = tv({
   slots: {
     root: "flex cursor-pointer flex-col items-start gap-[6px] rounded-card-sm border border-line2 bg-transparent p-2 text-left",
-    preview: "flex h-[54px] w-full flex-col gap-1 border border-[rgba(128,128,128,0.25)] p-2 [&>span]:rounded-[2px]",
+    preview:
+      "flex h-[54px] w-full flex-col gap-1 border border-[rgba(128,128,128,0.25)] p-2 [&>span]:rounded-[2px]",
     name: "text-[14px] font-semibold",
     desc: "text-[12px] leading-[1.35] text-muted",
   },
@@ -69,7 +73,9 @@ export function PrefsButton({ compact = false }: { compact?: boolean }) {
       <span className={s.left()}>
         <span className={s.swatch()} aria-hidden="true" />
         <span className={s.label()}>
-          {compact ? lang.toUpperCase() : `${lang.toUpperCase()} · ${dark ? "Cyber dark" : "Glass light"}`}
+          {compact
+            ? lang.toUpperCase()
+            : `${lang.toUpperCase()} · ${dark ? "Cyber dark" : "Glass light"}`}
         </span>
       </span>
       {!compact && (
@@ -119,12 +125,7 @@ export function PrefsPopover() {
   return (
     <>
       <div className={s.backdrop()} onClick={() => app.setPrefsOpen(false)} />
-      <div
-        ref={ref}
-        role="dialog"
-        aria-label={t.prefs}
-        className={s.root()}
-      >
+      <div ref={ref} role="dialog" aria-label={t.prefs} className={s.root()}>
         <div className={s.head()}>
           <span className={monoLabel({ class: "text-[10.5px]" })}>{t.prefs}</span>
           <button
@@ -159,9 +160,7 @@ export function PrefsPopover() {
                     <span style={{ width: "30%", height: 5, background: m.c2 }} />
                   </span>
                   <span className={mc.name()}>{m.name}</span>
-                  <span className={mc.desc()}>
-                    {m.id === "dark" ? t.cyberDesc : t.studioDesc}
-                  </span>
+                  <span className={mc.desc()}>{m.id === "dark" ? t.cyberDesc : t.studioDesc}</span>
                 </button>
               );
             })}

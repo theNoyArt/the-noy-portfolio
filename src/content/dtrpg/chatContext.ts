@@ -64,7 +64,10 @@ export function dtrpgChatContext(): string {
       (t) =>
         `${DS_THEMES[t].label} tokens: ` +
         DS_GROUPS.flatMap((g) => g.keys)
-          .map((k) => `${k} ${DS_THEMES[t].tokens[k]}${DS_THEMES[t].notes[k] ? ` (${DS_THEMES[t].notes[k]})` : ""}`)
+          .map(
+            (k) =>
+              `${k} ${DS_THEMES[t].tokens[k]}${DS_THEMES[t].notes[k] ? ` (${DS_THEMES[t].notes[k]})` : ""}`,
+          )
           .join(", "),
     ),
     "",

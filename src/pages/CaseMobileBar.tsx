@@ -43,7 +43,9 @@ export function CaseMobileBar({ c, sections }: { c: ResolvedCase; sections: Case
             <span className="font-mono text-[11px] text-accent">
               {cur.num}/{String(sections.length).padStart(2, "0")}
             </span>
-            <span className="overflow-hidden text-[14px] font-semibold text-ellipsis whitespace-nowrap">{cur.label}</span>
+            <span className="overflow-hidden text-[14px] font-semibold text-ellipsis whitespace-nowrap">
+              {cur.label}
+            </span>
           </span>
           <span className="flex-none font-mono text-[11px] whitespace-nowrap text-muted">
             {t.sections} {open ? "▴" : "▾"}
@@ -73,7 +75,14 @@ export function CaseMobileBar({ c, sections }: { c: ResolvedCase; sections: Case
                   app.scrollToCaseSection(s.id);
                 }}
               >
-                <span className={cn("w-[26px] font-mono text-[11px] opacity-70", active && "font-semibold")}>{s.num}</span>
+                <span
+                  className={cn(
+                    "w-[26px] font-mono text-[11px] opacity-70",
+                    active && "font-semibold",
+                  )}
+                >
+                  {s.num}
+                </span>
                 <span className={cn("flex-1", active && "font-semibold")}>{s.label}</span>
                 <span className={trackDot({ track: s.track ?? "none" })} aria-hidden="true" />
               </button>

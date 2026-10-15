@@ -158,22 +158,49 @@ export const SHOWCASE: ShowcaseProject[] = [
     },
     tech: ["React 19", "TypeScript", "Vite+", "Tailwind CSS", "Gemini API"],
     tools: "Claude Design, Claude Code",
-    role: { en: "UX/UI Designer, Front-end Developer", pl: "Projektantka UX/UI, Front-end Developerka" },
+    role: {
+      en: "UX/UI Designer, Front-end Developer",
+      pl: "Projektantka UX/UI, Front-end Developerka",
+    },
     team: { en: "Solo", pl: "Samodzielnie" },
     duration: { en: "In progress", pl: "W trakcie" },
     intro: {
       en: "This portfolio website, as a case study. Three directions were explored in Claude Design (Editorial, Index, Index v2); Index v2 was rebuilt in React 19 + TypeScript on Vite+ with Tailwind CSS and no UI library. Features: Glass light and Cyber dark themes with a glitch transition, English and Polish, typed content files, hand-built case studies (DriveThruRPG, Bond, Art practice assistant), an AI assistant on the free Gemini API (Groq as backup) that answers from the site content and knows which case study is open, WCAG AA contrast checks and reduced-motion support. Next: finish case studies, deploy, tests and real illustrations.",
       pl: "Ta strona portfolio jako case study. W Claude Design powstały trzy kierunki (Editorial, Index, Index v2); Index v2 został zbudowany w React 19 + TypeScript na Vite+, w Tailwind CSS bez biblioteki UI. Funkcje: motywy Glass light i Cyber dark z przejściem glitch, angielski i polski, typowane pliki treści, ręcznie budowane case studies (DriveThruRPG, Bond, Asystent praktyki artystycznej), asystent AI na darmowym Gemini API (Groq jako zapas), który odpowiada na podstawie treści strony i wie, które case study jest otwarte, kontrast WCAG AA i obsługa ograniczonego ruchu. Dalej: dokończenie case studies, publikacja, testy i prawdziwe ilustracje.",
     },
-    product: { en: "A developer & designer portfolio.", pl: "Portfolio developerki i projektantki." },
-    audience: { en: "Recruiters, hiring managers and teams looking for a front-end developer with UX/UI skills.", pl: "Rekruterzy, managerowie i zespoły szukające front-endowczyni z umiejętnościami UX/UI." },
-    problem: { en: "Showing both design and front-end work in one place.", pl: "Pokazanie projektowania i front-endu w jednym miejscu." },
-    resp: { en: "Design in Claude Design, front-end in React and TypeScript, content and copy.", pl: "Projekt w Claude Design, front-end w React i TypeScript, treść." },
+    product: {
+      en: "A developer & designer portfolio.",
+      pl: "Portfolio developerki i projektantki.",
+    },
+    audience: {
+      en: "Recruiters, hiring managers and teams looking for a front-end developer with UX/UI skills.",
+      pl: "Rekruterzy, managerowie i zespoły szukające front-endowczyni z umiejętnościami UX/UI.",
+    },
+    problem: {
+      en: "Showing both design and front-end work in one place.",
+      pl: "Pokazanie projektowania i front-endu w jednym miejscu.",
+    },
+    resp: {
+      en: "Design in Claude Design, front-end in React and TypeScript, content and copy.",
+      pl: "Projekt w Claude Design, front-end w React i TypeScript, treść.",
+    },
     stages: {
-      research: { en: "Three directions explored in Claude Design.", pl: "Trzy kierunki sprawdzone w Claude Design." },
-      design: { en: "Index v2 refined: two themes, hero panels, case study pages.", pl: "Dopracowany Index v2: dwa motywy, panele hero, strony case studies." },
-      frontend: { en: "React 19, TypeScript, Vite+, Tailwind CSS; AI chat on the Gemini API.", pl: "React 19, TypeScript, Vite+, Tailwind CSS; czat AI na Gemini API." },
-      tests: { en: "Unit tests in Vitest (Vite+) for content, helpers and the AI chat backend; Lighthouse and an accessibility audit planned.", pl: "Testy jednostkowe w Vitest (Vite+) dla treści, helperów i backendu czatu AI; Lighthouse i audyt dostępności planowane." },
+      research: {
+        en: "Three directions explored in Claude Design.",
+        pl: "Trzy kierunki sprawdzone w Claude Design.",
+      },
+      design: {
+        en: "Index v2 refined: two themes, hero panels, case study pages.",
+        pl: "Dopracowany Index v2: dwa motywy, panele hero, strony case studies.",
+      },
+      frontend: {
+        en: "React 19, TypeScript, Vite+, Tailwind CSS; AI chat on the Gemini API.",
+        pl: "React 19, TypeScript, Vite+, Tailwind CSS; czat AI na Gemini API.",
+      },
+      tests: {
+        en: "Unit tests in Vitest (Vite+) for content, helpers and the AI chat backend; Lighthouse and an accessibility audit planned.",
+        pl: "Testy jednostkowe w Vitest (Vite+) dla treści, helperów i backendu czatu AI; Lighthouse i audyt dostępności planowane.",
+      },
     },
     ux: [],
     ui: [],
@@ -206,7 +233,10 @@ export const SHOWCASE: ShowcaseProject[] = [
     },
     tech: ["Game design", "Psychology research", "Illustration"],
     tools: "Figma, FigJam",
-    role: { en: "Game design, UX/UI, illustration, front-end", pl: "Projekt gry, UX/UI, ilustracja, front-end" },
+    role: {
+      en: "Game design, UX/UI, illustration, front-end",
+      pl: "Projekt gry, UX/UI, ilustracja, front-end",
+    },
     team: { en: "Solo", pl: "Samodzielnie" },
     duration: { en: "In progress", pl: "W trakcie" },
     intro: {
@@ -224,8 +254,14 @@ export const SHOWCASE: ShowcaseProject[] = [
       pl: "Badania, projekt gry, scenariusze, ilustracje i sprite’y, interfejs gry i programowanie.",
     },
     stages: {
-      research: { en: "In progress: attachment styles, early trauma and neglect, child development.", pl: "W trakcie: style przywiązania, wczesna trauma i zaniedbanie, rozwój dziecka." },
-      design: { en: "In progress: core game design and the behaviour → result map. Planned: sprites and game UI.", pl: "W trakcie: rdzeń gry i mapa zachowanie → skutek. Planowane: sprite’y i interfejs gry." },
+      research: {
+        en: "In progress: attachment styles, early trauma and neglect, child development.",
+        pl: "W trakcie: style przywiązania, wczesna trauma i zaniedbanie, rozwój dziecka.",
+      },
+      design: {
+        en: "In progress: core game design and the behaviour → result map. Planned: sprites and game UI.",
+        pl: "W trakcie: rdzeń gry i mapa zachowanie → skutek. Planowane: sprite’y i interfejs gry.",
+      },
       frontend: { en: "Planned.", pl: "Planowane." },
       tests: { en: "Planned: playtests.", pl: "Planowane: testy z graczami." },
     },
@@ -263,14 +299,32 @@ export const SHOWCASE: ShowcaseProject[] = [
       en: "An art practice assistant (web and/or mobile) in the research & design stage. The user sets a goal, the app helps decide what and how to learn and suggests small day-to-day exercises: gesture drawing, figure and poses, anatomy, colour. It tracks practice day by day or week by week. Paulina wants to use free pose/reference APIs and connect it with her theNoyArt drawing streams and planned YouTube tutorials, so each lesson comes with exercises. Likely built with React and/or React Native.",
       pl: "Asystent praktyki artystycznej (web i/lub mobile) na etapie badań i projektowania. Użytkownik ustawia cel, aplikacja pomaga zdecydować, czego i jak się uczyć, i podsuwa małe codzienne ćwiczenia: gest, postać i pozy, anatomię, kolor. Śledzi praktykę dzień po dniu lub tydzień po tygodniu. Paulina chce użyć darmowych API z pozami/referencjami i połączyć aplikację ze streamami theNoyArt i planowanymi tutorialami na YouTube. Prawdopodobnie React i/lub React Native.",
     },
-    product: { en: "A practice planner and exercise app for artists.", pl: "Planer praktyki i aplikacja z ćwiczeniami dla artystów." },
-    audience: { en: "Artists learning to draw; viewers of theNoyArt streams and tutorials.", pl: "Osoby uczące się rysować; widzowie streamów i tutoriali theNoyArt." },
+    product: {
+      en: "A practice planner and exercise app for artists.",
+      pl: "Planer praktyki i aplikacja z ćwiczeniami dla artystów.",
+    },
+    audience: {
+      en: "Artists learning to draw; viewers of theNoyArt streams and tutorials.",
+      pl: "Osoby uczące się rysować; widzowie streamów i tutoriali theNoyArt.",
+    },
     problem: { en: "To be defined in research.", pl: "Do określenia w badaniach." },
-    resp: { en: "Research, UX/UI design and front-end.", pl: "Badania, projekt UX/UI i front-end." },
+    resp: {
+      en: "Research, UX/UI design and front-end.",
+      pl: "Badania, projekt UX/UI i front-end.",
+    },
     stages: {
-      research: { en: "In progress: how artists practise, free pose APIs, similar tools.", pl: "W trakcie: jak artyści ćwiczą, darmowe API póz, podobne narzędzia." },
-      design: { en: "In progress: concept, goal setting and plan logic.", pl: "W trakcie: koncepcja, ustawianie celu i logika planu." },
-      frontend: { en: "Planned: React and/or React Native.", pl: "Planowane: React i/lub React Native." },
+      research: {
+        en: "In progress: how artists practise, free pose APIs, similar tools.",
+        pl: "W trakcie: jak artyści ćwiczą, darmowe API póz, podobne narzędzia.",
+      },
+      design: {
+        en: "In progress: concept, goal setting and plan logic.",
+        pl: "W trakcie: koncepcja, ustawianie celu i logika planu.",
+      },
+      frontend: {
+        en: "Planned: React and/or React Native.",
+        pl: "Planowane: React i/lub React Native.",
+      },
       tests: { en: "Planned.", pl: "Planowane." },
     },
     ux: [],
@@ -286,7 +340,12 @@ export const SHOWCASE: ShowcaseProject[] = [
 ];
 
 /** Shown after the projects as a "coming soon" card. Remove an entry once it becomes a real case study. */
-export const SHOWCASE_UPCOMING: { title: Localized; meta: Localized; desc: Localized; muted?: boolean }[] = [
+export const SHOWCASE_UPCOMING: {
+  title: Localized;
+  meta: Localized;
+  desc: Localized;
+  muted?: boolean;
+}[] = [
   {
     // Not started yet: shown greyed out, not clickable.
     muted: true,

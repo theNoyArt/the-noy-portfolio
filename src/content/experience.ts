@@ -20,7 +20,10 @@ const CRAFTWARE_WORK: WorkProject[] = [
   {
     id: "ai-csr",
     featured: true,
-    title: { en: "AI clinical study report platform", pl: "Platforma AI do raportów z badań klinicznych" },
+    title: {
+      en: "AI clinical study report platform",
+      pl: "Platforma AI do raportów z badań klinicznych",
+    },
     client: PHARMA,
     role: { en: "UX/UI Designer", pl: "Projektantka UX/UI" },
     from: m(2025, 9),
@@ -60,11 +63,23 @@ const CRAFTWARE_WORK: WorkProject[] = [
       en: "A chat and planning assistant that organises a sales rep’s work, pulling data from multiple sources. It started with extensive research and stakeholder meetings that shaped the first version of the app. I also created the product branding, logos and visual presentations, including AI-generated images and video.",
       pl: "Asystent z czatem i planowaniem, który porządkuje pracę przedstawiciela handlowego i zbiera dane z wielu źródeł. Projekt zaczął się od obszernych badań i spotkań z interesariuszami, które ukształtowały pierwszą wersję aplikacji. Stworzyłam też branding produktu, logo i prezentacje, w tym obrazy i wideo generowane przez AI.",
     },
-    tags: ["AI", "Research", "Stakeholder workshops", "Branding", "Figma", "FigJam", "Claude Design", "Azure DevOps"],
+    tags: [
+      "AI",
+      "Research",
+      "Stakeholder workshops",
+      "Branding",
+      "Figma",
+      "FigJam",
+      "Claude Design",
+      "Azure DevOps",
+    ],
   },
   {
     id: "pharma-ds-2",
-    title: { en: "Internal pharma tools · UI & design system", pl: "Wewnętrzne narzędzia pharma · UI i design system" },
+    title: {
+      en: "Internal pharma tools · UI & design system",
+      pl: "Wewnętrzne narzędzia pharma · UI i design system",
+    },
     client: { en: "Pharma company", pl: "Firma farmaceutyczna" },
     role: { en: "UI Designer", pl: "Projektantka UI" },
     from: m(2024, 9),
@@ -92,7 +107,10 @@ const CRAFTWARE_WORK: WorkProject[] = [
   },
   {
     id: "pharma-ds-1",
-    title: { en: "Internal pharma tools · UI & design system", pl: "Wewnętrzne narzędzia pharma · UI i design system" },
+    title: {
+      en: "Internal pharma tools · UI & design system",
+      pl: "Wewnętrzne narzędzia pharma · UI i design system",
+    },
     client: { en: "Another pharma company", pl: "Inna firma farmaceutyczna" },
     role: { en: "UI Designer", pl: "Projektantka UI" },
     from: m(2023, 5),
@@ -181,13 +199,25 @@ const FINTECH_WORK: WorkProject[] = [
     featured: true,
     title: { en: "Fiat & crypto financial dashboard", pl: "Dashboard finansowy fiat i krypto" },
     client: { en: "Fintech / blockchain platform", pl: "Platforma fintech / blockchain" },
-    role: { en: "UX/UI Designer & Front-end Developer", pl: "Projektantka UX/UI i front-end developerka" },
+    role: {
+      en: "UX/UI Designer & Front-end Developer",
+      pl: "Projektantka UX/UI i front-end developerka",
+    },
     dates: { en: "2020 — 2022", pl: "2020 — 2022" },
     desc: {
       en: "One dashboard bringing fiat currencies and cryptocurrencies together: financial data from multiple sources and certificates in one view. I designed it from the UX/UI side and built it in React, with unit tests in Jest, for the whole duration of the project.",
       pl: "Jeden dashboard łączący waluty fiat i kryptowaluty: dane finansowe z wielu źródeł i certyfikaty w jednym widoku. Projektowałam go od strony UX/UI i budowałam w React, z testami jednostkowymi w Jest, przez cały czas trwania projektu.",
     },
-    tags: ["Fintech", "Crypto", "Dashboard", "React", "TypeScript", "Jest", "Ant Design", "Adobe XD"],
+    tags: [
+      "Fintech",
+      "Crypto",
+      "Dashboard",
+      "React",
+      "TypeScript",
+      "Jest",
+      "Ant Design",
+      "Adobe XD",
+    ],
   },
 ];
 
@@ -209,7 +239,10 @@ const JCOMMERCE_WORK: WorkProject[] = [
     id: "jc-betting",
     featured: true,
     title: { en: "Sports betting platform", pl: "Platforma zakładów sportowych" },
-    client: { en: "British sports & gambling company", pl: "Brytyjska firma z branży sportu i zakładów" },
+    client: {
+      en: "British sports & gambling company",
+      pl: "Brytyjska firma z branży sportu i zakładów",
+    },
     role: { en: "Front-end Developer", pl: "Front-end Developerka" },
     dates: { en: "~1 year", pl: "~1 rok" },
     desc: {
@@ -234,7 +267,10 @@ const JCOMMERCE_WORK: WorkProject[] = [
   {
     id: "jc-extension",
     featured: true,
-    title: { en: "Firefox extension · watch connection", pl: "Rozszerzenie Firefox · połączenie z zegarkiem" },
+    title: {
+      en: "Firefox extension · watch connection",
+      pl: "Rozszerzenie Firefox · połączenie z zegarkiem",
+    },
     client: { en: "Short project", pl: "Krótki projekt" },
     role: { en: "Front-end Developer", pl: "Front-end Developerka" },
     dates: { en: "~2 months", pl: "~2 miesiące" },
@@ -249,7 +285,10 @@ const JCOMMERCE_WORK: WorkProject[] = [
     featured: true,
     title: { en: "Modular automotive platform", pl: "Modułowa platforma motoryzacyjna" },
     client: { en: "Automotive client", pl: "Klient z branży motoryzacyjnej" },
-    role: { en: "Junior → Regular Front-end Developer", pl: "Junior → Regular Front-end Developerka" },
+    role: {
+      en: "Junior → Regular Front-end Developer",
+      pl: "Junior → Regular Front-end Developerka",
+    },
     dates: { en: "~2.5 years · from 2016", pl: "~2,5 roku · od 2016" },
     desc: {
       en: "A modular platform where separate teams owned separate modules. I built two of them in React and Redux, with tests, in Scrum, and grew from junior to regular developer on this project.",
@@ -372,7 +411,17 @@ export const EXPERIENCE: Experience[] = [
         "Prowadzenie programów mentoringowych dla front-endowców: rozwój umiejętności i dobrych praktyk",
       ],
     },
-    tech: ["React", "Angular", "TypeScript", "Redux", "RxJS", "SCSS", "REST APIs", "RTL", "Jasmine"],
+    tech: [
+      "React",
+      "Angular",
+      "TypeScript",
+      "Redux",
+      "RxJS",
+      "SCSS",
+      "REST APIs",
+      "RTL",
+      "Jasmine",
+    ],
     projects: [],
     work: JCOMMERCE_WORK,
     note: {

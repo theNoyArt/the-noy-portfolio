@@ -17,8 +17,7 @@ const stageTab = tv({
       "[transition:background-color_0.35s,color_0.35s,box-shadow_0.35s,transform_0.35s_cubic-bezier(0.2,0.8,0.2,1)] " +
       "glass:glass-blur glass:border glass:border-glass-edge",
     /* The stage's colour bar; the selected one fills in with a light sweep. */
-    bar:
-      "relative mb-[6px] block h-1 w-full origin-left overflow-hidden rounded-[2px] opacity-35 [transition:opacity_0.4s] narrow:mb-1 narrow:h-[3px]",
+    bar: "relative mb-[6px] block h-1 w-full origin-left overflow-hidden rounded-[2px] opacity-35 [transition:opacity_0.4s] narrow:mb-1 narrow:h-[3px]",
     num: "font-mono text-[11px] opacity-70 narrow:hidden",
     cap: "text-[13px] opacity-75 narrow:hidden",
   },
@@ -101,7 +100,11 @@ export function About() {
       </div>
 
       <div data-reveal="0">
-        <div role="tablist" aria-label={t.about} className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,150px),1fr))] gap-[3px] narrow:grid-cols-[repeat(4,auto)]">
+        <div
+          role="tablist"
+          aria-label={t.about}
+          className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,150px),1fr))] gap-[3px] narrow:grid-cols-[repeat(4,auto)]"
+        >
           {ABOUT_TABS.map((g, i) => {
             const on = i === tab;
             const c = stageTab({ on });
@@ -133,7 +136,9 @@ export function About() {
                   }}
                 />
                 <span className="flex w-full justify-between gap-2">
-                  <span className="text-[16px] font-semibold narrow:text-[13px] narrow:whitespace-nowrap">{t[g.id]}</span>
+                  <span className="text-[16px] font-semibold narrow:text-[13px] narrow:whitespace-nowrap">
+                    {t[g.id]}
+                  </span>
                   <span className={c.num()}>0{i + 1}</span>
                 </span>
                 <span className={c.cap()}>{L(g.cap)}</span>
@@ -155,8 +160,13 @@ export function About() {
             } as CSSProperties
           }
         >
-          <div className="flex animate-about-in flex-col gap-[22px] narrow:gap-3" key={"l-" + cur.id}>
-            <p className="text-[clamp(19px,1.8cqi,23px)] leading-[1.4] text-pretty narrow:text-[16px] narrow:leading-[1.45]">{L(cur.desc)}</p>
+          <div
+            className="flex animate-about-in flex-col gap-[22px] narrow:gap-3"
+            key={"l-" + cur.id}
+          >
+            <p className="text-[clamp(19px,1.8cqi,23px)] leading-[1.4] text-pretty narrow:text-[16px] narrow:leading-[1.45]">
+              {L(cur.desc)}
+            </p>
             <div className="flex flex-col gap-2 narrow:gap-1">
               <span className={monoLabel()}>{t.seeIn}</span>
               <div className={links.root()}>
@@ -179,13 +189,18 @@ export function About() {
               </div>
             </div>
           </div>
-          <div className="flex animate-about-in-late flex-col gap-[clamp(22px,2.4cqi,32px)] narrow:gap-4" key={"r-" + cur.id}>
+          <div
+            className="flex animate-about-in-late flex-col gap-[clamp(22px,2.4cqi,32px)] narrow:gap-4"
+            key={"r-" + cur.id}
+          >
             {cur.items.length > 0 && <ItemList label={t.methods} items={cur.items} />}
-            {cur.tools.length > 0 && <ItemList
+            {cur.tools.length > 0 && (
+              <ItemList
                 label={cur.toolsLabel === "stack" ? t.techStack : t.tools}
                 items={cur.tools}
                 tools
-              />}
+              />
+            )}
           </div>
         </div>
 
@@ -200,12 +215,18 @@ export function About() {
           data-reveal="60"
         >
           <div className="flex flex-col gap-[6px]">
-            <span className="display text-[calc(clamp(24px,2.2cqi,32px)*var(--h1-scale,1))] leading-[1.1]">{t.workflow}</span>
+            <span className="display text-[calc(clamp(24px,2.2cqi,32px)*var(--h1-scale,1))] leading-[1.1]">
+              {t.workflow}
+            </span>
             <span className="text-[15px] text-muted">{L(ABOUT_WORKFLOW_DESC)}</span>
           </div>
           <ul className={cn(PILLS, "justify-end gap-[10px] narrow:justify-start")}>
             {ABOUT_WORKFLOW.map((w, i) => (
-              <li key={w} className={pill({ kind: "workflow" })} style={{ "--i": i } as CSSProperties}>
+              <li
+                key={w}
+                className={pill({ kind: "workflow" })}
+                style={{ "--i": i } as CSSProperties}
+              >
                 {w}
               </li>
             ))}
@@ -222,14 +243,19 @@ function ItemList({ label, items, tools }: { label: string; items: string[]; too
     <div className="flex flex-col gap-[10px] narrow:gap-2">
       <div className="flex items-baseline justify-between border-b border-line2 pb-2 narrow:pb-[6px]">
         <span className={monoLabel()}>{label}</span>
-        <span className={cn(monoLabel(), "text-[color:var(--stage,var(--accent))]")}>{String(items.length).padStart(2, "0")}</span>
+        <span className={cn(monoLabel(), "text-[color:var(--stage,var(--accent))]")}>
+          {String(items.length).padStart(2, "0")}
+        </span>
       </div>
       {tools ? (
         <ul className={cn(PILLS, "pt-1 narrow:gap-[6px] narrow:pt-0")}>
           {items.map((it, i) => (
             <li
               key={it}
-              className={cn(pill({ kind: "stage" }), "narrow:px-[9px] narrow:py-[3px] narrow:text-[13px]")}
+              className={cn(
+                pill({ kind: "stage" }),
+                "narrow:px-[9px] narrow:py-[3px] narrow:text-[13px]",
+              )}
               style={{ "--i": i } as CSSProperties}
             >
               {it}

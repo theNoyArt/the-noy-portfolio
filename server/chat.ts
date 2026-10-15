@@ -11,7 +11,11 @@ import { SHOWCASE } from "../src/content/showcase.js";
 import { ACTIVITIES, HOBBIES } from "../src/content/activities.js";
 import type { Lang, Localized } from "../src/content/types";
 import { dtrpgChatContext } from "../src/content/dtrpg/chatContext.js";
-import { artPracticeChatContext, bondChatContext, portfolioChatContext } from "../src/content/chatPages.js";
+import {
+  artPracticeChatContext,
+  bondChatContext,
+  portfolioChatContext,
+} from "../src/content/chatPages.js";
 
 /** Extra detail for case studies with their own page, sent when the visitor is on that page. */
 const CASE_CONTEXT: Record<string, () => string> = {
@@ -46,12 +50,14 @@ export function buildSystemPrompt(lang: Lang, caseId?: string, compact = false):
       links: PERSON.links.filter((l) => l.url && l.url !== "#").map((l) => `${l.label}: ${l.url}`),
     },
     about: [E(PERSON.intro), E(ABOUT.p1)],
-    stages: compact ? undefined : ABOUT_TABS.map((a) => ({
-      stage: a.id,
-      approach: E(a.desc),
-      methods: a.items,
-      tools: a.tools,
-    })),
+    stages: compact
+      ? undefined
+      : ABOUT_TABS.map((a) => ({
+          stage: a.id,
+          approach: E(a.desc),
+          methods: a.items,
+          tools: a.tools,
+        })),
     wayOfWorking: ABOUT_WORKFLOW,
     experience: EXPERIENCE.map((x) => ({
       company: x.company,
@@ -60,14 +66,16 @@ export function buildSystemPrompt(lang: Lang, caseId?: string, compact = false):
       summary: E(x.desc),
       responsibilities: compact ? undefined : x.resp.en,
       tech: x.tech,
-      clientProjects: compact ? undefined : (x.work ?? []).map((w) => ({
-        title: E(w.title),
-        client: E(w.client),
-        role: E(w.role),
-        dates: E(w.dates),
-        about: E(w.desc),
-        tags: w.tags,
-      })),
+      clientProjects: compact
+        ? undefined
+        : (x.work ?? []).map((w) => ({
+            title: E(w.title),
+            client: E(w.client),
+            role: E(w.role),
+            dates: E(w.dates),
+            about: E(w.desc),
+            tags: w.tags,
+          })),
       projects: x.projects
         .map((p) => CASE_STUDIES.find((c) => c.id === p.id)?.name)
         .filter(Boolean),
@@ -138,9 +146,7 @@ export interface ChatResult {
   body: { text?: string; error?: string };
 }
 
-function parseBody(
-  body: unknown,
-): { lang: Lang; caseId?: string; messages: ChatMessage[] } | null {
+function parseBody(body: unknown): { lang: Lang; caseId?: string; messages: ChatMessage[] } | null {
   if (!body || typeof body !== "object") return null;
   const b = body as { lang?: unknown; caseId?: unknown; messages?: unknown };
   const lang: Lang = b.lang === "pl" ? "pl" : "en";
@@ -277,7 +283,10 @@ async function askClaude(env: ChatEnv, a: Ask): Promise<Answer> {
 
 type ProviderId = "gemini" | "groq" | "claude";
 
-const PROVIDERS: Record<ProviderId, { key: keyof ChatEnv; ask: (env: ChatEnv, a: Ask) => Promise<Answer> }> = {
+const PROVIDERS: Record<
+  ProviderId,
+  { key: keyof ChatEnv; ask: (env: ChatEnv, a: Ask) => Promise<Answer> }
+> = {
   gemini: { key: "GEMINI_API_KEY", ask: askGemini },
   groq: { key: "GROQ_API_KEY", ask: askGroq },
   claude: { key: "ANTHROPIC_API_KEY", ask: askClaude },
@@ -323,7 +332,11 @@ function overLimit(visitor: string | undefined): boolean {
  * Responses: 200 { text }, 400 invalid, 429 { error: "limit" }, 503 not configured,
  * 502 every provider failed. The chat shows a friendly "email me" message for any error.
  */
-export async function handleChat(body: unknown, env: ChatEnv, visitor?: string): Promise<ChatResult> {
+export async function handleChat(
+  body: unknown,
+  env: ChatEnv,
+  visitor?: string,
+): Promise<ChatResult> {
   const input = parseBody(body);
   if (!input) return { status: 400, body: { error: "Invalid request" } };
 
@@ -331,7 +344,9 @@ export async function handleChat(body: unknown, env: ChatEnv, visitor?: string):
   if (!order.length)
     return {
       status: 503,
-      body: { error: "Chat is not configured (add GEMINI_API_KEY, GROQ_API_KEY or ANTHROPIC_API_KEY)" },
+      body: {
+        error: "Chat is not configured (add GEMINI_API_KEY, GROQ_API_KEY or ANTHROPIC_API_KEY)",
+      },
     };
   if (overLimit(visitor)) return { status: 429, body: { error: "limit" } };
 

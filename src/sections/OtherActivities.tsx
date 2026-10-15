@@ -26,7 +26,12 @@ export function OtherActivities() {
         <h2 className={sectionTitle()}>{t.otherTitle}</h2>
         <p className={sectionDesc()}>{L(ACTIVITIES_DESC)}</p>
       </div>
-      <div className={cn("grid grid-cols-3 items-stretch gap-4", app.narrow && "grid-cols-[minmax(0,1fr)] gap-3")}>
+      <div
+        className={cn(
+          "grid grid-cols-3 items-stretch gap-4",
+          app.narrow && "grid-cols-[minmax(0,1fr)] gap-3",
+        )}
+      >
         {ACTIVITIES.map((a, i) => (
           <Card key={a.id} a={a} n={i + 1} />
         ))}
@@ -39,10 +44,24 @@ export function OtherActivities() {
           >
             {t.hobbiesLabel}
           </span>
-          <div className={cn("grid grid-cols-3 gap-4", app.narrow && "grid-cols-[minmax(0,1fr)] gap-[18px]")}>
+          <div
+            className={cn(
+              "grid grid-cols-3 gap-4",
+              app.narrow && "grid-cols-[minmax(0,1fr)] gap-[18px]",
+            )}
+          >
             {HOBBIES.map((g) => (
-              <div key={g.id} className={cn("grid grid-cols-[22px_minmax(0,1fr)] items-start gap-3 p-0", HOBBY_COLOR[g.id])}>
-                <span className="grid h-[21px] w-[22px] place-items-center text-[var(--hc)]" aria-hidden="true">
+              <div
+                key={g.id}
+                className={cn(
+                  "grid grid-cols-[22px_minmax(0,1fr)] items-start gap-3 p-0",
+                  HOBBY_COLOR[g.id],
+                )}
+              >
+                <span
+                  className="grid h-[21px] w-[22px] place-items-center text-[var(--hc)]"
+                  aria-hidden="true"
+                >
                   <svg
                     viewBox="0 0 24 24"
                     className={
@@ -61,7 +80,10 @@ export function OtherActivities() {
                         <span className="whitespace-nowrap">
                           {L(h)}
                           {i < g.items.length - 1 && (
-                            <span className="text-[color-mix(in_srgb,var(--hc)_70%,transparent)]" aria-hidden="true">
+                            <span
+                              className="text-[color-mix(in_srgb,var(--hc)_70%,transparent)]"
+                              aria-hidden="true"
+                            >
                               {" /"}
                             </span>
                           )}
@@ -125,8 +147,17 @@ function Card({ a, n }: { a: Activity; n: number }) {
         <div className="flex gap-[22px]">
           {a.stats.map((st, i) => (
             <span key={st.l.en} className="flex items-baseline gap-[7px]">
-              <span className={cn("display text-[28px] leading-none", i === 0 ? "text-accent" : "text-muted")}>{st.v}</span>
-              <span className="font-mono text-[11px] tracking-[0.04em] text-muted uppercase">{L(st.l)}</span>
+              <span
+                className={cn(
+                  "display text-[28px] leading-none",
+                  i === 0 ? "text-accent" : "text-muted",
+                )}
+              >
+                {st.v}
+              </span>
+              <span className="font-mono text-[11px] tracking-[0.04em] text-muted uppercase">
+                {L(st.l)}
+              </span>
             </span>
           ))}
         </div>
@@ -150,7 +181,12 @@ function Card({ a, n }: { a: Activity; n: number }) {
             return (
               <li key={e.title}>
                 {e.url ? (
-                  <a className={cn(cls, "hover:text-accent")} href={e.url} target="_blank" rel="noopener noreferrer">
+                  <a
+                    className={cn(cls, "hover:text-accent")}
+                    href={e.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {body}
                   </a>
                 ) : (
@@ -163,7 +199,12 @@ function Card({ a, n }: { a: Activity; n: number }) {
       )}
 
       {/* With no links below (the workshops card), the chips sit at the bottom like the others. */}
-      <ul className={cn("m-0 flex list-none flex-wrap gap-[6px] p-0", a.links.length === 0 && "mt-auto")}>
+      <ul
+        className={cn(
+          "m-0 flex list-none flex-wrap gap-[6px] p-0",
+          a.links.length === 0 && "mt-auto",
+        )}
+      >
         {a.topics.map((tp) => (
           <li
             key={tp.en}

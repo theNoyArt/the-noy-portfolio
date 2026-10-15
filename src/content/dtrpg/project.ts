@@ -21,8 +21,16 @@ export const DT_IMG = "/images/dtrpg";
 
 /** Starter questions in the AI chat while the visitor is on this case study. */
 export const DT_CHAT_SUGGESTIONS = {
-  en: ["What were the main UX problems?", "How does the mock API work?", "Why two extra brand reds?"],
-  pl: ["Jakie były główne problemy UX?", "Jak działa mock API?", "Po co dwie dodatkowe czerwienie marki?"],
+  en: [
+    "What were the main UX problems?",
+    "How does the mock API work?",
+    "Why two extra brand reds?",
+  ],
+  pl: [
+    "Jakie były główne problemy UX?",
+    "Jak działa mock API?",
+    "Po co dwie dodatkowe czerwienie marki?",
+  ],
 };
 
 export const DT_FACTS: [string, string][] = [
@@ -81,7 +89,11 @@ export const DT_PROBLEMS: { t: string; d: string }[] = [
 export const DT_DS_FACTS: { k: string; b: string; d: string }[] = [
   { k: "Base", b: "shadcn/ui", d: "Radix primitives + Tailwind, copied into the repo" },
   { k: "Theming", b: "CSS variables", d: "One token layer drives both themes" },
-  { k: "Themes", b: "Light · Dark · System", d: "Chosen in Preferences, follows the device by default" },
+  {
+    k: "Themes",
+    b: "Light · Dark · System",
+    d: "Chosen in Preferences, follows the device by default",
+  },
   { k: "Accessibility", b: "WCAG 2.x AA", d: "Every text pairing measured on its surface" },
 ];
 
@@ -108,7 +120,11 @@ export const DT_FRONTEND: { ic: DtIcon; t: string; d: string }[] = [
   { ic: "link", t: "Routing", d: "TanStack Router" },
   { ic: "db", t: "Data fetching and caching", d: "TanStack Query" },
   { ic: "layers", t: "Client state", d: "Zustand" },
-  { ic: "check", t: "Forms and validation", d: "react-hook-form with Zod. Zod also validates API responses." },
+  {
+    ic: "check",
+    t: "Forms and validation",
+    d: "react-hook-form with Zod. Zod also validates API responses.",
+  },
   {
     ic: "globe",
     t: "Internationalisation",
@@ -119,7 +135,11 @@ export const DT_FRONTEND: { ic: DtIcon; t: string; d: string }[] = [
     t: "Styling",
     d: "Tailwind CSS v4, design tokens as CSS variables, dark-first theme with a light theme",
   },
-  { ic: "grid", t: "Components", d: "shadcn/ui (Radix primitives), WCAG AA contrast checked on tokens" },
+  {
+    ic: "grid",
+    t: "Components",
+    d: "shadcn/ui (Radix primitives), WCAG AA contrast checked on tokens",
+  },
   { ic: "play", t: "Testing", d: "Vitest (run through Vite+) with Testing Library" },
   {
     ic: "wrench",
@@ -132,7 +152,10 @@ export const DT_FLOW: { t: string; d: string }[] = [
   { t: "Generate", d: "Python scripts build JSON data and Pillow images, written with Claude" },
   { t: "Serve", d: "server.js on Render answers /api/v1/* from that data, state in memory" },
   { t: "Describe", d: "OpenAPI 3.0.3 contract, explorable in Swagger UI at /docs" },
-  { t: "Consume", d: "React app fetches with TanStack Query and validates every response with Zod" },
+  {
+    t: "Consume",
+    d: "React app fetches with TanStack Query and validates every response with Zod",
+  },
 ];
 
 export const DT_API: { ic: DtIcon; t: string; d: string }[] = [

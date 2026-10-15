@@ -20,7 +20,10 @@ const ITEMS: Discipline[] = [
     stage: "research",
     letter: "A",
     title: { en: "UX research", pl: "Badania UX" },
-    sub: { en: "Audits · interviews · usability tests", pl: "Audyty · wywiady · testy użyteczności" },
+    sub: {
+      en: "Audits · interviews · usability tests",
+      pl: "Audyty · wywiady · testy użyteczności",
+    },
     icon: (
       <>
         <circle cx="10.5" cy="10.5" r="6.5" />
@@ -89,7 +92,8 @@ const vd = tv({
       "h-full w-full fill-none stroke-(--ic) stroke-[1.3] opacity-[0.38] [stroke-linecap:round] [stroke-linejoin:round] [transition:filter_0.4s] " +
       "[filter:drop-shadow(0_0_4px_color-mix(in_srgb,var(--ic)_35%,transparent))]",
     /* Labels with leader lines. */
-    label: "pointer-events-none absolute flex w-[42%] flex-col gap-[3px] [transition:opacity_0.3s] narrow:w-[46%]",
+    label:
+      "pointer-events-none absolute flex w-[42%] flex-col gap-[3px] [transition:opacity_0.3s] narrow:w-[46%]",
     title: "text-[15px] font-semibold narrow:text-[13.5px]",
     more: "mt-1 font-mono text-[11px] text-accent opacity-0 [transition:opacity_0.3s] narrow:hidden",
   },
@@ -205,17 +209,37 @@ export function Disciplines() {
             ))}
           </defs>
           <g clipPath="url(#vd-clip-ux)">
-            <circle className={cn(OV, OV_FILL.ab, on && "opacity-35")} cx={C.ui[0]} cy={C.ui[1]} r={R} />
+            <circle
+              className={cn(OV, OV_FILL.ab, on && "opacity-35")}
+              cx={C.ui[0]}
+              cy={C.ui[1]}
+              r={R}
+            />
           </g>
           <g clipPath="url(#vd-clip-ux)">
-            <circle className={cn(OV, OV_FILL.ac, on && "opacity-35")} cx={C.fe[0]} cy={C.fe[1]} r={R} />
+            <circle
+              className={cn(OV, OV_FILL.ac, on && "opacity-35")}
+              cx={C.fe[0]}
+              cy={C.fe[1]}
+              r={R}
+            />
           </g>
           <g clipPath="url(#vd-clip-ui)">
-            <circle className={cn(OV, OV_FILL.bc, on && "opacity-35")} cx={C.fe[0]} cy={C.fe[1]} r={R} />
+            <circle
+              className={cn(OV, OV_FILL.bc, on && "opacity-35")}
+              cx={C.fe[0]}
+              cy={C.fe[1]}
+              r={R}
+            />
           </g>
           <g clipPath="url(#vd-clip-ux)">
             <g clipPath="url(#vd-clip-ui)">
-              <circle className={cn(OV, OV_FILL.abc, on && "opacity-35")} cx={C.fe[0]} cy={C.fe[1]} r={R} />
+              <circle
+                className={cn(OV, OV_FILL.abc, on && "opacity-35")}
+                cx={C.fe[0]}
+                cy={C.fe[1]}
+                r={R}
+              />
             </g>
           </g>
         </svg>
@@ -240,7 +264,9 @@ export function Disciplines() {
           <div key={d.id} className={vd({ id: d.id, dim: on !== null && on !== d.id }).label()}>
             <span className="mb-1 block h-px w-14 bg-muted opacity-60" aria-hidden="true" />
             <span className={vd({ on: on === d.id }).title()}>{L(d.title)}</span>
-            <span className="text-[12.5px] leading-[1.35] text-muted narrow:text-[11.5px]">{L(d.sub)}</span>
+            <span className="text-[12.5px] leading-[1.35] text-muted narrow:text-[11.5px]">
+              {L(d.sub)}
+            </span>
             <span className={vd({ on: on === d.id }).more()}>{t.vdOpen}</span>
           </div>
         ))}

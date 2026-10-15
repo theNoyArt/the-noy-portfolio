@@ -39,14 +39,17 @@ export const THEMES: Record<ThemeName, Vars> = {
     "--dev-muted": "#45506a",
     "--dev-line": "rgba(47, 95, 216, 0.14)",
     "--dev-accent": "#2f5fd8",
-    "--card-shadow-hover": "inset 0 1px 0 #fff, 0 0 0 1px rgba(110,80,220,.12), 0 24px 44px -20px rgba(90,60,200,.38), 0 0 34px -10px rgba(160,140,255,.35)",
+    "--card-shadow-hover":
+      "inset 0 1px 0 #fff, 0 0 0 1px rgba(110,80,220,.12), 0 24px 44px -20px rgba(90,60,200,.38), 0 0 34px -10px rgba(160,140,255,.35)",
     "--card-lift": "-4px",
-    "--pop-shadow": "inset 0 1px 0 #fff, 0 0 0 1px rgba(110,80,220,.08), 0 30px 60px -24px rgba(40,20,120,.35)",
+    "--pop-shadow":
+      "inset 0 1px 0 #fff, 0 0 0 1px rgba(110,80,220,.08), 0 30px 60px -24px rgba(40,20,120,.35)",
     "--cover-filter-hover": "none",
     "--glass-blur": "22px",
     "--glass-sat": "1.7",
     "--glass-edge": "rgba(255, 255, 255, 0.85)",
-    "--glass-shadow": "inset 0 1px 0 rgba(255,255,255,.95), inset 0 0 0 1px rgba(255,255,255,.35), 0 0 0 1px rgba(110,80,220,.08), 0 18px 40px -18px rgba(90,60,200,.28), 0 0 30px -10px rgba(160,140,255,.25)",
+    "--glass-shadow":
+      "inset 0 1px 0 rgba(255,255,255,.95), inset 0 0 0 1px rgba(255,255,255,.35), 0 0 0 1px rgba(110,80,220,.08), 0 18px 40px -18px rgba(90,60,200,.28), 0 0 30px -10px rgba(160,140,255,.25)",
     "--blobs": "1",
     "--fix": "#e0356f",
     "--improvement": "#e08a1a",

@@ -4,7 +4,14 @@ import { useI18n } from "../lib/i18n";
 import { coverFor, imageBg, stripes } from "../lib/visual";
 import { Creature } from "../pages/tamagotchi/Creature";
 import { cn, tv } from "../lib/cn";
-import { chip, monoLabel, section, sectionDesc, sectionHead, sectionTitle } from "../styles/recipes";
+import {
+  chip,
+  monoLabel,
+  section,
+  sectionDesc,
+  sectionHead,
+  sectionTitle,
+} from "../styles/recipes";
 
 const card = tv({
   slots: {
@@ -69,7 +76,12 @@ export function Showcase() {
         <h2 className={sectionTitle()}>{t.showTitle}</h2>
         <p className={sectionDesc()}>{L(SHOWCASE_DESC)}</p>
       </div>
-      <div className={cn("grid grid-cols-3 gap-[clamp(14px,1.6cqi,24px)]", app.narrow && "grid-cols-1")}>
+      <div
+        className={cn(
+          "grid grid-cols-3 gap-[clamp(14px,1.6cqi,24px)]",
+          app.narrow && "grid-cols-1",
+        )}
+      >
         {SHOWCASE.map((x, i) => {
           const big = i === 0 && !app.narrow;
           const cover = coverFor(x.images, app.theme);
@@ -126,7 +138,9 @@ export function Showcase() {
                       style={imageBg(cover, stripes(x.hue, app.theme))}
                     />
                   )}
-                  <span className={cn(chip(), TYPE)}>{x.inProgress ? t.inProgress : L(x.type)}</span>
+                  <span className={cn(chip(), TYPE)}>
+                    {x.inProgress ? t.inProgress : L(x.type)}
+                  </span>
                   <span className="absolute top-3 right-3 font-mono text-[11px]">{x.year}</span>
                   {!cover && !x.inProgress && (
                     <span className="absolute bottom-3 left-[14px] font-mono text-[10.5px] text-muted">
@@ -147,13 +161,18 @@ export function Showcase() {
                         className="h-2 w-2 animate-show-stage-ping rounded-full bg-accent shadow-[0_0_0_0_color-mix(in_srgb,var(--accent)_50%,transparent)] cyber:rounded-none"
                         aria-hidden="true"
                       />
-                      <span className="font-mono text-[10px] tracking-[0.08em] text-accent uppercase">{t.stageLabel}</span>
+                      <span className="font-mono text-[10px] tracking-[0.08em] text-accent uppercase">
+                        {t.stageLabel}
+                      </span>
                       <span className="text-[13px] font-bold text-ink">{L(x.stage.label)}</span>
                       <span className="ml-auto inline-flex gap-[3px]" aria-hidden="true">
                         {Array.from({ length: x.stage.steps }, (_, i) => (
                           <i
                             key={i}
-                            className={cn("h-1 w-[14px] rounded-[2px] bg-line2 cyber:rounded-none", i < x.stage!.step && "bg-accent")}
+                            className={cn(
+                              "h-1 w-[14px] rounded-[2px] bg-line2 cyber:rounded-none",
+                              i < x.stage!.step && "bg-accent",
+                            )}
                           />
                         ))}
                       </span>
@@ -173,27 +192,29 @@ export function Showcase() {
         {SHOWCASE_UPCOMING.map((x, i) => {
           const soon = card({ kind: "soon", muted: x.muted });
           return (
-          <div key={i} data-reveal={((SHOWCASE.length + i) % 3) * 80}>
-            <div className={soon.root()} aria-disabled={x.muted || undefined}>
-              <div className={cn(soon.cover(), COVER_SOON)}>
-                <span
-                  className="font-mono text-[clamp(40px,5cqi,72px)] text-accent opacity-55 [text-shadow:var(--glow)]"
-                  aria-hidden="true"
-                >
-                  {"</>"}
-                </span>
-                <span className={cn(chip(), TYPE)}>{t.inProgress}</span>
-              </div>
-              <div className={BODY}>
-                <span className={soon.title()}>{L(x.title)}</span>
-                <span className={SHORT}>{L(x.desc)}</span>
-                <div className={FOOT}>
-                  <span className={TECH}>{L(x.meta)}</span>
-                  <span className="font-mono text-[11px] font-medium tracking-[0.08em] text-muted uppercase">{t.comingSoon}</span>
+            <div key={i} data-reveal={((SHOWCASE.length + i) % 3) * 80}>
+              <div className={soon.root()} aria-disabled={x.muted || undefined}>
+                <div className={cn(soon.cover(), COVER_SOON)}>
+                  <span
+                    className="font-mono text-[clamp(40px,5cqi,72px)] text-accent opacity-55 [text-shadow:var(--glow)]"
+                    aria-hidden="true"
+                  >
+                    {"</>"}
+                  </span>
+                  <span className={cn(chip(), TYPE)}>{t.inProgress}</span>
+                </div>
+                <div className={BODY}>
+                  <span className={soon.title()}>{L(x.title)}</span>
+                  <span className={SHORT}>{L(x.desc)}</span>
+                  <div className={FOOT}>
+                    <span className={TECH}>{L(x.meta)}</span>
+                    <span className="font-mono text-[11px] font-medium tracking-[0.08em] text-muted uppercase">
+                      {t.comingSoon}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
           );
         })}
       </div>

@@ -7,7 +7,8 @@ import { button, pulseDot } from "../styles/recipes";
 import { HeroMedia } from "./HeroMedia";
 
 /* 15px line icons in the bottom bar. */
-const SVG_ICON = "h-[15px] w-[15px] fill-none stroke-current stroke-[1.8] [stroke-linecap:round] [stroke-linejoin:round]";
+const SVG_ICON =
+  "h-[15px] w-[15px] fill-none stroke-current stroke-[1.8] [stroke-linecap:round] [stroke-linejoin:round]";
 
 /* Profile and CV links in the bottom bar. In Glass light they stay frosted on hover. */
 const BAR_LINK =
@@ -57,7 +58,9 @@ export function Hero() {
                 {i < arr.length - 1 ? (
                   <br />
                 ) : (
-                  <span className="text-accent glass:text-[#8a6cf0] glass:[-webkit-text-fill-color:#8a6cf0]">.</span>
+                  <span className="text-accent glass:text-[#8a6cf0] glass:[-webkit-text-fill-color:#8a6cf0]">
+                    .
+                  </span>
                 )}
               </span>
             ))}
@@ -105,7 +108,10 @@ export function Hero() {
             </button>
             <button
               type="button"
-              className={cn(button({ variant: "outline" }), "cyber:hover:border-accent2 narrow:justify-center")}
+              className={cn(
+                button({ variant: "outline" }),
+                "cyber:hover:border-accent2 narrow:justify-center",
+              )}
               onClick={() => app.setChatOpen(true)}
             >
               <span className={pulseDot()} aria-hidden="true" />
@@ -227,19 +233,29 @@ function HeroBar() {
               </>
             )}
           </svg>
-          <span className="sr-only" aria-live="polite">{copied ? t.copied : ""}</span>
+          <span className="sr-only" aria-live="polite">
+            {copied ? t.copied : ""}
+          </span>
         </button>
       </div>
       <div className="ml-auto flex flex-wrap gap-2 narrow:col-span-2 narrow:ml-0 narrow:grid narrow:grid-cols-2">
         {links.map((l) => (
-          <a key={l.label} href={l.url} target="_blank" rel="noopener noreferrer" className={cn(BAR_LINK, "narrow:justify-center narrow:py-[10px]")}>
+          <a
+            key={l.label}
+            href={l.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(BAR_LINK, "narrow:justify-center narrow:py-[10px]")}
+          >
             {l.icon && (
               <svg viewBox="0 0 24 24" aria-hidden="true" className={SVG_ICON}>
                 {l.icon}
               </svg>
             )}
             {l.label}
-            <span aria-hidden="true" className="text-[14px] text-accent">↗</span>
+            <span aria-hidden="true" className="text-[14px] text-accent">
+              ↗
+            </span>
           </a>
         ))}
       </div>

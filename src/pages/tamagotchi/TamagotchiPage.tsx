@@ -7,7 +7,18 @@ import type { ResolvedCase } from "../../lib/cases";
 import { cn, tv } from "../../lib/cn";
 import { useI18n } from "../../lib/i18n";
 import { CaseMobileBar } from "../CaseMobileBar";
-import { bodyMuted, btnRow, caseBtn, caseTitle, caseTitleSub, label, lead, metaRow, sec, secHead } from "../dtrpg/case-ui";
+import {
+  bodyMuted,
+  btnRow,
+  caseBtn,
+  caseTitle,
+  caseTitleSub,
+  label,
+  lead,
+  metaRow,
+  sec,
+  secHead,
+} from "../dtrpg/case-ui";
 import { Closing } from "../dtrpg/Closing";
 import { Creature } from "./Creature";
 import {
@@ -269,8 +280,7 @@ const phase = tv({
     /** Started, but no task ticked yet: a moving striped stub instead of an empty bar. */
     started: {
       true: {
-        fill:
-          "!w-[14%] animate-tg-stripes bg-[repeating-linear-gradient(-45deg,var(--accent)_0_6px,color-mix(in_srgb,var(--accent)_55%,var(--tg-pink))_6px_12px)] bg-[length:34px_100%]",
+        fill: "!w-[14%] animate-tg-stripes bg-[repeating-linear-gradient(-45deg,var(--accent)_0_6px,color-mix(in_srgb,var(--accent)_55%,var(--tg-pink))_6px_12px)] bg-[length:34px_100%]",
       },
     },
   },
@@ -310,12 +320,25 @@ function PhCap() {
   const { L } = useI18n();
   return (
     <span className={cn(cap, "mt-1 block")}>
-      {L({ en: "Placeholder mascot · final art in progress", pl: "Tymczasowa maskotka · finalna grafika w trakcie" })}
+      {L({
+        en: "Placeholder mascot · final art in progress",
+        pl: "Tymczasowa maskotka · finalna grafika w trakcie",
+      })}
     </span>
   );
 }
 
-function SecHead({ n, label: lbl, title, children }: { n: number; label: string; title: string; children?: ReactNode }) {
+function SecHead({
+  n,
+  label: lbl,
+  title,
+  children,
+}: {
+  n: number;
+  label: string;
+  title: string;
+  children?: ReactNode;
+}) {
   return (
     <>
       <span className={secLabel}>
@@ -355,7 +378,9 @@ function Overview() {
             <div className={st.root()} role="status">
               <span className={st.dot()} aria-hidden="true" />
               <span className={st.k()}>{L({ en: "Current stage", pl: "Obecny etap" })}</span>
-              <span className={st.v()}>{L({ en: "Research & design", pl: "Badania i projektowanie" })}</span>
+              <span className={st.v()}>
+                {L({ en: "Research & design", pl: "Badania i projektowanie" })}
+              </span>
               <span className={st.steps()} aria-hidden="true">
                 <i className={st.step({ on: true })} />
                 <i className={st.step({ on: true })} />
@@ -366,7 +391,11 @@ function Overview() {
           </div>
           <p className={lead}>{L(TG.lead)}</p>
           <div className={btnRow}>
-            <button type="button" className={caseBtn({ variant: "primary" })} onClick={() => app.scrollToCaseSection("roadmap")}>
+            <button
+              type="button"
+              className={caseBtn({ variant: "primary" })}
+              onClick={() => app.scrollToCaseSection("roadmap")}
+            >
               {L({ en: "See the roadmap ↓", pl: "Zobacz roadmapę ↓" })}
             </button>
           </div>
@@ -388,7 +417,10 @@ function Overview() {
             </div>
           </div>
           <span className={cap}>
-            {L({ en: "Placeholder mascot · final art in progress", pl: "Tymczasowa maskotka · finalna grafika w trakcie" })}
+            {L({
+              en: "Placeholder mascot · final art in progress",
+              pl: "Tymczasowa maskotka · finalna grafika w trakcie",
+            })}
           </span>
         </div>
       </div>
@@ -401,10 +433,21 @@ function Idea() {
   const pl = pillars();
   return (
     <section className={sec()} id="c-idea" data-nav-section>
-      <SecHead n={2} label={t.tgIdea} title={L({ en: "One life. Your care decides how it goes.", pl: "Jedno życie. Twoja opieka decyduje, jak się potoczy." })} />
+      <SecHead
+        n={2}
+        label={t.tgIdea}
+        title={L({
+          en: "One life. Your care decides how it goes.",
+          pl: "Jedno życie. Twoja opieka decyduje, jak się potoczy.",
+        })}
+      />
       <div className={pl.root()}>
         {TG.pillars.map((p, i) => (
-          <article key={p.k.en} className={card({ class: pl.item() })} style={{ "--i": i } as CSSProperties}>
+          <article
+            key={p.k.en}
+            className={card({ class: pl.item() })}
+            style={{ "--i": i } as CSSProperties}
+          >
             <span className={pl.k()}>
               {pad(i + 1)} · {L(p.k)}
             </span>
@@ -424,7 +467,10 @@ function Attachment() {
       <SecHead
         n={3}
         label={t.tgAttachment}
-        title={L({ en: "Four ways it can learn to love.", pl: "Cztery sposoby, w jakie może nauczyć się kochać." })}
+        title={L({
+          en: "Four ways it can learn to love.",
+          pl: "Cztery sposoby, w jakie może nauczyć się kochać.",
+        })}
       >
         <p className={bodyMuted({ class: headNote })}>
           {L({
@@ -437,7 +483,11 @@ function Attachment() {
         {TG.attachment.map((s, i) => {
           const sc = styleCard({ id: s.id as "secure" | "anxious" | "avoidant" | "disorganized" });
           return (
-            <article key={s.id} className={card({ class: sc.root() })} style={{ "--i": i } as CSSProperties}>
+            <article
+              key={s.id}
+              className={card({ class: sc.root() })}
+              style={{ "--i": i } as CSSProperties}
+            >
               <Creature mood={s.mood} className={sc.pet()} />
               <span className={sc.n()}>{pad(i + 1)}</span>
               <h3 className={sc.name()}>{L(s.name)}</h3>
@@ -466,7 +516,14 @@ function Concept() {
   const head = map({ tone: "head" });
   return (
     <section className={sec()} id="c-concept" data-nav-section>
-      <SecHead n={4} label={t.tgConcept} title={L({ en: "Every response teaches it something.", pl: "Każda reakcja czegoś go uczy." })} />
+      <SecHead
+        n={4}
+        label={t.tgConcept}
+        title={L({
+          en: "Every response teaches it something.",
+          pl: "Każda reakcja czegoś go uczy.",
+        })}
+      />
 
       <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] items-center gap-x-[clamp(32px,5vw,80px)] gap-y-10 max-[899px]:grid-cols-1">
         <div className="flex flex-col gap-7">
@@ -477,7 +534,9 @@ function Concept() {
             })}
           </p>
           <div className={endings.root}>
-            <span className={label()}>{L({ en: "Possible endings", pl: "Możliwe zakończenia" })}</span>
+            <span className={label()}>
+              {L({ en: "Possible endings", pl: "Możliwe zakończenia" })}
+            </span>
             <div className={endings.bar} aria-hidden="true" />
             <ol className={endings.list}>
               {TG.endings.map((e) => (
@@ -503,7 +562,13 @@ function Concept() {
                 <li
                   key={s.en}
                   className={loop.step}
-                  style={{ left: 50 + 38 * Math.cos(a) + "%", top: 50 + 38 * Math.sin(a) + "%", "--i": i } as CSSProperties}
+                  style={
+                    {
+                      left: 50 + 38 * Math.cos(a) + "%",
+                      top: 50 + 38 * Math.sin(a) + "%",
+                      "--i": i,
+                    } as CSSProperties
+                  }
                 >
                   <span className={loop.n}>{i + 1}</span>
                   <span className={loop.l}>{L(s)}</span>
@@ -520,7 +585,9 @@ function Concept() {
       <div className={sub.root}>
         <div className={sub.head}>
           <h3 className={sub.title}>{L({ en: "Behaviour map", pl: "Mapa zachowań" })}</h3>
-          <span className={draft}>{L({ en: "Draft · being researched", pl: "Szkic · w trakcie badań" })}</span>
+          <span className={draft}>
+            {L({ en: "Draft · being researched", pl: "Szkic · w trakcie badań" })}
+          </span>
         </div>
         <div className={head.root()} role="table">
           <div className={head.row()} role="row">
@@ -550,7 +617,9 @@ function Concept() {
 
       <div className={sub.root}>
         <div className={sub.head}>
-          <h3 className={sub.title}>{L({ en: "One pet, many states", pl: "Jeden zwierzak, wiele stanów" })}</h3>
+          <h3 className={sub.title}>
+            {L({ en: "One pet, many states", pl: "Jeden zwierzak, wiele stanów" })}
+          </h3>
           <p className={bodyMuted({ class: sub.note })}>
             {L({
               en: "Few illustrations, one character: the same creature drawn happy, sad, sick, overfed or underfed. These become the sprite set.",
@@ -560,7 +629,11 @@ function Concept() {
         </div>
         <ul className={states.root}>
           {TG.states.map((s, i) => (
-            <li key={s.mood} className={card({ class: states.item })} style={{ "--i": i } as CSSProperties}>
+            <li
+              key={s.mood}
+              className={card({ class: states.item })}
+              style={{ "--i": i } as CSSProperties}
+            >
               <Creature mood={s.mood} className={states.creature} />
               <span>{L(s.label)}</span>
             </li>
@@ -588,7 +661,11 @@ function Inspirations() {
   const s = insp();
   return (
     <section className={sec()} id="c-inspirations" data-nav-section>
-      <SecHead n={5} label={t.tgInspirations} title={L({ en: "Where it comes from.", pl: "Skąd się wziął." })}>
+      <SecHead
+        n={5}
+        label={t.tgInspirations}
+        title={L({ en: "Where it comes from.", pl: "Skąd się wziął." })}
+      >
         <p className={bodyMuted({ class: headNote })}>
           {L({
             en: "Virtual pets, games where choices shape a character, games about emotions, and the psychology behind both the creature and the play.",
@@ -607,7 +684,12 @@ function Inspirations() {
                   const name = typeof x.name === "string" ? x.name : L(x.name);
                   return (
                     <li key={name} className={s.li()}>
-                      <a className={card({ class: s.item() })} href={x.url} target="_blank" rel="noopener noreferrer">
+                      <a
+                        className={card({ class: s.item() })}
+                        href={x.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <span className={s.name()}>{name}</span>
                         <span className={s.take()}>{L(x.take)}</span>
                         <span className={s.src()}>
@@ -643,7 +725,7 @@ function Roadmap() {
   const prog = (p: RoadmapPhase) =>
     p.status === "done"
       ? 100
-      : p.progress ?? Math.round((p.tasks.filter((x) => x.done).length / p.tasks.length) * 100);
+      : (p.progress ?? Math.round((p.tasks.filter((x) => x.done).length / p.tasks.length) * 100));
   const pct = Math.round(phases.reduce((s, p) => s + prog(p), 0) / phases.length);
   const started = phases.filter((p) => p.status !== "planned").length;
   const active = phases.filter((p) => p.status === "active");
@@ -653,14 +735,20 @@ function Roadmap() {
 
   return (
     <section className={sec()} id="c-roadmap" data-nav-section>
-      <SecHead n={6} label={t.tgRoadmap} title={L({ en: "The road to launch.", pl: "Droga do premiery." })} />
+      <SecHead
+        n={6}
+        label={t.tgRoadmap}
+        title={L({ en: "The road to launch.", pl: "Droga do premiery." })}
+      />
 
       <div className={rm.root}>
         <aside className={card({ class: rm.summary })}>
           <div className={rm.ring} style={{ "--p": pct } as CSSProperties}>
             <svg viewBox="0 0 100 100" className={rm.ringSvg} aria-hidden="true">
               <circle cx="50" cy="50" r="42" className={rm.ringTrack} />
-              {pct > 0 && <circle cx="50" cy="50" r="42" className={rm.ringFill} pathLength={100} />}
+              {pct > 0 && (
+                <circle cx="50" cy="50" r="42" className={rm.ringFill} pathLength={100} />
+              )}
             </svg>
             <span className={rm.ringV}>{pct}%</span>
           </div>
@@ -710,13 +798,20 @@ function Roadmap() {
                   </svg>
                 </span>
                 <div className={card({ class: s.card() })}>
-                  <button type="button" className={ph.head()} aria-expanded={isOpen} onClick={() => toggle(p.id)}>
+                  <button
+                    type="button"
+                    className={ph.head()}
+                    aria-expanded={isOpen}
+                    onClick={() => toggle(p.id)}
+                  >
                     <span className={ph.n()}>{pad(i + 1)}</span>
                     <span className={ph.titles()}>
                       <span className={cn(s.title(), ph.title())}>{L(p.title)}</span>
                       <span className={ph.goal()}>{L(p.goal)}</span>
                     </span>
-                    <span className={badge({ status: p.status, class: ph.badge() })}>{st(p.status)}</span>
+                    <span className={badge({ status: p.status, class: ph.badge() })}>
+                      {st(p.status)}
+                    </span>
                     <span className={ph.chev()} aria-hidden="true" />
                   </button>
                   <div className={ph.progress()}>

@@ -15,7 +15,9 @@ describe("api/chat import graph", () => {
       if (seen.has(file)) continue;
       seen.add(file);
       const src = readFileSync(file, "utf8");
-      for (const m of src.matchAll(/^\s*(?:import|export)\s+(type\s+)?[^;]*?from\s+"(\.[^"]+)"/gms)) {
+      for (const m of src.matchAll(
+        /^\s*(?:import|export)\s+(type\s+)?[^;]*?from\s+"(\.[^"]+)"/gms,
+      )) {
         const [, typeOnly, spec] = m;
         const target = join(dirname(file), spec.replace(/\.js$/, "") + ".ts").replace(/\\/g, "/");
         if (existsSync(target)) queue.push(target);

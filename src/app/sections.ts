@@ -99,7 +99,12 @@ const PF_ORDER: { id: CaseSectionId; key: keyof UIStrings; track: Track | null }
 
 /** The sections a case study shows. The audit only appears when there is audit data. */
 export function caseSections(c: ResolvedCase, t: UIStrings): CaseSection[] {
-  const own = { dtrpg: DTRPG_ORDER, tamagotchi: TG_ORDER, artpractice: AP_ORDER, portfolio: PF_ORDER } as const;
+  const own = {
+    dtrpg: DTRPG_ORDER,
+    tamagotchi: TG_ORDER,
+    artpractice: AP_ORDER,
+    portfolio: PF_ORDER,
+  } as const;
   if (c.page)
     return own[c.page].map((s, i) => ({
       id: s.id,

@@ -27,7 +27,8 @@
     }
     88% {
       transform: translate(-6px, 0);
-      filter: drop-shadow(4px 0 0 rgba(255, 60, 240, 0.8)) drop-shadow(-4px 0 0 rgba(70, 240, 255, 0.8));
+      filter: drop-shadow(4px 0 0 rgba(255, 60, 240, 0.8))
+        drop-shadow(-4px 0 0 rgba(70, 240, 255, 0.8));
     }
     90% {
       transform: translate(5px, 1px);
@@ -168,8 +169,18 @@
 
 /* Section gutter: like px-page, but with the case study's own clamp and the safe-area insets. */
 @utility px-case {
-  padding-left: max(16px, min(4vw, 56px), env(safe-area-inset-left, 0px), calc((100% - var(--wrap, 1360px)) / 2));
-  padding-right: max(16px, min(4vw, 56px), env(safe-area-inset-right, 0px), calc((100% - var(--wrap, 1360px)) / 2));
+  padding-left: max(
+    16px,
+    min(4vw, 56px),
+    env(safe-area-inset-left, 0px),
+    calc((100% - var(--wrap, 1360px)) / 2)
+  );
+  padding-right: max(
+    16px,
+    min(4vw, 56px),
+    env(safe-area-inset-right, 0px),
+    calc((100% - var(--wrap, 1360px)) / 2)
+  );
 }
 
 /* Lens reveal: a circle of radius --r at (--mx, --my); the host sets them from the pointer. */
@@ -258,7 +269,11 @@
     inset: 0;
     pointer-events: none;
     clip-path: circle(var(--r) at var(--mx) var(--my));
-    background: repeating-linear-gradient(0deg, rgba(127, 215, 232, 0.1) 0 1px, transparent 1px 3px);
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(127, 215, 232, 0.1) 0 1px,
+      transparent 1px 3px
+    );
     mix-blend-mode: screen;
     transition: clip-path 0.22s ease-out;
   }

@@ -151,7 +151,11 @@ function HeroLens() {
     const b = stage.current.getBoundingClientRect();
     const next = !open;
     setOpen(next);
-    setLens(e.clientX - b.left, e.clientY - b.top, next ? Math.ceil(Math.hypot(b.width, b.height)) : 0);
+    setLens(
+      e.clientX - b.left,
+      e.clientY - b.top,
+      next ? Math.ceil(Math.hypot(b.width, b.height)) : 0,
+    );
   };
 
   const s = heroLens({ open });
@@ -177,7 +181,9 @@ function HeroLens() {
       >
         <div
           className={s.layer()}
-          style={{ backgroundImage: `url("${DT_IMG}/hero/new-home-${dark ? "dark" : "light"}.webp")` }}
+          style={{
+            backgroundImage: `url("${DT_IMG}/hero/new-home-${dark ? "dark" : "light"}.webp")`,
+          }}
         />
         <div
           className={cn(s.layer(), s.back())}
@@ -189,7 +195,11 @@ function HeroLens() {
         </span>
       </div>
       {/* From 1000px the caption hangs below the frame, so the frame ends level with the text column. */}
-      <figcaption className={s.cap({ class: "min-[1000px]:absolute min-[1000px]:inset-x-0 min-[1000px]:top-[calc(100%_+_8px)]" })}>
+      <figcaption
+        className={s.cap({
+          class: "min-[1000px]:absolute min-[1000px]:inset-x-0 min-[1000px]:top-[calc(100%_+_8px)]",
+        })}
+      >
         <span>{f.heroCap(dark)}</span>
         <span>
           {tr(touchOnly ? "Tap to compare with the original" : "Hover to see the original site")}

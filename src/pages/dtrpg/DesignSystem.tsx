@@ -22,13 +22,17 @@ export function DesignSystem() {
   return (
     <section className={sec()} id="c-system" data-nav-section>
       <div className={secHead}>
-        <span className={label({ tone: "accent", star: true })}>{tr("[04] Design system · shadcn/ui")}</span>
+        <span className={label({ tone: "accent", star: true })}>
+          {tr("[04] Design system · shadcn/ui")}
+        </span>
         <Ext className={secLink} href={DT_LINKS.colours}>
           {tr("Colour setup in Figma ↗")}
         </Ext>
       </div>
       <div className={twoCol({ end: true })}>
-        <h2 className={secTitle}>{tr("One set of token names, two themes, checked for contrast.")}</h2>
+        <h2 className={secTitle}>
+          {tr("One set of token names, two themes, checked for contrast.")}
+        </h2>
         <p className={bodyMuted()}>
           {tr(
             "The UI is built on shadcn/ui: components live in the codebase and are themed only through CSS variables. Token names follow shadcn (background, card, popover, muted, border, input, primary), extended with primary-text, primary-solid and status colours. Light and dark swap the values, never the names.",
@@ -38,7 +42,10 @@ export function DesignSystem() {
 
       <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,200px),1fr))] border-t border-l border-t-line-2 border-l-line">
         {DT_DS_FACTS.map((x) => (
-          <div key={x.k} className="flex flex-col gap-[6px] border-r border-b border-line px-[18px] py-4">
+          <div
+            key={x.k}
+            className="flex flex-col gap-[6px] border-r border-b border-line px-[18px] py-4"
+          >
             <span className={label()}>{tr(x.k)}</span>
             <b className="text-[17px] font-semibold">{tr(x.b)}</b>
             <span className="text-[13.5px] text-muted">{tr(x.d)}</span>
@@ -88,7 +95,9 @@ export function DesignSystem() {
                       style={{ background: t.tokens[k] }}
                     />
                     <span className="flex min-w-0 flex-1 items-baseline justify-between gap-2">
-                      <b className="overflow-hidden text-[14px] font-semibold text-ellipsis whitespace-nowrap">{k}</b>
+                      <b className="overflow-hidden text-[14px] font-semibold text-ellipsis whitespace-nowrap">
+                        {k}
+                      </b>
                       <code className="flex-none font-mono text-[12px] text-[color:var(--ds-muted-foreground)]">
                         {t.tokens[k]}
                       </code>

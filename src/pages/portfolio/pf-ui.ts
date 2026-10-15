@@ -40,8 +40,7 @@ export const themeSwitch = tv({
       false: { light: "text-white" },
       true: {
         dark: "text-[#0a0910]",
-        knob:
-          "[transform:translateX(100%)] rounded-none bg-[linear-gradient(135deg,#c58bff,#7fd7e8)] shadow-[0_0_18px_rgba(197,139,255,0.7)]",
+        knob: "[transform:translateX(100%)] rounded-none bg-[linear-gradient(135deg,#c58bff,#7fd7e8)] shadow-[0_0_18px_rgba(197,139,255,0.7)]",
       },
     },
   },
@@ -113,7 +112,10 @@ export const mapCell = tv({
   base: `${box} ${stripes} min-h-[90px]`,
   variants: {
     tall: { true: "min-h-[110px]" },
-    alt: { false: "border-line-2", true: "border-[color-mix(in_srgb,var(--accent)_50%,transparent)]" },
+    alt: {
+      false: "border-line-2",
+      true: "border-[color-mix(in_srgb,var(--accent)_50%,transparent)]",
+    },
   },
   defaultVariants: { alt: false },
 });
@@ -140,7 +142,8 @@ export const pfPhone = tv({
     root:
       "relative mx-auto flex w-full max-w-[300px] flex-col gap-2 rounded-[30px] border-[1.5px] border-dashed border-line-2 px-3 pt-7 pb-5 text-[12.5px] " +
       "cyber:rounded-none",
-    notch: "absolute top-[10px] left-1/2 h-[5px] w-[56px] -translate-x-1/2 rounded-full bg-line-2 cyber:rounded-none",
+    notch:
+      "absolute top-[10px] left-1/2 h-[5px] w-[56px] -translate-x-1/2 rounded-full bg-line-2 cyber:rounded-none",
     /** Top bar / section bar: a single row with items at both ends. */
     bar: `${box} flex items-center justify-between gap-2 border-line-2 py-2`,
     /** Section bar: leaves room under the controls for the progress line. */
@@ -148,9 +151,9 @@ export const pfPhone = tv({
     /** A small outlined control in a bar (menu, back, dropdown). */
     ctl: "rounded-[6px] border-[1.5px] border-line-2 px-[6px] py-[1px] font-mono text-[10px] text-muted cyber:rounded-none",
     /** Thin reading-progress line under the section bar. */
-    progress: "absolute right-3 bottom-[5px] left-3 h-[2px] bg-[linear-gradient(90deg,var(--accent)_0_40%,transparent_40%)]",
-    chat:
-      "absolute right-4 bottom-3 z-[2] rounded-full bg-accent px-[10px] py-[5px] text-[11px] font-semibold text-accent-ink shadow-[0_0_0_3px_var(--bg)] cyber:rounded-none",
+    progress:
+      "absolute right-3 bottom-[5px] left-3 h-[2px] bg-[linear-gradient(90deg,var(--accent)_0_40%,transparent_40%)]",
+    chat: "absolute right-4 bottom-3 z-[2] rounded-full bg-accent px-[10px] py-[5px] text-[11px] font-semibold text-accent-ink shadow-[0_0_0_3px_var(--bg)] cyber:rounded-none",
   },
 });
 
@@ -206,7 +209,8 @@ export const mood = tv({
     trend:
       "border-l-[3px] border-l-[color:var(--m-acc)] bg-[color-mix(in_srgb,var(--m-acc)_10%,transparent)] px-[14px] py-3 text-[14px] leading-[1.5]",
     kw: "flex list-none flex-wrap gap-[6px] p-0",
-    kwItem: "rounded-full border border-[color:var(--m-line)] px-[11px] py-1 text-[12.5px] text-[color:var(--m-ink)]",
+    kwItem:
+      "rounded-full border border-[color:var(--m-line)] px-[11px] py-1 text-[12.5px] text-[color:var(--m-ink)]",
   },
   variants: {
     kind: {
@@ -267,7 +271,8 @@ export const moodToast = tv({
     text: "flex flex-col",
     k: "font-mono text-[9px] tracking-[0.1em] text-[#7fd7e8] not-italic",
     hp: "h-[10px] border border-[color:var(--m-line)] p-[2px]",
-    hpFill: "block h-full w-[72%] bg-[repeating-linear-gradient(90deg,#c58bff_0_8px,transparent_8px_10px)]",
+    hpFill:
+      "block h-full w-[72%] bg-[repeating-linear-gradient(90deg,#c58bff_0_8px,transparent_8px_10px)]",
   },
 });
 

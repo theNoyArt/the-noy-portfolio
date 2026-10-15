@@ -99,7 +99,10 @@ export function Creature({ className, mood = "happy" }: { className?: string; mo
           <g className={EYES}>
             <ellipse cx="49" cy="66" rx="3.6" ry={mood === "sick" ? 1.6 : 4} />
             <ellipse cx="71" cy="66" rx="3.6" ry={mood === "sick" ? 1.6 : 4} />
-            <path d="M43 58l10 3M77 58l-10 3" className="fill-none stroke-[#2a1b55] stroke-[1.8] [stroke-linecap:round]" />
+            <path
+              d="M43 58l10 3M77 58l-10 3"
+              className="fill-none stroke-[#2a1b55] stroke-[1.8] [stroke-linecap:round]"
+            />
           </g>
         )}
 
@@ -122,8 +125,18 @@ export function Creature({ className, mood = "happy" }: { className?: string; mo
         )}
 
         {/* extras */}
-        {mood === "sad" && <path d="M45 71c-1.5 3-1.5 5 0 6 1.5-1 1.5-3 0-6z" className="fill-[#8fd0ff] stroke-[#4a90c8] stroke-[0.8]" />}
-        {mood === "anxious" && <path d="M85 50c-2 3-2 5 0 6 2-1 2-3 0-6z" className="fill-[#8fd0ff] stroke-[#4a90c8] stroke-[0.8]" />}
+        {mood === "sad" && (
+          <path
+            d="M45 71c-1.5 3-1.5 5 0 6 1.5-1 1.5-3 0-6z"
+            className="fill-[#8fd0ff] stroke-[#4a90c8] stroke-[0.8]"
+          />
+        )}
+        {mood === "anxious" && (
+          <path
+            d="M85 50c-2 3-2 5 0 6 2-1 2-3 0-6z"
+            className="fill-[#8fd0ff] stroke-[#4a90c8] stroke-[0.8]"
+          />
+        )}
         {mood === "sick" && (
           <path
             d="M88 40h6l-6 6h6"

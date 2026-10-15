@@ -17,7 +17,8 @@ export const card = tv({
 
 /** Section label + heading (h2), with an optional note on the right. */
 export const secLabel = label({ tone: "accent", star: true });
-export const secTitle = "display max-w-[26ch] text-[clamp(28px,2.8vw,44px)] leading-[1.05] text-balance";
+export const secTitle =
+  "display max-w-[26ch] text-[clamp(28px,2.8vw,44px)] leading-[1.05] text-balance";
 /** Short note next to a section heading. */
 export const headNote = "max-w-[46ch]";
 
@@ -119,8 +120,7 @@ export const tl = tv({
       "not-last:before:absolute not-last:before:top-12 not-last:before:-bottom-[14px] not-last:before:left-[23px] not-last:before:w-[2px] not-last:before:content-[''] " +
       "not-last:before:bg-[repeating-linear-gradient(180deg,var(--line-2)_0_6px,transparent_6px_11px)] " +
       "max-[599px]:not-last:before:top-9 max-[599px]:not-last:before:left-[17px]",
-    node:
-      "relative z-[1] grid h-12 w-12 place-items-center rounded-full border-2 border-dashed border-line-2 bg-bg text-muted max-[599px]:h-9 max-[599px]:w-9 cyber:rounded-none",
+    node: "relative z-[1] grid h-12 w-12 place-items-center rounded-full border-2 border-dashed border-line-2 bg-bg text-muted max-[599px]:h-9 max-[599px]:w-9 cyber:rounded-none",
     card: "flex flex-col gap-3 px-5 pt-4 pb-[18px] [transition:border-color_0.3s,box-shadow_0.3s]",
     title: "display text-[19px] leading-[1.2]",
   },
@@ -133,8 +133,7 @@ export const tl = tv({
       active: {
         item: "not-last:before:bg-[linear-gradient(180deg,var(--accent),var(--line-2))]",
         node: "animate-tg-node-ping border-solid border-accent bg-[color-mix(in_srgb,var(--accent)_16%,var(--bg))] text-accent",
-        card:
-          "cyber:border-[color-mix(in_srgb,var(--accent)_55%,transparent)] cyber:shadow-[0_14px_30px_-18px_color-mix(in_srgb,var(--accent)_70%,transparent)]",
+        card: "cyber:border-[color-mix(in_srgb,var(--accent)_55%,transparent)] cyber:shadow-[0_14px_30px_-18px_color-mix(in_srgb,var(--accent)_70%,transparent)]",
       },
       planned: { card: "border-dashed" },
     },

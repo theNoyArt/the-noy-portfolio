@@ -33,7 +33,8 @@ export const PERSON: Person = {
       pl: "Zdjęcie Pauliny Targosz; soczewka odsłania jej ilustrowany autoportret",
     },
   },
-  education: "Graphic design, specialisation Game Design, at Wyższa Szkoła Technologii Informatycznych w Katowicach (until 2026)",
+  education:
+    "Graphic design, specialisation Game Design, at Wyższa Szkoła Technologii Informatycznych w Katowicach (until 2026)",
   languages: "Polish (native), English (B2)",
   hobbies: "Illustration & 3D art, tabletop RPGs, photography, backpacking",
   chatSuggestions: {

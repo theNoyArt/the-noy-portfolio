@@ -51,7 +51,9 @@ const ICONS: Record<AchievementIcon, ReactNode> = {
       <path d="M19 2v4M17 4h4" />
     </>
   ),
-  health: <path d="M20.4 4.6a5.5 5.5 0 0 0-7.8 0L12 5.3l-.6-.7a5.5 5.5 0 0 0-7.8 7.8l8.4 8.4 8.4-8.4a5.5 5.5 0 0 0 0-7.8z" />,
+  health: (
+    <path d="M20.4 4.6a5.5 5.5 0 0 0-7.8 0L12 5.3l-.6-.7a5.5 5.5 0 0 0-7.8 7.8l8.4 8.4 8.4-8.4a5.5 5.5 0 0 0 0-7.8z" />
+  ),
   book: (
     <>
       <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z" />
@@ -100,7 +102,12 @@ const badge = tv({
   },
 });
 
-type BadgeProps = { a: Achievement; locked?: boolean; at: "item" | "secret" | "toast"; spin?: boolean };
+type BadgeProps = {
+  a: Achievement;
+  locked?: boolean;
+  at: "item" | "secret" | "toast";
+  spin?: boolean;
+};
 
 function Badge({ a, locked, at, spin }: BadgeProps) {
   return (
@@ -226,9 +233,14 @@ export function Achievements() {
               {done}/{total} <span className="text-[0.6em] text-muted">{t.achUnlocked}</span>
             </span>
           </div>
-          <span className="font-mono text-[13px] text-accent">{Math.round((done / total) * 100)}%</span>
+          <span className="font-mono text-[13px] text-accent">
+            {Math.round((done / total) * 100)}%
+          </span>
         </header>
-        <div className="h-[6px] overflow-hidden rounded-full bg-line2 cyber:rounded-none" aria-hidden="true">
+        <div
+          className="h-[6px] overflow-hidden rounded-full bg-line2 cyber:rounded-none"
+          aria-hidden="true"
+        >
           <span
             className={
               "block h-full rounded-[inherit] bg-[linear-gradient(90deg,var(--accent),var(--accent2))] shadow-[0_0_12px_color-mix(in_srgb,var(--accent)_60%,transparent)] " +
@@ -245,7 +257,10 @@ export function Achievements() {
               {Array.from({ length: 14 }, (_, i) => (
                 <i
                   key={i}
-                  className={cn("absolute -m-[3px] h-[6px] w-[6px] animate-ach-particle rounded-full", PARTICLE[i % 3])}
+                  className={cn(
+                    "absolute -m-[3px] h-[6px] w-[6px] animate-ach-particle rounded-full",
+                    PARTICLE[i % 3],
+                  )}
                   style={{ "--a": i * (360 / 14) + "deg" } as CSSProperties}
                 />
               ))}
@@ -287,7 +302,9 @@ export function Achievements() {
               <Badge a={a} at="item" />
               <span className={TEXT}>
                 <span className={NAME}>{L(a.title)}</span>
-                <span className="overflow-hidden font-mono text-[10px] text-ellipsis whitespace-nowrap text-accent">{a.when}</span>
+                <span className="overflow-hidden font-mono text-[10px] text-ellipsis whitespace-nowrap text-accent">
+                  {a.when}
+                </span>
                 <span className={DESC}>{L(a.desc)}</span>
               </span>
             </li>
@@ -300,7 +317,9 @@ export function Achievements() {
           <>
             <Badge a={S} at="toast" />
             <span className="flex flex-col">
-              <span className="font-mono text-[10px] tracking-[0.1em] text-[var(--t-platinum)] uppercase">{t.achToast}</span>
+              <span className="font-mono text-[10px] tracking-[0.1em] text-[var(--t-platinum)] uppercase">
+                {t.achToast}
+              </span>
               <span className="text-[14px] font-semibold">{L(S.title)}</span>
             </span>
           </>

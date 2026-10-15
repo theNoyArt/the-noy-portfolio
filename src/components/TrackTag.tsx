@@ -5,9 +5,5 @@ import { trackTag } from "../styles/recipes";
 /** Small "Design" / "Build" label. */
 export function TrackTag({ track }: { track: Track }) {
   const { t } = useI18n();
-  return (
-    <span className={trackTag({ track })}>
-      {track === "ux" ? t.designTag : t.buildTag}
-    </span>
-  );
+  return <span className={trackTag({ track })}>{track === "ux" ? t.designTag : t.buildTag}</span>;
 }

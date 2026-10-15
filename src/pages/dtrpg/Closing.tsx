@@ -8,7 +8,6 @@ import { label, sec } from "./case-ui";
 import { Creature } from "../tamagotchi/Creature";
 import { useTr } from "./tr";
 
-
 /**
  * Next case study next to a contact card. With no other showcase project the card
  * leads back to the showcase instead.
@@ -61,13 +60,17 @@ export function Closing({ c }: { c: ResolvedCase }) {
         }}
       >
         <span className="flex flex-col justify-center gap-3 p-[clamp(24px,3.5vw,44px)] text-ink">
-          <span className={label({ tone: "accent" })}>{tr(next ? "Next case study →" : "More work")}</span>
+          <span className={label({ tone: "accent" })}>
+            {tr(next ? "Next case study →" : "More work")}
+          </span>
           <span className="display text-[clamp(36px,3.6vw,60px)] leading-[0.95] text-balance">
             {next ? next.name : tr("All projects.")}
           </span>
           <span className="font-mono text-[12px] text-muted">
             {next
-              ? [L(next.category), next.origin ? L(next.origin) : null, next.year].filter(Boolean).join(" · ")
+              ? [L(next.category), next.origin ? L(next.origin) : null, next.year]
+                  .filter(Boolean)
+                  .join(" · ")
               : tr("UX/UI design · Front-end development")}
           </span>
           <span className="max-w-[420px] text-[16px] text-pretty text-muted">
@@ -124,7 +127,9 @@ export function Closing({ c }: { c: ResolvedCase }) {
       </a>
       <div className="glass-blur flex flex-col gap-[14px] rounded-card border border-glass-edge bg-surface p-[clamp(24px,3vw,36px)] shadow-glass">
         <span className={label({ tone: "accent" })}>{tr("Let’s talk")}</span>
-        <p className="text-[17px] leading-[1.5] text-pretty">{tr("Liked how this was put together? I’m open to new work.")}</p>
+        <p className="text-[17px] leading-[1.5] text-pretty">
+          {tr("Liked how this was put together? I’m open to new work.")}
+        </p>
         <a className="group/mail self-start" href={`mailto:${PERSON.email}`}>
           <span className="block border-b border-current text-[clamp(17px,1.4vw,20px)] font-semibold break-all text-accent group-hover/mail:text-ink">
             {PERSON.email}

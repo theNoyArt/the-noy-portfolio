@@ -19,21 +19,44 @@ function texts(value: unknown, path = "", out: { path: string; en: unknown; pl: 
   if (Array.isArray(value)) value.forEach((v, i) => texts(v, `${path}[${i}]`, out));
   else if (value && typeof value === "object") {
     const o = value as Record<string, unknown>;
-    if ("en" in o && "pl" in o && Object.keys(o).length === 2) out.push({ path, en: o.en, pl: o.pl });
+    if ("en" in o && "pl" in o && Object.keys(o).length === 2)
+      out.push({ path, en: o.en, pl: o.pl });
     else for (const [k, v] of Object.entries(o)) texts(v, path ? `${path}.${k}` : k, out);
   }
   return out;
 }
 
-const CONTENT = { PERSON, ABOUT, ABOUT_TABS, ACTIVITIES, HOBBIES, EXPERIENCE, SHOWCASE, SHOWCASE_UPCOMING, TG, AP, PF, PF_FACTS, PF_WIRES };
+const CONTENT = {
+  PERSON,
+  ABOUT,
+  ABOUT_TABS,
+  ACTIVITIES,
+  HOBBIES,
+  EXPERIENCE,
+  SHOWCASE,
+  SHOWCASE_UPCOMING,
+  TG,
+  AP,
+  PF,
+  PF_FACTS,
+  PF_WIRES,
+};
 
 describe("content", () => {
   it("has every text in both English and Polish", () => {
     const missing = texts(CONTENT)
       .filter((x) => {
-        const en = Array.isArray(x.en) ? x.en.length : typeof x.en === "string" ? x.en.trim().length : 1;
-        const pl = Array.isArray(x.pl) ? x.pl.length : typeof x.pl === "string" ? x.pl.trim().length : 1;
-        return (en > 0) !== (pl > 0);
+        const en = Array.isArray(x.en)
+          ? x.en.length
+          : typeof x.en === "string"
+            ? x.en.trim().length
+            : 1;
+        const pl = Array.isArray(x.pl)
+          ? x.pl.length
+          : typeof x.pl === "string"
+            ? x.pl.trim().length
+            : 1;
+        return en > 0 !== pl > 0;
       })
       .map((x) => x.path);
     expect(missing).toEqual([]);

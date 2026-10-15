@@ -134,8 +134,7 @@ export const seg = tv({
     root:
       "glass:glass-blur overflow-hidden rounded-card-sm border border-line2 " +
       "glass:gap-[3px] glass:rounded-full glass:border-glass-edge glass:bg-white/45 glass:p-[3px] glass:shadow-glass",
-    btn:
-      "min-h-10 cursor-pointer border-0 bg-transparent px-4 py-[10px] text-[14px] text-muted transition-[background-color,color] duration-300 glass:rounded-full",
+    btn: "min-h-10 cursor-pointer border-0 bg-transparent px-4 py-[10px] text-[14px] text-muted transition-[background-color,color] duration-300 glass:rounded-full",
   },
   variants: {
     layout: {

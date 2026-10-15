@@ -19,8 +19,10 @@
   --animate-about-bar-sweep: about-bar-sweep 1.1s 0.35s ease-out;
   --animate-about-in: about-in 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   --animate-about-in-late: about-in 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) 0.08s both;
-  --animate-about-item: about-item 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) calc(0.12s + var(--i, 0) * 0.05s) both;
-  --animate-about-pill: about-pill 0.45s cubic-bezier(0.3, 1.4, 0.5, 1) calc(0.3s + var(--i, 0) * 0.06s) both;
+  --animate-about-item: about-item 0.45s cubic-bezier(0.2, 0.8, 0.2, 1)
+    calc(0.12s + var(--i, 0) * 0.05s) both;
+  --animate-about-pill: about-pill 0.45s cubic-bezier(0.3, 1.4, 0.5, 1)
+    calc(0.3s + var(--i, 0) * 0.06s) both;
 
   /* Showcase: in-progress stage dot. */
   --animate-show-stage-ping: show-stage-ping 2.2s ease-out infinite;
@@ -161,4 +163,3 @@
     }
   }
 }
-

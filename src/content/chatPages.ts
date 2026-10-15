@@ -34,11 +34,39 @@ function page(heading: string, summary: string, content: Record<string, unknown>
 }
 
 export function bondChatContext(): string {
-  const { meta, title, sub, lead, pillars, attachment, behaviours, endings, loop, states, inspirationGroups, inspirations, roadmap } = TG;
+  const {
+    meta,
+    title,
+    sub,
+    lead,
+    pillars,
+    attachment,
+    behaviours,
+    endings,
+    loop,
+    states,
+    inspirationGroups,
+    inspirations,
+    roadmap,
+  } = TG;
   return page(
     "BOND CASE STUDY",
     "Bond is the working title of Paulina's own Tamagotchi-inspired game, in the research & design stage. The platform (web + browser extension, web or mobile) and the tech stack aren't chosen yet. The pet art on the page is a placeholder mascot; final art is in progress.",
-    { meta, title, sub, lead, pillars, attachment, behaviours, endings, loop, states, inspirationGroups, inspirations, roadmap },
+    {
+      meta,
+      title,
+      sub,
+      lead,
+      pillars,
+      attachment,
+      behaviours,
+      endings,
+      loop,
+      states,
+      inspirationGroups,
+      inspirations,
+      roadmap,
+    },
   );
 }
 

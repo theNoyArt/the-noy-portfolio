@@ -7,7 +7,10 @@ export type ApStatus = "active" | "planned";
 export const AP = {
   meta: {
     kind: { en: "App · Art education", pl: "Aplikacja · Edukacja artystyczna" },
-    origin: { en: "Self-initiated · research & design", pl: "Projekt własny · badania i projektowanie" },
+    origin: {
+      en: "Self-initiated · research & design",
+      pl: "Projekt własny · badania i projektowanie",
+    },
   },
   title: { en: "Art practice assistant", pl: "Asystent praktyki artystycznej" },
   sub: { en: "Small exercises, every day", pl: "Małe ćwiczenia, codziennie" },
@@ -27,7 +30,10 @@ export const AP = {
     },
     {
       k: { en: "Daily", pl: "Codziennie" },
-      title: { en: "Small exercises, not big projects", pl: "Małe ćwiczenia, nie wielkie projekty" },
+      title: {
+        en: "Small exercises, not big projects",
+        pl: "Małe ćwiczenia, nie wielkie projekty",
+      },
       desc: {
         en: "Short, focused sessions with timers and good references, so practice fits into a normal day.",
         pl: "Krótkie, skupione sesje z timerem i dobrymi referencjami, żeby praktyka mieściła się w zwykłym dniu.",
@@ -44,17 +50,57 @@ export const AP = {
   ],
 
   flow: [
-    { t: { en: "Set a goal", pl: "Ustaw cel" }, d: { en: "What you want to learn, and how much time you have.", pl: "Czego chcesz się nauczyć i ile masz czasu." } },
-    { t: { en: "Get a plan", pl: "Dostań plan" }, d: { en: "A day-by-day or week-by-week mix of exercises.", pl: "Mix ćwiczeń dzień po dniu lub tydzień po tygodniu." } },
-    { t: { en: "Practise", pl: "Ćwicz" }, d: { en: "Timed sessions with references and short instructions.", pl: "Sesje z timerem, referencjami i krótkimi instrukcjami." } },
-    { t: { en: "Track & adjust", pl: "Śledź i dopasuj" }, d: { en: "See your streak and progress; the plan adapts.", pl: "Widzisz serię i postępy; plan się dopasowuje." } },
+    {
+      t: { en: "Set a goal", pl: "Ustaw cel" },
+      d: {
+        en: "What you want to learn, and how much time you have.",
+        pl: "Czego chcesz się nauczyć i ile masz czasu.",
+      },
+    },
+    {
+      t: { en: "Get a plan", pl: "Dostań plan" },
+      d: {
+        en: "A day-by-day or week-by-week mix of exercises.",
+        pl: "Mix ćwiczeń dzień po dniu lub tydzień po tygodniu.",
+      },
+    },
+    {
+      t: { en: "Practise", pl: "Ćwicz" },
+      d: {
+        en: "Timed sessions with references and short instructions.",
+        pl: "Sesje z timerem, referencjami i krótkimi instrukcjami.",
+      },
+    },
+    {
+      t: { en: "Track & adjust", pl: "Śledź i dopasuj" },
+      d: {
+        en: "See your streak and progress; the plan adapts.",
+        pl: "Widzisz serię i postępy; plan się dopasowuje.",
+      },
+    },
   ],
 
   exercises: [
-    { id: "gesture", name: { en: "Gesture drawing", pl: "Rysunek gestu" }, ex: { en: "30s–2 min poses, line of action", pl: "Pozy 30 s–2 min, linia akcji" } },
-    { id: "pose", name: { en: "Figure & poses", pl: "Postać i pozy" }, ex: { en: "Longer poses, proportions, balance", pl: "Dłuższe pozy, proporcje, równowaga" } },
-    { id: "anatomy", name: { en: "Anatomy", pl: "Anatomia" }, ex: { en: "Bones, muscles, hands, faces", pl: "Kości, mięśnie, dłonie, twarze" } },
-    { id: "colour", name: { en: "Colour & value", pl: "Kolor i walor" }, ex: { en: "Value studies, palettes, light", pl: "Studia waloru, palety, światło" } },
+    {
+      id: "gesture",
+      name: { en: "Gesture drawing", pl: "Rysunek gestu" },
+      ex: { en: "30s–2 min poses, line of action", pl: "Pozy 30 s–2 min, linia akcji" },
+    },
+    {
+      id: "pose",
+      name: { en: "Figure & poses", pl: "Postać i pozy" },
+      ex: { en: "Longer poses, proportions, balance", pl: "Dłuższe pozy, proporcje, równowaga" },
+    },
+    {
+      id: "anatomy",
+      name: { en: "Anatomy", pl: "Anatomia" },
+      ex: { en: "Bones, muscles, hands, faces", pl: "Kości, mięśnie, dłonie, twarze" },
+    },
+    {
+      id: "colour",
+      name: { en: "Colour & value", pl: "Kolor i walor" },
+      ex: { en: "Value studies, palettes, light", pl: "Studia waloru, palety, światło" },
+    },
   ] as { id: "gesture" | "pose" | "anatomy" | "colour"; name: Localized; ex: Localized }[],
 
   /** Things to research. Links are starting points, not decisions. */
@@ -62,24 +108,56 @@ export const AP = {
     {
       g: { en: "Pose & reference sources", pl: "Źródła póz i referencji" },
       items: [
-        { name: "Unsplash API", url: "https://unsplash.com/developers", note: { en: "Free photo API", pl: "Darmowe API zdjęć" } },
-        { name: "Pexels API", url: "https://www.pexels.com/api/", note: { en: "Free photo & video API", pl: "Darmowe API zdjęć i wideo" } },
-        { name: "PoseMy.Art", url: "https://posemy.art/", note: { en: "3D pose references", pl: "Referencje póz 3D" } },
+        {
+          name: "Unsplash API",
+          url: "https://unsplash.com/developers",
+          note: { en: "Free photo API", pl: "Darmowe API zdjęć" },
+        },
+        {
+          name: "Pexels API",
+          url: "https://www.pexels.com/api/",
+          note: { en: "Free photo & video API", pl: "Darmowe API zdjęć i wideo" },
+        },
+        {
+          name: "PoseMy.Art",
+          url: "https://posemy.art/",
+          note: { en: "3D pose references", pl: "Referencje póz 3D" },
+        },
       ],
     },
     {
       g: { en: "Practice tools to learn from", pl: "Narzędzia do nauki od innych" },
       items: [
-        { name: "Line of Action", url: "https://line-of-action.com/", note: { en: "Timed gesture sessions", pl: "Sesje gestu z timerem" } },
-        { name: "Quickposes", url: "https://quickposes.com/", note: { en: "Timed figure references", pl: "Referencje postaci z timerem" } },
-        { name: "Drawabox", url: "https://drawabox.com/", note: { en: "Structured lessons & homework", pl: "Lekcje i zadania krok po kroku" } },
+        {
+          name: "Line of Action",
+          url: "https://line-of-action.com/",
+          note: { en: "Timed gesture sessions", pl: "Sesje gestu z timerem" },
+        },
+        {
+          name: "Quickposes",
+          url: "https://quickposes.com/",
+          note: { en: "Timed figure references", pl: "Referencje postaci z timerem" },
+        },
+        {
+          name: "Drawabox",
+          url: "https://drawabox.com/",
+          note: { en: "Structured lessons & homework", pl: "Lekcje i zadania krok po kroku" },
+        },
       ],
     },
     {
       g: { en: "Platform", pl: "Platforma" },
       items: [
-        { name: "React", url: "https://react.dev/", note: { en: "Web app", pl: "Aplikacja webowa" } },
-        { name: "React Native", url: "https://reactnative.dev/", note: { en: "Mobile app", pl: "Aplikacja mobilna" } },
+        {
+          name: "React",
+          url: "https://react.dev/",
+          note: { en: "Web app", pl: "Aplikacja webowa" },
+        },
+        {
+          name: "React Native",
+          url: "https://reactnative.dev/",
+          note: { en: "Mobile app", pl: "Aplikacja mobilna" },
+        },
       ],
     },
   ] as { g: Localized; items: { name: string; url: string; note: Localized }[] }[],
@@ -124,7 +202,10 @@ export const AP = {
       status: "planned",
       title: { en: "Connect with lessons", pl: "Połączenie z lekcjami" },
       points: [
-        { en: "Exercises for streams & YouTube tutorials", pl: "Ćwiczenia do streamów i tutoriali na YouTube" },
+        {
+          en: "Exercises for streams & YouTube tutorials",
+          pl: "Ćwiczenia do streamów i tutoriali na YouTube",
+        },
       ],
     },
   ] as { status: ApStatus; title: Localized; points: Localized[] }[],

@@ -13,10 +13,18 @@ const groqOk = (text: string) => ok({ choices: [{ message: { content: text } }] 
 const claudeOk = (text: string) => ok({ content: [{ type: "text", text }] });
 
 /** Fake fetch that answers per provider host and records the calls. */
-function fakeFetch(answers: { gemini?: () => Response; groq?: () => Response; claude?: () => Response }) {
+function fakeFetch(answers: {
+  gemini?: () => Response;
+  groq?: () => Response;
+  claude?: () => Response;
+}) {
   return vi.fn(async (url: string, _init?: RequestInit) => {
     const host = new URL(url).host;
-    const pick = host.includes("googleapis") ? answers.gemini : host.includes("groq") ? answers.groq : answers.claude;
+    const pick = host.includes("googleapis")
+      ? answers.gemini
+      : host.includes("groq")
+        ? answers.groq
+        : answers.claude;
     return pick ? pick() : new Response("no answer configured", { status: 500 });
   });
 }
@@ -24,7 +32,9 @@ function fakeFetch(answers: { gemini?: () => Response; groq?: () => Response; cl
 const hostOf = (call: unknown[]) => new URL(call[0] as string).host;
 const systemOf = (call: unknown[]) => {
   const body = JSON.parse((call[1] as RequestInit).body as string);
-  return (body.systemInstruction?.parts?.[0]?.text ?? body.messages?.[0]?.content ?? body.system?.[0]?.text) as string;
+  return (body.systemInstruction?.parts?.[0]?.text ??
+    body.messages?.[0]?.content ??
+    body.system?.[0]?.text) as string;
 };
 
 let visitor = 0;
@@ -43,7 +53,14 @@ describe("handleChat", () => {
   it("rejects requests without a user question", async () => {
     expect((await handleChat(null, { GEMINI_API_KEY: "k" })).status).toBe(400);
     expect((await handleChat({ messages: [] }, { GEMINI_API_KEY: "k" })).status).toBe(400);
-    expect((await handleChat({ messages: [{ role: "assistant", content: "hi" }] }, { GEMINI_API_KEY: "k" })).status).toBe(400);
+    expect(
+      (
+        await handleChat(
+          { messages: [{ role: "assistant", content: "hi" }] },
+          { GEMINI_API_KEY: "k" },
+        )
+      ).status,
+    ).toBe(400);
   });
 
   it("says when no provider key is configured", async () => {
@@ -60,17 +77,30 @@ describe("handleChat", () => {
   });
 
   it("falls back to Groq when Gemini hits its limit", async () => {
-    const fetch = fakeFetch({ gemini: () => new Response("quota", { status: 429 }), groq: () => groqOk("From Groq") });
+    const fetch = fakeFetch({
+      gemini: () => new Response("quota", { status: 429 }),
+      groq: () => groqOk("From Groq"),
+    });
     vi.stubGlobal("fetch", fetch);
     const res = await handleChat(ask(), { GEMINI_API_KEY: "g", GROQ_API_KEY: "q" }, nextVisitor());
     expect(res.body.text).toBe("From Groq");
-    expect(fetch.mock.calls.map(hostOf)).toEqual(["generativelanguage.googleapis.com", "api.groq.com"]);
+    expect(fetch.mock.calls.map(hostOf)).toEqual([
+      "generativelanguage.googleapis.com",
+      "api.groq.com",
+    ]);
   });
 
   it("skips providers without a key and follows CHAT_PROVIDERS", async () => {
-    const fetch = fakeFetch({ claude: () => claudeOk("From Claude"), groq: () => groqOk("From Groq") });
+    const fetch = fakeFetch({
+      claude: () => claudeOk("From Claude"),
+      groq: () => groqOk("From Groq"),
+    });
     vi.stubGlobal("fetch", fetch);
-    const res = await handleChat(ask(), { ANTHROPIC_API_KEY: "a", GROQ_API_KEY: "q", CHAT_PROVIDERS: "claude,groq" }, nextVisitor());
+    const res = await handleChat(
+      ask(),
+      { ANTHROPIC_API_KEY: "a", GROQ_API_KEY: "q", CHAT_PROVIDERS: "claude,groq" },
+      nextVisitor(),
+    );
     expect(res.body.text).toBe("From Claude");
     expect(fetch.mock.calls.map(hostOf)).toEqual(["api.anthropic.com"]);
   });
@@ -85,7 +115,12 @@ describe("handleChat", () => {
     vi.stubGlobal(
       "fetch",
       fakeFetch({
-        gemini: () => ok({ candidates: [{ content: { parts: [{ text: "hmm", thought: true }, { text: "Answer" }] } }] }),
+        gemini: () =>
+          ok({
+            candidates: [
+              { content: { parts: [{ text: "hmm", thought: true }, { text: "Answer" }] } },
+            ],
+          }),
       }),
     );
     const res = await handleChat(ask(), { GEMINI_API_KEY: "g" }, nextVisitor());
@@ -95,18 +130,26 @@ describe("handleChat", () => {
   it("limits one visitor to 15 questions per 10 minutes", async () => {
     vi.stubGlobal("fetch", fakeFetch({ gemini: () => geminiOk("ok") }));
     const who = nextVisitor();
-    for (let i = 0; i < 15; i++) expect((await handleChat(ask(), { GEMINI_API_KEY: "g" }, who)).status).toBe(200);
+    for (let i = 0; i < 15; i++)
+      expect((await handleChat(ask(), { GEMINI_API_KEY: "g" }, who)).status).toBe(200);
     expect((await handleChat(ask(), { GEMINI_API_KEY: "g" }, who)).status).toBe(429);
     // Someone else can still ask.
     expect((await handleChat(ask(), { GEMINI_API_KEY: "g" }, nextVisitor())).status).toBe(200);
   });
 
   it("sends Groq a prompt short enough for its free tier", async () => {
-    const fetch = fakeFetch({ gemini: () => new Response("quota", { status: 429 }), groq: () => groqOk("ok") });
+    const fetch = fakeFetch({
+      gemini: () => new Response("quota", { status: 429 }),
+      groq: () => groqOk("ok"),
+    });
     vi.stubGlobal("fetch", fetch);
     for (const caseId of ["dtrpg", "tamagotchi", "portfolio", "artpractice"]) {
       fetch.mockClear();
-      await handleChat(ask("Tell me more", { caseId }), { GEMINI_API_KEY: "g", GROQ_API_KEY: "q" }, nextVisitor());
+      await handleChat(
+        ask("Tell me more", { caseId }),
+        { GEMINI_API_KEY: "g", GROQ_API_KEY: "q" },
+        nextVisitor(),
+      );
       const [gemini, groq] = fetch.mock.calls;
       expect(systemOf(groq).length).toBeLessThanOrEqual(20_000);
       expect(systemOf(gemini).length).toBeGreaterThanOrEqual(systemOf(groq).length);
@@ -139,6 +182,8 @@ describe("buildSystemPrompt", () => {
   });
 
   it("makes a compact version without per-job detail", () => {
-    expect(buildSystemPrompt("en", "tamagotchi", true).length).toBeLessThan(buildSystemPrompt("en", "tamagotchi").length);
+    expect(buildSystemPrompt("en", "tamagotchi", true).length).toBeLessThan(
+      buildSystemPrompt("en", "tamagotchi").length,
+    );
   });
 });

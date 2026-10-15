@@ -7,7 +7,17 @@ import type { ResolvedCase } from "../../lib/cases";
 import { cn, tv } from "../../lib/cn";
 import { useI18n } from "../../lib/i18n";
 import { CaseMobileBar } from "../CaseMobileBar";
-import { bodyMuted, btnRow, caseBtn, caseTitle, caseTitleSub, lead, metaRow, sec, secHead } from "../dtrpg/case-ui";
+import {
+  bodyMuted,
+  btnRow,
+  caseBtn,
+  caseTitle,
+  caseTitleSub,
+  lead,
+  metaRow,
+  sec,
+  secHead,
+} from "../dtrpg/case-ui";
 import { Closing } from "../dtrpg/Closing";
 import {
   badge,
@@ -75,8 +85,7 @@ const phone = tv({
     item: "grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-[10px] rounded-[14px] border border-line px-3 py-[10px] text-[14px] cyber:rounded-none",
     name: "",
     time: "font-mono text-[11px] text-muted",
-    cta:
-      "rounded-full bg-accent p-3 text-center font-bold text-accent-ink shadow-[0_10px_22px_-10px_color-mix(in_srgb,var(--accent)_70%,transparent)] cyber:rounded-none",
+    cta: "rounded-full bg-accent p-3 text-center font-bold text-accent-ink shadow-[0_10px_22px_-10px_color-mix(in_srgb,var(--accent)_70%,transparent)] cyber:rounded-none",
   },
   variants: { done: { true: { item: "opacity-60", name: "line-through" } } },
 });
@@ -111,7 +120,8 @@ function ExIcon({ id, size }: { id: ExId; size?: "sm" | "lg" }) {
 }
 
 /** Four cards in a row (two below 1200px, one below 600px). */
-const grid4 = "m-0 grid list-none grid-cols-4 gap-[14px] p-0 max-[1199px]:grid-cols-2 max-[599px]:grid-cols-1";
+const grid4 =
+  "m-0 grid list-none grid-cols-4 gap-[14px] p-0 max-[1199px]:grid-cols-2 max-[599px]:grid-cols-1";
 
 /** Flow steps, with an arrow to the next one while they sit in one row. */
 const flowStep =
@@ -135,7 +145,8 @@ const lesson = tv({
     },
   },
 });
-const lessonArrow = "self-center text-[22px] text-accent max-[1199px]:justify-self-center max-[1199px]:[transform:rotate(90deg)]";
+const lessonArrow =
+  "self-center text-[22px] text-accent max-[1199px]:justify-self-center max-[1199px]:[transform:rotate(90deg)]";
 
 /** Research group colours. */
 const GROUP_GC = ["[--gc:#e86fc4]", "[--gc:#e8a13a]", "[--gc:var(--accent-2)]"];
@@ -158,7 +169,17 @@ export function ArtPracticePage({ c }: { c: ResolvedCase }) {
   );
 }
 
-function SecHead({ n, label, title, children }: { n: number; label: string; title: string; children?: ReactNode }) {
+function SecHead({
+  n,
+  label,
+  title,
+  children,
+}: {
+  n: number;
+  label: string;
+  title: string;
+  children?: ReactNode;
+}) {
   return (
     <>
       <span className={secLabel}>
@@ -198,7 +219,9 @@ function Overview() {
             <div className={st.root()} role="status">
               <span className={st.dot()} aria-hidden="true" />
               <span className={st.k()}>{L({ en: "Current stage", pl: "Obecny etap" })}</span>
-              <span className={st.v()}>{L({ en: "Research & design", pl: "Badania i projektowanie" })}</span>
+              <span className={st.v()}>
+                {L({ en: "Research & design", pl: "Badania i projektowanie" })}
+              </span>
               <span className={st.steps()} aria-hidden="true">
                 <i className={st.step({ on: true })} />
                 <i className={st.step()} />
@@ -209,7 +232,11 @@ function Overview() {
           </div>
           <p className={lead}>{L(AP.lead)}</p>
           <div className={btnRow}>
-            <button type="button" className={caseBtn({ variant: "primary" })} onClick={() => app.scrollToCaseSection("roadmap")}>
+            <button
+              type="button"
+              className={caseBtn({ variant: "primary" })}
+              onClick={() => app.scrollToCaseSection("roadmap")}
+            >
               {L({ en: "See next steps ↓", pl: "Zobacz kolejne kroki ↓" })}
             </button>
           </div>
@@ -238,7 +265,9 @@ function TodayMock() {
         </div>
         <div className={s.goal()}>
           <span className={s.k()}>{L({ en: "Goal", pl: "Cel" })}</span>
-          <span className={s.goalV()}>{L({ en: "Draw people with confidence", pl: "Pewnie rysować ludzi" })}</span>
+          <span className={s.goalV()}>
+            {L({ en: "Draw people with confidence", pl: "Pewnie rysować ludzi" })}
+          </span>
           <span className={s.bar()}>
             <span className={s.fill()} style={{ width: "34%" }} />
           </span>
@@ -255,7 +284,12 @@ function TodayMock() {
         </ul>
         <span className={s.cta()}>{L({ en: "Start session", pl: "Zacznij sesję" })} ▸</span>
       </div>
-      <span className={cap}>{L({ en: "UI sketch · final design in progress", pl: "Szkic UI · finalny projekt w trakcie" })}</span>
+      <span className={cap}>
+        {L({
+          en: "UI sketch · final design in progress",
+          pl: "Szkic UI · finalny projekt w trakcie",
+        })}
+      </span>
     </div>
   );
 }
@@ -265,10 +299,18 @@ function Idea() {
   const pl = pillars();
   return (
     <section className={sec()} id="c-idea" data-nav-section>
-      <SecHead n={2} label={t.tgIdea} title={L({ en: "Practice with a plan.", pl: "Praktyka z planem." })} />
+      <SecHead
+        n={2}
+        label={t.tgIdea}
+        title={L({ en: "Practice with a plan.", pl: "Praktyka z planem." })}
+      />
       <div className={pl.root()}>
         {AP.pillars.map((p, i) => (
-          <article key={p.k.en} className={card({ class: pl.item() })} style={{ "--i": i } as CSSProperties}>
+          <article
+            key={p.k.en}
+            className={card({ class: pl.item() })}
+            style={{ "--i": i } as CSSProperties}
+          >
             <span className={pl.k()}>
               {pad(i + 1)} · {L(p.k)}
             </span>
@@ -285,10 +327,18 @@ function HowItWorks() {
   const { t, L } = useI18n();
   return (
     <section className={sec()} id="c-flow" data-nav-section>
-      <SecHead n={3} label={t.apFlow} title={L({ en: "Goal, plan, practice, repeat.", pl: "Cel, plan, praktyka, powtórka." })} />
+      <SecHead
+        n={3}
+        label={t.apFlow}
+        title={L({ en: "Goal, plan, practice, repeat.", pl: "Cel, plan, praktyka, powtórka." })}
+      />
       <ol className={grid4}>
         {AP.flow.map((f, i) => (
-          <li key={f.t.en} className={card({ class: flowStep })} style={{ "--i": i } as CSSProperties}>
+          <li
+            key={f.t.en}
+            className={card({ class: flowStep })}
+            style={{ "--i": i } as CSSProperties}
+          >
             <span className="grid h-[30px] w-[30px] place-items-center rounded-full bg-accent font-mono text-[13px] font-semibold text-accent-ink cyber:rounded-none">
               {i + 1}
             </span>
@@ -300,7 +350,9 @@ function HowItWorks() {
       <div className={sub.root}>
         <div className={sub.head}>
           <h3 className={sub.title}>{L({ en: "Exercise types", pl: "Rodzaje ćwiczeń" })}</h3>
-          <span className={draft}>{L({ en: "First set · more to come", pl: "Pierwszy zestaw · będzie więcej" })}</span>
+          <span className={draft}>
+            {L({ en: "First set · more to come", pl: "Pierwszy zestaw · będzie więcej" })}
+          </span>
         </div>
         <ul className={grid4}>
           {AP.exercises.map((e) => (
@@ -318,35 +370,70 @@ function HowItWorks() {
 
 function Lessons() {
   const { t, L } = useI18n();
-  const yt = PERSON.links.find((l) => /youtube/i.test(l.url))?.url ?? "https://www.youtube.com/@thenoyart";
+  const yt =
+    PERSON.links.find((l) => /youtube/i.test(l.url))?.url ?? "https://www.youtube.com/@thenoyart";
   const tw = "https://www.twitch.tv/thenoyart/about";
   const link = lesson({ kind: "link" });
   const app = lesson({ kind: "app" });
   return (
     <section className={sec()} id="c-lessons" data-nav-section>
-      <SecHead n={4} label={t.apLessons} title={L({ en: "Watch a lesson, then practise it.", pl: "Obejrzyj lekcję, potem ją przećwicz." })} />
+      <SecHead
+        n={4}
+        label={t.apLessons}
+        title={L({
+          en: "Watch a lesson, then practise it.",
+          pl: "Obejrzyj lekcję, potem ją przećwicz.",
+        })}
+      />
       <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1.2fr)] items-stretch gap-[14px] max-[1199px]:grid-cols-1">
-        <a className={card({ class: link.root() })} href={tw} target="_blank" rel="noopener noreferrer">
+        <a
+          className={card({ class: link.root() })}
+          href={tw}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <span className={link.k()}>Twitch ↗</span>
-          <span className={link.t()}>{L({ en: "Live drawing streams", pl: "Streamy z rysowania" })}</span>
-          <span className={bodyMuted()}>{L({ en: "Practise together during the stream.", pl: "Ćwiczymy razem w trakcie streamu." })}</span>
+          <span className={link.t()}>
+            {L({ en: "Live drawing streams", pl: "Streamy z rysowania" })}
+          </span>
+          <span className={bodyMuted()}>
+            {L({
+              en: "Practise together during the stream.",
+              pl: "Ćwiczymy razem w trakcie streamu.",
+            })}
+          </span>
         </a>
         <span className={lessonArrow} aria-hidden="true">
           →
         </span>
-        <a className={card({ class: link.root() })} href={yt} target="_blank" rel="noopener noreferrer">
+        <a
+          className={card({ class: link.root() })}
+          href={yt}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <span className={link.k()}>YouTube ↗</span>
           <span className={link.t()}>{L({ en: "Video tutorials", pl: "Tutoriale wideo" })}</span>
-          <span className={bodyMuted()}>{L({ en: "Planned: lessons on theNoyArt channel.", pl: "W planach: lekcje na kanale theNoyArt." })}</span>
+          <span className={bodyMuted()}>
+            {L({
+              en: "Planned: lessons on theNoyArt channel.",
+              pl: "W planach: lekcje na kanale theNoyArt.",
+            })}
+          </span>
         </a>
         <span className={lessonArrow} aria-hidden="true">
           →
         </span>
         <div className={card({ class: app.root() })}>
           <span className={app.k()}>{L({ en: "The app", pl: "Aplikacja" })}</span>
-          <span className={app.t()}>{L({ en: "Exercises between lessons", pl: "Ćwiczenia między lekcjami" })}</span>
+          <span className={app.t()}>
+            {L({ en: "Exercises between lessons", pl: "Ćwiczenia między lekcjami" })}
+          </span>
           <span className={bodyMuted()}>
-            {L({ en: "Each lesson unlocks a set of exercises to keep practising until the next one.", pl: "Każda lekcja odblokowuje zestaw ćwiczeń na czas do następnej." })}
+            {L({
+              en: "Each lesson unlocks a set of exercises to keep practising until the next one.",
+              pl: "Każda lekcja odblokowuje zestaw ćwiczeń na czas do następnej.",
+            })}
           </span>
         </div>
       </div>
@@ -359,9 +446,16 @@ function Research() {
   const s = insp();
   return (
     <section className={sec()} id="c-explore" data-nav-section>
-      <SecHead n={5} label={t.apResearch} title={L({ en: "What I’m looking into.", pl: "Co sprawdzam." })}>
+      <SecHead
+        n={5}
+        label={t.apResearch}
+        title={L({ en: "What I’m looking into.", pl: "Co sprawdzam." })}
+      >
         <p className={bodyMuted({ class: headNote })}>
-          {L({ en: "Starting points for research, not final choices.", pl: "Punkty startowe do badań, nie ostateczne wybory." })}
+          {L({
+            en: "Starting points for research, not final choices.",
+            pl: "Punkty startowe do badań, nie ostateczne wybory.",
+          })}
         </p>
       </SecHead>
       <div className={s.groups()}>
@@ -371,11 +465,17 @@ function Research() {
             <ul className={s.list()}>
               {g.items.map((x) => (
                 <li key={x.name} className={s.li()}>
-                  <a className={card({ class: s.item() })} href={x.url} target="_blank" rel="noopener noreferrer">
+                  <a
+                    className={card({ class: s.item() })}
+                    href={x.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <span className={s.name()}>{x.name}</span>
                     <span className={s.take()}>{L(x.note)}</span>
                     <span className={s.src()}>
-                      {new URL(x.url).hostname.replace(/^www\./, "")} <span aria-hidden="true">↗</span>
+                      {new URL(x.url).hostname.replace(/^www\./, "")}{" "}
+                      <span aria-hidden="true">↗</span>
                     </span>
                   </a>
                 </li>
@@ -394,7 +494,10 @@ function Roadmap() {
     <section className={sec()} id="c-roadmap" data-nav-section>
       <SecHead n={6} label={t.tgRoadmap} title={L({ en: "Next steps.", pl: "Kolejne kroki." })}>
         <p className={bodyMuted({ class: headNote })}>
-          {L({ en: "A rough plan for now; details will follow as research goes on.", pl: "Na razie ogólny plan; szczegóły pojawią się wraz z badaniami." })}
+          {L({
+            en: "A rough plan for now; details will follow as research goes on.",
+            pl: "Na razie ogólny plan; szczegóły pojawią się wraz z badaniami.",
+          })}
         </p>
       </SecHead>
       <ol className={tl().root()}>
@@ -402,14 +505,21 @@ function Roadmap() {
           const s = tl({ status: p.status });
           return (
             <li key={p.title.en} className={s.item()} style={{ "--i": i } as CSSProperties}>
-              <span className={s.node({ class: "font-mono text-[13px] font-semibold" })} aria-hidden="true">
+              <span
+                className={s.node({ class: "font-mono text-[13px] font-semibold" })}
+                aria-hidden="true"
+              >
                 {pad(i + 1)}
               </span>
               <div className={card({ class: s.card() })}>
                 <div className="flex items-center justify-between gap-3">
                   <span className={s.title()}>{L(p.title)}</span>
                   <span className={badge({ status: p.status })}>
-                    {L(p.status === "active" ? { en: "In progress", pl: "W trakcie" } : { en: "Next", pl: "Dalej" })}
+                    {L(
+                      p.status === "active"
+                        ? { en: "In progress", pl: "W trakcie" }
+                        : { en: "Next", pl: "Dalej" },
+                    )}
                   </span>
                 </div>
                 <ul className="m-0 flex list-none flex-wrap gap-x-2 gap-y-[6px] p-0">

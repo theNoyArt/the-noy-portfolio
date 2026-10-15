@@ -24,7 +24,12 @@ export const ACTIVITIES: Activity[] = [
       { v: "7", l: { en: "books published", pl: "wydanych podręczników" } },
       { v: "2", l: { en: "in progress", pl: "w trakcie" } },
     ],
-    links: [{ label: { en: "DriveThruRPG case study", pl: "Case study DriveThruRPG" }, url: "#/case/dtrpg" }],
+    links: [
+      {
+        label: { en: "DriveThruRPG case study", pl: "Case study DriveThruRPG" },
+        url: "#/case/dtrpg",
+      },
+    ],
   },
   {
     id: "thenoyart",
@@ -40,7 +45,10 @@ export const ACTIVITIES: Activity[] = [
       { en: "Live streams", pl: "Streamy na żywo" },
     ],
     links: [
-      { label: { en: "ArtStation", pl: "ArtStation" }, url: "https://www.artstation.com/thenoyart" },
+      {
+        label: { en: "ArtStation", pl: "ArtStation" },
+        url: "https://www.artstation.com/thenoyart",
+      },
       { label: { en: "YouTube", pl: "YouTube" }, url: "https://www.youtube.com/@thenoyart" },
       { label: { en: "Twitch", pl: "Twitch" }, url: "https://www.twitch.tv/thenoyart/about" },
       { label: { en: "Instagram", pl: "Instagram" }, url: "https://www.instagram.com/thenoyart/" },
@@ -49,7 +57,10 @@ export const ACTIVITIES: Activity[] = [
   {
     id: "teaching",
     title: { en: "Workshops & exhibitions", pl: "Warsztaty i wystawy" },
-    meta: { en: "RPG & fantasy events · 2024 — 2026", pl: "Wydarzenia RPG i fantasy · 2024 — 2026" },
+    meta: {
+      en: "RPG & fantasy events · 2024 — 2026",
+      pl: "Wydarzenia RPG i fantasy · 2024 — 2026",
+    },
     desc: {
       en: "Drawing workshops, talks on tabletop RPGs, art and history, and exhibitions of my RPG illustrations.",
       pl: "Warsztaty rysunku, prelekcje o grach fabularnych, sztuce i historii oraz wystawy moich ilustracji RPG.",

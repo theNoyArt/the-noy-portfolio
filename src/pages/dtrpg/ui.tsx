@@ -284,7 +284,9 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
           </button>
         </div>
         <div className="flex-1 overflow-auto overscroll-contain bg-bg p-4" ref={bodyRef}>
-          {shot && <img className="mx-auto block h-auto max-w-full" src={shot.src} alt={shot.alt} />}
+          {shot && (
+            <img className="mx-auto block h-auto max-w-full" src={shot.src} alt={shot.alt} />
+          )}
         </div>
       </dialog>
     </LightboxCtx.Provider>

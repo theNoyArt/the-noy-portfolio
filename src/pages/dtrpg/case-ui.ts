@@ -22,7 +22,8 @@ export const sec = tv({
 export const secHead = "flex flex-wrap items-baseline justify-between gap-3";
 
 /** Section heading (h2). */
-export const secTitle = "case-heading max-w-[26ch] text-[clamp(28px,2.8vw,44px)] leading-[1.05] text-balance";
+export const secTitle =
+  "case-heading max-w-[26ch] text-[clamp(28px,2.8vw,44px)] leading-[1.05] text-balance";
 
 /** Small link next to a section label ("… in Figma ↗"). */
 export const secLink = "border-b border-accent pb-[2px] font-mono text-[12px]";

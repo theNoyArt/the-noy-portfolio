@@ -23,7 +23,10 @@ export type InspirationGroup = "pets" | "choices" | "feelings" | "psych" | "game
 export const TG = {
   meta: {
     kind: { en: "Game · Virtual pet", pl: "Gra · Wirtualny zwierzak" },
-    origin: { en: "Self-initiated · designing the core", pl: "Projekt własny · projektuję rdzeń gry" },
+    origin: {
+      en: "Self-initiated · designing the core",
+      pl: "Projekt własny · projektuję rdzeń gry",
+    },
   },
   /** Working title, to be replaced once the game has a name. */
   title: { en: "Bond", pl: "Bond" },
@@ -32,8 +35,7 @@ export const TG = {
     en: "One small life, about a month long. Your pet needs you, and the way you respond to it shapes its attachment style, its personality and how its life ends: from a happy old age to a trauma you caused, or an early death from neglect. Built on real psychology of attachment and early childhood.",
     pl: "Jedno małe życie, trwające około miesiąca. Twój zwierzak Cię potrzebuje, a to, jak na niego reagujesz, kształtuje jego styl przywiązania, osobowość i to, jak skończy się jego życie: od szczęśliwej starości, przez traumę, którą mu zafundujesz, po wczesną śmierć z zaniedbania. Oparte na prawdziwej psychologii przywiązania i wczesnego dzieciństwa.",
   },
-  facts: [
-  ] as [Localized, Localized][],
+  facts: [] as [Localized, Localized][],
 
   pillars: [
     {
@@ -46,7 +48,10 @@ export const TG = {
     },
     {
       k: { en: "Attachment", pl: "Przywiązanie" },
-      title: { en: "Your care shapes who it becomes", pl: "Twoja opieka kształtuje to, kim się stanie" },
+      title: {
+        en: "Your care shapes who it becomes",
+        pl: "Twoja opieka kształtuje to, kim się stanie",
+      },
       desc: {
         en: "Its personality forms from how you respond to its needs, following the four attachment styles from psychology.",
         pl: "Jego osobowość powstaje z tego, jak odpowiadasz na jego potrzeby, zgodnie z czterema stylami przywiązania znanymi z psychologii.",
@@ -67,7 +72,10 @@ export const TG = {
     {
       id: "secure",
       name: { en: "Secure", pl: "Bezpieczny" },
-      care: { en: "Care that is warm, consistent and responsive.", pl: "Opieka ciepła, przewidywalna i responsywna." },
+      care: {
+        en: "Care that is warm, consistent and responsive.",
+        pl: "Opieka ciepła, przewidywalna i responsywna.",
+      },
       shows: {
         en: "Calm and curious. It explores, plays, comes back for comfort and recovers quickly.",
         pl: "Spokojny i ciekawy. Eksploruje, bawi się, wraca po pocieszenie i szybko dochodzi do siebie.",
@@ -77,7 +85,10 @@ export const TG = {
     {
       id: "anxious",
       name: { en: "Anxious", pl: "Lękowo-ambiwalentny" },
-      care: { en: "Care that comes and goes: sometimes there, sometimes not.", pl: "Opieka, która raz jest, a raz jej nie ma." },
+      care: {
+        en: "Care that comes and goes: sometimes there, sometimes not.",
+        pl: "Opieka, która raz jest, a raz jej nie ma.",
+      },
       shows: {
         en: "Clingy and worried. It calls for you often and is hard to settle when you return.",
         pl: "Przylepny i zaniepokojony. Często Cię woła i trudno go uspokoić, gdy wracasz.",
@@ -87,7 +98,10 @@ export const TG = {
     {
       id: "avoidant",
       name: { en: "Avoidant", pl: "Unikający" },
-      care: { en: "Needs met, but feelings ignored or pushed away.", pl: "Potrzeby zaspokojone, ale emocje ignorowane lub odpychane." },
+      care: {
+        en: "Needs met, but feelings ignored or pushed away.",
+        pl: "Potrzeby zaspokojone, ale emocje ignorowane lub odpychane.",
+      },
       shows: {
         en: "Too independent. It stops asking for help and hides how it feels.",
         pl: "Zbyt niezależny. Przestaje prosić o pomoc i ukrywa, co czuje.",
@@ -97,7 +111,10 @@ export const TG = {
     {
       id: "disorganized",
       name: { en: "Disorganized", pl: "Zdezorganizowany" },
-      care: { en: "Care that is frightening, chaotic or neglectful.", pl: "Opieka przerażająca, chaotyczna lub zaniedbująca." },
+      care: {
+        en: "Care that is frightening, chaotic or neglectful.",
+        pl: "Opieka przerażająca, chaotyczna lub zaniedbująca.",
+      },
       shows: {
         en: "Confused and unpredictable. It wants you and fears you at the same time.",
         pl: "Zagubiony i nieprzewidywalny. Jednocześnie Cię potrzebuje i się Ciebie boi.",
@@ -121,7 +138,10 @@ export const TG = {
       tone: "good",
     },
     {
-      act: { en: "Attention on some days, none on others", pl: "Uwaga jednego dnia, brak drugiego" },
+      act: {
+        en: "Attention on some days, none on others",
+        pl: "Uwaga jednego dnia, brak drugiego",
+      },
       now: { en: "Calls more, harder to calm", pl: "Woła częściej, trudniej go uspokoić" },
       later: { en: "Towards anxious", pl: "W stronę lękowego" },
       tone: "mid",
@@ -181,7 +201,10 @@ export const TG = {
   inspirationGroups: [
     { id: "pets", label: { en: "Virtual pets", pl: "Wirtualne zwierzaki" } },
     { id: "choices", label: { en: "Choices & consequences", pl: "Wybory i konsekwencje" } },
-    { id: "feelings", label: { en: "Emotions & mental health", pl: "Emocje i zdrowie psychiczne" } },
+    {
+      id: "feelings",
+      label: { en: "Emotions & mental health", pl: "Emocje i zdrowie psychiczne" },
+    },
     { id: "psych", label: { en: "Psychology", pl: "Psychologia" } },
     { id: "gamepsych", label: { en: "Psychology of games", pl: "Psychologia gier" } },
   ] as { id: InspirationGroup; label: Localized }[],
@@ -191,49 +214,73 @@ export const TG = {
       g: "pets",
       name: "Tamagotchi",
       url: "https://en.wikipedia.org/wiki/Tamagotchi",
-      take: { en: "One small life in your pocket that depends on you, and can die.", pl: "Małe życie w kieszeni, które zależy od Ciebie i może umrzeć." },
+      take: {
+        en: "One small life in your pocket that depends on you, and can die.",
+        pl: "Małe życie w kieszeni, które zależy od Ciebie i może umrzeć.",
+      },
     },
     {
       g: "pets",
       name: "Digimon V-Pet",
       url: "https://en.wikipedia.org/wiki/Digital_Monster",
-      take: { en: "Care mistakes change what the creature evolves into.", pl: "Błędy w opiece zmieniają to, w co stworek ewoluuje." },
+      take: {
+        en: "Care mistakes change what the creature evolves into.",
+        pl: "Błędy w opiece zmieniają to, w co stworek ewoluuje.",
+      },
     },
     {
       g: "pets",
       name: "Creatures",
       url: "https://en.wikipedia.org/wiki/Creatures_(1996_video_game)",
-      take: { en: "Artificial life that learns from how you treat it.", pl: "Sztuczne życie, które uczy się z tego, jak je traktujesz." },
+      take: {
+        en: "Artificial life that learns from how you treat it.",
+        pl: "Sztuczne życie, które uczy się z tego, jak je traktujesz.",
+      },
     },
     {
       g: "pets",
       name: "Nintendogs",
       url: "https://en.wikipedia.org/wiki/Nintendogs",
-      take: { en: "A pet that bonds with you through daily touch and attention.", pl: "Zwierzak, który przywiązuje się dzięki codziennemu dotykowi i uwadze." },
+      take: {
+        en: "A pet that bonds with you through daily touch and attention.",
+        pl: "Zwierzak, który przywiązuje się dzięki codziennemu dotykowi i uwadze.",
+      },
     },
     {
       g: "pets",
       name: "Finch",
       url: "https://apps.apple.com/app/id1528595748",
-      take: { en: "A pet whose wellbeing is tied to everyday habits.", pl: "Zwierzak, którego dobrostan zależy od codziennych nawyków." },
+      take: {
+        en: "A pet whose wellbeing is tied to everyday habits.",
+        pl: "Zwierzak, którego dobrostan zależy od codziennych nawyków.",
+      },
     },
     {
       g: "pets",
       name: "Black & White",
       url: "https://en.wikipedia.org/wiki/Black_%26_White_(video_game)",
-      take: { en: "A creature that learns from being rewarded or punished, and grows to match how you raised it.", pl: "Stwór, który uczy się z nagród i kar i staje się taki, jak go wychowałeś." },
+      take: {
+        en: "A creature that learns from being rewarded or punished, and grows to match how you raised it.",
+        pl: "Stwór, który uczy się z nagród i kar i staje się taki, jak go wychowałeś.",
+      },
     },
     {
       g: "pets",
       name: "Chao Garden",
       url: "https://en.wikipedia.org/wiki/Chao_Garden",
-      take: { en: "Small creatures that change shape and personality based on how you raise them.", pl: "Małe stworki, które zmieniają wygląd i charakter zależnie od tego, jak je wychowujesz." },
+      take: {
+        en: "Small creatures that change shape and personality based on how you raise them.",
+        pl: "Małe stworki, które zmieniają wygląd i charakter zależnie od tego, jak je wychowujesz.",
+      },
     },
     {
       g: "pets",
       name: "Petz",
       url: "https://en.wikipedia.org/wiki/Petz",
-      take: { en: "Pets with their own personalities that remember how they were treated.", pl: "Zwierzaki z własnym charakterem, które pamiętają, jak je traktowano." },
+      take: {
+        en: "Pets with their own personalities that remember how they were treated.",
+        pl: "Zwierzaki z własnym charakterem, które pamiętają, jak je traktowano.",
+      },
     },
     {
       g: "choices",
@@ -248,43 +295,64 @@ export const TG = {
       g: "choices",
       name: "The Sims",
       url: "https://store.steampowered.com/app/1222670/The_Sims_4/",
-      take: { en: "Needs that drift over time and choices with visible consequences.", pl: "Potrzeby, które zmieniają się w czasie, i wybory z widocznymi konsekwencjami." },
+      take: {
+        en: "Needs that drift over time and choices with visible consequences.",
+        pl: "Potrzeby, które zmieniają się w czasie, i wybory z widocznymi konsekwencjami.",
+      },
     },
     {
       g: "choices",
       name: "Spiritfarer",
       url: "https://store.steampowered.com/app/972660/Spiritfarer_Farewell_Edition/",
-      take: { en: "Care as the core mechanic, and a gentle way to talk about loss.", pl: "Opieka jako główna mechanika i delikatny sposób mówienia o stracie." },
+      take: {
+        en: "Care as the core mechanic, and a gentle way to talk about loss.",
+        pl: "Opieka jako główna mechanika i delikatny sposób mówienia o stracie.",
+      },
     },
     {
       g: "choices",
       name: "Undertale",
       url: "https://store.steampowered.com/app/391540/Undertale/",
-      take: { en: "Mercy or violence: the game remembers how you treated everyone and changes its ending.", pl: "Litość albo przemoc: gra pamięta, jak traktowałeś innych, i zmienia zakończenie." },
+      take: {
+        en: "Mercy or violence: the game remembers how you treated everyone and changes its ending.",
+        pl: "Litość albo przemoc: gra pamięta, jak traktowałeś innych, i zmienia zakończenie.",
+      },
     },
     {
       g: "feelings",
       name: "Coffee Talk",
       url: "https://store.steampowered.com/app/914800/Coffee_Talk/",
-      take: { en: "Listen to customers’ problems over a drink; what you serve changes their stories.", pl: "Słuchasz problemów klientów przy napoju; to, co podasz, zmienia ich historie." },
+      take: {
+        en: "Listen to customers’ problems over a drink; what you serve changes their stories.",
+        pl: "Słuchasz problemów klientów przy napoju; to, co podasz, zmienia ich historie.",
+      },
     },
     {
       g: "feelings",
       name: "Celeste",
       url: "https://store.steampowered.com/app/504230/Celeste/",
-      take: { en: "A hard climb that is really about anxiety and self-acceptance.", pl: "Trudna wspinaczka, która tak naprawdę opowiada o lęku i akceptacji siebie." },
+      take: {
+        en: "A hard climb that is really about anxiety and self-acceptance.",
+        pl: "Trudna wspinaczka, która tak naprawdę opowiada o lęku i akceptacji siebie.",
+      },
     },
     {
       g: "feelings",
       name: "Florence",
       url: "https://store.steampowered.com/app/1102130/Florence/",
-      take: { en: "Simple mechanics that feel like the emotions of a relationship.", pl: "Proste mechaniki, które oddają emocje związku." },
+      take: {
+        en: "Simple mechanics that feel like the emotions of a relationship.",
+        pl: "Proste mechaniki, które oddają emocje związku.",
+      },
     },
     {
       g: "feelings",
       name: "Gris",
       url: "https://store.steampowered.com/app/683320/GRIS/",
-      take: { en: "Grief told through colour and movement, almost without words.", pl: "Żałoba opowiedziana kolorem i ruchem, prawie bez słów." },
+      take: {
+        en: "Grief told through colour and movement, almost without words.",
+        pl: "Żałoba opowiedziana kolorem i ruchem, prawie bez słów.",
+      },
     },
     {
       g: "psych",
@@ -340,12 +408,21 @@ export const TG = {
       status: "active",
       progress: 30,
       title: { en: "Psychology research", pl: "Badania psychologiczne" },
-      goal: { en: "Learn enough to model care, attachment and trauma honestly.", pl: "Poznać temat na tyle, by uczciwie odwzorować opiekę, przywiązanie i traumę." },
+      goal: {
+        en: "Learn enough to model care, attachment and trauma honestly.",
+        pl: "Poznać temat na tyle, by uczciwie odwzorować opiekę, przywiązanie i traumę.",
+      },
       tasks: [
         { label: { en: "Attachment styles", pl: "Style przywiązania" }, done: false },
-        { label: { en: "Early trauma & neglect", pl: "Wczesna trauma i zaniedbanie" }, done: false },
+        {
+          label: { en: "Early trauma & neglect", pl: "Wczesna trauma i zaniedbanie" },
+          done: false,
+        },
         { label: { en: "Child development stages", pl: "Etapy rozwoju dziecka" }, done: false },
-        { label: { en: "Behaviour → outcome sources", pl: "Źródła: zachowanie → skutek" }, done: false },
+        {
+          label: { en: "Behaviour → outcome sources", pl: "Źródła: zachowanie → skutek" },
+          done: false,
+        },
       ],
     },
     {
@@ -354,12 +431,18 @@ export const TG = {
       status: "active",
       progress: 50,
       title: { en: "Game research", pl: "Badania gier" },
-      goal: { en: "Learn from virtual pets, choice-driven games and the psychology of play.", pl: "Uczyć się od wirtualnych zwierzaków, gier opartych na wyborach i psychologii grania." },
+      goal: {
+        en: "Learn from virtual pets, choice-driven games and the psychology of play.",
+        pl: "Uczyć się od wirtualnych zwierzaków, gier opartych na wyborach i psychologii grania.",
+      },
       tasks: [
         { label: { en: "Tamagotchi-like games", pl: "Gry w stylu Tamagotchi" }, done: false },
         { label: { en: "Games with consequences", pl: "Gry z konsekwencjami" }, done: false },
         { label: { en: "Psychology of games", pl: "Psychologia gier" }, done: false },
-        { label: { en: "Mechanics worth borrowing", pl: "Mechaniki warte zapożyczenia" }, done: false },
+        {
+          label: { en: "Mechanics worth borrowing", pl: "Mechaniki warte zapożyczenia" },
+          done: false,
+        },
       ],
     },
     {
@@ -368,12 +451,21 @@ export const TG = {
       status: "active",
       progress: 10,
       title: { en: "Core game design", pl: "Rdzeń gry" },
-      goal: { en: "Define the rules: one month of life, needs, and how care turns into personality.", pl: "Zdefiniować zasady: miesiąc życia, potrzeby i to, jak opieka zmienia się w osobowość." },
+      goal: {
+        en: "Define the rules: one month of life, needs, and how care turns into personality.",
+        pl: "Zdefiniować zasady: miesiąc życia, potrzeby i to, jak opieka zmienia się w osobowość.",
+      },
       tasks: [
         { label: { en: "Life length & life stages", pl: "Długość i etapy życia" }, done: false },
         { label: { en: "Needs & signals", pl: "Potrzeby i sygnały" }, done: false },
         { label: { en: "Behaviour → result map", pl: "Mapa zachowanie → skutek" }, done: false },
-        { label: { en: "Endings, from neglect to old age", pl: "Zakończenia, od zaniedbania po starość" }, done: false },
+        {
+          label: {
+            en: "Endings, from neglect to old age",
+            pl: "Zakończenia, od zaniedbania po starość",
+          },
+          done: false,
+        },
       ],
     },
     {
@@ -381,7 +473,10 @@ export const TG = {
       icon: "scenario",
       status: "planned",
       title: { en: "Scenarios", pl: "Scenariusze" },
-      goal: { en: "Write the possible paths a life can take and test them on paper.", pl: "Rozpisać możliwe ścieżki życia i przetestować je na papierze." },
+      goal: {
+        en: "Write the possible paths a life can take and test them on paper.",
+        pl: "Rozpisać możliwe ścieżki życia i przetestować je na papierze.",
+      },
       tasks: [
         { label: { en: "Paths for all 4 styles", pl: "Ścieżki dla 4 stylów" }, done: false },
         { label: { en: "Events & reactions", pl: "Wydarzenia i reakcje" }, done: false },
@@ -393,11 +488,26 @@ export const TG = {
       icon: "art",
       status: "planned",
       title: { en: "Character & sprites", pl: "Postać i sprite’y" },
-      goal: { en: "One pet, drawn in every state it can be in.", pl: "Jeden zwierzak, narysowany w każdym stanie, w jakim może być." },
+      goal: {
+        en: "One pet, drawn in every state it can be in.",
+        pl: "Jeden zwierzak, narysowany w każdym stanie, w jakim może być.",
+      },
       tasks: [
         { label: { en: "Character design", pl: "Projekt postaci" }, done: false },
-        { label: { en: "Moods: happy, sad, anxious…", pl: "Nastroje: szczęśliwy, smutny, zalękniony…" }, done: false },
-        { label: { en: "Body & health: sick, overfed, underfed", pl: "Ciało i zdrowie: chory, przekarmiony, niedożywiony" }, done: false },
+        {
+          label: {
+            en: "Moods: happy, sad, anxious…",
+            pl: "Nastroje: szczęśliwy, smutny, zalękniony…",
+          },
+          done: false,
+        },
+        {
+          label: {
+            en: "Body & health: sick, overfed, underfed",
+            pl: "Ciało i zdrowie: chory, przekarmiony, niedożywiony",
+          },
+          done: false,
+        },
         { label: { en: "Life stages & animations", pl: "Etapy życia i animacje" }, done: false },
       ],
     },
@@ -406,11 +516,20 @@ export const TG = {
       icon: "ui",
       status: "planned",
       title: { en: "Game UI", pl: "Interfejs gry" },
-      goal: { en: "Decide where everything lives, then design the screens.", pl: "Zdecydować, gdzie co jest, i zaprojektować ekrany." },
+      goal: {
+        en: "Decide where everything lives, then design the screens.",
+        pl: "Zdecydować, gdzie co jest, i zaprojektować ekrany.",
+      },
       tasks: [
         { label: { en: "Layout & interactions", pl: "Układ i interakcje" }, done: false },
-        { label: { en: "Needs & mood indicators", pl: "Wskaźniki potrzeb i nastroju" }, done: false },
-        { label: { en: "Onboarding & endings screens", pl: "Onboarding i ekrany zakończeń" }, done: false },
+        {
+          label: { en: "Needs & mood indicators", pl: "Wskaźniki potrzeb i nastroju" },
+          done: false,
+        },
+        {
+          label: { en: "Onboarding & endings screens", pl: "Onboarding i ekrany zakończeń" },
+          done: false,
+        },
       ],
     },
     {
@@ -418,7 +537,10 @@ export const TG = {
       icon: "platform",
       status: "planned",
       title: { en: "Platform & tech stack", pl: "Platforma i technologie" },
-      goal: { en: "Choose between web + extension, web or mobile, and the stack to build it.", pl: "Wybrać między web + rozszerzeniem, webem i mobile oraz stack do budowy." },
+      goal: {
+        en: "Choose between web + extension, web or mobile, and the stack to build it.",
+        pl: "Wybrać między web + rozszerzeniem, webem i mobile oraz stack do budowy.",
+      },
       tasks: [
         { label: { en: "Compare platforms", pl: "Porównanie platform" }, done: false },
         { label: { en: "Pick the tech stack", pl: "Wybór stacku" }, done: false },
@@ -430,10 +552,16 @@ export const TG = {
       icon: "code",
       status: "planned",
       title: { en: "Development", pl: "Programowanie" },
-      goal: { en: "Build the life simulation and the game around it.", pl: "Zbudować symulację życia i grę wokół niej." },
+      goal: {
+        en: "Build the life simulation and the game around it.",
+        pl: "Zbudować symulację życia i grę wokół niej.",
+      },
       tasks: [
         { label: { en: "Time & life simulation", pl: "Czas i symulacja życia" }, done: false },
-        { label: { en: "Attachment & outcome logic", pl: "Logika przywiązania i skutków" }, done: false },
+        {
+          label: { en: "Attachment & outcome logic", pl: "Logika przywiązania i skutków" },
+          done: false,
+        },
         { label: { en: "UI build & sprites", pl: "Budowa UI i sprite’y" }, done: false },
         { label: { en: "Saves & notifications", pl: "Zapis i powiadomienia" }, done: false },
       ],
@@ -443,7 +571,10 @@ export const TG = {
       icon: "test",
       status: "planned",
       title: { en: "Playtests & release", pl: "Testy i premiera" },
-      goal: { en: "Check the paths feel fair and the hard topics are handled with care.", pl: "Sprawdzić, czy ścieżki są uczciwe, a trudne tematy potraktowane z wyczuciem." },
+      goal: {
+        en: "Check the paths feel fair and the hard topics are handled with care.",
+        pl: "Sprawdzić, czy ścieżki są uczciwe, a trudne tematy potraktowane z wyczuciem.",
+      },
       tasks: [
         { label: { en: "Playtests", pl: "Testy z graczami" }, done: false },
         { label: { en: "Balancing", pl: "Balans" }, done: false },

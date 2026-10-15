@@ -11,7 +11,9 @@ describe("cn", () => {
   });
 
   it("keeps classes behind different variants apart", () => {
-    expect(cn("bg-surface", "glass:bg-white", "hover:bg-accent")).toBe("bg-surface glass:bg-white hover:bg-accent");
+    expect(cn("bg-surface", "glass:bg-white", "hover:bg-accent")).toBe(
+      "bg-surface glass:bg-white hover:bg-accent",
+    );
   });
 
   it("resolves the custom theme radii, shadows and animations", () => {
@@ -29,7 +31,10 @@ describe("cn", () => {
 
 describe("tv", () => {
   it("lets a variant override a custom theme class from the base", () => {
-    const pill = tv({ base: "rounded-card-sm shadow-glass", variants: { round: { true: "rounded-full shadow-none" } } });
+    const pill = tv({
+      base: "rounded-card-sm shadow-glass",
+      variants: { round: { true: "rounded-full shadow-none" } },
+    });
     expect(pill({ round: true })).toBe("rounded-full shadow-none");
   });
 });

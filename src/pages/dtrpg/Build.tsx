@@ -20,7 +20,9 @@ export function Build() {
       <section className={sec({ dev: true })} id="c-stack" data-nav-section>
         <span className={label({ tone: "devAccent", star: true })}>{tr("[06] Front end")}</span>
         <div className={twoCol({ end: true })}>
-          <h2 className={secTitle}>{tr("A typed React storefront, built, tested and linted with one toolchain.")}</h2>
+          <h2 className={secTitle}>
+            {tr("A typed React storefront, built, tested and linted with one toolchain.")}
+          </h2>
           <div className="flex flex-col gap-5">
             <p className={bodyMuted({ dev: true })}>
               {tr(
@@ -41,13 +43,18 @@ export function Build() {
       </section>
 
       <section
-        className={sec({ dev: true, class: "border-t border-dev-line glass:border-t-[rgba(47,95,216,0.12)]" })}
+        className={sec({
+          dev: true,
+          class: "border-t border-dev-line glass:border-t-[rgba(47,95,216,0.12)]",
+        })}
         id="c-api"
         data-nav-section
       >
         <span className={label({ tone: "devAccent", star: true })}>{tr("[07] Mock API")}</span>
         <div className={twoCol({ end: true })}>
-          <h2 className={secTitle}>{tr("Not a static prototype: a real storefront on a mock API.")}</h2>
+          <h2 className={secTitle}>
+            {tr("Not a static prototype: a real storefront on a mock API.")}
+          </h2>
           <div className="flex flex-col gap-5">
             <p className={bodyMuted({ dev: true })}>
               {tr(
@@ -102,14 +109,19 @@ function TiList({ items }: { items: { ic: DtIcon; t: string; d: string }[] }) {
   return (
     <ul className="grid list-none grid-cols-2 gap-x-[clamp(28px,4vw,56px)] gap-y-0 border-t border-dev-line p-0 max-[899px]:grid-cols-[minmax(0,1fr)]">
       {items.map((x) => (
-        <li className="grid grid-cols-[24px_minmax(0,1fr)] gap-[14px] border-b border-dev-line py-[11px]" key={x.t}>
+        <li
+          className="grid grid-cols-[24px_minmax(0,1fr)] gap-[14px] border-b border-dev-line py-[11px]"
+          key={x.t}
+        >
           <Icon
             name={x.ic}
             className="mt-px h-5 w-5 fill-none stroke-dev-accent stroke-[1.75] [stroke-linecap:round] [stroke-linejoin:round] glass:[filter:drop-shadow(0_0_4px_rgba(47,95,216,0.35))]"
           />
           <span>
             <b className="block text-[15px] font-semibold">{tr(x.t)}</b>
-            <span className="mt-[2px] block text-[14px] leading-[1.55] text-pretty text-dev-muted">{tr(x.d)}</span>
+            <span className="mt-[2px] block text-[14px] leading-[1.55] text-pretty text-dev-muted">
+              {tr(x.d)}
+            </span>
           </span>
         </li>
       ))}

@@ -20,7 +20,8 @@ const PL_MORE: Record<string, string> = {
     "Tailwind CSS v4, tokeny jako zmienne CSS, motyw ciemny jako bazowy plus jasny",
   "shadcn/ui (Radix primitives), WCAG AA contrast checked on tokens":
     "shadcn/ui (prymitywy Radix), kontrast WCAG AA sprawdzony na tokenach",
-  "Vitest (run through Vite+) with Testing Library": "Vitest (uruchamiany przez Vite+) z Testing Library",
+  "Vitest (run through Vite+) with Testing Library":
+    "Vitest (uruchamiany przez Vite+) z Testing Library",
   "Vite+ (VoidZero’s unified toolchain). One vp CLI runs the dev server and production builds (Vite and Rolldown), tests (Vitest), linting (Oxlint), formatting (Oxfmt) and type checking (tsgo).":
     "Vite+ (zunifikowany toolchain VoidZero). Jedno CLI vp uruchamia serwer deweloperski i buildy produkcyjne (Vite i Rolldown), testy (Vitest), linting (Oxlint), formatowanie (Oxfmt) i sprawdzanie typów (tsgo).",
   "A single dependency-free Node.js file (server.js, Node 18 or newer, built-in http only). It serves /api/v1/*.":

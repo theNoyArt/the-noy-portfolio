@@ -16,7 +16,12 @@ const RESP_DELAY = [
   "[animation-delay:0.25s]",
   "[animation-delay:0.3s]",
 ];
-const ROW_DELAY = ["[animation-delay:0.14s]", "[animation-delay:0.22s]", "[animation-delay:0.3s]", "[animation-delay:0.38s]"];
+const ROW_DELAY = [
+  "[animation-delay:0.14s]",
+  "[animation-delay:0.22s]",
+  "[animation-delay:0.3s]",
+  "[animation-delay:0.38s]",
+];
 const delay = (list: string[], i: number) => list[Math.min(i, list.length - 1)];
 
 const lane = tv({
@@ -46,8 +51,7 @@ const lane = tv({
           "after:absolute after:inset-0 after:animate-lane-sweep after:bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.7),transparent)] after:[transform:translateX(-100%)]",
       },
       false: {
-        root:
-          "hover:bg-[color-mix(in_srgb,var(--surface)_55%,transparent)] hover:[transform:translateX(4px)] motion-reduce:hover:[transform:none]",
+        root: "hover:bg-[color-mix(in_srgb,var(--surface)_55%,transparent)] hover:[transform:translateX(4px)] motion-reduce:hover:[transform:none]",
       },
     },
     seen: {
@@ -143,7 +147,11 @@ export function Experience() {
       <div data-reveal="0" ref={tl} className="flex flex-col gap-1">
         <div className="relative h-[22px] font-mono text-[10.5px] text-muted" aria-hidden="true">
           {years.map((y) => (
-            <span key={y} className="absolute top-0" style={{ left: `calc(12px + (100% - 24px) * ${(y - Y0) / SPAN})` }}>
+            <span
+              key={y}
+              className="absolute top-0"
+              style={{ left: `calc(12px + (100% - 24px) * ${(y - Y0) / SPAN})` }}
+            >
               {app.narrow ? "'" + String(y).slice(2) : y}
             </span>
           ))}
@@ -214,79 +222,91 @@ export function Experience() {
 
       {/* Mobile: a company strip that sticks under the header while you read a company's projects. */}
       <div className="flex flex-col gap-3">
-      {app.narrow && <CompanyStrip sel={sel} onSelect={setSel} matches={matches} detail={detail} />}
-
-      {/* Details: switch companies and the panel content rises in, cards and rows one by one. */}
-      <div
-        ref={detail}
-        className={cn(
-          "grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-[clamp(24px,3cqi,48px)] rounded-card border border-line2 bg-surface p-[clamp(20px,3cqi,36px)] " +
-            "[transition:border-radius_0.5s,background-color_0.5s] glass:glass-blur glass:border-glass-edge glass:shadow-glass",
-          ex.work?.length && "grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] narrow:grid-cols-[minmax(0,1fr)]",
+        {app.narrow && (
+          <CompanyStrip sel={sel} onSelect={setSel} matches={matches} detail={detail} />
         )}
-      >
-        <div className="flex animate-exp-col flex-col gap-[10px]" key={"a-" + ex.id}>
-          <span className={monoLabel({ tone: "accent" })}>{L(ex.dates)}</span>
-          <span className="display text-[calc(clamp(30px,3.2cqi,48px)*var(--h1-scale,1))] leading-none">{ex.company}</span>
-          <span className="text-[16px] text-muted">{L(ex.role)}</span>
-          <p className="mt-[6px] text-[16px] text-pretty">{L(ex.desc)}</p>
-          <ul className="mt-2 flex list-none flex-col border-t border-line p-0">
-            {(ex.resp[lang] ?? ex.resp.en).map((r, i) => (
-              <li key={r} className={cn(RISE, "border-b border-line py-[9px] text-[14.5px]", delay(RESP_DELAY, i))}>
-                {r}
-              </li>
-            ))}
-          </ul>
-          <p className="font-mono text-[12px] text-muted">{ex.tech.join(" · ")}</p>
-        </div>
-        <div className="flex animate-exp-col-late flex-col gap-[10px]" key={"b-" + ex.id}>
-          <span className={monoLabel()}>
-            {t.projectsAt} {ex.company}
-          </span>
-          {ex.work && ex.work.length > 0 ? (
-            <WorkList work={ex.work} company={ex.company} note={ex.note ? L(ex.note) : null} />
-          ) : exProjects.length > 0 ? (
-            <div className="flex flex-col border-t border-line2">
-              {exProjects.map((pr, i) => (
-                <a
-                  key={pr!.id}
-                  href={`#/case/${pr!.id}`}
+
+        {/* Details: switch companies and the panel content rises in, cards and rows one by one. */}
+        <div
+          ref={detail}
+          className={cn(
+            "grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-[clamp(24px,3cqi,48px)] rounded-card border border-line2 bg-surface p-[clamp(20px,3cqi,36px)] " +
+              "[transition:border-radius_0.5s,background-color_0.5s] glass:glass-blur glass:border-glass-edge glass:shadow-glass",
+            ex.work?.length &&
+              "grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] narrow:grid-cols-[minmax(0,1fr)]",
+          )}
+        >
+          <div className="flex animate-exp-col flex-col gap-[10px]" key={"a-" + ex.id}>
+            <span className={monoLabel({ tone: "accent" })}>{L(ex.dates)}</span>
+            <span className="display text-[calc(clamp(30px,3.2cqi,48px)*var(--h1-scale,1))] leading-none">
+              {ex.company}
+            </span>
+            <span className="text-[16px] text-muted">{L(ex.role)}</span>
+            <p className="mt-[6px] text-[16px] text-pretty">{L(ex.desc)}</p>
+            <ul className="mt-2 flex list-none flex-col border-t border-line p-0">
+              {(ex.resp[lang] ?? ex.resp.en).map((r, i) => (
+                <li
+                  key={r}
                   className={cn(
                     RISE,
-                    "group flex flex-col gap-[6px] border-b border-line py-4 text-inherit [transition:opacity_0.3s]",
-                    delay(ROW_DELAY, i),
+                    "border-b border-line py-[9px] text-[14.5px]",
+                    delay(RESP_DELAY, i),
                   )}
-                  style={{ opacity: matches(pr!.tracks) ? 1 : 0.4 }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    app.openCase(pr!.id);
-                  }}
                 >
-                  <span className="flex items-center justify-between gap-[10px]">
-                    <span className="display text-[calc(clamp(24px,2.2cqi,32px)*var(--h1-scale,1))] leading-none [transition:color_0.25s] group-hover:text-accent">
-                      {pr!.name}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      {pr!.tracks.map((tr) => (
-                        <TrackTag key={tr} track={tr} />
-                      ))}
-                      <span className="ml-[6px] text-[18px] text-accent" aria-hidden="true">
-                        →
+                  {r}
+                </li>
+              ))}
+            </ul>
+            <p className="font-mono text-[12px] text-muted">{ex.tech.join(" · ")}</p>
+          </div>
+          <div className="flex animate-exp-col-late flex-col gap-[10px]" key={"b-" + ex.id}>
+            <span className={monoLabel()}>
+              {t.projectsAt} {ex.company}
+            </span>
+            {ex.work && ex.work.length > 0 ? (
+              <WorkList work={ex.work} company={ex.company} note={ex.note ? L(ex.note) : null} />
+            ) : exProjects.length > 0 ? (
+              <div className="flex flex-col border-t border-line2">
+                {exProjects.map((pr, i) => (
+                  <a
+                    key={pr!.id}
+                    href={`#/case/${pr!.id}`}
+                    className={cn(
+                      RISE,
+                      "group flex flex-col gap-[6px] border-b border-line py-4 text-inherit [transition:opacity_0.3s]",
+                      delay(ROW_DELAY, i),
+                    )}
+                    style={{ opacity: matches(pr!.tracks) ? 1 : 0.4 }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      app.openCase(pr!.id);
+                    }}
+                  >
+                    <span className="flex items-center justify-between gap-[10px]">
+                      <span className="display text-[calc(clamp(24px,2.2cqi,32px)*var(--h1-scale,1))] leading-none [transition:color_0.25s] group-hover:text-accent">
+                        {pr!.name}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        {pr!.tracks.map((tr) => (
+                          <TrackTag key={tr} track={tr} />
+                        ))}
+                        <span className="ml-[6px] text-[18px] text-accent" aria-hidden="true">
+                          →
+                        </span>
                       </span>
                     </span>
-                  </span>
-                  <span className="text-[14px] text-pretty text-muted">{L(pr!.short)}</span>
-                  <span className="font-mono text-[11px] text-muted">
-                    {pr!.year} · {L(pr!.role)}
-                  </span>
-                </a>
-              ))}
-            </div>
-          ) : (
-            <p className="border-t border-line2 py-4 text-[15px] text-muted">{L(ex.note)}</p>
-          )}
+                    <span className="text-[14px] text-pretty text-muted">{L(pr!.short)}</span>
+                    <span className="font-mono text-[11px] text-muted">
+                      {pr!.year} · {L(pr!.role)}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <p className="border-t border-line2 py-4 text-[15px] text-muted">{L(ex.note)}</p>
+            )}
+          </div>
         </div>
-      </div>
       </div>
     </section>
   );
@@ -355,8 +375,12 @@ function CompanyStrip({
                 !matches(x.kind) && !on && "opacity-45",
               )}
             >
-              <span className="max-w-[180px] truncate text-[13.5px] font-semibold">{x.company}</span>
-              <span className={cn("font-mono text-[10.5px]", on ? "text-accent" : "text-muted")}>{L(x.dates)}</span>
+              <span className="max-w-[180px] truncate text-[13.5px] font-semibold">
+                {x.company}
+              </span>
+              <span className={cn("font-mono text-[10.5px]", on ? "text-accent" : "text-muted")}>
+                {L(x.dates)}
+              </span>
             </button>
           );
         })}
@@ -369,7 +393,15 @@ function CompanyStrip({
  * Client projects at one company: featured ones as cards, the rest as a compact list.
  * Each has a small bar showing when it ran within the company's project span.
  */
-function WorkList({ work, company, note }: { work: WorkProject[]; company: string; note: string | null }) {
+function WorkList({
+  work,
+  company,
+  note,
+}: {
+  work: WorkProject[];
+  company: string;
+  note: string | null;
+}) {
   const { t, L } = useI18n();
   const dated = work.filter((w) => w.from != null && w.to != null);
   const a = Math.min(...dated.map((w) => w.from!));
@@ -381,19 +413,26 @@ function WorkList({ work, company, note }: { work: WorkProject[]; company: strin
   // When the project ran, within the span of all projects at this company; draws in after its card.
   const bar = (w: WorkProject) =>
     w.from == null || w.to == null ? null : (
-      <span className="relative mt-1 mb-[2px] block h-1 rounded-[2px] bg-line cyber:rounded-none" aria-hidden="true">
+      <span
+        className="relative mt-1 mb-[2px] block h-1 rounded-[2px] bg-line cyber:rounded-none"
+        aria-hidden="true"
+      >
         <span
           className={
             "absolute top-0 bottom-0 min-w-[6px] origin-left animate-exp-bar rounded-[2px] bg-[linear-gradient(90deg,var(--accent),var(--accent2))] cyber:rounded-none"
           }
-          style={{ left: ((w.from - a) / span) * 100 + "%", width: ((w.to - w.from) / span) * 100 + "%" }}
+          style={{
+            left: ((w.from - a) / span) * 100 + "%",
+            width: ((w.to - w.from) / span) * 100 + "%",
+          }}
         />
       </span>
     );
   const top = "flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1";
   const dates = "font-mono text-[11px] tracking-[0.04em] whitespace-nowrap text-accent";
   const meta = "text-[13.5px] text-muted";
-  const hover = "[transition:transform_0.3s_cubic-bezier(0.2,0.8,0.2,1),box-shadow_0.3s,border-color_0.3s]";
+  const hover =
+    "[transition:transform_0.3s_cubic-bezier(0.2,0.8,0.2,1),box-shadow_0.3s,border-color_0.3s]";
 
   return (
     <div className="flex flex-col gap-[clamp(18px,2cqi,26px)]">
@@ -411,7 +450,9 @@ function WorkList({ work, company, note }: { work: WorkProject[]; company: strin
             )}
           >
             <div className={top}>
-              <span className="display text-[clamp(19px,1.7cqi,23px)] leading-[1.15] text-balance">{L(w.title)}</span>
+              <span className="display text-[clamp(19px,1.7cqi,23px)] leading-[1.15] text-balance">
+                {L(w.title)}
+              </span>
               <span className={dates}>{L(w.dates)}</span>
             </div>
             <span className={meta}>
@@ -441,7 +482,15 @@ function WorkList({ work, company, note }: { work: WorkProject[]; company: strin
             {t.earlierAt} {company}
           </span>
           {earlier.map((w, i) => (
-            <div key={w.id} className={cn(RISE, hover, "flex flex-col gap-1 border-b border-line py-[14px]", delay(ROW_DELAY, i))}>
+            <div
+              key={w.id}
+              className={cn(
+                RISE,
+                hover,
+                "flex flex-col gap-1 border-b border-line py-[14px]",
+                delay(ROW_DELAY, i),
+              )}
+            >
               <div className={top}>
                 <span className="text-[15.5px] font-semibold">{L(w.title)}</span>
                 <span className={dates}>{L(w.dates)}</span>

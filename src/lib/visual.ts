@@ -15,7 +15,9 @@ export function stripes(hue: number, theme: ThemeName, size = 9): string {
 
 /** The cover image for the current theme: a theme-specific one if set, otherwise the shared one. */
 export function coverFor(
-  images: { cover?: string | null; coverLight?: string | null; coverDark?: string | null } | undefined,
+  images:
+    | { cover?: string | null; coverLight?: string | null; coverDark?: string | null }
+    | undefined,
   theme: ThemeName,
 ): string | null {
   if (!images) return null;
