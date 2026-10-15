@@ -458,7 +458,7 @@ export const TG = {
       tasks: [
         { label: { en: "Life length & life stages", pl: "Długość i etapy życia" }, done: false },
         { label: { en: "Needs & signals", pl: "Potrzeby i sygnały" }, done: false },
-        { label: { en: "Behaviour → result map", pl: "Mapa zachowanie → skutek" }, done: false },
+        { label: { en: "Behaviour → result map", pl: "Mapa: zachowanie → skutek" }, done: false },
         {
           label: {
             en: "Endings, from neglect to old age",

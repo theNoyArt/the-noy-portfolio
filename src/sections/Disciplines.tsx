@@ -65,7 +65,7 @@ const ITEMS: Discipline[] = [
 /** What the overlaps mean: where two disciplines meet in my work. */
 const OVERLAPS: { id: "ab" | "ac" | "bc"; label: Localized }[] = [
   { id: "ab", label: { en: "User-tested\ndesign", pl: "Projekt testowany\nz użytkownikami" } },
-  { id: "ac", label: { en: "Accessible\ncode", pl: "Dostępny\nkod" } },
+  { id: "ac", label: { en: "Accessible\ncode", pl: "Dostępność\nw kodzie" } },
   { id: "bc", label: { en: "Design systems\nin code", pl: "Design system\nw kodzie" } },
 ];
 

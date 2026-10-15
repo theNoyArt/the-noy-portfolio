@@ -3,7 +3,21 @@ import { PL } from "../../content/dtrpg/pl";
 import { useI18n } from "../../lib/i18n";
 
 /** Polish for copy the prototype left in English (list details, captions). */
-const PL_MORE: Record<string, string> = {
+export const PL_MORE: Record<string, string> = {
+  "Choose a screen": "Wybierz ekran",
+  // Mockup state chips (Screens.tsx); screen names stay as in the product.
+  "Signed out": "Niezalogowany",
+  "Menu · signed in": "Menu · zalogowany",
+  "Menu · signed out": "Menu · niezalogowany",
+  "My account": "Moje konto",
+  "Grid view": "Widok siatki",
+  "List view": "Widok listy",
+  "Filters sheet": "Panel filtrów",
+  "Many filters": "Wiele filtrów",
+  "Panel open": "Otwarty panel",
+  Sheet: "Panel wysuwany",
+  Modal: "Okno modalne",
+  Gift: "Prezent",
   // Audited pages
   Home: "Strona główna",
   "Product listing": "Lista produktów",
@@ -61,7 +75,18 @@ const EN_FMT = {
   states: (n: number) => `${n} states`,
   frames: (n: number) => `${n} frames`,
   cover: (title: string) => `cover · ${title}`,
+  wireAlt: (label: string, view: "desktop" | "mobile") => `${label} wireframe, ${view}`,
+  mockAlt: (label: string, view: "desktop" | "mobile", dark: boolean) =>
+    `${label} mockup, ${view}, ${dark ? "dark" : "light"} theme`,
 };
+
+/** Polish plural: 1 notatka, 2–4 notatki (not 12–14), 5+ notatek. */
+function plural(n: number, one: string, few: string, many: string) {
+  if (n === 1) return `${n} ${one}`;
+  const d = n % 10;
+  const t = n % 100;
+  return `${n} ${d >= 2 && d <= 4 && (t < 12 || t > 14) ? few : many}`;
+}
 
 const PL_FMT: typeof EN_FMT = {
   heroCap: (dark) => `Strona główna po redesignie · motyw ${dark ? "ciemny" : "jasny"}`,
@@ -72,10 +97,12 @@ const PL_FMT: typeof EN_FMT = {
   screen: (i, n) => `Ekran ${i} z ${n}`,
   openInFigma: (label) => `Otwórz ${label} w Figmie ↗`,
   openCard: (label, kind) => `Otwórz ${kind === "wireframe" ? "wireframe" : "makietę"}: ${label}`,
-  notes: (n) => `${n} notatek`,
-  states: (n) => `${n} stany`,
-  frames: (n) => `${n} ekranów`,
+  notes: (n) => plural(n, "notatka", "notatki", "notatek"),
+  states: (n) => plural(n, "stan", "stany", "stanów"),
+  frames: (n) => plural(n, "ekran", "ekrany", "ekranów"),
   cover: (title) => `okładka · ${title}`,
+  wireAlt: (label, view) => `Wireframe: ${label}, ${view}`,
+  mockAlt: (label, view, dark) => `Makieta: ${label}, ${view}, motyw ${dark ? "ciemny" : "jasny"}`,
 };
 
 /** English copy in, the current language out. Text without a translation stays English. */

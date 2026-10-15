@@ -58,7 +58,7 @@ export const AP = {
       },
     },
     {
-      t: { en: "Get a plan", pl: "Dostań plan" },
+      t: { en: "Get a plan", pl: "Otrzymaj plan" },
       d: {
         en: "A day-by-day or week-by-week mix of exercises.",
         pl: "Mix ćwiczeń dzień po dniu lub tydzień po tygodniu.",

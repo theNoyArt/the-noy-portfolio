@@ -295,7 +295,7 @@ export function Wireframes() {
                     img: dimg,
                     dir: "wireframes/",
                     ext: ".webp",
-                    alt: `${cur.label} wireframe, desktop`,
+                    alt: f.wireAlt(cur.label, "desktop"),
                   }}
                 />
                 <div className={row.side()}>
@@ -315,7 +315,7 @@ export function Wireframes() {
                     img: cur.mimg,
                     dir: "wireframes/",
                     ext: ".webp",
-                    alt: `${cur.label} wireframe, mobile`,
+                    alt: f.wireAlt(cur.label, "mobile"),
                   }}
                 />
                 <div className={row.side()}>
@@ -473,7 +473,7 @@ export function Mockups() {
                   <span className={label()}>{tr("State")}</span>
                   {list.map((s, i) => (
                     <Chip key={s.name} pressed={i === stateIdx} onClick={() => setState(i)} pill>
-                      {s.label}
+                      {tr(s.label)}
                     </Chip>
                   ))}
                 </div>
@@ -489,8 +489,8 @@ export function Mockups() {
                   dir: light ? "mockups/light/" : "mockups/",
                   ext: ".webp",
                   alt:
-                    `${cur.label} mockup, ${view}, ${theme} theme` +
-                    (list.length > 1 ? ", " + img.label : ""),
+                    f.mockAlt(cur.label, view, theme === "dark") +
+                    (list.length > 1 ? ", " + tr(img.label) : ""),
                   className: light ? "bg-none bg-[#f6f5f3]" : "bg-none bg-[#0f0f12]",
                 }}
               />

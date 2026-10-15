@@ -89,7 +89,7 @@ export function MobileMenu() {
           ×
         </button>
       </div>
-      <nav className={s.nav()} aria-label="Main">
+      <nav className={s.nav()} aria-label={t.navMain}>
         {HOME_SECTIONS.map((key, i) => {
           const active = app.route.page === "home" && app.activeSection === key;
           return (

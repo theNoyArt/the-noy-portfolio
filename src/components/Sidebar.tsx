@@ -101,7 +101,7 @@ export function Sidebar({ current }: { current: ResolvedCase | null }) {
         </button>
 
         {!current && (
-          <nav aria-label="Main" className={s.nav()}>
+          <nav aria-label={t.navMain} className={s.nav()}>
             {HOME_SECTIONS.map((key, i) => {
               const active = app.activeSection === key;
               return (

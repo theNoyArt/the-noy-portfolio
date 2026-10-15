@@ -408,7 +408,7 @@ function Overview() {
                 <span>{L({ en: "Day 1/30", pl: "Dzień 1/30" })}</span>
               </div>
               <Creature className={device.creature} />
-              <div className={device.bubble}>hi!</div>
+              <div className={device.bubble}>{L({ en: "hi!", pl: "cześć!" })}</div>
             </div>
             <div className={device.btns}>
               <span className={device.btn} />

@@ -423,7 +423,7 @@ function ProjectFrame() {
             </span>
           </div>
           <div className={mapCell({ tall: true, alt: true })}>
-            <b className={m.b()}>{L({ en: "Hero visual", pl: "Wizual" })}</b>
+            <b className={m.b()}>{L({ en: "Hero visual", pl: "Grafika hero" })}</b>
             <span className={m.t()}>
               {L({ en: "Before / after lens", pl: "Soczewka przed / po" })}
             </span>
@@ -640,7 +640,7 @@ function ProjectPhone() {
         </span>
       </div>
       <div className={mapCell({ alt: true, class: "min-h-[64px]" })}>
-        <b className={m.b()}>{L({ en: "Hero visual", pl: "Wizual" })}</b>
+        <b className={m.b()}>{L({ en: "Hero visual", pl: "Grafika hero" })}</b>
         <span className={m.t()}>{L({ en: "Lens · tap to open", pl: "Soczewka · dotknij" })}</span>
       </div>
       <div className={band.root()}>
@@ -872,16 +872,20 @@ function DesignSystem() {
             <div className={b.ui()} aria-hidden="true">
               {m.id === "glass" ? (
                 <>
-                  <span className={moodBtn}>Explore projects →</span>
-                  <span className={moodPill}>Research & design</span>
+                  <span className={moodBtn}>{t.ctaProjects}</span>
+                  <span className={moodPill}>
+                    {L({ en: "Research & design", pl: "Badania i projektowanie" })}
+                  </span>
                 </>
               ) : (
                 <>
                   <span className={toast.root()}>
                     <b className={toast.icon()}>◆</b>
                     <span className={toast.text()}>
-                      <i className={toast.k()}>ACHIEVEMENT UNLOCKED</i>
-                      Working with you
+                      <i className={toast.k()}>
+                        {L({ en: "ACHIEVEMENT UNLOCKED", pl: "OSIĄGNIĘCIE ODBLOKOWANE" })}
+                      </i>
+                      {L({ en: "Working with you", pl: "Praca z Tobą" })}
                     </span>
                   </span>
                   <span className={toast.hp()}>

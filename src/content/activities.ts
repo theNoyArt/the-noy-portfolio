@@ -40,7 +40,7 @@ export const ACTIVITIES: Activity[] = [
       pl: "Moje portfolio ilustracji i streamy z rysowania, a wkrótce tutoriale i materiały edukacyjne.",
     },
     topics: [
-      { en: "Digital painting", pl: "Digital painting" },
+      { en: "Digital painting", pl: "Malarstwo cyfrowe" },
       { en: "Character art", pl: "Postacie" },
       { en: "Live streams", pl: "Streamy na żywo" },
     ],
@@ -66,7 +66,7 @@ export const ACTIVITIES: Activity[] = [
       pl: "Warsztaty rysunku, prelekcje o grach fabularnych, sztuce i historii oraz wystawy moich ilustracji RPG.",
     },
     topics: [
-      { en: "Teaching", pl: "Uczenie" },
+      { en: "Teaching", pl: "Nauczanie" },
       { en: "Public talks", pl: "Wystąpienia" },
       { en: "History & art", pl: "Historia i sztuka" },
     ],
