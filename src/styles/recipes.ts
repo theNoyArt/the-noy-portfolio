@@ -1,4 +1,5 @@
-import { tv, type VariantProps } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
+import { tv } from "../lib/cn";
 
 /*
  * Shared component recipes (tailwind-variants). Use them as class names:

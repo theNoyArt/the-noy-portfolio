@@ -2,9 +2,9 @@
 // website) for the AI chat (server/chat.ts). Built from the same content the pages render, so the
 // assistant never drifts from what the visitor sees. DriveThruRPG has its own: dtrpg/chatContext.ts.
 
-import { AP } from "./artpractice";
-import { PF, PF_FACTS, PF_LINKS, PF_WIRES } from "./portfolioCase";
-import { TG } from "./tamagotchi";
+import { AP } from "./artpractice.js";
+import { PF, PF_FACTS, PF_LINKS, PF_WIRES } from "./portfolioCase.js";
+import { TG } from "./tamagotchi.js";
 
 /** Keys that only drive the layout (icons, ids, colours), not facts worth telling a visitor. */
 const SKIP = new Set(["id", "icon", "img", "src", "image", "hue", "c", "color", "mood"]);

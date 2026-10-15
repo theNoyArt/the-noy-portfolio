@@ -7,10 +7,9 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { tv } from "tailwind-variants";
 import { DT_IMG } from "../../content/dtrpg/project";
 import type { Img } from "../../content/dtrpg/types";
-import { cn } from "../../lib/cn";
+import { cn, tv } from "../../lib/cn";
 import { caseBtn, label as monoLabel, seg, todoLink } from "./case-ui";
 import { useTr } from "./tr";
 

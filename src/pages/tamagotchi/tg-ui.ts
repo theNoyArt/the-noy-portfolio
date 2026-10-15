@@ -1,4 +1,4 @@
-import { tv } from "tailwind-variants";
+import { tv } from "../../lib/cn";
 import { label } from "../dtrpg/case-ui";
 
 /*

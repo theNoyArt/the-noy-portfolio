@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
-import { tv } from "tailwind-variants";
 import { useApp } from "../app/AppContext";
 import {
   ACHIEVEMENTS,
@@ -8,7 +7,7 @@ import {
   type AchievementIcon,
 } from "../content/achievements";
 import { PERSON } from "../content/person";
-import { cn } from "../lib/cn";
+import { cn, tv } from "../lib/cn";
 import { useI18n } from "../lib/i18n";
 
 const ICONS: Record<AchievementIcon, ReactNode> = {

@@ -3,15 +3,15 @@
 // fails or hits its limit, the next one answers. Used by api/chat.ts (Vercel) and by the dev
 // server in vite.config.ts. API keys stay on the server; the browser only sends the conversation.
 
-import { PERSON } from "../src/content/person";
-import { ABOUT, ABOUT_TABS, ABOUT_WORKFLOW } from "../src/content/about";
-import { EXPERIENCE } from "../src/content/experience";
-import { CASE_STUDIES } from "../src/content/caseStudies";
-import { SHOWCASE } from "../src/content/showcase";
-import { ACTIVITIES, HOBBIES } from "../src/content/activities";
+import { PERSON } from "../src/content/person.js";
+import { ABOUT, ABOUT_TABS, ABOUT_WORKFLOW } from "../src/content/about.js";
+import { EXPERIENCE } from "../src/content/experience.js";
+import { CASE_STUDIES } from "../src/content/caseStudies.js";
+import { SHOWCASE } from "../src/content/showcase.js";
+import { ACTIVITIES, HOBBIES } from "../src/content/activities.js";
 import type { Lang, Localized } from "../src/content/types";
-import { dtrpgChatContext } from "../src/content/dtrpg/chatContext";
-import { artPracticeChatContext, bondChatContext, portfolioChatContext } from "../src/content/chatPages";
+import { dtrpgChatContext } from "../src/content/dtrpg/chatContext.js";
+import { artPracticeChatContext, bondChatContext, portfolioChatContext } from "../src/content/chatPages.js";
 
 /** Extra detail for case studies with their own page, sent when the visitor is on that page. */
 const CASE_CONTEXT: Record<string, () => string> = {

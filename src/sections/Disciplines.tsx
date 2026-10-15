@@ -1,8 +1,7 @@
 import { useState, type ReactNode } from "react";
-import { tv } from "tailwind-variants";
 import { useApp } from "../app/AppContext";
 import type { Localized, Stage } from "../content/types";
-import { cn } from "../lib/cn";
+import { cn, tv } from "../lib/cn";
 import { useI18n } from "../lib/i18n";
 
 interface Discipline {

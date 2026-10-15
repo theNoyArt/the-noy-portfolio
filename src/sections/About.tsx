@@ -1,10 +1,9 @@
 import { useEffect, useState, type CSSProperties } from "react";
-import { tv } from "tailwind-variants";
 import { useApp } from "../app/AppContext";
 import { STAGE_SECTION } from "../app/sections";
 import { ABOUT, ABOUT_TABS, ABOUT_WORKFLOW, ABOUT_WORKFLOW_DESC } from "../content/about";
 import { SHOWCASE } from "../content/showcase";
-import { cn } from "../lib/cn";
+import { cn, tv } from "../lib/cn";
 import { useI18n } from "../lib/i18n";
 import { linkList, monoLabel, section, sectionHead, sectionTitle } from "../styles/recipes";
 
@@ -102,7 +101,7 @@ export function About() {
       </div>
 
       <div data-reveal="0">
-        <div role="tablist" aria-label={t.about} className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,150px),1fr))] gap-[3px] narrow:grid-cols-4">
+        <div role="tablist" aria-label={t.about} className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,150px),1fr))] gap-[3px] narrow:grid-cols-[repeat(4,auto)]">
           {ABOUT_TABS.map((g, i) => {
             const on = i === tab;
             const c = stageTab({ on });

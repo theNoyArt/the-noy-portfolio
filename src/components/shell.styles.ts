@@ -1,4 +1,4 @@
-import { tv } from "tailwind-variants";
+import { tv } from "../lib/cn";
 import { monoLabel } from "../styles/recipes";
 
 /** Popovers and full-screen layers stay nearly opaque in Glass light so text over them reads cleanly. */

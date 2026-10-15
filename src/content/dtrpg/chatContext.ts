@@ -1,9 +1,9 @@
 // Plain-text facts about the DriveThruRPG case study for the AI chat (server/chat.ts).
 // Built from the same content the page renders, so the assistant never drifts from the page.
 
-import { AUDIT_ITEMS, AUDIT_PAGES } from "./audit";
-import { DS_GROUPS, DS_THEMES } from "./designSystem";
-import { MOCKUPS } from "./mockups";
+import { AUDIT_ITEMS, AUDIT_PAGES } from "./audit.js";
+import { DS_GROUPS, DS_THEMES } from "./designSystem.js";
+import { MOCKUPS } from "./mockups.js";
 import {
   DT_API,
   DT_DS_FACTS,
@@ -14,8 +14,8 @@ import {
   DT_PROBLEMS,
   DT_STATS,
   DT_TECH,
-} from "./project";
-import { WIREFRAMES } from "./wireframes";
+} from "./project.js";
+import { WIREFRAMES } from "./wireframes.js";
 
 export function dtrpgChatContext(): string {
   const links = Object.entries({

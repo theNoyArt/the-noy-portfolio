@@ -1,4 +1,4 @@
-import { tv } from "tailwind-variants";
+import { tv } from "../../lib/cn";
 
 /*
  * Pieces of the Portfolio case study that the shared case recipes (../dtrpg/case-ui.ts) do not cover.

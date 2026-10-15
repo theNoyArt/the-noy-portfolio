@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { tv } from "tailwind-variants";
 import { useApp } from "../app/AppContext";
 import { EXPERIENCE, EXPERIENCE_DESC } from "../content/experience";
 import type { Track, WorkProject } from "../content/types";
 import { getWorkCase } from "../lib/cases";
 import { useI18n } from "../lib/i18n";
 import { TrackTag } from "../components/TrackTag";
-import { cn } from "../lib/cn";
+import { cn, tv } from "../lib/cn";
 import { monoLabel, section, sectionDesc, sectionHead, sectionTitle, seg } from "../styles/recipes";
 
 /* Rise-in delays for rows and cards after a company switch, by position. */

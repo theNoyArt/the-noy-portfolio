@@ -1,10 +1,9 @@
-import { tv } from "tailwind-variants";
 import { useApp } from "../app/AppContext";
 import { SHOWCASE, SHOWCASE_DESC, SHOWCASE_UPCOMING } from "../content/showcase";
 import { useI18n } from "../lib/i18n";
 import { coverFor, imageBg, stripes } from "../lib/visual";
 import { Creature } from "../pages/tamagotchi/Creature";
-import { cn } from "../lib/cn";
+import { cn, tv } from "../lib/cn";
 import { chip, monoLabel, section, sectionDesc, sectionHead, sectionTitle } from "../styles/recipes";
 
 const card = tv({

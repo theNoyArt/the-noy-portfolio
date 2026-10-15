@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { tv } from "tailwind-variants";
 import { useApp } from "../../app/AppContext";
 import { MOCKUPS } from "../../content/dtrpg/mockups";
 import { DT_IMG, DT_LINKS } from "../../content/dtrpg/project";
 import type { Note, Step } from "../../content/dtrpg/types";
 import { WIREFRAMES } from "../../content/dtrpg/wireframes";
-import { cn } from "../../lib/cn";
+import { cn, tv } from "../../lib/cn";
 import {
   bodyMuted,
   caseBtn,

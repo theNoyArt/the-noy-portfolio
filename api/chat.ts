@@ -2,7 +2,7 @@
 // Set GEMINI_API_KEY (free, from Google AI Studio) in the Vercel project's Environment Variables;
 // optionally GROQ_API_KEY as a free backup and ANTHROPIC_API_KEY for Claude. See "AI chat" in README.md.
 
-import { handleChat } from "../server/chat";
+import { handleChat } from "../server/chat.js";
 
 export async function POST(request: Request): Promise<Response> {
   const body = await request.json().catch(() => null);

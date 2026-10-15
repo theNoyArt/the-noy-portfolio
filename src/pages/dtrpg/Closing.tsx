@@ -51,7 +51,7 @@ export function Closing({ c }: { c: ResolvedCase }) {
       {/* Next case study: text on one side, a cover with the same lens reveal as the hero on the other. */}
       <a
         className={
-          "group/next glass-blur grid min-h-80 grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] overflow-hidden rounded-card border border-glass-edge bg-surface text-ink shadow-glass " +
+          "group/next glass-blur grid min-h-80 grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] max-[799px]:grid-cols-[minmax(0,1fr)] overflow-hidden rounded-card border border-glass-edge bg-surface text-ink shadow-glass " +
           "[transition:border-color_0.25s,box-shadow_0.25s] hover:border-accent hover:text-ink hover:shadow-glow"
         }
         href={next ? `#/case/${next.id}` : "#/"}
@@ -62,7 +62,7 @@ export function Closing({ c }: { c: ResolvedCase }) {
       >
         <span className="flex flex-col justify-center gap-3 p-[clamp(24px,3.5vw,44px)] text-ink">
           <span className={label({ tone: "accent" })}>{tr(next ? "Next case study →" : "More work")}</span>
-          <span className="display text-[clamp(36px,3.6vw,60px)] leading-[0.95] whitespace-nowrap">
+          <span className="display text-[clamp(36px,3.6vw,60px)] leading-[0.95] text-balance">
             {next ? next.name : tr("All projects.")}
           </span>
           <span className="font-mono text-[12px] text-muted">

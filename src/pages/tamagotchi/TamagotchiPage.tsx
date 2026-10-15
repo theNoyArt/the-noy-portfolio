@@ -1,11 +1,10 @@
 import { useState, type CSSProperties, type ReactNode } from "react";
-import { tv } from "tailwind-variants";
 import { useApp } from "../../app/AppContext";
 import { caseSections } from "../../app/sections";
 import { TG, type PhaseStatus, type RoadmapPhase } from "../../content/tamagotchi";
 import type { Localized } from "../../content/types";
 import type { ResolvedCase } from "../../lib/cases";
-import { cn } from "../../lib/cn";
+import { cn, tv } from "../../lib/cn";
 import { useI18n } from "../../lib/i18n";
 import { CaseMobileBar } from "../CaseMobileBar";
 import { bodyMuted, btnRow, caseBtn, caseTitle, caseTitleSub, label, lead, metaRow, sec, secHead } from "../dtrpg/case-ui";
@@ -154,7 +153,8 @@ const endings = {
   list:
     "flex list-none justify-between gap-3 p-0 text-[13px] leading-[1.3] " +
     "max-[1199px]:grid max-[1199px]:grid-cols-2 max-[1199px]:gap-x-4 max-[1199px]:gap-y-[6px]",
-  item: "whitespace-nowrap first:font-semibold last:font-semibold max-[1199px]:even:text-right",
+  // Wraps in the two-column layout: "Niepewny, ale w porządku" is wider than a column at 390px.
+  item: "whitespace-nowrap first:font-semibold last:font-semibold max-[1199px]:whitespace-normal max-[1199px]:even:text-right",
 };
 
 /** The core loop: a slowly turning dashed ring with numbered steps around the mascot. */

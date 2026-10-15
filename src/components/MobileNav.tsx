@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { tv } from "tailwind-variants";
+import { tv } from "../lib/cn";
 import { useApp } from "../app/AppContext";
 import { HOME_SECTIONS, homeSectionLabel } from "../app/sections";
 import { PERSON } from "../content/person";

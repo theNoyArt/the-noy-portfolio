@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { tv } from "tailwind-variants";
+import { tv } from "../lib/cn";
 import { useApp } from "../app/AppContext";
 import { CONFIG } from "../config";
 import { PERSON } from "../content/person";

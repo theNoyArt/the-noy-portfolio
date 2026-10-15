@@ -1,11 +1,10 @@
 import type { CSSProperties, ReactNode } from "react";
-import { tv } from "tailwind-variants";
 import { useApp } from "../../app/AppContext";
 import { caseSections } from "../../app/sections";
 import { AP } from "../../content/artpractice";
 import { PERSON } from "../../content/person";
 import type { ResolvedCase } from "../../lib/cases";
-import { cn } from "../../lib/cn";
+import { cn, tv } from "../../lib/cn";
 import { useI18n } from "../../lib/i18n";
 import { CaseMobileBar } from "../CaseMobileBar";
 import { bodyMuted, btnRow, caseBtn, caseTitle, caseTitleSub, lead, metaRow, sec, secHead } from "../dtrpg/case-ui";

@@ -1,8 +1,7 @@
 import { useRef, useState, type PointerEvent } from "react";
 import { useApp } from "../../app/AppContext";
-import { tv } from "tailwind-variants";
 import { DT_FACTS, DT_IMG, DT_LINKS, DT_TECH } from "../../content/dtrpg/project";
-import { cn } from "../../lib/cn";
+import { cn, tv } from "../../lib/cn";
 import {
   btnRow,
   caseBtn,

@@ -1,4 +1,4 @@
-import { tv } from "tailwind-variants";
+import { tv } from "../../lib/cn";
 
 /*
  * Shared pieces of the hand-built case studies (DriveThruRPG, Bond, Art practice, Portfolio).
