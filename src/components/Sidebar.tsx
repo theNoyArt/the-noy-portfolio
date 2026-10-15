@@ -54,6 +54,7 @@ export function Sidebar({ current }: { current: ResolvedCase | null }) {
   const s = ui();
   const cl = caseLinks();
   const mail = useEmailLink();
+  const cvUrl = L(PERSON.cv.url);
 
   const contact = (
     <div className={cl.root()}>
@@ -70,7 +71,7 @@ export function Sidebar({ current }: { current: ResolvedCase | null }) {
           ↗
         </span>
       </a>
-      <a className={cl.link()} href={PERSON.cv.url} download="Paulina_Targosz_CV_FE_UX.pdf">
+      <a className={cl.link()} href={cvUrl} download={cvUrl.split("/").pop()}>
         <svg className={cl.icon()} viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5" />
           <path d="M5 19h14" />

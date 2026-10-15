@@ -181,7 +181,7 @@ function HeroBar() {
 
   const links = [
     ...PERSON.links.map((l) => ({ label: l.label, url: l.url, icon: ICONS[l.label] })),
-    { label: L(PERSON.cv.label), url: PERSON.cv.url, icon: ICONS.CV },
+    { label: L(PERSON.cv.label), url: L(PERSON.cv.url), icon: ICONS.CV },
   ];
 
   return (

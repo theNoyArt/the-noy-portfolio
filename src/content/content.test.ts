@@ -77,7 +77,8 @@ describe("content", () => {
 
   it("only points to images and files that exist", () => {
     const paths = [
-      PERSON.cv.url,
+      PERSON.cv.url.en,
+      PERSON.cv.url.pl,
       ...SHOWCASE.flatMap((s) => [s.images?.cover, s.images?.coverLight, s.images?.coverDark]),
     ].filter((p): p is string => typeof p === "string" && p.startsWith("/"));
     const missing = paths.filter((p) => !existsSync(join(PUBLIC, p)));

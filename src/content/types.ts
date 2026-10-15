@@ -27,7 +27,7 @@ export interface Person {
   status: Localized;
   yearsExperience: number;
   links: Link[];
-  cv: { label: Localized; url: string };
+  cv: { label: Localized; url: Localized };
   portrait: { primary: ImagePath; alt: ImagePath; description: Localized };
   /** Starter questions shown in the AI chat. */
   chatSuggestions: LocalizedList;

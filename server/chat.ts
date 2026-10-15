@@ -46,7 +46,7 @@ export function buildSystemPrompt(lang: Lang, caseId?: string, compact = false):
       education: PERSON.education,
       languages: PERSON.languages,
       hobbies: PERSON.hobbies,
-      cv: PERSON.cv.url,
+      cv: PERSON.cv.url[lang],
       links: PERSON.links.filter((l) => l.url && l.url !== "#").map((l) => `${l.label}: ${l.url}`),
     },
     about: [E(PERSON.intro), E(ABOUT.p1)],
