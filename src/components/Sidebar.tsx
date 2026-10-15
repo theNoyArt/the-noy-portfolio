@@ -70,7 +70,7 @@ export function Sidebar({ current }: { current: ResolvedCase | null }) {
           ↗
         </span>
       </a>
-      <a className={cl.link()} href={PERSON.cv.url} download>
+      <a className={cl.link()} href={PERSON.cv.url} download="Paulina_Targosz_CV_FE_UX.pdf">
         <svg className={cl.icon()} viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5" />
           <path d="M5 19h14" />

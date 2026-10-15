@@ -23,7 +23,7 @@ export const PERSON: Person = {
   links: [{ label: "GitHub", url: "https://github.com/theNoyArt" }],
   cv: {
     label: { en: "CV (PDF)", pl: "CV (PDF)" },
-    url: "/cv/Paulina_Targosz_CV_2026.pdf",
+    url: "/cv/Paulina_Targosz_CV_FE_UX.pdf",
   },
   portrait: {
     primary: null,
