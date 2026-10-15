@@ -3,6 +3,7 @@ import { useApp } from "../app/AppContext";
 import { HOME_SECTIONS, caseSections, homeSectionLabel } from "../app/sections";
 import { PERSON } from "../content/person";
 import { useI18n } from "../lib/i18n";
+import { useEmailLink } from "../lib/useEmailLink";
 import type { ResolvedCase } from "../lib/cases";
 import { monoLabel, trackDot } from "../styles/recipes";
 import { PrefsButton } from "./PrefsPopover";
@@ -52,16 +53,19 @@ export function Sidebar({ current }: { current: ResolvedCase | null }) {
   const app = useApp();
   const s = ui();
   const cl = caseLinks();
+  const mail = useEmailLink();
 
   const contact = (
     <div className={cl.root()}>
       <span className={cl.label()}>{t.contactLabel}</span>
-      <a className={cl.link()} href={`mailto:${PERSON.email}`}>
+      <a className={cl.link()} href={mail.href} title={mail.title} onClick={mail.onClick}>
         <svg className={cl.icon()} viewBox="0 0 24 24" aria-hidden="true">
           <rect x="3" y="5" width="18" height="14" rx="2" />
           <path d="m3.5 6.5 8.5 7 8.5-7" />
         </svg>
-        <span className={cl.text()}>{t.emailMe}</span>
+        <span className={cl.text()} aria-live="polite">
+          {mail.copied ? t.emailCopied : t.emailMe}
+        </span>
         <span className={cl.arrow()} aria-hidden="true">
           ↗
         </span>

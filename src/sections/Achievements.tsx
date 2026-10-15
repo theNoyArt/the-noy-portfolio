@@ -6,9 +6,9 @@ import {
   type Achievement,
   type AchievementIcon,
 } from "../content/achievements";
-import { PERSON } from "../content/person";
 import { cn, tv } from "../lib/cn";
 import { useI18n } from "../lib/i18n";
+import { useEmailLink } from "../lib/useEmailLink";
 
 const ICONS: Record<AchievementIcon, ReactNode> = {
   code: (
@@ -190,6 +190,7 @@ const toast = tv({
 export function Achievements() {
   const { t, L } = useI18n();
   const app = useApp();
+  const mail = useEmailLink();
   const [unlocked, setUnlocked] = useState(false);
   const [burst, setBurst] = useState(false);
   const [toastOn, setToast] = useState(false);
@@ -277,9 +278,12 @@ export function Achievements() {
                 "cursor-pointer rounded-full border border-transparent bg-accent px-[18px] py-[10px] text-center text-[13.5px] font-semibold whitespace-nowrap text-accent-ink " +
                 "hover:text-accent-ink hover:brightness-110 cyber:rounded-none narrow:col-span-full"
               }
-              href={`mailto:${PERSON.email}`}
+              href={mail.href}
+              title={mail.title}
+              onClick={mail.onClick}
+              aria-live="polite"
             >
-              {t.achWrite}
+              {mail.copied ? t.emailCopied : t.achWrite}
             </a>
           ) : (
             <button
