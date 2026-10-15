@@ -1,4 +1,11 @@
-import { useEffect, useRef, useState, type CSSProperties, type PointerEvent, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type PointerEvent,
+  type ReactNode,
+} from "react";
 import { useApp } from "../../app/AppContext";
 import { caseSections } from "../../app/sections";
 import { PF, PF_FACTS, PF_LINKS, PF_WIRES } from "../../content/portfolioCase";
@@ -75,7 +82,17 @@ export function PortfolioPage({ c }: { c: ResolvedCase }) {
   );
 }
 
-function SecHead({ n, label: name, title, children }: { n: number; label: string; title: string; children?: ReactNode }) {
+function SecHead({
+  n,
+  label: name,
+  title,
+  children,
+}: {
+  n: number;
+  label: string;
+  title: string;
+  children?: ReactNode;
+}) {
   return (
     <>
       <span className={label({ tone: "accent", star: true })}>
@@ -96,7 +113,11 @@ function Overview() {
   const kv = caseKv();
   return (
     // The overview fills the viewport; the screenshot lens takes the full height of its column.
-    <section className={sec({ first: true, class: "min-h-svh max-[899px]:min-h-0" })} id="c-overview" data-nav-section>
+    <section
+      className={sec({ first: true, class: "min-h-svh max-[899px]:min-h-0" })}
+      id="c-overview"
+      data-nav-section
+    >
       <div className={meta.root()}>
         <span className={meta.first()}>[01] {L({ en: "Overview", pl: "Przegląd" })}</span>
         <span>{L(PF.meta.kind)}</span>
@@ -115,7 +136,11 @@ function Overview() {
           </div>
           <p className={lead}>{L(PF.lead)}</p>
           <div className={btnRow}>
-            <button type="button" className={caseBtn({ variant: "primary" })} onClick={() => app.scrollToCaseSection("wireframes")}>
+            <button
+              type="button"
+              className={caseBtn({ variant: "primary" })}
+              onClick={() => app.scrollToCaseSection("wireframes")}
+            >
               {L({ en: "See the design ↓", pl: "Zobacz projekt ↓" })}
             </button>
             <Ext className={caseBtn()} href={PF_LINKS.github}>
@@ -176,7 +201,11 @@ function ThemeLens() {
     const b = stage.current.getBoundingClientRect();
     const next = !open;
     setOpen(next);
-    setLens(e.clientX - b.left, e.clientY - b.top, next ? Math.ceil(Math.hypot(b.width, b.height)) : 0);
+    setLens(
+      e.clientX - b.left,
+      e.clientY - b.top,
+      next ? Math.ceil(Math.hypot(b.width, b.height)) : 0,
+    );
   };
 
   const img = (t: "light" | "dark") => `url("/images/portfolio/home-${t}.webp")`;
@@ -185,11 +214,15 @@ function ThemeLens() {
   const sw = themeSwitch({ dark });
 
   return (
-    <figure className={s.root({ class: "min-h-0 w-full" })} aria-label={L({ en: "The home page in both themes", pl: "Strona główna w obu motywach" })}>
+    <figure
+      className={s.root({ class: "min-h-0 w-full" })}
+      aria-label={L({ en: "The home page in both themes", pl: "Strona główna w obu motywach" })}
+    >
       <div
         ref={stage}
         className={s.stage({
-          class: "aspect-auto min-h-[520px] flex-1 max-[899px]:aspect-[3/4] max-[899px]:min-h-0 max-[899px]:flex-none",
+          class:
+            "aspect-auto min-h-[520px] flex-1 max-[899px]:aspect-[3/4] max-[899px]:min-h-0 max-[899px]:flex-none",
         })}
         role="img"
         aria-label={L({
@@ -202,7 +235,10 @@ function ThemeLens() {
         onPointerUp={onUp}
       >
         <div className={s.layer()} style={{ backgroundImage: img(dark ? "dark" : "light") }} />
-        <div className={cn(s.layer(), s.back())} style={{ backgroundImage: img(dark ? "light" : "dark") }} />
+        <div
+          className={cn(s.layer(), s.back())}
+          style={{ backgroundImage: img(dark ? "light" : "dark") }}
+        />
         <span className={s.ring()} aria-hidden="true" />
         <span className={s.chip()} aria-hidden="true">
           {other}
@@ -291,12 +327,16 @@ function HomeFrame() {
           <div className={mapCell({ tall: true })}>
             <Pin n={2} />
             <b className={m.b()}>Hero</b>
-            <span className={m.t()}>{L({ en: "Name · role · intro · 2 CTAs", pl: "Imię · rola · intro · 2 CTA" })}</span>
+            <span className={m.t()}>
+              {L({ en: "Name · role · intro · 2 CTAs", pl: "Imię · rola · intro · 2 CTA" })}
+            </span>
           </div>
           <div className={mapCell({ tall: true, alt: true })}>
             <Pin n={3} />
             <b className={m.b()}>{L({ en: "Theme panel", pl: "Panel motywu" })}</b>
-            <span className={m.t()}>{L({ en: "Disciplines / Achievements", pl: "Dyscypliny / Osiągnięcia" })}</span>
+            <span className={m.t()}>
+              {L({ en: "Disciplines / Achievements", pl: "Dyscypliny / Osiągnięcia" })}
+            </span>
           </div>
         </div>
         <div className={mapRow().root()}>
@@ -373,7 +413,9 @@ function ProjectFrame() {
           <div className={mapCell({ tall: true })}>
             <Pin n={2} />
             <b className={m.b()}>01 · {L({ en: "Overview", pl: "Przegląd" })}</b>
-            <span className={m.t()}>{L({ en: "Title · lead · buttons · facts", pl: "Tytuł · lead · przyciski · fakty" })}</span>
+            <span className={m.t()}>
+              {L({ en: "Title · lead · buttons · facts", pl: "Tytuł · lead · przyciski · fakty" })}
+            </span>
             <span className={mapSketch.kv}>
               <i />
               <i />
@@ -382,12 +424,16 @@ function ProjectFrame() {
           </div>
           <div className={mapCell({ tall: true, alt: true })}>
             <b className={m.b()}>{L({ en: "Hero visual", pl: "Wizual" })}</b>
-            <span className={m.t()}>{L({ en: "Before / after lens", pl: "Soczewka przed / po" })}</span>
+            <span className={m.t()}>
+              {L({ en: "Before / after lens", pl: "Soczewka przed / po" })}
+            </span>
           </div>
         </div>
         <div className={band.root()}>
           <Pin n={3} />
-          <span className={band.bandText()}>{L({ en: "Design track · 02—05", pl: "Ścieżka projektu · 02—05" })}</span>
+          <span className={band.bandText()}>
+            {L({ en: "Design track · 02—05", pl: "Ścieżka projektu · 02—05" })}
+          </span>
         </div>
         <div className={mapRow().root()}>
           <Pin n={4} />
@@ -431,18 +477,24 @@ function ProjectFrame() {
         </div>
         <div className={dev.root()}>
           <Pin n={8} />
-          <span className={dev.bandText()}>{L({ en: "Build track · 06—07", pl: "Ścieżka budowy · 06—07" })}</span>
+          <span className={dev.bandText()}>
+            {L({ en: "Build track · 06—07", pl: "Ścieżka budowy · 06—07" })}
+          </span>
         </div>
         <div className={mapRow({ kind: "hero" }).root()}>
           <div className={mapCell()}>
             <Pin n={9} />
             <b className={m.b()}>06 · {L({ en: "Front end", pl: "Front-end" })}</b>
-            <span className={m.t()}>{L({ en: "Stack · architecture", pl: "Stack · architektura" })}</span>
+            <span className={m.t()}>
+              {L({ en: "Stack · architecture", pl: "Stack · architektura" })}
+            </span>
           </div>
           <div className={mapCell()}>
             <Pin n={10} />
             <b className={m.b()}>07 · Mock API</b>
-            <span className={m.t()}>{L({ en: "Endpoints · Swagger", pl: "Endpointy · Swagger" })}</span>
+            <span className={m.t()}>
+              {L({ en: "Endpoints · Swagger", pl: "Endpointy · Swagger" })}
+            </span>
           </div>
         </div>
         <div className={mapRow({ kind: "hero" }).root()}>
@@ -570,13 +622,17 @@ function ProjectPhone() {
       <div className={p.sectionBar()}>
         <Pin n={2} />
         <span className={p.ctl()}>←</span>
-        <span className={cn(p.ctl(), "flex-1 text-left")}>03 {L({ en: "Wireframes", pl: "Wireframe’y" })} ▾</span>
+        <span className={cn(p.ctl(), "flex-1 text-left")}>
+          03 {L({ en: "Wireframes", pl: "Wireframe’y" })} ▾
+        </span>
         <span className={p.progress()} aria-hidden="true" />
       </div>
       <div className={mapCell({ tall: true })}>
         <Pin n={3} />
         <b className={m.b()}>01 · {L({ en: "Overview", pl: "Przegląd" })}</b>
-        <span className={m.t()}>{L({ en: "Title · lead · buttons · facts", pl: "Tytuł · lead · przyciski · fakty" })}</span>
+        <span className={m.t()}>
+          {L({ en: "Title · lead · buttons · facts", pl: "Tytuł · lead · przyciski · fakty" })}
+        </span>
         <span className={mapSketch.kv}>
           <i />
           <i />
@@ -589,12 +645,19 @@ function ProjectPhone() {
       </div>
       <div className={band.root()}>
         <Pin n={4} />
-        <span className={band.bandText()}>{L({ en: "Design track · 02—05", pl: "Ścieżka projektu · 02—05" })}</span>
+        <span className={band.bandText()}>
+          {L({ en: "Design track · 02—05", pl: "Ścieżka projektu · 02—05" })}
+        </span>
       </div>
       <div className={row}>
         <Pin n={5} />
         <b className={m.b()}>02—05</b>
-        <span className={m.t()}>{L({ en: "Switch · frame · notes below", pl: "Przełącznik · ramka · notatki pod spodem" })}</span>
+        <span className={m.t()}>
+          {L({
+            en: "Switch · frame · notes below",
+            pl: "Przełącznik · ramka · notatki pod spodem",
+          })}
+        </span>
         <span className={phoneSketch.cards}>
           <i />
           <i className={splitNotes} />
@@ -602,7 +665,9 @@ function ProjectPhone() {
       </div>
       <div className={dev.root()}>
         <Pin n={6} />
-        <span className={dev.bandText()}>{L({ en: "Build track · 06—07", pl: "Ścieżka budowy · 06—07" })}</span>
+        <span className={dev.bandText()}>
+          {L({ en: "Build track · 06—07", pl: "Ścieżka budowy · 06—07" })}
+        </span>
       </div>
       <div className={row}>
         <Pin n={7} />
@@ -616,12 +681,28 @@ function ProjectPhone() {
   );
 }
 
-function Seg2<T extends string>({ value, options, onChange, label }: { value: T; options: { id: T; label: string }[]; onChange: (v: T) => void; label: string }) {
+function Seg2<T extends string>({
+  value,
+  options,
+  onChange,
+  label,
+}: {
+  value: T;
+  options: { id: T; label: string }[];
+  onChange: (v: T) => void;
+  label: string;
+}) {
   const s = seg();
   return (
     <div className={s.root()} role="group" aria-label={label}>
       {options.map((o) => (
-        <button key={o.id} type="button" className={s.btn()} aria-pressed={value === o.id} onClick={() => onChange(o.id)}>
+        <button
+          key={o.id}
+          type="button"
+          className={s.btn()}
+          aria-pressed={value === o.id}
+          onClick={() => onChange(o.id)}
+        >
           {o.label}
         </button>
       ))}
@@ -634,11 +715,19 @@ function Wireframes() {
   const app = useApp();
   const [view, setView] = useState<"home" | "project">("home");
   // On a phone the section opens on the mobile frames.
-  const [device, setDevice] = useState<"desktop" | "mobile">(() => (app.narrow ? "mobile" : "desktop"));
+  const [device, setDevice] = useState<"desktop" | "mobile">(() =>
+    app.narrow ? "mobile" : "desktop",
+  );
   const home = view === "home";
   const mobile = device === "mobile";
   const wf = wfRow(mobile ? { layout: "mobile" } : {});
-  const stepsList = mobile ? (home ? PF_WIRES.homeMobile : PF_WIRES.projectMobile) : home ? PF_WIRES.home : PF_WIRES.project;
+  const stepsList = mobile
+    ? home
+      ? PF_WIRES.homeMobile
+      : PF_WIRES.projectMobile
+    : home
+      ? PF_WIRES.home
+      : PF_WIRES.project;
   const notesList = mobile
     ? home
       ? PF_WIRES.homeMobileNotes
@@ -649,7 +738,11 @@ function Wireframes() {
   const k = label({ class: "pb-2 not-first:mt-[14px]" });
   return (
     <section className={sec()} id="c-wireframes" data-nav-section>
-      <SecHead n={2} label={t.wireframes} title={L({ en: "Two layouts carry the whole site.", pl: "Dwa układy niosą całą stronę." })}>
+      <SecHead
+        n={2}
+        label={t.wireframes}
+        title={L({ en: "Two layouts carry the whole site.", pl: "Dwa układy niosą całą stronę." })}
+      >
         <p className={headNote}>
           {L({
             en: "Lo-fi frames with numbered notes. The project layout comes from the DriveThruRPG case study and every project reuses it.",
@@ -680,8 +773,14 @@ function Wireframes() {
           {mobile
             ? L({ en: "Mobile · below 900px", pl: "Mobile · poniżej 900px" })
             : home
-              ? L({ en: "Desktop · numbered on the wireframe", pl: "Desktop · numeracja na wireframe’ie" })
-              : L({ en: "Desktop · example: DriveThruRPG", pl: "Desktop · przykład: DriveThruRPG" })}
+              ? L({
+                  en: "Desktop · numbered on the wireframe",
+                  pl: "Desktop · numeracja na wireframe’ie",
+                })
+              : L({
+                  en: "Desktop · example: DriveThruRPG",
+                  pl: "Desktop · przykład: DriveThruRPG",
+                })}
         </span>
       </div>
       <div
@@ -697,7 +796,9 @@ function Wireframes() {
       >
         {mobile ? home ? <HomePhone /> : <ProjectPhone /> : home ? <HomeFrame /> : <ProjectFrame />}
         <div className={wf.side({ class: "flex flex-col gap-[10px]" })}>
-          <p className={k}>{L({ en: "Numbered on the wireframe", pl: "Numeracja na wireframe’ie" })}</p>
+          <p className={k}>
+            {L({ en: "Numbered on the wireframe", pl: "Numeracja na wireframe’ie" })}
+          </p>
           <WSteps items={stepsList} />
           <p className={k}>{L({ en: "Notes", pl: "Notatki" })}</p>
           <WNotes items={notesList} />
@@ -713,12 +814,16 @@ function DesignSystem() {
   const [id, setId] = useState<"glass" | "cyber">(app.theme === "dark" ? "cyber" : "glass");
   useEffect(() => setId(app.theme === "dark" ? "cyber" : "glass"), [app.theme]);
   const m = PF.moods.find((x) => x.id === id)!;
-  const b = mood({ kind: m.id });
+  const b = mood({ kind: id });
   const toast = moodToast();
   const spec = dsSpec();
   return (
     <section className={sec()} id="c-design" data-nav-section>
-      <SecHead n={3} label={t.designSystem} title={L({ en: "Two moods, one system.", pl: "Dwa nastroje, jeden system." })}>
+      <SecHead
+        n={3}
+        label={t.designSystem}
+        title={L({ en: "Two moods, one system.", pl: "Dwa nastroje, jeden system." })}
+      >
         <p className={headNote}>
           {L({
             en: "Both themes share the same token names and components; only the values and the attitude change. Glass follows today’s UI trends, Cyber looks back at old-school game interfaces.",
@@ -737,10 +842,19 @@ function DesignSystem() {
           ]}
         />
         <span className={hint}>
-          {L({ en: "Follows the page theme; switch to preview the other one.", pl: "Podąża za motywem strony; przełącz, by zobaczyć drugi." })}
+          {L({
+            en: "Follows the page theme; switch to preview the other one.",
+            pl: "Podąża za motywem strony; przełącz, by zobaczyć drugi.",
+          })}
         </span>
       </div>
-      <div className={cn("grid grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] items-start gap-6 max-[1199px]:grid-cols-[minmax(0,1fr)]", swapIn)} key={id}>
+      <div
+        className={cn(
+          "grid grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] items-start gap-6 max-[1199px]:grid-cols-[minmax(0,1fr)]",
+          swapIn,
+        )}
+        key={id}
+      >
         <article className={b.root()}>
           <header className={b.head()}>
             <span className={b.k()}>{L({ en: "Mood board", pl: "Moodboard" })}</span>
@@ -832,7 +946,11 @@ function FrontEnd() {
   const s = sub();
   return (
     <section className={sec()} id="c-stack" data-nav-section>
-      <SecHead n={4} label={t.frontEnd} title={L({ en: "Small stack, no UI library.", pl: "Mały stack, bez biblioteki UI." })}>
+      <SecHead
+        n={4}
+        label={t.frontEnd}
+        title={L({ en: "Small stack, no UI library.", pl: "Mały stack, bez biblioteki UI." })}
+      >
         <p className={headNote}>
           {L({
             en: "No component library: every component is hand-built with Tailwind and small tailwind-variants recipes, in TypeScript.",
@@ -860,7 +978,10 @@ function FrontEnd() {
         </div>
         <div className="grid grid-cols-3 gap-[14px] max-[1199px]:grid-cols-2 max-[599px]:grid-cols-[minmax(0,1fr)]">
           {PF.features.map((f, i) => (
-            <article key={f.k.en} className={cn(card, "flex flex-col gap-[10px] p-[clamp(20px,2.2vw,28px)]")}>
+            <article
+              key={f.k.en}
+              className={cn(card, "flex flex-col gap-[10px] p-[clamp(20px,2.2vw,28px)]")}
+            >
               <span className="font-mono text-[11px] tracking-[0.08em] text-accent uppercase">
                 {pad(i + 1)} · {L(f.k)}
               </span>
