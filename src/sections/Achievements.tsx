@@ -289,7 +289,7 @@ export function Achievements() {
             <button
               type="button"
               className={
-                "animate-ach-call cursor-pointer rounded-full border-0 bg-transparent bg-[linear-gradient(135deg,var(--accent),var(--accent2))] px-4 py-2 text-[13.5px] font-semibold text-white " +
+                "animate-ach-call cursor-pointer rounded-full border-0 bg-transparent bg-[linear-gradient(135deg,var(--accent),var(--accent2))] px-4 py-2 text-[13.5px] font-semibold text-accent-ink " +
                 "shadow-[0_0_0_0_color-mix(in_srgb,var(--accent)_60%,transparent)] cyber:rounded-none narrow:col-span-full"
               }
               onClick={unlock}
