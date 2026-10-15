@@ -2,7 +2,7 @@
 
 **Front-end Developer + UX/UI Designer**
 
-🔗 **Live:** [https://YOUR-LIVE-LINK](https://YOUR-LIVE-LINK)
+🔗 **Live:** [https://the-noy-portfolio.vercel.app/](https://the-noy-portfolio.vercel.app/)
 
 My personal portfolio, designed and built by me from the first sketch to the deployed code. It shows both sides of my work, design and front-end development, in one place: hand-built case studies, ten years of experience on an interactive timeline, and an AI assistant that answers questions about my work.
 
