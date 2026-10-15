@@ -1,0 +1,734 @@
+// Generated from the DriveThruRPG prototype (Figma: DriveThruRPG — UX/UI Redesign). Edit freely.
+import type { AuditItem, AuditPage } from "./types";
+
+export const AUDIT_PAGES: AuditPage[] = [
+  {
+    "id": "home",
+    "label": "Home",
+    "summary": "The Home page works as a catalog dump rather than an entry point. It has about 10 product shelves, 3 competing banners, 6 filter buttons, and a Browse Categories button that duplicates them. The brand red is used for almost every interactive and promotional element, so nothing stands out. Settings that affect the whole experience (language, currency, theme, AI content) sit in a footer that is about 2,000px down on mobile."
+  },
+  {
+    "id": "listing",
+    "label": "Product listing",
+    "summary": "The page opens with four shelves and a Featured Titles block, and only then reaches the actual list. The four shelves duplicate what the list already shows: “Hottest Fantasy” is the same set of titles as the list’s default Popularity order, and several titles (Warhammer Fantasy Roleplay, Rangers of Shadow Deep, Dragonbane) appear in both. Filters are nine buttons that open modals, so no filter options are visible by default. The list can be shown in three modes (grid, list with thumbnails, text table), each with inconsistent information."
+  },
+  {
+    "id": "product",
+    "label": "Product page",
+    "summary": "The page has real strengths for an RPG marketplace: a rating distribution, interior preview pages, a “Human-Created Without AI” label and “Purchased” badges on reviews. But the buying area is small and visually weak, the key facts are scattered, and the page is very long. Roughly two thirds of the scroll is a text description, three full-width preview spreads and a long details table. Reviews and discussions are behind horizontal tabs. On mobile the “Customers also bought” list becomes a very long column of large covers."
+  },
+  {
+    "id": "cart",
+    "label": "Cart",
+    "summary": "The cart does the basics: correct subtotal, a “Continue Shopping” link, and an undo state for removed items. But the page is dominated by a “Customers also bought” panel of about 20 items that is longer than the cart itself. On mobile it is roughly 90% of the page. The things a buyer needs to finish (total, taxes, payment and trust information, a checkout button next to the subtotal) are missing or far from the cart items."
+  },
+  {
+    "id": "library",
+    "label": "My Library",
+    "summary": "The Library is built like a file manager, but the main jobs of a library are finding a title you own, downloading its latest files and seeing what changed. Titles with many files show every file with its own Download button, so the page is extremely long (Salvage Union and Blade Runner have 10–14 files each, all expanded). Selection uses toggle switches, the update flag is a bare “NEW UPDATES” tag, and the page uses four accent colours (blue, green, pink, red)."
+  },
+  {
+    "id": "settings",
+    "label": "Settings",
+    "summary": "The account area is a flat list of ten sections with no grouping, and the same kinds of settings are scattered across several of them. Email and notification controls alone live in at least six places. Toggle switches are used for settings, filters and selection alike. Rare or risky actions (merge accounts, API keys, Delete All, Turn off all emails) sit at the same level as everyday settings. The account pages also end in the full site footer, which holds the language, currency, theme and AI-content controls."
+  }
+];
+
+export const AUDIT_ITEMS: AuditItem[] = [
+  {
+    "p": "home",
+    "t": "fix",
+    "title": "Rebuild the colour hierarchy",
+    "issue": "Red appears on at least eight different element types, so primary actions don’t stand out.",
+    "fix": "Reserve red for one primary action per view, plus sale and status signals. Use neutral surfaces for filters, utility buttons and secondary links.",
+    "body": ""
+  },
+  {
+    "p": "home",
+    "t": "fix",
+    "title": "Merge filters and Browse Categories into one entry point",
+    "issue": "Two controls open the same category modals, and the facets appear before the user has searched.",
+    "fix": "Keep one category entry (a mega-menu or category tiles). Move Publisher, Genre, Product Type, Rule System, Languages and Format to the results and listing pages.",
+    "body": ""
+  },
+  {
+    "p": "home",
+    "t": "fix",
+    "title": "Fix contrasts",
+    "issue": "Search placeholder has poor contrast.",
+    "fix": "Use better contrast for placeholders.",
+    "body": ""
+  },
+  {
+    "p": "home",
+    "t": "fix",
+    "title": "Move global settings out of the footer",
+    "issue": "Language, currency, theme and AI content are only in the footer.",
+    "fix": "Put language and currency in a header menu, with the current values visible (for example “EN · USD”). Put the theme toggle in the header as well. Put the AI-content setting in a preferences menu, with an indicator near search when it’s active.",
+    "body": ""
+  },
+  {
+    "p": "home",
+    "t": "improvement",
+    "title": "Cut the number of shelves",
+    "issue": "",
+    "fix": "",
+    "body": "Aim for 4–5 and remove duplicates. “Most Popular under $5” and “Hottest Small Publishers” show the same titles."
+  },
+  {
+    "p": "home",
+    "t": "improvement",
+    "title": "Fix mismatched headings",
+    "issue": "",
+    "fix": "",
+    "body": "“Hottest Small Publishers” shows titles, not publishers. Label shelves by what they contain."
+  },
+  {
+    "p": "home",
+    "t": "improvement",
+    "title": "Simplify the hero",
+    "issue": "",
+    "fix": "",
+    "body": "Use one primary banner and clearly label ads as sponsored. Stop auto-rotation on mobile."
+  },
+  {
+    "p": "home",
+    "t": "improvement",
+    "title": "Turn the three red shortcut buttons into quick links",
+    "issue": "",
+    "fix": "",
+    "body": "Titles on sale, Pay what you want and Free titles should look like secondary navigation, not primary calls to action."
+  },
+  {
+    "p": "home",
+    "t": "improvement",
+    "title": "Redo Featured Titles",
+    "issue": "",
+    "fix": "",
+    "body": "Show more than two, with a larger cover and untruncated copy. Replace “Check it out!” with a specific action such as “View title”."
+  },
+  {
+    "p": "home",
+    "t": "improvement",
+    "title": "Label language on titles",
+    "issue": "",
+    "fix": "",
+    "body": "Newest Community mixes Spanish and English titles with no marker. Show a language tag and respect the language filter we built."
+  },
+  {
+    "p": "home",
+    "t": "improvement",
+    "title": "Slim the footer",
+    "issue": "",
+    "fix": "",
+    "body": "Remove the account links that duplicate the header and collapse the Roll20 network list. Group the rest into a few sections."
+  },
+  {
+    "p": "home",
+    "t": "idea",
+    "title": "Personalized shelves for logged-in users",
+    "issue": "",
+    "fix": "",
+    "body": "Continue where you left off, recently viewed, new from publishers you follow, wishlist price drops."
+  },
+  {
+    "p": "home",
+    "t": "idea",
+    "title": "A persistent “region and language” chip in the header, with a one-time suggestion when the browser language differs.",
+    "issue": "",
+    "fix": "",
+    "body": ""
+  },
+  {
+    "p": "home",
+    "t": "idea",
+    "title": "A compact mobile Home with 3 shelves and a “See all” link on each, instead of 10 carousels.",
+    "issue": "",
+    "fix": "",
+    "body": ""
+  },
+  {
+    "p": "home",
+    "t": "idea",
+    "title": "A “why you’re seeing this” label on personalized shelves.",
+    "issue": "",
+    "fix": "",
+    "body": ""
+  },
+  {
+    "p": "listing",
+    "t": "fix",
+    "title": "Put the product list first",
+    "issue": "Four shelves and Featured Titles come before the list, and they repeat titles from it.",
+    "fix": "Remove the shelves from this page or move them below the list as a short “Explore” row.",
+    "body": ""
+  },
+  {
+    "p": "listing",
+    "t": "fix",
+    "title": "Replace the modal filter bar with visible filtering",
+    "issue": "Nine modal buttons hide all options. Baymard says horizontal toolbars struggle past about 6–8 filter types.",
+    "fix": "Use a persistent left sidebar on desktop with multi-select and result counts. On mobile use a sticky Filters button that opens a bottom sheet with a “Show N results” button.",
+    "body": ""
+  },
+  {
+    "p": "listing",
+    "t": "fix",
+    "title": "Show applied filters as removable chips",
+    "issue": "The list gives no overview of what is applied, and on mobile only a count.",
+    "fix": "Show chips above the results with a “Clear all” link, on desktop and mobile.",
+    "body": ""
+  },
+  {
+    "p": "listing",
+    "t": "fix",
+    "title": "Choose view modes deliberately",
+    "issue": "Three modes with different information in each.",
+    "fix": "Make grid the default. Keep one compact list mode if you want a toggle, and drop the headerless text table unless it becomes a real sortable table.",
+    "body": ""
+  },
+  {
+    "p": "listing",
+    "t": "fix",
+    "title": "Fix mobile grid",
+    "issue": "One large cover per row makes the page very long.",
+    "fix": "Use a 2-column grid, or the compact list.",
+    "body": ""
+  },
+  {
+    "p": "listing",
+    "t": "improvement",
+    "title": "Consistent card attributes",
+    "issue": "",
+    "fix": "",
+    "body": "Show the same fields on every card: cover, title, publisher, rule system, format, rating (or “No reviews yet”) and price."
+  },
+  {
+    "p": "listing",
+    "t": "improvement",
+    "title": "Language tags",
+    "issue": "",
+    "fix": "",
+    "body": "Titles like “[Korean]” and “[French]” carry the language in the title text. Show it as a tag, and tie it to the language filter."
+  },
+  {
+    "p": "listing",
+    "t": "improvement",
+    "title": "Promote subcategory chips",
+    "issue": "",
+    "fix": "",
+    "body": "“Dark Fantasy”, “High Fantasy” and the others are the best navigation here. Move them above the list and add counts."
+  },
+  {
+    "p": "listing",
+    "t": "improvement",
+    "title": "Pagination",
+    "issue": "",
+    "fix": "",
+    "body": "The list shows “1 2 3” for 123,566 titles. Show the total pages and a jump control, or switch to “Load more” with a count. Verify what the live control does."
+  },
+  {
+    "p": "listing",
+    "t": "improvement",
+    "title": "Sort",
+    "issue": "",
+    "fix": "",
+    "body": "Label it “Sort by”, and include Newest, Price low to high and Rating. Remember the user’s choice."
+  },
+  {
+    "p": "listing",
+    "t": "improvement",
+    "title": "“Follow Fantasy” toggle",
+    "issue": "",
+    "fix": "",
+    "body": "The “NO” toggle is ambiguous. Use a “Follow category” button with a clear on/off state."
+  },
+  {
+    "p": "listing",
+    "t": "improvement",
+    "title": "Rename unclear filter labels",
+    "issue": "",
+    "fix": "",
+    "body": "“Promo” and “Refine” don’t say what they do."
+  },
+  {
+    "p": "listing",
+    "t": "improvement",
+    "title": "Colour roles",
+    "issue": "",
+    "fix": "",
+    "body": "Green for Add to cart competes with red as the primary colour. Use the primary action colour for Add to cart, and keep red for sales."
+  },
+  {
+    "p": "listing",
+    "t": "improvement",
+    "title": "Sponsored banner",
+    "issue": "",
+    "fix": "",
+    "body": "The Vampire banner before the footer should be labelled and moved out of the results flow."
+  },
+  {
+    "p": "listing",
+    "t": "improvement",
+    "title": "Footer",
+    "issue": "",
+    "fix": "",
+    "body": "Same footer problems as Home (settings and the long link list)."
+  },
+  {
+    "p": "listing",
+    "t": "idea",
+    "title": "Remember the last view mode in the user’s account",
+    "issue": "",
+    "fix": "",
+    "body": ""
+  },
+  {
+    "p": "listing",
+    "t": "idea",
+    "title": "An “Owned” marker or a “Hide owned” filter",
+    "issue": "",
+    "fix": "",
+    "body": ""
+  },
+  {
+    "p": "listing",
+    "t": "idea",
+    "title": "Quick-add to wishlist on card hover",
+    "issue": "",
+    "fix": "",
+    "body": ""
+  },
+  {
+    "p": "product",
+    "t": "fix",
+    "title": "Make a clear buy area",
+    "issue": "Price, format and actions are small and spread out, with a pink pill, a green button and grey secondary buttons.",
+    "fix": "Group title, publisher, rating, format, price and Add to Cart in one block, with Add to Cart as the single primary button and Wishlist and Share as secondary. Put the essentials (format, file size, page count, rule system, language) beside it.",
+    "body": ""
+  },
+  {
+    "p": "product",
+    "t": "fix",
+    "title": "Replace horizontal tabs with sections",
+    "issue": "Reviews (4) and Discussions (26) sit behind tabs that scroll away.",
+    "fix": "Show sections expanded in order (Overview, Preview, Details, Reviews, Discussions) with a sticky section menu on desktop, and collapsible sections on mobile.",
+    "body": ""
+  },
+  {
+    "p": "product",
+    "t": "fix",
+    "title": "Reorder and condense the content",
+    "issue": "Long description, three full-width previews and a long credits list push everything else down.",
+    "fix": "Put previews in a gallery near the cover (labelled “Preview”, with zoom), show a short description with “Read more”, and collapse long credit lists with “Show all”.",
+    "body": ""
+  },
+  {
+    "p": "product",
+    "t": "fix",
+    "title": "Fix the cross-sell",
+    "issue": "A long, mixed list that looks like ads, and on mobile single-column large covers.",
+    "fix": "Show 6–8 relevant titles in one row or a compact 2-column grid, placed after reviews on mobile. Relevance first: same system, same publisher, same series.",
+    "body": ""
+  },
+  {
+    "p": "product",
+    "t": "improvement",
+    "title": "Remove duplicated facts",
+    "issue": "",
+    "fix": "",
+    "body": "Rule System and Added to Catalog appear in both the top row and the details table. Show each once, and add Format, File size and Language to the top facts."
+  },
+  {
+    "p": "product",
+    "t": "improvement",
+    "title": "Description readability",
+    "issue": "",
+    "fix": "",
+    "body": "The text is small, with a promotional banner image inside it. Increase the font size, use shorter paragraphs and clear headings, and remove or label the banner."
+  },
+  {
+    "p": "product",
+    "t": "improvement",
+    "title": "Label previews and make them a gallery",
+    "issue": "",
+    "fix": "",
+    "body": "Give them captions, a count and a lightbox. Provide alt text."
+  },
+  {
+    "p": "product",
+    "t": "improvement",
+    "title": "Reviews",
+    "issue": "",
+    "fix": "",
+    "body": "Make the rating bars clickable filters, add a sort, show the language of non-English reviews (the French review is unlabelled), and clarify “4 Reviews / 17 Ratings”. Let publishers reply."
+  },
+  {
+    "p": "product",
+    "t": "improvement",
+    "title": "Replace the “NO” follow toggles",
+    "issue": "",
+    "fix": "",
+    "body": "(publisher and product) with Follow buttons that show state."
+  },
+  {
+    "p": "product",
+    "t": "improvement",
+    "title": "Trust information near the buy area",
+    "issue": "",
+    "fix": "",
+    "body": "Add a short line on instant download, file type and refund policy with a link. I could not see this in the screenshots, so confirm what exists."
+  },
+  {
+    "p": "product",
+    "t": "improvement",
+    "title": "Colour roles",
+    "issue": "",
+    "fix": "",
+    "body": "Use one primary colour for Add to Cart, and drop the pink pill. The same applies to the cross-sell buttons."
+  },
+  {
+    "p": "product",
+    "t": "improvement",
+    "title": "Footer",
+    "issue": "",
+    "fix": "",
+    "body": "Same footer problems as Home (settings and the long link list)."
+  },
+  {
+    "p": "product",
+    "t": "idea",
+    "title": "RPG-specific compatibility",
+    "issue": "",
+    "fix": "",
+    "body": "“Requires the core rulebook”, “Works with Warhammer Fantasy Roleplay”, and a series navigation."
+  },
+  {
+    "p": "product",
+    "t": "idea",
+    "title": "Show a changelog next to “Last updated Oct 1, 2026”.",
+    "issue": "",
+    "fix": "",
+    "body": ""
+  },
+  {
+    "p": "cart",
+    "t": "fix",
+    "title": "Add an order summary with the checkout button beside it",
+    "issue": "The only Proceed to Checkout button is at the top. The subtotal is at the bottom of the item list with no action next to it, and no total, tax or discount field is visible.",
+    "fix": "A summary block (subtotal, tax or VAT estimate, discount code, total, currency) with the checkout button directly below. On desktop make it a sticky right column. On mobile, add a bottom bar with the total and button.",
+    "body": ""
+  },
+  {
+    "p": "cart",
+    "t": "fix",
+    "title": "Cut the cross-sell to a few relevant items",
+    "issue": "About 20 items compete with checkout, and on mobile they bury the subtotal and next step.",
+    "fix": "Show 3–6 items, placed below the summary or in one compact row, with a dynamic number based on relevance. Complementary items first (same system, same line). Keep the cart focused on reviewing items and totals.",
+    "body": ""
+  },
+  {
+    "p": "cart",
+    "t": "fix",
+    "title": "Make item controls clear",
+    "issue": "Icon-only remove and heart buttons, inconsistent colour (grey on desktop, red on mobile), a quantity field that may not make sense for downloads.",
+    "fix": "Labelled “Remove” and “Save for later”, the same style on both breakpoints, touch targets of at least 44px, and quantity fixed at 1 for digital items unless there is a real use case. Keep the undo.",
+    "body": ""
+  },
+  {
+    "p": "cart",
+    "t": "improvement",
+    "title": "Warn about owned titles",
+    "issue": "",
+    "fix": "",
+    "body": "If a title is already in the user’s library, show it in the cart"
+  },
+  {
+    "p": "cart",
+    "t": "improvement",
+    "title": "Currency",
+    "issue": "",
+    "fix": "",
+    "body": "Show the currency code next to the total, since the currency selector is in the footer today."
+  },
+  {
+    "p": "cart",
+    "t": "improvement",
+    "title": "Colour roles",
+    "issue": "",
+    "fix": "",
+    "body": "One primary colour for Proceed to Checkout, a secondary style for Continue Shopping, and a consistent destructive style for Remove. The green circle buttons on every cross-sell item add a third accent."
+  },
+  {
+    "p": "cart",
+    "t": "improvement",
+    "title": "Readability",
+    "issue": "",
+    "fix": "",
+    "body": "Item titles and metadata are very small, and the thumbnails are small."
+  },
+  {
+    "p": "cart",
+    "t": "improvement",
+    "title": "Footer",
+    "issue": "",
+    "fix": "",
+    "body": "Same footer problems as Home (settings and the long link list)."
+  },
+  {
+    "p": "cart",
+    "t": "idea",
+    "title": "Bundle hints",
+    "issue": "",
+    "fix": "",
+    "body": "“Add X to complete the set and save $Y”, shown only when it applies."
+  },
+  {
+    "p": "library",
+    "t": "fix",
+    "title": "Use checkboxes and a proper bulk-action bar",
+    "issue": "Toggle switches for selection, no select-all, “Select Next 20” and “Download 1 Items”.",
+    "fix": "A visible checkbox per title and a select-all in the header. After selecting a page, show “20 selected on this page. Select all 67” (see research). Show a bar that appears when something is selected, with the count and the Download action, and correct pluralization (“Download 1 title”).",
+    "body": ""
+  },
+  {
+    "p": "library",
+    "t": "fix",
+    "title": "Collapse files by default",
+    "issue": "Long lists of expanded files repeat a Download button dozens of times.",
+    "fix": "Show one row per title with file count and total size and a primary “Download all” button. Expand the files on demand, and keep per-file download inside.",
+    "body": ""
+  },
+  {
+    "p": "library",
+    "t": "fix",
+    "title": "Make updates actionable",
+    "issue": "“NEW UPDATES” has no explanation or action, and the two dates are unlabelled.",
+    "fix": "Label dates (“Purchased”, “Updated”), show “Updated Sep 6, 2026” with a “Download updated files” action, add a “Has updates” filter, and let users mark updates as seen. Use locale-aware date formats, because “9/6/26” is ambiguous outside the US.",
+    "body": ""
+  },
+  {
+    "p": "library",
+    "t": "fix",
+    "title": "Make search and filters visible",
+    "issue": "The same modal filter buttons as the catalog, small, and no clear “search your library” field.",
+    "fix": "A labelled “Search your library” field, visible filter chips (publisher, system, format, has updates), and applied filters shown as chips (on mobile “Filters (0)” shows only a count).",
+    "body": ""
+  },
+  {
+    "p": "library",
+    "t": "improvement",
+    "title": "Split the sidebar by job",
+    "issue": "",
+    "fix": "",
+    "body": "Navigation, filters and download settings should be separate, and the settings (download destination, update notices) should move into a “Download settings” popover."
+  },
+  {
+    "p": "library",
+    "t": "improvement",
+    "title": "Row actions",
+    "issue": "",
+    "fix": "",
+    "body": "The row has “Show/Hide Files”, a toggle and an “Actions” dropdown, all small and grey. Surface one primary action and keep the rest in a menu in the last column."
+  },
+  {
+    "p": "library",
+    "t": "improvement",
+    "title": "Reduce accent colours",
+    "issue": "",
+    "fix": "",
+    "body": "Use one primary colour for primary actions, and keep green for success states only."
+  },
+  {
+    "p": "library",
+    "t": "improvement",
+    "title": "Replace the “Customers also bought” column with something tied to the library (new from followed publishers, updates), or drop it. It takes a third of the desktop width and competes with downloading.",
+    "issue": "",
+    "fix": "",
+    "body": ""
+  },
+  {
+    "p": "library",
+    "t": "improvement",
+    "title": "Pagination and counts",
+    "issue": "",
+    "fix": "",
+    "body": "Show the total pages and how many titles match; consider “Load more” for large libraries."
+  },
+  {
+    "p": "library",
+    "t": "improvement",
+    "title": "Mobile (larger tap targets)",
+    "issue": "",
+    "fix": "",
+    "body": "Larger tap targets (the toggles and “Show/Hide Files” are small), a sticky action bar for selection, and a way to reach the download settings."
+  },
+  {
+    "p": "library",
+    "t": "idea",
+    "title": "“Recently added” and “Recently updated” rows at the top",
+    "issue": "",
+    "fix": "",
+    "body": ""
+  },
+  {
+    "p": "library",
+    "t": "idea",
+    "title": "A download queue with progress and partial-success reporting (“12 of 14 files downloaded, 2 failed. Retry”)",
+    "issue": "",
+    "fix": "",
+    "body": ""
+  },
+  {
+    "p": "library",
+    "t": "idea",
+    "title": "A “Rate this product” prompt linking back to the product page",
+    "issue": "",
+    "fix": "",
+    "body": ""
+  },
+  {
+    "p": "settings",
+    "t": "fix",
+    "title": "Build one place for notifications and email",
+    "issue": "At least six locations, with overlapping options (Deal of the Day, weekly free-product newsletter, publisher promotions, Favorites frequency).",
+    "fix": "A single “Notifications” page grouped by topic (Deals, Updates to my titles, Wishlist and favourites, Publishers, Partner sites), with email and in-app options, a frequency choice, a pause option and one “Unsubscribe from all”. The Inbox, Newsletters and Publisher Contact Prefs fold into it.",
+    "body": ""
+  },
+  {
+    "p": "settings",
+    "t": "fix",
+    "title": "Restructure the navigation",
+    "issue": "Ten flat items and no page titles.",
+    "fix": "Group into Account (Profile and security, Connected accounts, Preferences), Shopping (Orders, Wishlists, Following, Address Book), Messages (Inbox, Notifications) and Programs. Give every page an H1.",
+    "body": ""
+  },
+  {
+    "p": "settings",
+    "t": "fix",
+    "title": "One home for global and content preferences",
+    "issue": "AI content is duplicated, and language, currency and theme are missing from Settings.",
+    "fix": "A Preferences section with language, currency, theme, AI content and adult content, linked to the header controls from the Home findings. Remove duplicates, and show a small indicator when AI content is on.",
+    "body": ""
+  },
+  {
+    "p": "settings",
+    "t": "fix",
+    "title": "Use the right control for each job",
+    "issue": "Toggles for filters and selection, mixed label styles, and no save feedback.",
+    "fix": "Switches only for settings that save instantly, with On/Off labels and a “Saved” confirmation. Use segmented controls or radio buttons for the Favorites “Show” filters, and checkboxes for selection. Write every label as a statement (“Email me about sales on my wishlist”).",
+    "body": ""
+  },
+  {
+    "p": "settings",
+    "t": "fix",
+    "title": "Protect risky and rare actions",
+    "issue": "Full API key visible, no confirmation for Delete All or Unfollow All, and Merge Accounts at the same level as basic settings.",
+    "fix": "Mask Library App keys after creation (show once, with a Copy button) and ask for confirmation naming what will be deleted. Move Merge Accounts and Library App Keys under “Advanced”. Use a distinct destructive style, and separate Delete All from Mark All as Read.",
+    "body": ""
+  },
+  {
+    "p": "settings",
+    "t": "improvement",
+    "title": "Fix the failing contrast tokens",
+    "issue": "",
+    "fix": "",
+    "body": "Define lighter “on-dark” variants for red text and blue links, and raise placeholders to at least 4.5:1."
+  },
+  {
+    "p": "settings",
+    "t": "improvement",
+    "title": "Connected accounts",
+    "issue": "",
+    "fix": "",
+    "body": "Combine the Roll20, Facebook and Google cards into one card with a status per row (Linked, Not linked) and a Link or Unlink button in a neutral style."
+  },
+  {
+    "p": "settings",
+    "t": "improvement",
+    "title": "Password",
+    "issue": "",
+    "fix": "",
+    "body": "Add a “Change password” flow and the last-changed date. “Email me a reset link” can stay as an alternative."
+  },
+  {
+    "p": "settings",
+    "t": "improvement",
+    "title": "Saved Payment Methods",
+    "issue": "",
+    "fix": "",
+    "body": "The card is empty apart from an info icon. Add an explanation or an empty-state message, or hide it."
+  },
+  {
+    "p": "settings",
+    "t": "improvement",
+    "title": "Emails section",
+    "issue": "",
+    "fix": "",
+    "body": "Move “Turn off all emails” to the end, and make its explanatory text readable (it is tiny now). Make the three labels consistent."
+  },
+  {
+    "p": "settings",
+    "t": "improvement",
+    "title": "Newsletters",
+    "issue": "",
+    "fix": "",
+    "body": "Show 13 large cards as a grouped list with a text title on every row. Three cards share the same DriveThruRPG logo and similar copy, so they can’t be told apart. Use “Receive…” wording instead of “Check this option” for a toggle, add frequency, and show the Publisher and Affiliate newsletters only to users with that role (verify)."
+  },
+  {
+    "p": "settings",
+    "t": "improvement",
+    "title": "Favorites",
+    "issue": "",
+    "fix": "",
+    "body": "Clarify the vocabulary: Follow, Favorites, Wishlist and Publisher Contact are four terms for related ideas. The page also nests a second sidebar inside the account sidebar."
+  },
+  {
+    "p": "settings",
+    "t": "improvement",
+    "title": "Orders",
+    "issue": "",
+    "fix": "",
+    "body": "Use the wide layout (the right 60% of each order is empty), show the total once, add a status such as “Ready to download” with a link to the library, add search or filter by year, and use locale-aware dates (5/29/26 is ambiguous)."
+  },
+  {
+    "p": "settings",
+    "t": "idea",
+    "title": "A settings search",
+    "issue": "",
+    "fix": "",
+    "body": ""
+  },
+  {
+    "p": "settings",
+    "t": "idea",
+    "title": "A security centre (active sessions, two-factor, login alerts)",
+    "issue": "",
+    "fix": "",
+    "body": ""
+  },
+  {
+    "p": "settings",
+    "t": "idea",
+    "title": "An account overview landing page (titles, recent orders, updates, wishlist price drops, balance)",
+    "issue": "",
+    "fix": "",
+    "body": ""
+  },
+  {
+    "p": "settings",
+    "t": "idea",
+    "title": "A “Following” page that replaces Favorites and Publisher Contact Prefs",
+    "issue": "",
+    "fix": "",
+    "body": ""
+  },
+  {
+    "p": "settings",
+    "t": "idea",
+    "title": "Move Library App Keys next to the Library’s download settings",
+    "issue": "",
+    "fix": "",
+    "body": ""
+  }
+];

@@ -1,0 +1,488 @@
+/* Career achievements in the hero panel. Tier colours follow game convention. */
+
+.ach {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 40px 0;
+  overflow: hidden;
+  --t-bronze: #c98a52;
+  --t-silver: #a9b4c8;
+  --t-gold: #e8b931;
+  --t-platinum: #7fd7e8;
+}
+
+.ach::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 40% at 80% 10%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%),
+    radial-gradient(50% 40% at 10% 95%, color-mix(in srgb, var(--accent2) 12%, transparent), transparent 70%);
+  pointer-events: none;
+}
+
+.ach__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.ach__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.ach__k {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ach__title {
+  font-size: clamp(24px, 2.2cqi, 32px);
+  line-height: 1.1;
+}
+
+.ach__muted {
+  color: var(--muted);
+  font-size: 0.6em;
+}
+
+.ach__pct {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+}
+
+.ach__bar {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--line2);
+  overflow: hidden;
+}
+
+.ach__bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 60%, transparent);
+  transition: width 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ach__list {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.ach__item,
+.ach__secret {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+  padding: 10px 10px 10px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  overflow: hidden;
+}
+
+/* Rows slide in one after another, like a game's achievement list. */
+.ach__item {
+  animation: ach-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes ach-in {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+}
+
+/* Light sweep on hover. */
+.ach__item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.22) 50%, transparent 70%);
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+.ach__item:hover::after {
+  transform: translateX(100%);
+  transition: transform 0.7s ease;
+}
+
+.ach__item:hover {
+  border-color: var(--line2);
+}
+
+.ach__badge {
+  --tc: var(--accent);
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  clip-path: polygon(50% 0, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+  background: linear-gradient(150deg, color-mix(in srgb, var(--tc) 85%, #fff), color-mix(in srgb, var(--tc) 70%, #000));
+}
+
+.ach__badge svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
+}
+
+.ach__badge--bronze { --tc: var(--t-bronze); }
+.ach__badge--silver { --tc: var(--t-silver); }
+.ach__badge--gold { --tc: var(--t-gold); }
+.ach__badge--platinum { --tc: var(--t-platinum); }
+.ach__badge--locked { --tc: #6b6880; }
+
+.ach__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.ach__name {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.ach__desc {
+  margin-top: 3px;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ach__when {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- the hidden one */
+
+.ach__secret {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  margin-top: 4px;
+  padding: 12px 14px 12px 10px;
+  border: 1px dashed var(--line2);
+  background: repeating-linear-gradient(135deg, transparent 0 8px, color-mix(in srgb, var(--ink) 3%, transparent) 8px 16px);
+}
+
+.ach__secret .ach__badge {
+  width: 46px;
+  height: 46px;
+}
+
+.ach__unlock {
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  font-size: 13.5px;
+  cursor: pointer;
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent);
+  animation: ach-call 2.4s ease-out infinite;
+}
+
+@keyframes ach-call {
+  70%,
+  100% {
+    box-shadow: 0 0 0 12px transparent;
+  }
+}
+
+.ach__secret.is-bursting {
+  animation: ach-shake 0.6s steps(6) both;
+}
+
+@keyframes ach-shake {
+  20% { transform: translateX(-3px); }
+  40% { transform: translateX(3px); }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+  100% { transform: none; }
+}
+
+.ach__secret.is-unlocked {
+  border-style: solid;
+  border-color: color-mix(in srgb, var(--t-platinum) 70%, transparent);
+  background:
+    linear-gradient(110deg, color-mix(in srgb, var(--t-platinum) 16%, transparent), transparent 60%),
+    var(--surface);
+  box-shadow: 0 0 28px -6px color-mix(in srgb, var(--t-platinum) 55%, transparent);
+  animation: ach-reveal 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes ach-reveal {
+  from {
+    transform: scale(0.96);
+    filter: brightness(1.8);
+  }
+}
+
+.ach__secret.is-unlocked .ach__badge {
+  animation: ach-spin 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes ach-spin {
+  from {
+    transform: rotateY(180deg) scale(0.6);
+  }
+}
+
+.ach__ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: stretch;
+}
+
+.ach__cta {
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.ach__cta:hover {
+  color: var(--accent-ink);
+  filter: brightness(1.1);
+}
+
+.ach__cta--ghost {
+  background: transparent;
+  border-color: var(--line2);
+  color: var(--ink);
+}
+
+.ach__cta--ghost:hover {
+  color: var(--ink);
+}
+
+/* Particles flying out of the card on unlock. */
+.ach__burst {
+  position: absolute;
+  left: 33px;
+  top: 50%;
+  pointer-events: none;
+}
+
+.ach__burst i {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  margin: -3px;
+  border-radius: 50%;
+  background: var(--t-platinum);
+  box-shadow: 0 0 8px var(--t-platinum);
+  animation: ach-particle 0.9s ease-out forwards;
+}
+
+.ach__burst i:nth-child(3n) { background: var(--t-gold); box-shadow: 0 0 8px var(--t-gold); }
+.ach__burst i:nth-child(3n + 1) { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+
+@keyframes ach-particle {
+  from {
+    transform: rotate(var(--a)) translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: rotate(var(--a)) translateX(90px);
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------------------------------- toast */
+
+.ach-toast {
+  position: absolute;
+  left: 50%;
+  top: 22px;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px 10px 10px;
+  border-radius: 999px;
+  background: #15121f;
+  color: #fff;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--t-platinum) 50%, transparent),
+    0 18px 40px -12px rgba(0, 0, 0, 0.5),
+    0 0 30px -8px var(--t-platinum);
+  transform: translate(-50%, -160%);
+  opacity: 0;
+  transition:
+    transform 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.2),
+    opacity 0.3s;
+  pointer-events: none;
+}
+
+.ach-toast.is-on {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+.ach-toast > span:last-child {
+  display: flex;
+  flex-direction: column;
+}
+
+.ach-toast__k {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--t-platinum);
+}
+
+.ach-toast__v {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* ---------------------------------------------------------------- themes and sizes */
+
+html[data-theme="dark"] :is(.ach__item, .ach__secret, .ach__bar, .ach__bar span, .ach__unlock, .ach__cta, .ach-toast) {
+  border-radius: 0;
+}
+
+html[data-theme="light"] .ach__item {
+  border-color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 0 1px rgba(110, 80, 220, 0.06), 0 6px 16px -12px rgba(90, 60, 200, 0.3);
+}
+
+@media (max-height: 760px) and (min-width: 900px) {
+  .ach__desc {
+    display: none;
+  }
+}
+
+.app--narrow .hero__media.hero__media--achievements {
+  aspect-ratio: auto;
+}
+
+.app--narrow .ach {
+  position: relative;
+  padding: 32px 0 28px;
+}
+
+.app--narrow .ach__desc {
+  display: none;
+}
+
+.app--narrow .ach__item {
+  gap: 8px;
+  padding: 8px 8px 8px 6px;
+}
+
+.app--narrow .ach__item .ach__badge {
+  width: 32px;
+  height: 32px;
+}
+
+.app--narrow .ach__name {
+  font-size: 13px;
+}
+
+.app--narrow .ach__secret {
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+.app--narrow .ach__secret > :last-child {
+  grid-column: 1 / -1;
+}
+
+.app--narrow .ach__ctas {
+  flex-direction: row;
+}
+
+.app--narrow .ach__ctas > * {
+  flex: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ach__item,
+  .ach__unlock,
+  .ach__secret.is-unlocked,
+  .ach__secret.is-unlocked .ach__badge {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------- layout: next quest on top, then what's earned */
+
+.ach__k--sub {
+  margin-top: 10px;
+  font-size: 10.5px;
+}
+
+.ach__secret {
+  margin-top: 0;
+}
+
+.ach__secret:not(.is-unlocked) {
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  background:
+    linear-gradient(110deg, color-mix(in srgb, var(--accent) 10%, transparent), transparent 65%),
+    repeating-linear-gradient(135deg, transparent 0 8px, color-mix(in srgb, var(--ink) 3%, transparent) 8px 16px);
+}
+
+.ach__list {
+  margin-top: 0;
+}
+
+.ach__when {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ach__secret > .ach__cta {
+  padding: 10px 18px;
+  font-size: 13.5px;
+}

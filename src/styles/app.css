@@ -1,0 +1,274 @@
+/* Tailwind entry. Runtime theme values (colours, fonts, radii) are CSS variables set on <html>
+   from src/theme/themes.ts; @theme inline maps them to Tailwind names, so `bg-surface`,
+   `text-muted`, `border-line2`, `font-display`, `rounded-card` follow the active theme.
+   Theme-specific styling uses the `glass:` (light) and `cyber:` (dark) variants. */
+
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* ---------------------------------------------------------------- variants */
+
+@custom-variant glass (&:where([data-theme="light"], [data-theme="light"] *));
+@custom-variant cyber (&:where([data-theme="dark"], [data-theme="dark"] *));
+/* Layout measured in JS (.app--narrow on the app root): phones and narrow windows. */
+@custom-variant narrow (&:where(.app--narrow, .app--narrow *));
+@custom-variant wide (&:where(.app:not(.app--narrow) *));
+
+/* ---------------------------------------------------------------- tokens */
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface2: var(--surface2);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line2: var(--line2);
+  --color-line-2: var(--line-2);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent2: var(--accent2);
+  --color-accent2-text: var(--accent2-text);
+  --color-accent2-ink: var(--accent2-ink);
+  --color-accent-2: var(--accent-2);
+  --color-accent-2-ink: var(--accent-2-ink);
+  --color-dev-bg: var(--dev-bg);
+  --color-dev-ink: var(--dev-ink);
+  --color-dev-muted: var(--dev-muted);
+  --color-dev-line: var(--dev-line);
+  --color-dev-accent: var(--dev-accent);
+  --color-glass-edge: var(--glass-edge);
+  --color-ph-a: var(--ph-a);
+  --color-ph-b: var(--ph-b);
+  --color-ph2-a: var(--ph2-a);
+  --color-fix: var(--fix);
+  --color-fix-ink: var(--fix-ink);
+  --color-improvement: var(--improvement);
+  --color-improvement-ink: var(--improvement-ink);
+  --color-idea: var(--idea);
+  --color-idea-ink: var(--idea-ink);
+
+  --font-display: var(--display);
+  --font-body: var(--body);
+  --font-mono: var(--mono);
+  --font-heading: var(--heading, var(--display));
+
+  --radius-card: var(--radius);
+  --radius-card-sm: var(--radius-sm);
+
+  --shadow-glow: var(--glow);
+  --shadow-glass: var(--glass-shadow);
+  --shadow-pop: var(--pop-shadow);
+  --shadow-card-hover: var(--card-shadow-hover);
+
+  --animate-flicker: var(--flicker);
+}
+
+@theme {
+  --animate-blink: blink 1s steps(1) infinite;
+  --animate-pulse-ring: pulse-ring 1.8s infinite;
+
+  @keyframes blink {
+    0%,
+    49% {
+      opacity: 1;
+    }
+    50%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      box-shadow: 0 0 0 0 oklch(0.74 0.13 168 / 0.55);
+    }
+    100% {
+      box-shadow: 0 0 0 10px oklch(0.74 0.13 168 / 0);
+    }
+  }
+}
+
+/* The heading flicker in Cyber dark (--flicker is "flicker 7s infinite" there, "none" in light). */
+@keyframes flicker {
+  0%,
+  92%,
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 18px oklch(0.7 0.21 302 / 0.35);
+  }
+  93% {
+    opacity: 0.55;
+    text-shadow:
+      3px 0 0 oklch(0.65 0.25 350 / 0.6),
+      -3px 0 0 oklch(0.82 0.13 200 / 0.6);
+  }
+  94% {
+    opacity: 1;
+  }
+  96% {
+    opacity: 0.8;
+    text-shadow:
+      -2px 0 0 oklch(0.65 0.25 350 / 0.5),
+      2px 0 0 oklch(0.82 0.13 200 / 0.5);
+  }
+  97% {
+    opacity: 1;
+  }
+}
+
+/* ---------------------------------------------------------------- utilities */
+
+/* Display type: the theme's display face with its weight and tracking. */
+@utility display {
+  font-family: var(--display);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-track);
+}
+
+/* Frosted glass, driven by the theme (no-op in Cyber dark, where --glass-blur is 0). */
+@utility glass-blur {
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+}
+
+/* Gradient text (set the gradient with bg-*). */
+@utility text-clip {
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Page gutter: content never wider than --wrap; dividers still run full width. */
+@utility px-page {
+  padding-inline: max(var(--gutter), calc((100% - var(--wrap)) / 2));
+}
+
+/* ---------------------------------------------------------------- base */
+
+@layer base {
+  :root {
+    --wrap: 1360px;
+    --gutter: clamp(16px, 3.5cqi, 56px);
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--bg);
+    background-image: var(--bg-img);
+    background-size: var(--bg-size);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    /* Only the background fades. Fading inherited text colour here left text stuck
+       half-way in Chromium when the page-wipe animation ran during a theme change. */
+    transition: background-color 0.5s ease;
+  }
+
+  /* Glass light colour field behind everything (--blobs is 1 in light, 0 in dark). */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: -10vmax;
+    z-index: -1;
+    pointer-events: none;
+    opacity: var(--blobs, 0);
+    transition: opacity 0.6s;
+    background:
+      radial-gradient(40vmax 34vmax at 8% 4%, rgba(170, 140, 255, 0.55), transparent 70%),
+      radial-gradient(36vmax 30vmax at 92% 14%, rgba(205, 185, 255, 0.6), transparent 70%),
+      radial-gradient(42vmax 36vmax at 72% 82%, rgba(150, 165, 255, 0.4), transparent 70%),
+      radial-gradient(30vmax 28vmax at 16% 70%, rgba(230, 190, 255, 0.45), transparent 70%);
+    filter: blur(24px);
+  }
+
+  button,
+  input {
+    font: inherit;
+    color: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--accent);
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  h1,
+  h2,
+  p,
+  dl,
+  dd,
+  figure,
+  ol,
+  ul {
+    margin: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------- area partials */
+/* Each holds only Tailwind theme additions (@theme animations, @utility, @custom-variant). */
+
+@import "./tw/shell.css";
+@import "./tw/home.css";
+@import "./tw/case.css";
+@import "./tw/projects.css";
+@import "./tw/portfolio.css";
+
+/* Unlayered on purpose: a host page (e.g. an embedding wrapper) may inject its own unlayered
+   body/img styles, which would beat everything in @layer. revert-layer hands these properties
+   back to our layers. */
+body {
+  margin: revert-layer;
+  padding: revert-layer;
+  background: revert-layer;
+  color: revert-layer;
+  font: revert-layer;
+}
+
+img {
+  max-width: revert-layer;
+}

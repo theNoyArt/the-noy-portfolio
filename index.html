@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Paulina Targosz · Front-end Developer + UX/UI Designer</title>
+    <meta
+      name="description"
+      content="Portfolio of Paulina Targosz, front-end developer (React, TypeScript) and UX/UI designer: case studies, experience and projects."
+    />
+    <meta name="theme-color" content="#0a0910" />
+
+    <!-- Link previews (LinkedIn, Slack, X…). Most sites need absolute URLs: after deploying,
+         replace /og-image.jpg with https://your-domain/og-image.jpg and set og:url. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Paulina Targosz" />
+    <meta property="og:title" content="Paulina Targosz · Front-end Developer + UX/UI Designer" />
+    <meta
+      property="og:description"
+      content="Front-end developer (React, TypeScript) and UX/UI designer: case studies, experience and projects."
+    />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Home page of Paulina Targosz’s portfolio in the Cyber dark theme" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:locale:alternate" content="pl_PL" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Tomorrow:wght@500;600&display=swap"
+    />
+    <script>
+      // Apply the saved theme's background before React loads, to avoid a flash.
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "light") document.documentElement.style.background = "#f2f0fb";
+        else if (t === "dark") document.documentElement.style.background = "#0a0910";
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+/* Tailwind additions for the Portfolio case study: @theme animations/keyframes only. */
+
+@theme {
+  /* A panel re-mounted by a switch (wireframe A/B, mood board) rises into place. */
+  --animate-pf-in: pf-in 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  @keyframes pf-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+  }
+}

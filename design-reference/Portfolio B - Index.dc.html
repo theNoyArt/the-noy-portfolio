@@ -1,0 +1,2688 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Tomorrow:wght@500;600&display=swap"
+        />
+        <style>
+          html,
+          body {
+            margin: 0;
+            padding: 0;
+            background: #f6f5f2;
+            -webkit-font-smoothing: antialiased;
+          }
+          * {
+            box-sizing: border-box;
+          }
+          button {
+            font: inherit;
+            color: inherit;
+          }
+          a {
+            color: inherit;
+            text-decoration: none;
+          }
+          a:hover {
+            color: var(--accent);
+          }
+          ::selection {
+            background: var(--accent);
+            color: var(--accent-ink);
+          }
+          @keyframes flicker {
+            0%,
+            92%,
+            100% {
+              opacity: 1;
+              text-shadow: 0 0 18px oklch(0.7 0.21 302 / 0.35);
+            }
+            93% {
+              opacity: 0.55;
+              text-shadow:
+                3px 0 0 oklch(0.65 0.25 350 / 0.6),
+                -3px 0 0 oklch(0.82 0.13 200 / 0.6);
+            }
+            94% {
+              opacity: 1;
+            }
+            96% {
+              opacity: 0.8;
+              text-shadow:
+                -2px 0 0 oklch(0.65 0.25 350 / 0.5),
+                2px 0 0 oklch(0.82 0.13 200 / 0.5);
+            }
+            97% {
+              opacity: 1;
+            }
+          }
+          @keyframes blink {
+            0%,
+            49% {
+              opacity: 1;
+            }
+            50%,
+            100% {
+              opacity: 0;
+            }
+          }
+          @media (prefers-reduced-motion: reduce) {
+            * {
+              animation: none !important;
+              transition-duration: 0.01ms !important;
+            }
+          }
+        </style>
+      </helmet>
+      <div style="{{ outerStyle }}">
+        <div style="{{ frameStyle }}">
+          <div
+            ref="{{ scrollerRef }}"
+            style="
+              position: relative;
+              height: 100%;
+              overflow-y: auto;
+              overflow-x: hidden;
+              container-type: inline-size;
+              background-color: var(--bg);
+              background-image: var(--bg-img);
+              background-size: var(--bg-size);
+              background-attachment: local;
+              color: var(--ink);
+              font-family: var(--body);
+              font-size: 16px;
+              line-height: 1.55;
+              transition:
+                background-color 0.5s ease,
+                color 0.5s ease;
+            "
+          >
+            <div style="{{ layoutStyle }}">
+              <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+                <aside
+                  style="
+                    position: sticky;
+                    top: 0;
+                    height: 100vh;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    gap: 24px;
+                    padding: 28px 24px;
+                    border-right: 1px solid var(--line);
+                    transition: border-color 0.5s;
+                  "
+                >
+                  <div style="display: flex; flex-direction: column; gap: 36px">
+                    <button
+                      onClick="{{ goHome }}"
+                      style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        gap: 4px;
+                        background: none;
+                        border: 0;
+                        padding: 0;
+                        cursor: pointer;
+                        text-align: left;
+                      "
+                    >
+                      <span
+                        style="
+                          font-family: var(--display);
+                          font-weight: var(--display-weight);
+                          font-size: 22px;
+                          letter-spacing: var(--display-track);
+                          line-height: 1;
+                        "
+                        >Mira Novak</span
+                      >
+                      <span style="font-family: var(--mono); font-size: 11px; color: var(--muted)"
+                        >UX/UI Designer<br />Front-end Developer</span
+                      >
+                    </button>
+                    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+                      <nav style="display: flex; flex-direction: column">
+                        <sc-for list="{{ nav }}" as="n" hint-placeholder-count="7">
+                          <button onClick="{{ n.go }}" style="{{ n.style }}">
+                            <span
+                              style="
+                                font-family: var(--mono);
+                                font-size: 10.5px;
+                                color: var(--muted);
+                                width: 22px;
+                              "
+                              >{{ n.num }}</span
+                            ><span>{{ n.label }}</span>
+                          </button>
+                        </sc-for>
+                      </nav>
+                    </sc-if>
+                    <sc-if value="{{ isCase }}" hint-placeholder-val="{{ false }}">
+                      <div style="display: flex; flex-direction: column; gap: 18px">
+                        <button
+                          onClick="{{ goProjects }}"
+                          style="
+                            align-self: flex-start;
+                            height: 36px;
+                            padding: 0 12px;
+                            border: 1px solid var(--line2);
+                            border-radius: var(--radius-sm);
+                            background: transparent;
+                            cursor: pointer;
+                            font-size: 13px;
+                            white-space: nowrap;
+                            transition: border-color 0.25s;
+                          "
+                          style-hover="border-color:var(--accent)"
+                        >
+                          ← Project index
+                        </button>
+                        <div style="display: flex; flex-direction: column; gap: 2px">
+                          <span
+                            style="
+                              font-family: var(--mono);
+                              font-size: 10.5px;
+                              letter-spacing: 0.1em;
+                              text-transform: uppercase;
+                              color: var(--muted);
+                            "
+                            >Case study</span
+                          >
+                          <span
+                            style="
+                              font-family: var(--display);
+                              font-weight: var(--display-weight);
+                              font-size: 20px;
+                              letter-spacing: var(--display-track);
+                            "
+                            >{{ cp.name }}</span
+                          >
+                        </div>
+                        <nav style="display: flex; flex-direction: column">
+                          <sc-for list="{{ caseNav }}" as="c" hint-placeholder-count="6">
+                            <button onClick="{{ c.go }}" style="{{ c.style }}">
+                              <span
+                                style="
+                                  font-family: var(--mono);
+                                  font-size: 10.5px;
+                                  width: 22px;
+                                  opacity: 0.7;
+                                "
+                                >{{ c.num }}</span
+                              ><span style="flex: 1">{{ c.label }}</span
+                              ><span style="{{ c.dot }}"></span>
+                            </button>
+                          </sc-for>
+                        </nav>
+                        <div
+                          style="
+                            display: flex;
+                            flex-direction: column;
+                            gap: 6px;
+                            font-family: var(--mono);
+                            font-size: 10.5px;
+                            color: var(--muted);
+                          "
+                        >
+                          <span style="display: flex; align-items: center; gap: 8px"
+                            ><span
+                              style="
+                                width: 8px;
+                                height: 8px;
+                                background: var(--accent);
+                                border-radius: 2px;
+                              "
+                            ></span
+                            >Design track</span
+                          >
+                          <span style="display: flex; align-items: center; gap: 8px"
+                            ><span
+                              style="
+                                width: 8px;
+                                height: 8px;
+                                background: var(--accent2);
+                                border-radius: 2px;
+                              "
+                            ></span
+                            >Build track</span
+                          >
+                        </div>
+                      </div>
+                    </sc-if>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 12px">
+                    <span
+                      style="
+                        font-family: var(--mono);
+                        font-size: 10.5px;
+                        letter-spacing: 0.1em;
+                        text-transform: uppercase;
+                        color: var(--muted);
+                      "
+                      >Visual mode</span
+                    >
+                    <div
+                      role="group"
+                      aria-label="Visual mode"
+                      style="
+                        position: relative;
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        padding: 3px;
+                        border-radius: var(--radius-sm);
+                        border: 1px solid var(--line2);
+                        background: var(--surface);
+                        transition:
+                          border-radius 0.5s,
+                          background-color 0.5s;
+                      "
+                    >
+                      <span style="{{ thumbStyle }}"></span>
+                      <button
+                        onClick="{{ toLight }}"
+                        aria-pressed="{{ isLight }}"
+                        style="{{ optLight }}"
+                      >
+                        Studio
+                      </button>
+                      <button
+                        onClick="{{ toDark }}"
+                        aria-pressed="{{ isDark }}"
+                        style="{{ optDark }}"
+                      >
+                        Cyber
+                      </button>
+                    </div>
+                    <span style="font-family: var(--mono); font-size: 10.5px; color: var(--muted)"
+                      >{{ modeNote }}</span
+                    >
+                  </div>
+                </aside>
+              </sc-if>
+
+              <main style="min-width: 0">
+                <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+                  <header
+                    style="
+                      position: sticky;
+                      top: 0;
+                      z-index: 20;
+                      display: flex;
+                      align-items: center;
+                      justify-content: space-between;
+                      gap: 12px;
+                      padding: 10px 16px;
+                      background: color-mix(in oklab, var(--bg) 86%, transparent);
+                      backdrop-filter: blur(14px);
+                      -webkit-backdrop-filter: blur(14px);
+                      border-bottom: 1px solid var(--line);
+                    "
+                  >
+                    <button
+                      onClick="{{ goHome }}"
+                      style="
+                        background: none;
+                        border: 0;
+                        padding: 0;
+                        cursor: pointer;
+                        font-family: var(--display);
+                        font-weight: var(--display-weight);
+                        font-size: 19px;
+                        letter-spacing: var(--display-track);
+                      "
+                    >
+                      Mira Novak
+                    </button>
+                    <div style="display: flex; gap: 8px; align-items: center">
+                      <div
+                        role="group"
+                        aria-label="Visual mode"
+                        style="
+                          position: relative;
+                          display: grid;
+                          grid-template-columns: 1fr 1fr;
+                          padding: 3px;
+                          border-radius: var(--radius-sm);
+                          border: 1px solid var(--line2);
+                          background: var(--surface);
+                        "
+                      >
+                        <span style="{{ thumbStyle }}"></span>
+                        <button onClick="{{ toLight }}" style="{{ optLight }}">Studio</button>
+                        <button onClick="{{ toDark }}" style="{{ optDark }}">Cyber</button>
+                      </div>
+                      <button
+                        onClick="{{ openMenu }}"
+                        aria-label="Open menu"
+                        style="
+                          width: 44px;
+                          height: 44px;
+                          border: 1px solid var(--line2);
+                          border-radius: var(--radius-sm);
+                          background: var(--surface);
+                          cursor: pointer;
+                          font-family: var(--mono);
+                          font-size: 11px;
+                        "
+                      >
+                        MENU
+                      </button>
+                    </div>
+                  </header>
+                </sc-if>
+
+                <div ref="{{ contentRef }}">
+                  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+                    <section
+                      id="s-home"
+                      style="
+                        padding: clamp(24px, 4cqi, 56px) clamp(16px, 3.5cqi, 56px)
+                          clamp(56px, 6cqi, 96px);
+                        display: flex;
+                        flex-direction: column;
+                        gap: clamp(24px, 3cqi, 40px);
+                      "
+                    >
+                      <div
+                        style="
+                          display: flex;
+                          justify-content: space-between;
+                          flex-wrap: wrap;
+                          gap: 12px;
+                          font-family: var(--mono);
+                          font-size: 11.5px;
+                          letter-spacing: 0.08em;
+                          text-transform: uppercase;
+                          color: var(--muted);
+                          padding-bottom: 14px;
+                          border-bottom: 1px solid var(--line2);
+                        "
+                      >
+                        <span>{{ eyebrow }}</span><span>Warsaw · CET</span><span>Index / 2026</span>
+                      </div>
+                      <h1
+                        data-reveal="0"
+                        style="
+                          margin: 0;
+                          font-family: var(--display);
+                          font-weight: var(--display-weight);
+                          letter-spacing: var(--display-track);
+                          font-size: calc(clamp(52px, 11.5cqi, 210px) * var(--h1-scale, 1));
+                          line-height: 0.86;
+                          animation: var(--flicker);
+                        "
+                      >
+                        Mira Novak<span style="color: var(--accent)">.</span>
+                      </h1>
+                      <div
+                        style="
+                          display: grid;
+                          grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+                          gap: clamp(20px, 3cqi, 44px);
+                          align-items: start;
+                        "
+                      >
+                        <div
+                          data-reveal="60"
+                          style="display: flex; flex-direction: column; gap: 24px"
+                        >
+                          <p
+                            style="
+                              margin: 0;
+                              font-family: var(--display);
+                              font-weight: var(--display-weight);
+                              font-size: clamp(26px, 2.6cqi, 38px);
+                              line-height: 1.08;
+                              letter-spacing: var(--display-track);
+                            "
+                          >
+                            UX/UI Designer <span style="color: var(--accent)">+</span
+                            ><br />Front-end Developer
+                          </p>
+                          <div
+                            style="
+                              display: flex;
+                              flex-direction: column;
+                              border-top: 1px solid var(--line);
+                            "
+                          >
+                            <div
+                              style="
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 10px 0;
+                                border-bottom: 1px solid var(--line);
+                                font-size: 14px;
+                              "
+                            >
+                              <span style="color: var(--muted)">Experience</span
+                              ><span>8 years</span>
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 10px 0;
+                                border-bottom: 1px solid var(--line);
+                                font-size: 14px;
+                              "
+                            >
+                              <span style="color: var(--muted)">Focus</span
+                              ><span>Product design, React, Angular</span>
+                            </div>
+                            <div
+                              style="
+                                display: flex;
+                                justify-content: space-between;
+                                padding: 10px 0;
+                                border-bottom: 1px solid var(--line);
+                                font-size: 14px;
+                              "
+                            >
+                              <span style="color: var(--muted)">Status</span
+                              ><span style="display: flex; align-items: center; gap: 8px"
+                                ><span
+                                  style="
+                                    width: 7px;
+                                    height: 7px;
+                                    border-radius: 50%;
+                                    background: var(--accent2);
+                                    box-shadow: var(--glow);
+                                  "
+                                ></span
+                                >Open to work</span
+                              >
+                            </div>
+                          </div>
+                        </div>
+
+                        <div
+                          data-reveal="140"
+                          style="display: flex; flex-direction: column; gap: 10px"
+                        >
+                          <div
+                            ref="{{ lensRef }}"
+                            onPointerMove="{{ lensMove }}"
+                            onPointerLeave="{{ lensLeave }}"
+                            onPointerDown="{{ lensDown }}"
+                            style="
+                              position: relative;
+                              aspect-ratio: 3/4;
+                              border-radius: var(--radius);
+                              overflow: hidden;
+                              cursor: crosshair;
+                              touch-action: pan-y;
+                              background: var(--surface2);
+                              border: 1px solid var(--line2);
+                              transition:
+                                border-radius 0.5s,
+                                border-color 0.5s;
+                            "
+                          >
+                            <div
+                              style="
+                                position: absolute;
+                                inset: -14px;
+                                background: repeating-linear-gradient(
+                                  90deg,
+                                  var(--ph-a) 0 3px,
+                                  var(--ph-b) 3px 9px
+                                );
+                                transform: translate(
+                                  calc(var(--px, 0) * -14px),
+                                  calc(var(--py, 0) * -14px)
+                                );
+                                transition: transform 0.4s ease-out;
+                              "
+                            ></div>
+                            <div
+                              style="
+                                position: absolute;
+                                left: 18px;
+                                bottom: 18px;
+                                font-family: var(--mono);
+                                font-size: 11px;
+                                color: var(--muted);
+                              "
+                            >
+                              portrait · primary photo
+                            </div>
+                            <div
+                              style="
+                                position: absolute;
+                                inset: 0;
+                                clip-path: circle(var(--r, 0px) at var(--mx, 50%) var(--my, 40%));
+                                transition: clip-path 0.22s ease-out;
+                                background: var(--accent);
+                              "
+                            >
+                              <div
+                                style="
+                                  position: absolute;
+                                  inset: 0;
+                                  background: repeating-linear-gradient(
+                                    90deg,
+                                    rgba(0, 0, 0, 0.14) 0 3px,
+                                    transparent 3px 9px
+                                  );
+                                "
+                              ></div>
+                              <div
+                                style="
+                                  position: absolute;
+                                  left: 18px;
+                                  top: 18px;
+                                  font-family: var(--mono);
+                                  font-size: 11px;
+                                  color: var(--accent-ink);
+                                "
+                              >
+                                second layer · illustrated self-portrait
+                              </div>
+                              <div
+                                style="
+                                  position: absolute;
+                                  left: 18px;
+                                  bottom: 18px;
+                                  display: flex;
+                                  flex-direction: column;
+                                  gap: 2px;
+                                  font-family: var(--mono);
+                                  font-size: 11px;
+                                  color: var(--accent-ink);
+                                "
+                              >
+                                <span>&lt;Portrait variant="alt" /&gt;</span
+                                ><span>mask: circle(r) at cursor</span>
+                              </div>
+                            </div>
+                            <div
+                              style="
+                                position: absolute;
+                                left: var(--mx, 50%);
+                                top: var(--my, 40%);
+                                width: calc(var(--r, 0px) * 2);
+                                height: calc(var(--r, 0px) * 2);
+                                transform: translate(-50%, -50%);
+                                border-radius: 50%;
+                                border: 1px dashed var(--ink);
+                                pointer-events: none;
+                                transition:
+                                  width 0.22s ease-out,
+                                  height 0.22s ease-out;
+                              "
+                            ></div>
+                            <div
+                              style="
+                                position: absolute;
+                                left: var(--mx, 50%);
+                                top: 0;
+                                bottom: 0;
+                                width: 1px;
+                                background: var(--accent);
+                                opacity: calc(var(--hud) * 0.5);
+                                pointer-events: none;
+                              "
+                            ></div>
+                            <div
+                              style="
+                                position: absolute;
+                                top: var(--my, 40%);
+                                left: 0;
+                                right: 0;
+                                height: 1px;
+                                background: var(--accent);
+                                opacity: calc(var(--hud) * 0.5);
+                                pointer-events: none;
+                              "
+                            ></div>
+                            <div
+                              style="
+                                position: absolute;
+                                right: 12px;
+                                top: 12px;
+                                padding: 4px 8px;
+                                background: var(--bg);
+                                border-radius: var(--radius-sm);
+                                font-family: var(--mono);
+                                font-size: 10.5px;
+                                color: var(--muted);
+                              "
+                            >
+                              <span ref="{{ readoutRef }}">x 0.50 · y 0.40</span>
+                            </div>
+                          </div>
+                          <span
+                            style="font-family: var(--mono); font-size: 11px; color: var(--muted)"
+                            >{{ lensHint }}</span
+                          >
+                        </div>
+
+                        <div
+                          data-reveal="220"
+                          style="display: flex; flex-direction: column; gap: 24px"
+                        >
+                          <p style="margin: 0; font-size: 17px; text-wrap: pretty">
+                            I design products people understand, then build the interfaces that ship
+                            them. Research and flows on one side, React and Angular in production on
+                            the other.
+                          </p>
+                          <div style="display: flex; flex-wrap: wrap; gap: 10px">
+                            <button
+                              onClick="{{ goProjects }}"
+                              style="
+                                height: 48px;
+                                padding: 0 20px;
+                                border: 0;
+                                border-radius: var(--radius-sm);
+                                background: var(--ink);
+                                color: var(--bg);
+                                font-weight: 600;
+                                font-size: 15px;
+                                cursor: pointer;
+                                box-shadow: var(--glow);
+                                transition:
+                                  background-color 0.3s,
+                                  color 0.3s,
+                                  border-radius 0.5s;
+                              "
+                              style-hover="background:var(--accent);color:var(--accent-ink)"
+                            >
+                              Explore projects →
+                            </button>
+                            <button
+                              onClick="{{ goAbout }}"
+                              style="
+                                height: 48px;
+                                padding: 0 20px;
+                                border: 1px solid var(--line2);
+                                border-radius: var(--radius-sm);
+                                background: transparent;
+                                font-size: 15px;
+                                cursor: pointer;
+                                transition: border-color 0.25s;
+                              "
+                              style-hover="border-color:var(--accent)"
+                            >
+                              About
+                            </button>
+                          </div>
+                          <div
+                            style="
+                              display: flex;
+                              flex-direction: column;
+                              border-top: 1px solid var(--line2);
+                            "
+                          >
+                            <button
+                              onClick="{{ goUx }}"
+                              style="
+                                display: grid;
+                                grid-template-columns: 56px 1fr auto;
+                                align-items: center;
+                                gap: 10px;
+                                padding: 16px 0;
+                                border: 0;
+                                border-bottom: 1px solid var(--line2);
+                                background: none;
+                                cursor: pointer;
+                                text-align: left;
+                                transition:
+                                  padding 0.3s,
+                                  color 0.3s;
+                              "
+                              style-hover="padding-left:8px;color:var(--accent)"
+                            >
+                              <span
+                                style="
+                                  font-family: var(--mono);
+                                  font-size: 10.5px;
+                                  letter-spacing: 0.1em;
+                                  text-transform: uppercase;
+                                  color: var(--accent);
+                                "
+                                >Design</span
+                              >
+                              <span style="display: flex; flex-direction: column"
+                                ><span style="font-weight: 600; font-size: 18px">UX/UI</span
+                                ><span style="font-size: 13px; color: var(--muted)"
+                                  >Research, flows, systems, UI</span
+                                ></span
+                              >
+                              <span style="font-size: 18px">→</span>
+                            </button>
+                            <button
+                              onClick="{{ goDev }}"
+                              style="
+                                display: grid;
+                                grid-template-columns: 56px 1fr auto;
+                                align-items: center;
+                                gap: 10px;
+                                padding: 16px 0;
+                                border: 0;
+                                border-bottom: 1px solid var(--line2);
+                                background: none;
+                                cursor: pointer;
+                                text-align: left;
+                                transition:
+                                  padding 0.3s,
+                                  color 0.3s;
+                              "
+                              style-hover="padding-left:8px;color:var(--accent2)"
+                            >
+                              <span
+                                style="
+                                  font-family: var(--mono);
+                                  font-size: 10.5px;
+                                  letter-spacing: 0.1em;
+                                  text-transform: uppercase;
+                                  color: var(--accent2);
+                                "
+                                >Build</span
+                              >
+                              <span style="display: flex; flex-direction: column"
+                                ><span style="font-weight: 600; font-size: 18px">Development</span
+                                ><span style="font-size: 13px; color: var(--muted)"
+                                  >React, Angular, TypeScript, testing</span
+                                ></span
+                              >
+                              <span style="font-size: 18px">→</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+
+                    <section
+                      id="s-about"
+                      style="
+                        padding: clamp(56px, 7cqi, 120px) clamp(16px, 3.5cqi, 56px);
+                        border-top: 1px solid var(--line2);
+                        display: flex;
+                        flex-direction: column;
+                        gap: clamp(32px, 4cqi, 56px);
+                      "
+                    >
+                      <div
+                        style="
+                          display: grid;
+                          grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+                          gap: clamp(24px, 4cqi, 64px);
+                        "
+                      >
+                        <div style="display: flex; flex-direction: column; gap: 16px">
+                          <span
+                            style="
+                              font-family: var(--mono);
+                              font-size: 11.5px;
+                              letter-spacing: 0.1em;
+                              text-transform: uppercase;
+                              color: var(--muted);
+                            "
+                            >[01] About</span
+                          >
+                          <h2
+                            data-reveal="0"
+                            style="
+                              margin: 0;
+                              font-family: var(--display);
+                              font-weight: var(--display-weight);
+                              letter-spacing: var(--display-track);
+                              font-size: calc(clamp(36px, 4.6cqi, 72px) * var(--h1-scale, 1));
+                              line-height: 1;
+                              text-wrap: balance;
+                            "
+                          >
+                            I work where design meets technology.
+                          </h2>
+                        </div>
+                        <div
+                          data-reveal="100"
+                          style="
+                            display: flex;
+                            flex-direction: column;
+                            gap: 18px;
+                            font-size: 17px;
+                            padding-top: 6px;
+                          "
+                        >
+                          <p style="margin: 0; text-wrap: pretty">
+                            I’m a designer who writes production code. For eight years I’ve worked
+                            on both sides of product teams, so I know how a feature should work for
+                            the people using it and what it takes to build it well.
+                          </p>
+                          <p style="margin: 0; color: var(--muted); text-wrap: pretty">
+                            On the design side: research, information architecture, interaction and
+                            UI. On the engineering side: React and Angular in TypeScript, component
+                            libraries, APIs and testing.
+                          </p>
+                        </div>
+                      </div>
+                      <div data-reveal="0" style="display: flex; flex-direction: column; gap: 20px">
+                        <div
+                          style="
+                            display: flex;
+                            justify-content: space-between;
+                            font-family: var(--mono);
+                            font-size: 11px;
+                            letter-spacing: 0.1em;
+                            text-transform: uppercase;
+                          "
+                        >
+                          <span style="color: var(--accent)">← Design</span
+                          ><span style="color: var(--muted)">Tools &amp; technologies</span
+                          ><span style="color: var(--accent2)">Technology →</span>
+                        </div>
+                        <div
+                          role="tablist"
+                          style="
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+                            gap: 3px;
+                          "
+                        >
+                          <sc-for list="{{ stack }}" as="g" hint-placeholder-count="4">
+                            <button role="tab" onClick="{{ g.go }}" style="{{ g.style }}">
+                              <span style="{{ g.bar }}"></span>
+                              <span
+                                style="
+                                  display: flex;
+                                  justify-content: space-between;
+                                  width: 100%;
+                                  gap: 8px;
+                                "
+                                ><span style="font-weight: 600; font-size: 15px">{{ g.t }}</span
+                                ><span
+                                  style="font-family: var(--mono); font-size: 11px; opacity: 0.7"
+                                  >{{ g.count }}</span
+                                ></span
+                              >
+                              <span style="font-size: 13px; opacity: 0.75">{{ g.cap }}</span>
+                            </button>
+                          </sc-for>
+                        </div>
+                        <div
+                          style="
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: baseline;
+                            gap: 4px 18px;
+                            padding: clamp(20px, 3cqi, 40px) 0;
+                            border-bottom: 1px solid var(--line2);
+                            min-height: 160px;
+                          "
+                        >
+                          <sc-for list="{{ stackItems }}" as="it" hint-placeholder-count="5">
+                            <span
+                              style="
+                                display: inline-flex;
+                                align-items: baseline;
+                                gap: 18px;
+                                font-family: var(--display);
+                                font-weight: var(--display-weight);
+                                font-size: calc(clamp(30px, 4.2cqi, 64px) * var(--h1-scale, 1));
+                                letter-spacing: var(--display-track);
+                                line-height: 1.1;
+                                transition: color 0.25s;
+                              "
+                              style-hover="color:var(--accent)"
+                              >{{ it.n }}<span style="color: var(--line2); font-weight: 400"
+                                >/</span
+                              ></span
+                            >
+                          </sc-for>
+                        </div>
+                      </div>
+                    </section>
+
+                    <section
+                      id="s-projects"
+                      style="
+                        padding: clamp(56px, 7cqi, 120px) clamp(16px, 3.5cqi, 56px);
+                        border-top: 1px solid var(--line2);
+                        display: flex;
+                        flex-direction: column;
+                        gap: 32px;
+                      "
+                    >
+                      <div
+                        style="
+                          display: flex;
+                          flex-wrap: wrap;
+                          justify-content: space-between;
+                          align-items: flex-end;
+                          gap: 20px;
+                        "
+                      >
+                        <div
+                          style="display: flex; flex-direction: column; gap: 12px; max-width: 760px"
+                        >
+                          <span
+                            style="
+                              font-family: var(--mono);
+                              font-size: 11.5px;
+                              letter-spacing: 0.1em;
+                              text-transform: uppercase;
+                              color: var(--muted);
+                            "
+                            >[02] Projects</span
+                          >
+                          <h2
+                            style="
+                              margin: 0;
+                              font-family: var(--display);
+                              font-weight: var(--display-weight);
+                              letter-spacing: var(--display-track);
+                              font-size: calc(clamp(36px, 4.6cqi, 72px) * var(--h1-scale, 1));
+                              line-height: 1;
+                            "
+                          >
+                            {{ area.title }}
+                          </h2>
+                          <p
+                            style="
+                              margin: 0;
+                              color: var(--muted);
+                              font-size: 16px;
+                              text-wrap: pretty;
+                            "
+                          >
+                            {{ area.desc }}
+                          </p>
+                          <sc-if value="{{ hasTopics }}" hint-placeholder-val="{{ false }}">
+                            <p
+                              style="
+                                margin: 0;
+                                font-family: var(--mono);
+                                font-size: 12px;
+                                color: var(--ink);
+                                line-height: 1.8;
+                              "
+                            >
+                              {{ topicsLine }}
+                            </p>
+                          </sc-if>
+                        </div>
+                        <div
+                          role="tablist"
+                          style="
+                            display: flex;
+                            border: 1px solid var(--line2);
+                            border-radius: var(--radius-sm);
+                            overflow: hidden;
+                          "
+                        >
+                          <sc-for list="{{ filters }}" as="f" hint-placeholder-count="3">
+                            <button role="tab" onClick="{{ f.go }}" style="{{ f.style }}">
+                              {{ f.label }}
+                              <span style="font-family: var(--mono); font-size: 11px; opacity: 0.7"
+                                >{{ f.count }}</span
+                              >
+                            </button>
+                          </sc-for>
+                        </div>
+                      </div>
+                      <div
+                        onMouseMove="{{ listMove }}"
+                        onMouseLeave="{{ leaveCard }}"
+                        style="
+                          position: relative;
+                          display: flex;
+                          flex-direction: column;
+                          border-top: 1px solid var(--line2);
+                        "
+                      >
+                        <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+                          <div
+                            style="
+                              display: grid;
+                              grid-template-columns: 90px minmax(0, 1.5fr) minmax(0, 1fr) minmax(
+                                  0,
+                                  1fr
+                                ) 130px 24px;
+                              gap: 16px;
+                              padding: 10px 12px;
+                              border-bottom: 1px solid var(--line);
+                              font-family: var(--mono);
+                              font-size: 10.5px;
+                              letter-spacing: 0.1em;
+                              text-transform: uppercase;
+                              color: var(--muted);
+                            "
+                          >
+                            <span>Year</span><span>Project</span><span>Category</span
+                            ><span>Role</span><span>Track</span><span></span>
+                          </div>
+                        </sc-if>
+                        <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
+                          <div data-reveal="{{ p.delay }}">
+                            <div
+                              onClick="{{ p.open }}"
+                              onMouseEnter="{{ p.enter }}"
+                              style="{{ p.rowStyle }}"
+                            >
+                              <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+                                <div style="{{ p.thumbStyle }}">
+                                  <span
+                                    style="
+                                      position: absolute;
+                                      left: 12px;
+                                      bottom: 10px;
+                                      font-family: var(--mono);
+                                      font-size: 10.5px;
+                                      color: var(--muted);
+                                    "
+                                    >{{ p.name }} · key screen</span
+                                  >
+                                </div>
+                              </sc-if>
+                              <span
+                                style="
+                                  font-family: var(--mono);
+                                  font-size: 12px;
+                                  color: var(--muted);
+                                "
+                                >{{ p.year }}</span
+                              >
+                              <span
+                                style="
+                                  display: flex;
+                                  flex-direction: column;
+                                  gap: 6px;
+                                  min-width: 0;
+                                "
+                              >
+                                <span style="{{ p.titleStyle }}">{{ p.name }}</span>
+                                <span
+                                  style="font-size: 14px; color: var(--muted); text-wrap: pretty"
+                                  >{{ p.short }}</span
+                                >
+                                <span
+                                  style="
+                                    font-family: var(--mono);
+                                    font-size: 11px;
+                                    color: var(--muted);
+                                  "
+                                  >{{ p.techLine }}</span
+                                >
+                              </span>
+                              <span style="font-size: 14px">{{ p.category }}</span>
+                              <span style="font-size: 14px">{{ p.role }}</span>
+                              <span
+                                style="
+                                  display: flex;
+                                  gap: 4px;
+                                  flex-wrap: wrap;
+                                  align-content: flex-start;
+                                "
+                              >
+                                <sc-for list="{{ p.trackTags }}" as="tt" hint-placeholder-count="1">
+                                  <span style="{{ tt.style }}">{{ tt.label }}</span>
+                                </sc-for>
+                              </span>
+                              <span style="{{ p.arrowStyle }}">→</span>
+                            </div>
+                          </div>
+                        </sc-for>
+                        <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+                          <div ref="{{ previewRef }}" style="{{ previewStyle }}">
+                            <div style="{{ previewImg }}"></div>
+                            <div
+                              style="
+                                position: absolute;
+                                left: 14px;
+                                right: 14px;
+                                bottom: 12px;
+                                display: flex;
+                                justify-content: space-between;
+                                font-family: var(--mono);
+                                font-size: 10.5px;
+                                color: var(--ink);
+                              "
+                            >
+                              <span>{{ hoverName }} · preview</span><span>view →</span>
+                            </div>
+                            <div
+                              style="
+                                position: absolute;
+                                inset: 8px;
+                                pointer-events: none;
+                                opacity: var(--hud);
+                              "
+                            >
+                              <span
+                                style="
+                                  position: absolute;
+                                  left: 0;
+                                  top: 0;
+                                  width: 12px;
+                                  height: 12px;
+                                  border-left: 1px solid var(--accent);
+                                  border-top: 1px solid var(--accent);
+                                "
+                              ></span>
+                              <span
+                                style="
+                                  position: absolute;
+                                  right: 0;
+                                  top: 0;
+                                  width: 12px;
+                                  height: 12px;
+                                  border-right: 1px solid var(--accent);
+                                  border-top: 1px solid var(--accent);
+                                "
+                              ></span>
+                              <span
+                                style="
+                                  position: absolute;
+                                  left: 0;
+                                  bottom: 0;
+                                  width: 12px;
+                                  height: 12px;
+                                  border-left: 1px solid var(--accent);
+                                  border-bottom: 1px solid var(--accent);
+                                "
+                              ></span>
+                              <span
+                                style="
+                                  position: absolute;
+                                  right: 0;
+                                  bottom: 0;
+                                  width: 12px;
+                                  height: 12px;
+                                  border-right: 1px solid var(--accent);
+                                  border-bottom: 1px solid var(--accent);
+                                "
+                              ></span>
+                            </div>
+                          </div>
+                        </sc-if>
+                      </div>
+                    </section>
+
+                    <section
+                      id="s-experience"
+                      style="
+                        padding: clamp(56px, 7cqi, 120px) clamp(16px, 3.5cqi, 56px);
+                        border-top: 1px solid var(--line2);
+                        display: flex;
+                        flex-direction: column;
+                        gap: 32px;
+                      "
+                    >
+                      <div style="display: flex; flex-direction: column; gap: 12px">
+                        <span
+                          style="
+                            font-family: var(--mono);
+                            font-size: 11.5px;
+                            letter-spacing: 0.1em;
+                            text-transform: uppercase;
+                            color: var(--muted);
+                          "
+                          >[03] Experience</span
+                        >
+                        <h2
+                          style="
+                            margin: 0;
+                            font-family: var(--display);
+                            font-weight: var(--display-weight);
+                            letter-spacing: var(--display-track);
+                            font-size: calc(clamp(36px, 4.6cqi, 72px) * var(--h1-scale, 1));
+                            line-height: 1;
+                          "
+                        >
+                          2018 → now
+                        </h2>
+                      </div>
+                      <div data-reveal="0" style="display: flex; flex-direction: column; gap: 6px">
+                        <div
+                          style="
+                            position: relative;
+                            height: 22px;
+                            font-family: var(--mono);
+                            font-size: 10.5px;
+                            color: var(--muted);
+                          "
+                        >
+                          <sc-for list="{{ years }}" as="y" hint-placeholder-count="9">
+                            <span style="{{ y.style }}">{{ y.label }}</span>
+                          </sc-for>
+                        </div>
+                        <sc-for list="{{ experience }}" as="x" hint-placeholder-count="4">
+                          <button onClick="{{ x.select }}" style="{{ x.laneStyle }}">
+                            <span
+                              style="
+                                display: flex;
+                                justify-content: space-between;
+                                gap: 12px;
+                                font-size: 14px;
+                              "
+                              ><span style="font-weight: 600">{{ x.company }}</span
+                              ><span
+                                style="
+                                  font-family: var(--mono);
+                                  font-size: 11px;
+                                  color: var(--muted);
+                                "
+                                >{{ x.dates }}</span
+                              ></span
+                            >
+                            <span
+                              style="
+                                position: relative;
+                                display: block;
+                                height: 10px;
+                                background: var(--surface2);
+                                border-radius: var(--radius-sm);
+                                transition: background-color 0.5s;
+                              "
+                            >
+                              <span style="{{ x.barStyle }}"></span>
+                            </span>
+                          </button>
+                        </sc-for>
+                      </div>
+                      <div
+                        style="
+                          display: grid;
+                          grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+                          gap: clamp(20px, 3cqi, 48px);
+                          padding: clamp(20px, 3cqi, 36px);
+                          border: 1px solid var(--line2);
+                          border-radius: var(--radius);
+                          background: var(--surface);
+                          transition:
+                            border-radius 0.5s,
+                            background-color 0.5s;
+                        "
+                      >
+                        <div style="display: flex; flex-direction: column; gap: 10px">
+                          <span
+                            style="
+                              font-family: var(--mono);
+                              font-size: 11px;
+                              letter-spacing: 0.1em;
+                              text-transform: uppercase;
+                              color: var(--accent);
+                            "
+                            >{{ ex.kind }} · {{ ex.dates }}</span
+                          >
+                          <span
+                            style="
+                              font-family: var(--display);
+                              font-weight: var(--display-weight);
+                              letter-spacing: var(--display-track);
+                              font-size: calc(clamp(30px, 3.2cqi, 48px) * var(--h1-scale, 1));
+                              line-height: 1;
+                            "
+                            >{{ ex.company }}</span
+                          >
+                          <span style="font-size: 16px; color: var(--muted)">{{ ex.role }}</span>
+                          <p style="margin: 6px 0 0; font-size: 16px; text-wrap: pretty">
+                            {{ ex.desc }}
+                          </p>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 16px">
+                          <ul
+                            style="
+                              margin: 0;
+                              padding: 0;
+                              list-style: none;
+                              display: flex;
+                              flex-direction: column;
+                              border-top: 1px solid var(--line);
+                            "
+                          >
+                            <sc-for list="{{ ex.resp }}" as="r" hint-placeholder-count="3">
+                              <li
+                                style="
+                                  padding: 10px 0;
+                                  border-bottom: 1px solid var(--line);
+                                  font-size: 15px;
+                                "
+                              >
+                                {{ r }}
+                              </li>
+                            </sc-for>
+                          </ul>
+                          <p
+                            style="
+                              margin: 0;
+                              font-family: var(--mono);
+                              font-size: 12px;
+                              color: var(--muted);
+                            "
+                          >
+                            {{ ex.techLine }}
+                          </p>
+                        </div>
+                      </div>
+                    </section>
+                  </sc-if>
+
+                  <sc-if value="{{ isCase }}" hint-placeholder-val="{{ false }}">
+                    <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+                      <div
+                        style="
+                          position: sticky;
+                          top: 65px;
+                          z-index: 15;
+                          display: flex;
+                          gap: 4px;
+                          overflow-x: auto;
+                          padding: 8px 16px;
+                          background: color-mix(in oklab, var(--bg) 92%, transparent);
+                          border-bottom: 1px solid var(--line);
+                        "
+                      >
+                        <button
+                          onClick="{{ goProjects }}"
+                          style="
+                            flex: none;
+                            height: 36px;
+                            padding: 0 12px;
+                            border: 1px solid var(--line2);
+                            border-radius: var(--radius-sm);
+                            background: transparent;
+                            font-size: 13px;
+                            white-space: nowrap;
+                          "
+                        >
+                          ← Index
+                        </button>
+                        <sc-for list="{{ caseNav }}" as="c" hint-placeholder-count="6">
+                          <button onClick="{{ c.go }}" style="{{ c.mStyle }}">
+                            {{ c.num }} {{ c.label }}
+                          </button>
+                        </sc-for>
+                      </div>
+                    </sc-if>
+
+                    <section
+                      id="c-01"
+                      style="
+                        padding: clamp(28px, 4cqi, 56px) clamp(16px, 3.5cqi, 56px)
+                          clamp(40px, 5cqi, 72px);
+                        display: flex;
+                        flex-direction: column;
+                        gap: clamp(24px, 3cqi, 40px);
+                      "
+                    >
+                      <div
+                        style="
+                          display: flex;
+                          justify-content: space-between;
+                          flex-wrap: wrap;
+                          gap: 12px;
+                          font-family: var(--mono);
+                          font-size: 11.5px;
+                          letter-spacing: 0.08em;
+                          text-transform: uppercase;
+                          color: var(--muted);
+                          padding-bottom: 14px;
+                          border-bottom: 1px solid var(--line2);
+                        "
+                      >
+                        <span>[01] Overview</span><span>{{ cp.category }}</span
+                        ><span>{{ cp.year }}</span>
+                      </div>
+                      <h1
+                        style="
+                          margin: 0;
+                          font-family: var(--display);
+                          font-weight: var(--display-weight);
+                          letter-spacing: var(--display-track);
+                          font-size: calc(clamp(52px, 10cqi, 180px) * var(--h1-scale, 1));
+                          line-height: 0.86;
+                          animation: var(--flicker);
+                        "
+                      >
+                        {{ cp.name }}<span style="color: var(--accent)">.</span>
+                      </h1>
+                      <div
+                        style="
+                          display: grid;
+                          grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+                          gap: clamp(24px, 4cqi, 64px);
+                        "
+                      >
+                        <p
+                          style="
+                            margin: 0;
+                            font-size: clamp(19px, 1.8cqi, 24px);
+                            line-height: 1.4;
+                            text-wrap: pretty;
+                          "
+                        >
+                          {{ cp.intro }}
+                        </p>
+                        <div
+                          style="
+                            display: flex;
+                            flex-direction: column;
+                            border-top: 1px solid var(--line2);
+                          "
+                        >
+                          <sc-for list="{{ caseMeta }}" as="m" hint-placeholder-count="5">
+                            <div
+                              style="
+                                display: grid;
+                                grid-template-columns: 120px 1fr;
+                                gap: 12px;
+                                padding: 10px 0;
+                                border-bottom: 1px solid var(--line);
+                                font-size: 14px;
+                              "
+                            >
+                              <span
+                                style="
+                                  font-family: var(--mono);
+                                  font-size: 11px;
+                                  letter-spacing: 0.08em;
+                                  text-transform: uppercase;
+                                  color: var(--muted);
+                                  padding-top: 2px;
+                                "
+                                >{{ m.k }}</span
+                              ><span>{{ m.v }}</span>
+                            </div>
+                          </sc-for>
+                        </div>
+                      </div>
+                      <div
+                        style="
+                          position: relative;
+                          aspect-ratio: 16/7;
+                          border-radius: var(--radius);
+                          overflow: hidden;
+                          border: 1px solid var(--line2);
+                        "
+                      >
+                        <div style="{{ caseHeroImg }}"></div>
+                        <div
+                          style="
+                            position: absolute;
+                            left: 20px;
+                            bottom: 16px;
+                            font-family: var(--mono);
+                            font-size: 11.5px;
+                            color: var(--muted);
+                          "
+                        >
+                          hero · final product
+                        </div>
+                      </div>
+                    </section>
+
+                    <section
+                      id="c-02"
+                      style="
+                        padding: clamp(48px, 6cqi, 96px) clamp(16px, 3.5cqi, 56px);
+                        border-top: 1px solid var(--line2);
+                        display: flex;
+                        flex-direction: column;
+                        gap: 28px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-family: var(--mono);
+                          font-size: 11.5px;
+                          letter-spacing: 0.1em;
+                          text-transform: uppercase;
+                          color: var(--muted);
+                        "
+                        >[02] Context / Problem</span
+                      >
+                      <h2
+                        data-reveal="0"
+                        style="
+                          margin: 0;
+                          max-width: 1000px;
+                          font-family: var(--display);
+                          font-weight: var(--display-weight);
+                          letter-spacing: var(--display-track);
+                          font-size: calc(clamp(30px, 3.6cqi, 56px) * var(--h1-scale, 1));
+                          line-height: 1.05;
+                          text-wrap: balance;
+                        "
+                      >
+                        {{ cp.problem }}
+                      </h2>
+                      <div
+                        style="
+                          display: flex;
+                          flex-direction: column;
+                          border-top: 1px solid var(--line2);
+                        "
+                      >
+                        <sc-for list="{{ caseContext }}" as="q" hint-placeholder-count="3">
+                          <div
+                            data-reveal="0"
+                            style="
+                              display: grid;
+                              grid-template-columns: repeat(
+                                auto-fit,
+                                minmax(min(100%, 220px), 1fr)
+                              );
+                              gap: 8px 24px;
+                              padding: 16px 0;
+                              border-bottom: 1px solid var(--line);
+                            "
+                          >
+                            <span
+                              style="
+                                font-family: var(--mono);
+                                font-size: 11px;
+                                letter-spacing: 0.08em;
+                                text-transform: uppercase;
+                                color: var(--muted);
+                                padding-top: 3px;
+                              "
+                              >{{ q.k }}</span
+                            >
+                            <span style="font-size: 17px; grid-column: span 2">{{ q.v }}</span>
+                          </div>
+                        </sc-for>
+                      </div>
+                    </section>
+
+                    <div style="border-top: 1px solid var(--line2)">
+                      <div
+                        style="
+                          display: flex;
+                          align-items: center;
+                          gap: 12px;
+                          padding: 14px clamp(16px, 3.5cqi, 56px);
+                          background: var(--accent);
+                          color: var(--accent-ink);
+                          font-family: var(--mono);
+                          font-size: 11.5px;
+                          letter-spacing: 0.1em;
+                          text-transform: uppercase;
+                          box-shadow: var(--glow);
+                        "
+                      >
+                        <span>Design track</span
+                        ><span
+                          style="flex: 1; height: 1px; background: currentColor; opacity: 0.4"
+                        ></span
+                        ><span>03 — 04</span>
+                      </div>
+                      <section
+                        id="c-03"
+                        style="
+                          padding: clamp(48px, 6cqi, 96px) clamp(16px, 3.5cqi, 56px);
+                          display: flex;
+                          flex-direction: column;
+                          gap: 32px;
+                        "
+                      >
+                        <span
+                          style="
+                            font-family: var(--mono);
+                            font-size: 11.5px;
+                            letter-spacing: 0.1em;
+                            text-transform: uppercase;
+                            color: var(--accent);
+                          "
+                          >[03] UX / Research</span
+                        >
+                        <p
+                          data-reveal="0"
+                          style="
+                            margin: 0;
+                            max-width: 960px;
+                            font-size: clamp(20px, 2.1cqi, 30px);
+                            line-height: 1.3;
+                            text-wrap: pretty;
+                          "
+                        >
+                          “{{ cp.research }}”
+                        </p>
+                        <div
+                          style="
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+                            gap: 12px;
+                          "
+                        >
+                          <sc-for list="{{ uxArtifacts }}" as="a" hint-placeholder-count="3">
+                            <div
+                              data-reveal="{{ a.delay }}"
+                              style="display: flex; flex-direction: column; gap: 8px"
+                            >
+                              <div
+                                style="
+                                  aspect-ratio: 4/3;
+                                  border-radius: var(--radius);
+                                  border: 1px solid var(--line2);
+                                  background: repeating-linear-gradient(
+                                    90deg,
+                                    var(--ph-a) 0 3px,
+                                    var(--ph-b) 3px 9px
+                                  );
+                                  display: flex;
+                                  align-items: flex-end;
+                                  padding: 12px;
+                                  font-family: var(--mono);
+                                  font-size: 10.5px;
+                                  color: var(--muted);
+                                  transition: border-radius 0.5s;
+                                "
+                              >
+                                {{ a.ph }}
+                              </div>
+                              <span style="font-size: 14px; font-weight: 500">{{ a.label }}</span>
+                            </div>
+                          </sc-for>
+                        </div>
+                        <div
+                          style="
+                            display: flex;
+                            flex-direction: column;
+                            border-top: 1px solid var(--line2);
+                          "
+                        >
+                          <sc-for list="{{ uxDecisions }}" as="dcs" hint-placeholder-count="3">
+                            <div
+                              data-reveal="0"
+                              style="
+                                display: grid;
+                                grid-template-columns: 48px minmax(0, 1fr) minmax(0, 1.4fr);
+                                gap: 16px;
+                                padding: 18px 0;
+                                border-bottom: 1px solid var(--line);
+                                align-items: baseline;
+                              "
+                            >
+                              <span
+                                style="
+                                  font-family: var(--mono);
+                                  font-size: 12px;
+                                  color: var(--accent);
+                                "
+                                >{{ dcs.n }}</span
+                              >
+                              <span style="font-weight: 600; font-size: 17px">{{ dcs.t }}</span>
+                              <span style="color: var(--muted); font-size: 15px">{{ dcs.d }}</span>
+                            </div>
+                          </sc-for>
+                        </div>
+                      </section>
+                      <section
+                        id="c-04"
+                        style="
+                          padding: clamp(48px, 6cqi, 96px) clamp(16px, 3.5cqi, 56px);
+                          border-top: 1px solid var(--line);
+                          display: flex;
+                          flex-direction: column;
+                          gap: 32px;
+                        "
+                      >
+                        <span
+                          style="
+                            font-family: var(--mono);
+                            font-size: 11.5px;
+                            letter-spacing: 0.1em;
+                            text-transform: uppercase;
+                            color: var(--accent);
+                          "
+                          >[04] UI / Design</span
+                        >
+                        <div
+                          style="
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+                            gap: 12px;
+                          "
+                        >
+                          <div
+                            data-reveal="0"
+                            style="
+                              grid-column: 1/-1;
+                              aspect-ratio: 16/7;
+                              border-radius: var(--radius);
+                              border: 1px solid var(--line2);
+                              background: var(--ph2-a);
+                              display: flex;
+                              align-items: flex-end;
+                              padding: 16px;
+                              font-family: var(--mono);
+                              font-size: 11px;
+                              color: var(--ink);
+                              transition: border-radius 0.5s;
+                            "
+                          >
+                            final screens · desktop + mobile
+                          </div>
+                          <div
+                            data-reveal="0"
+                            style="
+                              aspect-ratio: 1;
+                              border-radius: var(--radius);
+                              border: 1px solid var(--line2);
+                              background: repeating-linear-gradient(
+                                90deg,
+                                var(--ph-a) 0 3px,
+                                var(--ph-b) 3px 9px
+                              );
+                              display: flex;
+                              align-items: flex-end;
+                              padding: 12px;
+                              font-family: var(--mono);
+                              font-size: 10.5px;
+                              color: var(--muted);
+                            "
+                          >
+                            components · states
+                          </div>
+                          <div
+                            data-reveal="80"
+                            style="
+                              aspect-ratio: 1;
+                              border-radius: var(--radius);
+                              border: 1px solid var(--line2);
+                              background: repeating-linear-gradient(
+                                90deg,
+                                var(--ph-a) 0 3px,
+                                var(--ph-b) 3px 9px
+                              );
+                              display: flex;
+                              align-items: flex-end;
+                              padding: 12px;
+                              font-family: var(--mono);
+                              font-size: 10.5px;
+                              color: var(--muted);
+                            "
+                          >
+                            design system · tokens
+                          </div>
+                          <div
+                            data-reveal="160"
+                            style="
+                              aspect-ratio: 1;
+                              border-radius: var(--radius);
+                              border: 1px solid var(--line2);
+                              background: repeating-linear-gradient(
+                                90deg,
+                                var(--ph-a) 0 3px,
+                                var(--ph-b) 3px 9px
+                              );
+                              display: flex;
+                              align-items: flex-end;
+                              padding: 12px;
+                              font-family: var(--mono);
+                              font-size: 10.5px;
+                              color: var(--muted);
+                            "
+                          >
+                            prototype · recording
+                          </div>
+                        </div>
+                        <div
+                          style="
+                            display: flex;
+                            flex-direction: column;
+                            border-top: 1px solid var(--line2);
+                          "
+                        >
+                          <sc-for list="{{ uiDecisions }}" as="dcs" hint-placeholder-count="2">
+                            <div
+                              data-reveal="0"
+                              style="
+                                display: grid;
+                                grid-template-columns: 48px minmax(0, 1fr) minmax(0, 1.4fr);
+                                gap: 16px;
+                                padding: 18px 0;
+                                border-bottom: 1px solid var(--line);
+                                align-items: baseline;
+                              "
+                            >
+                              <span
+                                style="
+                                  font-family: var(--mono);
+                                  font-size: 12px;
+                                  color: var(--accent);
+                                "
+                                >{{ dcs.n }}</span
+                              >
+                              <span style="font-weight: 600; font-size: 17px">{{ dcs.t }}</span>
+                              <span style="color: var(--muted); font-size: 15px">{{ dcs.d }}</span>
+                            </div>
+                          </sc-for>
+                        </div>
+                      </section>
+                    </div>
+
+                    <div
+                      style="
+                        border-top: 1px solid var(--line2);
+                        background: var(--dev-bg);
+                        color: var(--dev-ink);
+                        transition:
+                          background-color 0.5s,
+                          color 0.5s;
+                      "
+                    >
+                      <div
+                        style="
+                          display: flex;
+                          align-items: center;
+                          gap: 12px;
+                          padding: 14px clamp(16px, 3.5cqi, 56px);
+                          border-bottom: 1px solid var(--dev-line);
+                          color: var(--dev-accent);
+                          font-family: var(--mono);
+                          font-size: 11.5px;
+                          letter-spacing: 0.1em;
+                          text-transform: uppercase;
+                        "
+                      >
+                        <span>Build track</span
+                        ><span
+                          style="flex: 1; height: 1px; background: currentColor; opacity: 0.35"
+                        ></span
+                        ><span>05</span>
+                      </div>
+                      <section
+                        id="c-05"
+                        style="
+                          padding: clamp(48px, 6cqi, 96px) clamp(16px, 3.5cqi, 56px);
+                          display: flex;
+                          flex-direction: column;
+                          gap: 28px;
+                        "
+                      >
+                        <span
+                          style="
+                            font-family: var(--mono);
+                            font-size: 11.5px;
+                            letter-spacing: 0.1em;
+                            text-transform: uppercase;
+                            color: var(--dev-accent);
+                          "
+                          >[05] Development</span
+                        >
+                        <div
+                          style="
+                            border: 1px solid var(--dev-line);
+                            border-radius: var(--radius);
+                            overflow: hidden;
+                            transition: border-radius 0.5s;
+                          "
+                        >
+                          <div
+                            style="
+                              display: flex;
+                              align-items: center;
+                              justify-content: space-between;
+                              gap: 12px;
+                              padding: 10px 14px;
+                              border-bottom: 1px solid var(--dev-line);
+                              font-family: var(--mono);
+                              font-size: 11px;
+                              color: var(--dev-muted);
+                            "
+                          >
+                            <span style="display: flex; gap: 6px"
+                              ><span
+                                style="
+                                  width: 9px;
+                                  height: 9px;
+                                  border-radius: 50%;
+                                  border: 1px solid var(--dev-muted);
+                                "
+                              ></span
+                              ><span
+                                style="
+                                  width: 9px;
+                                  height: 9px;
+                                  border-radius: 50%;
+                                  border: 1px solid var(--dev-muted);
+                                "
+                              ></span
+                              ><span
+                                style="
+                                  width: 9px;
+                                  height: 9px;
+                                  border-radius: 50%;
+                                  border: 1px solid var(--dev-muted);
+                                "
+                              ></span
+                            ></span>
+                            <span>~/{{ cp.id }}/architecture</span><span>{{ techLine }}</span>
+                          </div>
+                          <div
+                            style="
+                              display: grid;
+                              grid-template-columns: repeat(
+                                auto-fit,
+                                minmax(min(100%, 380px), 1fr)
+                              );
+                            "
+                          >
+                            <div
+                              style="
+                                display: flex;
+                                flex-direction: column;
+                                gap: 2px;
+                                padding: 20px;
+                                font-family: var(--mono);
+                                font-size: 13.5px;
+                                line-height: 1.7;
+                              "
+                            >
+                              <sc-for list="{{ arch }}" as="ar" hint-placeholder-count="3">
+                                <div
+                                  data-reveal="{{ ar.delay }}"
+                                  style="display: flex; flex-direction: column; padding: 8px 0"
+                                >
+                                  <span
+                                    ><span style="color: var(--dev-accent)">&gt; </span>{{ ar.t
+                                    }}</span
+                                  >
+                                  <span
+                                    style="
+                                      color: var(--dev-muted);
+                                      padding-left: 18px;
+                                      font-family: var(--body);
+                                      font-size: 15px;
+                                    "
+                                    >{{ ar.d }}</span
+                                  >
+                                </div>
+                              </sc-for>
+                              <span style="padding-top: 8px"
+                                ><span style="color: var(--dev-accent)">&gt; </span
+                                ><span
+                                  style="
+                                    display: inline-block;
+                                    width: 9px;
+                                    height: 16px;
+                                    vertical-align: middle;
+                                    background: var(--dev-accent);
+                                    animation: blink 1.1s steps(1) infinite;
+                                  "
+                                ></span
+                              ></span>
+                            </div>
+                            <pre
+                              style="
+                                margin: 0;
+                                padding: 20px;
+                                border-left: 1px solid var(--dev-line);
+                                background: rgba(0, 0, 0, 0.3);
+                                font-family: var(--mono);
+                                font-size: 13px;
+                                line-height: 1.75;
+                                color: var(--dev-ink);
+                                overflow-x: auto;
+                                white-space: pre;
+                              "
+                            >
+{{ cp.code }}</pre>
+                          </div>
+                        </div>
+                        <div
+                          style="
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+                            gap: 1px;
+                            background: var(--dev-line);
+                            border: 1px solid var(--dev-line);
+                            border-radius: var(--radius);
+                            overflow: hidden;
+                          "
+                        >
+                          <div
+                            style="
+                              display: flex;
+                              flex-direction: column;
+                              gap: 8px;
+                              padding: 20px;
+                              background: var(--dev-bg);
+                            "
+                          >
+                            <span
+                              style="
+                                font-family: var(--mono);
+                                font-size: 11px;
+                                letter-spacing: 0.1em;
+                                text-transform: uppercase;
+                                color: var(--dev-muted);
+                              "
+                              >Challenge</span
+                            ><span>{{ cp.challenge }}</span>
+                          </div>
+                          <div
+                            style="
+                              display: flex;
+                              flex-direction: column;
+                              gap: 8px;
+                              padding: 20px;
+                              background: var(--dev-bg);
+                            "
+                          >
+                            <span
+                              style="
+                                font-family: var(--mono);
+                                font-size: 11px;
+                                letter-spacing: 0.1em;
+                                text-transform: uppercase;
+                                color: var(--dev-accent);
+                              "
+                              >Solution</span
+                            ><span>{{ cp.solution }}</span>
+                          </div>
+                          <div
+                            style="
+                              display: flex;
+                              flex-direction: column;
+                              gap: 8px;
+                              padding: 20px;
+                              background: var(--dev-bg);
+                            "
+                          >
+                            <span
+                              style="
+                                font-family: var(--mono);
+                                font-size: 11px;
+                                letter-spacing: 0.1em;
+                                text-transform: uppercase;
+                                color: var(--dev-muted);
+                              "
+                              >Testing</span
+                            ><span>{{ cp.testing }}</span>
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+
+                    <section
+                      id="c-06"
+                      style="
+                        padding: clamp(48px, 6cqi, 96px) clamp(16px, 3.5cqi, 56px);
+                        border-top: 1px solid var(--line2);
+                        display: flex;
+                        flex-direction: column;
+                        gap: 32px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-family: var(--mono);
+                          font-size: 11.5px;
+                          letter-spacing: 0.1em;
+                          text-transform: uppercase;
+                          color: var(--muted);
+                        "
+                        >[06] Outcome</span
+                      >
+                      <div
+                        style="
+                          display: grid;
+                          grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+                          gap: 1px;
+                          background: var(--line2);
+                          border: 1px solid var(--line2);
+                          border-radius: var(--radius);
+                          overflow: hidden;
+                        "
+                      >
+                        <sc-for list="{{ cp.results }}" as="rs" hint-placeholder-count="3">
+                          <div
+                            style="
+                              display: flex;
+                              flex-direction: column;
+                              gap: 6px;
+                              padding: 24px;
+                              background: var(--bg);
+                              transition: background-color 0.5s;
+                            "
+                          >
+                            <span
+                              style="
+                                font-family: var(--display);
+                                font-weight: var(--display-weight);
+                                font-size: calc(clamp(40px, 4.4cqi, 68px) * var(--h1-scale, 1));
+                                line-height: 1;
+                                letter-spacing: var(--display-track);
+                              "
+                              >{{ rs.v }}</span
+                            >
+                            <span style="color: var(--muted); font-size: 14px">{{ rs.l }}</span>
+                          </div>
+                        </sc-for>
+                      </div>
+                      <div
+                        style="
+                          display: flex;
+                          flex-direction: column;
+                          border-top: 1px solid var(--line2);
+                        "
+                      >
+                        <div
+                          style="
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+                            gap: 8px 24px;
+                            padding: 16px 0;
+                            border-bottom: 1px solid var(--line);
+                          "
+                        >
+                          <span
+                            style="
+                              font-family: var(--mono);
+                              font-size: 11px;
+                              letter-spacing: 0.08em;
+                              text-transform: uppercase;
+                              color: var(--muted);
+                              padding-top: 3px;
+                            "
+                            >What I learned</span
+                          ><span style="font-size: 17px; grid-column: span 2"
+                            >{{ cp.learned }}</span
+                          >
+                        </div>
+                        <div
+                          style="
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+                            gap: 8px 24px;
+                            padding: 16px 0;
+                            border-bottom: 1px solid var(--line);
+                          "
+                        >
+                          <span
+                            style="
+                              font-family: var(--mono);
+                              font-size: 11px;
+                              letter-spacing: 0.08em;
+                              text-transform: uppercase;
+                              color: var(--muted);
+                              padding-top: 3px;
+                            "
+                            >What I’d improve</span
+                          ><span style="font-size: 17px; grid-column: span 2"
+                            >{{ cp.improve }}</span
+                          >
+                        </div>
+                      </div>
+                      <button
+                        onClick="{{ openNext }}"
+                        style="
+                          display: flex;
+                          justify-content: space-between;
+                          align-items: center;
+                          gap: 16px;
+                          padding: 24px;
+                          border: 1px solid var(--line2);
+                          border-radius: var(--radius);
+                          background: var(--surface);
+                          cursor: pointer;
+                          text-align: left;
+                          transition:
+                            background-color 0.3s,
+                            color 0.3s,
+                            box-shadow 0.3s;
+                        "
+                        style-hover="background:var(--accent);color:var(--accent-ink);box-shadow:var(--glow)"
+                      >
+                        <span style="display: flex; flex-direction: column; gap: 4px"
+                          ><span
+                            style="
+                              font-family: var(--mono);
+                              font-size: 11px;
+                              letter-spacing: 0.1em;
+                              text-transform: uppercase;
+                              opacity: 0.7;
+                            "
+                            >Next project</span
+                          ><span
+                            style="
+                              font-family: var(--display);
+                              font-weight: var(--display-weight);
+                              font-size: calc(clamp(30px, 3.4cqi, 52px) * var(--h1-scale, 1));
+                              letter-spacing: var(--display-track);
+                              line-height: 1;
+                            "
+                            >{{ nextName }}</span
+                          ></span
+                        >
+                        <span style="font-size: 26px">→</span>
+                      </button>
+                    </section>
+                  </sc-if>
+                </div>
+
+                <footer
+                  id="s-contact"
+                  style="
+                    border-top: 1px solid var(--line2);
+                    padding: clamp(56px, 7cqi, 112px) clamp(16px, 3.5cqi, 56px) 28px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 40px;
+                  "
+                >
+                  <span
+                    style="
+                      font-family: var(--mono);
+                      font-size: 11.5px;
+                      letter-spacing: 0.1em;
+                      text-transform: uppercase;
+                      color: var(--muted);
+                    "
+                    >[04] Contact</span
+                  >
+                  <a
+                    href="mailto:hello@miranovak.design"
+                    style="
+                      font-family: var(--display);
+                      font-weight: var(--display-weight);
+                      letter-spacing: var(--display-track);
+                      font-size: calc(clamp(34px, 6.4cqi, 120px) * var(--h1-scale, 1));
+                      line-height: 0.95;
+                      word-break: break-word;
+                      transition: color 0.3s;
+                    "
+                    >hello@miranovak<span style="color: var(--accent)">.</span>design</a
+                  >
+                  <div
+                    style="
+                      display: flex;
+                      flex-wrap: wrap;
+                      justify-content: space-between;
+                      gap: 16px;
+                      padding-top: 18px;
+                      border-top: 1px solid var(--line);
+                      font-family: var(--mono);
+                      font-size: 12px;
+                      color: var(--muted);
+                    "
+                  >
+                    <span style="display: flex; flex-wrap: wrap; gap: 20px"
+                      ><a href="#">LinkedIn</a><a href="#">GitHub</a><a href="#">Dribbble</a
+                      ><a href="#">CV (PDF)</a></span
+                    >
+                    <span>© 2026 Mira Novak · React · TypeScript · Tailwind</span>
+                  </div>
+                </footer>
+              </main>
+            </div>
+          </div>
+
+          <div
+            style="
+              position: absolute;
+              inset: 0;
+              z-index: 30;
+              pointer-events: none;
+              background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.22) 0 1px,
+                transparent 1px 3px
+              );
+              opacity: calc(var(--hud) * 0.3);
+              transition: opacity 0.6s;
+            "
+          ></div>
+
+          <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+            <div
+              style="
+                position: absolute;
+                inset: 0;
+                z-index: 35;
+                background: var(--bg);
+                display: flex;
+                flex-direction: column;
+                padding: 12px 16px 28px;
+                gap: 20px;
+              "
+            >
+              <div style="display: flex; justify-content: space-between; align-items: center">
+                <span
+                  style="
+                    font-family: var(--mono);
+                    font-size: 11px;
+                    color: var(--muted);
+                    letter-spacing: 0.1em;
+                    text-transform: uppercase;
+                  "
+                  >Index</span
+                >
+                <button
+                  onClick="{{ closeMenu }}"
+                  aria-label="Close menu"
+                  style="
+                    width: 44px;
+                    height: 44px;
+                    border: 1px solid var(--line2);
+                    border-radius: var(--radius-sm);
+                    background: var(--surface);
+                    cursor: pointer;
+                    font-size: 18px;
+                  "
+                >
+                  ×
+                </button>
+              </div>
+              <nav style="display: flex; flex-direction: column; flex: 1">
+                <sc-for list="{{ nav }}" as="n" hint-placeholder-count="7">
+                  <button onClick="{{ n.go }}" style="{{ n.mStyle }}">
+                    <span
+                      style="
+                        font-family: var(--mono);
+                        font-size: 12px;
+                        color: var(--muted);
+                        width: 32px;
+                      "
+                      >{{ n.num }}</span
+                    ><span>{{ n.label }}</span>
+                  </button>
+                </sc-for>
+              </nav>
+              <span style="font-family: var(--mono); font-size: 12px; color: var(--muted)"
+                >hello@miranovak.design</span
+              >
+            </div>
+          </sc-if>
+
+          <div
+            ref="{{ overlayRef }}"
+            style="
+              position: absolute;
+              inset: 0;
+              z-index: 40;
+              pointer-events: none;
+              overflow: hidden;
+            "
+          >
+            <div
+              style="position: absolute; left: 0; right: 0; opacity: 0; mix-blend-mode: difference"
+            ></div>
+            <div style="position: absolute; left: 0; right: 0; opacity: 0"></div>
+            <div
+              style="position: absolute; left: 0; right: 0; opacity: 0; mix-blend-mode: difference"
+            ></div>
+            <div style="position: absolute; left: 0; right: 0; opacity: 0"></div>
+            <div
+              style="position: absolute; left: 0; right: 0; opacity: 0; mix-blend-mode: difference"
+            ></div>
+            <div style="position: absolute; left: 0; right: 0; opacity: 0"></div>
+            <div
+              style="position: absolute; left: 0; right: 0; opacity: 0; mix-blend-mode: difference"
+            ></div>
+            <div style="position: absolute; left: 0; right: 0; opacity: 0"></div>
+            <div
+              style="position: absolute; left: 0; right: 0; opacity: 0; mix-blend-mode: difference"
+            ></div>
+            <div style="position: absolute; left: 0; right: 0; opacity: 0"></div>
+          </div>
+        </div>
+      </div>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{"viewport":{"editor":"enum","options":["desktop","mobile"],"default":"desktop","tsType":"&apos;desktop&apos;|&apos;mobile&apos;"},"startTheme":{"editor":"enum","options":["light","dark"],"default":"light","tsType":"&apos;light&apos;|&apos;dark&apos;"},"motion":{"editor":"enum","options":["full","reduced"],"default":"full","tsType":"&apos;full&apos;|&apos;reduced&apos;"}}'
+    >
+      const FONTS = {
+        light: { '--display': "'Bricolage Grotesque', 'Hanken Grotesk', sans-serif", '--display-weight': '700', '--display-track': '-0.045em', '--h1-scale': '1', '--body': "'Hanken Grotesk', system-ui, sans-serif", '--mono': "'JetBrains Mono', ui-monospace, monospace", '--radius': '6px', '--radius-sm': '6px' },
+        dark: { '--display': "'Tomorrow', 'Hanken Grotesk', sans-serif", '--display-weight': '600', '--display-track': '-0.035em', '--h1-scale': '0.84', '--body': "'Hanken Grotesk', system-ui, sans-serif", '--mono': "'JetBrains Mono', ui-monospace, monospace", '--radius': '0px', '--radius-sm': '0px' }
+      };
+      const BASE = {
+        light: { '--bg': '#f6f5f2', '--ink': '#17161b', '--muted': '#5e5b66', '--line': 'rgba(23,22,27,.1)', '--line2': 'rgba(23,22,27,.2)', '--surface': '#fff', '--accent': 'oklch(0.50 0.19 292)', '--hud': '0' },
+        dark: { '--bg': '#0a0910', '--ink': '#ebe8f4', '--muted': '#a29cb8', '--line': 'rgba(170,150,255,.14)', '--line2': 'rgba(170,150,255,.3)', '--surface': '#110f1a', '--accent': 'oklch(0.70 0.21 302)', '--hud': '1' }
+      };
+      const NAV = [['home', 'Home'], ['about', 'About'], ['ux', 'UX/UI'], ['dev', 'Development'], ['projects', 'Projects'], ['experience', 'Experience'], ['contact', 'Contact']];
+      const CASE_NAV = [['01', 'Overview', ''], ['02', 'Context', ''], ['03', 'UX / Research', 'ux'], ['04', 'UI / Design', 'ux'], ['05', 'Development', 'dev'], ['06', 'Outcome', '']];
+      const Y0 = 2018, Y1 = 2026.9;
+
+      class Component extends DCLogic {
+        state = { data: null, theme: this.props.startTheme === 'dark' ? 'dark' : 'light', page: 'home', caseId: null, filter: 'all', hover: null, menu: false, narrow: false, active: 'home', caseActive: 'c-01', stackTab: 2, expSel: 0 };
+        scrollerRef = React.createRef(); lensRef = React.createRef(); overlayRef = React.createRef(); readoutRef = React.createRef(); contentRef = React.createRef(); previewRef = React.createRef();
+
+        componentDidMount() {
+          import(new URL('portfolio-data.js', document.baseURI).href).then(m => this.setState({ data: m }, () => requestAnimationFrame(() => this.setupReveal())));
+          this.mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+          const sc = this.scrollerRef.current; if (!sc) return;
+          this.ro = new ResizeObserver(([e]) => { const n = e.contentRect.width < 900; if (n !== this.state.narrow) this.setState({ narrow: n, menu: false }); });
+          this.ro.observe(sc);
+          this.onScroll = () => { if (this.raf) return; this.raf = requestAnimationFrame(() => { this.raf = null; this.trackActive(); }); };
+          sc.addEventListener('scroll', this.onScroll, { passive: true });
+        }
+        componentWillUnmount() { this.ro && this.ro.disconnect(); this.io && this.io.disconnect(); }
+        componentDidUpdate(pp, ps) {
+          if (pp.startTheme !== this.props.startTheme && this.props.startTheme) this.setTheme(this.props.startTheme);
+          const s = this.state;
+          if (ps.page !== s.page || ps.caseId !== s.caseId || ps.filter !== s.filter || ps.narrow !== s.narrow) requestAnimationFrame(() => this.setupReveal());
+        }
+        get reduced() { return this.props.motion === 'reduced' || !!(this.mq && this.mq.matches); }
+
+        setupReveal() {
+          const root = this.scrollerRef.current; if (!root) return;
+          if (!this.io) this.io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.style.opacity = '1'; en.target.style.transform = 'none'; en.target.style.clipPath = 'inset(0 0 0 0)'; this.io.unobserve(en.target); } }), { root, threshold: 0.1 });
+          root.querySelectorAll('[data-reveal]').forEach(el => {
+            if (el.dataset.rv) return; el.dataset.rv = '1';
+            if (this.reduced) return;
+            const d = +el.getAttribute('data-reveal') || 0;
+            el.style.opacity = '0'; el.style.transform = 'translateY(14px)'; el.style.clipPath = 'inset(0 0 100% 0)';
+            el.style.transition = `opacity .6s ease ${d}ms, transform .8s cubic-bezier(.2,.7,.2,1) ${d}ms, clip-path .8s cubic-bezier(.7,0,.2,1) ${d}ms`;
+            this.io.observe(el);
+          });
+        }
+        trackActive() {
+          const sc = this.scrollerRef.current; if (!sc) return;
+          const base = sc.getBoundingClientRect().top, home = this.state.page === 'home';
+          const ids = home ? ['home', 'about', 'projects', 'experience', 'contact'].map(i => 's-' + i) : CASE_NAV.map(c => 'c-' + c[0]);
+          let cur = ids[0];
+          ids.forEach(id => { const el = sc.querySelector('#' + id); if (el && el.getBoundingClientRect().top - base < 180) cur = id; });
+          if (home && sc.scrollTop + sc.clientHeight >= sc.scrollHeight - 4) cur = 's-contact';
+          if (home) { const a = cur.slice(2); if (a !== this.state.active) this.setState({ active: a }); }
+          else if (cur !== this.state.caseActive) this.setState({ caseActive: cur });
+        }
+        scrollToId(id, off) {
+          const sc = this.scrollerRef.current; if (!sc) return;
+          const el = sc.querySelector('#' + id);
+          const top = id === 's-home' || !el ? 0 : el.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop - (off ?? (this.state.narrow ? 72 : 16));
+          sc.scrollTo({ top, behavior: this.reduced ? 'auto' : 'smooth' });
+        }
+        transition(next, after) {
+          const el = this.contentRef.current, sc = this.scrollerRef.current;
+          const apply = () => this.setState(next, () => requestAnimationFrame(() => {
+            if (sc) sc.scrollTop = 0;
+            if (el && !this.reduced) el.animate([{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }, { opacity: 1, clipPath: 'inset(0 0 0 0)' }], { duration: 560, easing: 'cubic-bezier(.7,0,.2,1)' });
+            after && after();
+          }));
+          if (this.reduced || !el) return apply();
+          const out = el.animate([{ opacity: 1, clipPath: 'inset(0 0 0 0)' }, { opacity: 0, clipPath: 'inset(100% 0 0 0)' }], { duration: 260, easing: 'cubic-bezier(.7,0,.2,1)', fill: 'forwards' });
+          out.onfinish = () => { apply(); setTimeout(() => out.cancel(), 30); };
+        }
+        go(key) {
+          this.setState({ menu: false });
+          const run = () => {
+            if (key === 'ux' || key === 'dev' || key === 'projects') this.setState({ filter: key === 'projects' ? 'all' : key }, () => this.scrollToId('s-projects'));
+            else this.scrollToId('s-' + key);
+          };
+          if (this.state.page !== 'home') this.transition({ page: 'home', caseId: null }, run); else run();
+        }
+        openCase(id) { this.transition({ page: 'case', caseId: id, caseActive: 'c-01', hover: null }); }
+        setTheme(t) {
+          if (t === this.state.theme || this.busy) return;
+          if (this.reduced) return this.setState({ theme: t });
+          this.busy = true; this.glitch(t === 'dark');
+          setTimeout(() => this.setState({ theme: t }), 260);
+          setTimeout(() => { this.busy = false; }, 800);
+        }
+        glitch(toDark) {
+          const ov = this.overlayRef.current, sc = this.scrollerRef.current; if (!ov || !sc) return;
+          const cols = toDark ? ['oklch(0.70 0.21 302)', 'oklch(0.82 0.13 200)', '#0a0910', 'oklch(0.65 0.25 350)'] : ['oklch(0.50 0.19 292)', '#f6f5f2', '#17161b', '#ffffff'];
+          Array.from(ov.children).forEach((s, i) => {
+            const w = 20 + Math.random() * 70;
+            s.style.top = (Math.random() * 96) + '%'; s.style.height = (1 + Math.random() * (toDark ? 6 : 4)) + '%';
+            s.style.left = (Math.random() * (100 - w)) + '%'; s.style.right = 'auto'; s.style.width = w + '%'; s.style.background = cols[i % cols.length];
+            const dx = (Math.random() * 2 - 1) * (toDark ? 60 : 30);
+            s.animate([{ opacity: 0, transform: `translateX(${dx}%)` }, { opacity: 1, transform: 'none', offset: .2 }, { opacity: 0, offset: .35 }, { opacity: 1, transform: `translateX(${-dx / 2}%)`, offset: .55 }, { opacity: 0, transform: 'none' }], { duration: 560 + Math.random() * 200, delay: i * 22, easing: 'steps(5)' });
+          });
+          const k = toDark ? 1 : .6;
+          sc.animate([
+            { filter: 'none', transform: 'none' },
+            { filter: `drop-shadow(${6 * k}px 0 0 rgba(255,0,90,.6)) drop-shadow(${-6 * k}px 0 0 rgba(0,230,255,.6))`, transform: `translate(${-5 * k}px, ${2 * k}px)`, offset: .2 },
+            { filter: 'none', transform: 'none', offset: .35 },
+            { filter: `drop-shadow(${-4 * k}px 0 0 rgba(255,0,90,.5)) drop-shadow(${4 * k}px 0 0 rgba(0,230,255,.5))`, transform: `translateX(${4 * k}px)`, offset: .5 },
+            { filter: 'none', transform: 'none' }
+          ], { duration: 680, easing: 'steps(8)' });
+        }
+        lensMove = e => {
+          const el = this.lensRef.current; if (!el) return;
+          const r = el.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+          el.style.setProperty('--mx', x + 'px'); el.style.setProperty('--my', y + 'px');
+          el.style.setProperty('--px', (x / r.width - .5).toFixed(3)); el.style.setProperty('--py', (y / r.height - .5).toFixed(3));
+          if (e.pointerType !== 'touch') el.style.setProperty('--r', Math.round(r.width * .3) + 'px');
+          const ro = this.readoutRef.current; if (ro) ro.textContent = `x ${(x / r.width).toFixed(2)} · y ${(y / r.height).toFixed(2)}`;
+        };
+        lensLeave = e => {
+          if (e.pointerType === 'touch') return;
+          const el = this.lensRef.current; if (!el) return;
+          el.style.setProperty('--r', '0px'); el.style.setProperty('--px', '0'); el.style.setProperty('--py', '0');
+        };
+        lensDown = e => {
+          if (e.pointerType !== 'touch') return;
+          const el = this.lensRef.current; if (!el) return;
+          this.lensMove(e); this.touchOpen = !this.touchOpen;
+          el.style.setProperty('--r', this.touchOpen ? Math.round(el.getBoundingClientRect().width * .9) + 'px' : '0px');
+        };
+        listMove = e => {
+          const pv = this.previewRef.current; if (!pv) return;
+          const box = pv.parentElement.getBoundingClientRect();
+          const x = Math.min(e.clientX - box.left + 28, box.width - 340), y = e.clientY - box.top - 110;
+          pv.style.left = x + 'px'; pv.style.top = y + 'px';
+        };
+
+        renderVals() {
+          const s = this.state, d = s.data, dark = s.theme === 'dark', narrow = s.narrow;
+          const vars = { ...BASE[s.theme], ...(d ? d.THEMES[s.theme] : {}), ...FONTS[s.theme] };
+          const mobile = (this.props.viewport ?? 'desktop') === 'mobile';
+          const outerStyle = mobile ? { minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#d8d6d1', padding: '32px 0' } : { width: '100%', height: '100vh' };
+          const frameStyle = { ...vars, position: 'relative', overflow: 'hidden', ...(mobile ? { width: 390, height: 844, borderRadius: 48, boxShadow: '0 0 0 10px #111, 0 40px 90px rgba(0,0,0,.35)' } : { width: '100%', height: '100vh' }) };
+          const layoutStyle = narrow ? { display: 'block' } : { display: 'grid', gridTemplateColumns: '240px minmax(0,1fr)', alignItems: 'start' };
+          const tint = (hue, k) => dark ? [`oklch(0.22 0.06 ${hue})`, `oklch(0.28 0.09 ${hue})`] : [`oklch(0.92 0.03 ${hue})`, `oklch(0.87 0.05 ${hue})`];
+          const stripes = (hue, size) => { const t = tint(hue); return `repeating-linear-gradient(90deg, ${t[0]} 0 3px, ${t[1]} 3px ${size || 9}px)`; };
+
+          const home = s.page === 'home';
+          const activeKey = !home ? 'projects' : s.active === 'projects' ? (s.filter === 'all' ? 'projects' : s.filter) : s.active;
+          const nav = NAV.map(([k, label], i) => {
+            const a = k === activeKey;
+            return {
+              label, num: '0' + (i + 1), go: () => this.go(k),
+              style: { display: 'flex', alignItems: 'center', gap: 8, border: 0, borderBottom: '1px solid var(--line)', padding: a ? '10px 0 10px 10px' : '10px 0', background: a ? 'var(--accent-soft)' : 'transparent', cursor: 'pointer', fontSize: 15, textAlign: 'left', color: a ? 'var(--ink)' : 'var(--muted)', fontWeight: a ? 600 : 400, boxShadow: a ? 'inset 2px 0 0 var(--accent)' : 'none', transition: 'padding .3s, background-color .3s, color .3s' },
+              mStyle: { display: 'flex', alignItems: 'baseline', gap: 8, padding: '14px 0', minHeight: 56, border: 0, borderBottom: '1px solid var(--line)', background: 'none', cursor: 'pointer', fontFamily: 'var(--display)', fontWeight: 'var(--display-weight)', fontSize: 32, letterSpacing: 'var(--display-track)', color: a ? 'var(--accent)' : 'var(--ink)', textAlign: 'left' }
+            };
+          });
+          const opt = on => ({ position: 'relative', zIndex: 1, border: 0, background: 'none', padding: '8px 10px', minHeight: 32, cursor: 'pointer', color: on ? 'var(--accent-ink)' : 'var(--muted)', transition: 'color .4s', letterSpacing: '.1em', textTransform: 'uppercase', fontFamily: 'var(--mono)', fontSize: 10.5 });
+          const thumbStyle = { position: 'absolute', top: 3, bottom: 3, left: dark ? '50%' : 3, width: 'calc(50% - 3px)', borderRadius: 'var(--radius-sm)', background: 'var(--accent)', boxShadow: 'var(--glow)', transition: 'left .5s cubic-bezier(.7,0,.2,1), border-radius .5s, background-color .5s' };
+
+          const P = d ? d.PROJECTS : [];
+          const list = P.filter(p => s.filter === 'all' || p.tracks.includes(s.filter));
+          const hp = P.find(p => p.id === s.hover);
+          const projects = list.map((p, i) => {
+            const h = s.hover === p.id;
+            return {
+              ...p, delay: i * 70, techLine: p.tech.join(' · '),
+              trackTags: p.tracks.map(t => ({ label: t === 'ux' ? 'Design' : 'Build', style: { padding: '2px 7px', borderRadius: 'var(--radius-sm)', background: t === 'ux' ? 'var(--accent)' : 'var(--accent2)', color: dark ? '#0a0910' : '#fff', fontFamily: 'var(--mono)', fontSize: 10.5, letterSpacing: '.06em', textTransform: 'uppercase' } })),
+              open: () => this.openCase(p.id), enter: () => this.setState({ hover: p.id }),
+              rowStyle: narrow
+                ? { display: 'flex', flexDirection: 'column', gap: 10, padding: '18px 0', borderBottom: '1px solid var(--line2)', cursor: 'pointer' }
+                : { display: 'grid', gridTemplateColumns: '90px minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr) 130px 24px', gap: 16, alignItems: 'start', padding: '22px 12px', borderBottom: '1px solid var(--line2)', cursor: 'pointer', background: h ? 'var(--accent-soft)' : 'transparent', transition: 'background-color .3s' },
+              thumbStyle: { position: 'relative', aspectRatio: '16/9', borderRadius: 'var(--radius)', background: stripes(p.hue), border: '1px solid var(--line)' },
+              titleStyle: { fontFamily: 'var(--display)', fontWeight: 'var(--display-weight)', letterSpacing: 'var(--display-track)', fontSize: 'calc(clamp(26px,2.6cqi,40px) * var(--h1-scale,1))', lineHeight: 1, color: h ? 'var(--accent)' : 'var(--ink)', transform: h ? 'translateX(8px)' : 'none', transition: 'transform .4s cubic-bezier(.2,.7,.2,1), color .3s' },
+              arrowStyle: { fontSize: 20, color: 'var(--accent)', opacity: h || narrow ? 1 : 0, transform: h ? 'none' : 'translateX(-8px)', transition: 'opacity .3s, transform .3s', display: narrow ? 'none' : 'block' }
+            };
+          });
+          const previewStyle = { position: 'absolute', left: 0, top: 0, width: 320, aspectRatio: '4/3', borderRadius: 'var(--radius)', overflow: 'hidden', pointerEvents: 'none', zIndex: 5, border: '1px solid var(--line2)', boxShadow: dark ? 'var(--glow)' : '0 30px 60px -20px rgba(30,20,60,.35)', opacity: hp ? 1 : 0, transform: hp ? 'scale(1) rotate(-2deg)' : 'scale(.92) rotate(0deg)', transition: 'opacity .25s, transform .4s cubic-bezier(.2,.7,.2,1), left .18s ease-out, top .18s ease-out' };
+          const previewImg = { position: 'absolute', inset: 0, background: hp ? stripes(hp.hue) : 'var(--ph-a)', filter: dark ? 'contrast(1.1)' : 'none' };
+          const count = k => P.filter(p => k === 'all' || p.tracks.includes(k)).length;
+          const filters = [['all', 'All'], ['ux', 'UX/UI'], ['dev', 'Development']].map(([k, label]) => {
+            const a = s.filter === k;
+            return { label, count: count(k), go: () => this.setState({ filter: k }), style: { display: 'flex', gap: 6, alignItems: 'center', border: 0, borderRight: '1px solid var(--line2)', padding: '10px 16px', minHeight: 40, cursor: 'pointer', fontSize: 14, background: a ? 'var(--ink)' : 'transparent', color: a ? 'var(--bg)' : 'var(--muted)', transition: 'background-color .3s, color .3s' } };
+          });
+          const area = d ? d.AREAS[s.filter] : { title: 'Selected projects', desc: '', topics: [] };
+
+          const stackRaw = d ? d.STACK : [];
+          const stack = stackRaw.map((g, i) => {
+            const a = s.stackTab === i, frac = stackRaw.length > 1 ? i / (stackRaw.length - 1) : 0;
+            const col = `color-mix(in oklab, var(--accent) ${Math.round((1 - frac) * 100)}%, var(--accent2))`;
+            return { ...g, count: g.items.length, go: () => this.setState({ stackTab: i }),
+              style: { display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6, padding: '14px 14px 16px', border: 0, textAlign: 'left', cursor: 'pointer', background: a ? 'var(--ink)' : 'var(--surface)', color: a ? 'var(--bg)' : 'var(--ink)', borderRadius: 'var(--radius-sm)', boxShadow: a && dark ? 'var(--glow)' : 'none', transition: 'background-color .35s, color .35s, box-shadow .35s' },
+              bar: { display: 'block', width: '100%', height: 4, marginBottom: 6, background: col, borderRadius: 2 } };
+          });
+          const stackItems = (stackRaw[s.stackTab] || { items: [] }).items.map(n => ({ n }));
+
+          const EX = d ? d.EXPERIENCE : [];
+          const span = Y1 - Y0;
+          const experience = EX.map((x, i) => {
+            const from = +x.from, to = /Now/.test(x.dates) ? Y1 : +(x.dates.match(/(\d{4})\s*$/) || [0, from + 1])[1];
+            const a = s.expSel === i;
+            const col = x.kind === 'Build' ? 'var(--accent2)' : x.kind === 'Design' ? 'var(--accent)' : 'linear-gradient(90deg, var(--accent), var(--accent2))';
+            return { ...x, select: () => this.setState({ expSel: i }),
+              laneStyle: { display: 'flex', flexDirection: 'column', gap: 8, padding: '12px', border: 0, borderRadius: 'var(--radius-sm)', background: a ? 'var(--surface)' : 'transparent', boxShadow: a ? 'inset 0 0 0 1px var(--line2)' : 'none', cursor: 'pointer', textAlign: 'left', opacity: a ? 1 : .72, transition: 'background-color .3s, opacity .3s' },
+              barStyle: { position: 'absolute', top: 0, bottom: 0, left: ((from - Y0) / span * 100) + '%', width: ((to - from) / span * 100) + '%', background: col, borderRadius: 'var(--radius-sm)', boxShadow: a ? 'var(--glow)' : 'none', transition: 'box-shadow .3s' } };
+          });
+          const exRaw = EX[s.expSel] || EX[0] || { resp: [], tech: [] };
+          const ex = { ...exRaw, techLine: (exRaw.tech || []).join(' · ') };
+          const years = [];
+          for (let y = Y0; y <= 2026; y += (narrow ? 2 : 1)) years.push({ label: narrow ? "'" + String(y).slice(2) : String(y), style: { position: 'absolute', left: `calc(12px + (100% - 24px) * ${(y - Y0) / span})`, top: 0 } });
+
+          const cp = (d && s.caseId && P.find(p => p.id === s.caseId)) || P[0] || {};
+          const idx = P.indexOf(cp), next = P[(idx + 1) % (P.length || 1)] || {};
+          const caseNav = CASE_NAV.map(([n, label, tr]) => {
+            const a = s.caseActive === 'c-' + n;
+            const col = tr === 'dev' ? 'var(--accent2)' : tr === 'ux' ? 'var(--accent)' : 'transparent';
+            return { num: n, label, go: () => this.scrollToId('c-' + n, narrow ? 124 : 16),
+              style: { display: 'flex', alignItems: 'center', gap: 8, border: 0, borderBottom: '1px solid var(--line)', padding: a ? '10px 0 10px 10px' : '10px 0', background: a ? 'var(--accent-soft)' : 'transparent', cursor: 'pointer', fontSize: 14, textAlign: 'left', color: a ? 'var(--ink)' : 'var(--muted)', fontWeight: a ? 600 : 400, transition: 'padding .3s, background-color .3s' },
+              dot: { width: 8, height: 8, borderRadius: 2, background: col, marginRight: 6 },
+              mStyle: { flex: 'none', whiteSpace: 'nowrap', border: 0, padding: '8px 12px', borderRadius: 'var(--radius-sm)', background: a ? 'var(--accent-soft)' : 'transparent', color: a ? 'var(--ink)' : 'var(--muted)', boxShadow: tr ? `inset 0 -2px 0 ${col}` : 'none', fontSize: 13, cursor: 'pointer' } };
+          });
+
+          return {
+            outerStyle, frameStyle, layoutStyle, scrollerRef: this.scrollerRef, lensRef: this.lensRef, overlayRef: this.overlayRef, readoutRef: this.readoutRef, contentRef: this.contentRef, previewRef: this.previewRef,
+            wide: !narrow, narrow, nav, thumbStyle, optLight: opt(!dark), optDark: opt(dark), isLight: !dark, isDark: dark,
+            modeNote: dark ? 'Cyber: expressive, animated' : 'Studio: calm, editorial',
+            toLight: () => this.setTheme('light'), toDark: () => this.setTheme('dark'),
+            openMenu: () => this.setState({ menu: true }), closeMenu: () => this.setState({ menu: false }), menuOpen: s.menu && narrow,
+            goHome: () => this.go('home'), goProjects: () => this.go('projects'), goAbout: () => this.go('about'), goUx: () => this.go('ux'), goDev: () => this.go('dev'),
+            isHome: home, isCase: !home,
+            eyebrow: dark ? '> online_' : 'Portfolio',
+            lensHint: narrow ? 'Tap the portrait to reveal the second layer' : 'Move over the portrait to reveal the second layer',
+            lensMove: this.lensMove, lensLeave: this.lensLeave, lensDown: this.lensDown, listMove: this.listMove,
+            stack, stackItems, projects, filters, area, hasTopics: area.topics.length > 0, topicsLine: area.topics.join('  /  '),
+            leaveCard: () => this.setState({ hover: null }), previewStyle, previewImg, hoverName: hp ? hp.name : '',
+            experience, ex, years,
+            cp, caseNav, nextName: next.name, openNext: () => this.openCase(next.id), techLine: (cp.tech || []).join(' · '),
+            caseMeta: [{ k: 'Role', v: cp.role }, { k: 'Team', v: cp.team }, { k: 'Duration', v: cp.duration }, { k: 'Tools', v: cp.tools }, { k: 'Tech', v: (cp.tech || []).join(', ') }],
+            caseContext: [{ k: 'The product', v: cp.product }, { k: 'Who it was for', v: cp.audience }, { k: 'My responsibilities', v: cp.resp }],
+            caseHeroImg: { position: 'absolute', inset: 0, background: cp.hue != null ? stripes(cp.hue, 11) : 'var(--ph-a)' },
+            uxArtifacts: [{ label: 'User flows', ph: 'user flow diagram', delay: 0 }, { label: 'Information architecture', ph: 'IA map', delay: 80 }, { label: 'Wireframes', ph: 'low-fi wireframes', delay: 160 }],
+            uxDecisions: (cp.ux || []).map((x, i) => ({ ...x, n: '0' + (i + 1) })),
+            uiDecisions: (cp.ui || []).map((x, i) => ({ ...x, n: '0' + (i + 1) })),
+            arch: (cp.arch || []).map((x, i) => ({ ...x, delay: i * 80 }))
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

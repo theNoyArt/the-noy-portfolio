@@ -1,0 +1,6 @@
+/* Hero side panel. The panels themselves: disciplines.css (Glass light), achievements.css (Cyber dark). */
+
+.hero__media {
+  overflow: clip;
+  overflow-clip-margin: 40px;
+}
