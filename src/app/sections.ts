@@ -36,7 +36,9 @@ export type CaseSectionId =
   | "attachment"
   | "inspirations"
   | "concept"
-  | "roadmap";
+  | "roadmap"
+  | "decisions"
+  | "usability";
 
 export interface CaseSection {
   id: CaseSectionId;
@@ -65,6 +67,8 @@ const DTRPG_ORDER: { id: CaseSectionId; key: keyof UIStrings; track: Track | nul
   { id: "wireframes", key: "wireframes", track: "ux" },
   { id: "system", key: "designSystem", track: "ux" },
   { id: "mockups", key: "mockups", track: "ux" },
+  { id: "decisions", key: "dtDecisions", track: "ux" },
+  { id: "usability", key: "dtUsability", track: "ux" },
   { id: "stack", key: "frontEnd", track: "dev" },
   { id: "api", key: "mockApi", track: "dev" },
 ];

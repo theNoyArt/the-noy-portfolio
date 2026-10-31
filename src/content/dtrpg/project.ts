@@ -15,6 +15,7 @@ export const DT_LINKS = {
   colours: node("4242-1800"),
   mockupsLight: node("4271-88754"),
   mockupsDark: node("4219-130826"),
+  usability: node("4354-18"),
 };
 
 export const DT_IMG = "/images/dtrpg";
@@ -24,24 +25,45 @@ export const DT_CHAT_SUGGESTIONS = {
   en: [
     "What were the main UX problems?",
     "How does the mock API work?",
-    "Why two extra brand reds?",
+    "How did the usability test go?",
   ],
-  pl: [
-    "Jakie były główne problemy UX?",
-    "Jak działa mock API?",
-    "Po co dwie dodatkowe czerwienie marki?",
-  ],
+  pl: ["Jakie były główne problemy UX?", "Jak działa mock API?", "Jak wypadł test użyteczności?"],
 };
+
+/** TL;DR at the top of the Overview: bold label, then the line. */
+export const DT_TLDR: [string, string][] = [
+  [
+    "Problem",
+    "DriveThruRPG grew by accumulation. Home stacks about 10 shelves and 3 competing banners, filters hide behind 9 buttons that open modals, and mobile mostly reflows the desktop layout.",
+  ],
+  [
+    "What I did",
+    "an expert audit of 6 pages (87 findings, 25 of them critical), wireframes, a light and dark design system checked for WCAG AA, and a working React app on a mock API.",
+  ],
+  [
+    "Key changes",
+    "inline filters with result counts, one campaign at a time on Home, a buy path with the total right next to checkout, and a Library built around finding and downloading what you own.",
+  ],
+  [
+    "Result",
+    "in a test with 5 tabletop RPG players, finding a title took a median of 30 s instead of 175 s, all tasks were done unaided (75% on the live site), and SUS rose from 44 to 84.",
+  ],
+];
 
 export const DT_FACTS: [string, string][] = [
   ["Product", "One of the biggest marketplaces for tabletop RPG PDFs and print-on-demand books"],
   ["Audience", "Players and game masters browsing tens of thousands of titles"],
-  ["Role", "UX/UI Designer, Front-end Developer"],
+  ["Role", "Solo. Research, UX/UI design, design system and front-end development"],
   [
     "Scope",
     "Heuristic audit, wireframes, design system and final designs in Figma, React front-end build on a mock API",
   ],
   ["Duration", "2 weeks"],
+  ["Type", "Independent portfolio project, not commissioned by DriveThruRPG"],
+  [
+    "Constraints",
+    "No access to analytics, sales data or the real back end, so the API is a mock with generated data. Findings come from an expert audit and published research (Baymard, NN/g), marked as directional where they couldn’t be verified, and were then checked in a usability test with 5 players.",
+  ],
 ];
 
 export const DT_TECH = {

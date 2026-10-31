@@ -15,10 +15,10 @@ export function Build() {
         "glass:border-t-[rgba(47,95,216,0.18)] glass:[background:radial-gradient(55%_40%_at_95%_6%,rgba(80,140,255,0.20),transparent_70%),radial-gradient(45%_35%_at_5%_55%,rgba(110,120,255,0.14),transparent_70%),linear-gradient(180deg,rgba(222,233,255,0.85)_0%,rgba(226,236,255,0.7)_75%,rgba(226,236,255,0)_100%)]"
       }
     >
-      <Band label={tr("Build track")} nums="06 — 07" dev />
+      <Band label={tr("Build track")} nums="08 — 09" dev />
 
       <section className={sec({ dev: true })} id="c-stack" data-nav-section>
-        <span className={label({ tone: "devAccent", star: true })}>{tr("[06] Front end")}</span>
+        <span className={label({ tone: "devAccent", star: true })}>{tr("[08] Front end")}</span>
         <div className={twoCol({ end: true })}>
           <h2 className={secTitle}>
             {tr("A typed React storefront, built, tested and linted with one toolchain.")}
@@ -50,7 +50,7 @@ export function Build() {
         id="c-api"
         data-nav-section
       >
-        <span className={label({ tone: "devAccent", star: true })}>{tr("[07] Mock API")}</span>
+        <span className={label({ tone: "devAccent", star: true })}>{tr("[09] Mock API")}</span>
         <div className={twoCol({ end: true })}>
           <h2 className={secTitle}>
             {tr("Not a static prototype: a real storefront on a mock API.")}

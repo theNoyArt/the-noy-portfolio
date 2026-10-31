@@ -7,10 +7,12 @@ import { CaseMobileBar } from "../CaseMobileBar";
 import { Audit } from "./Audit";
 import { Build } from "./Build";
 import { Closing } from "./Closing";
+import { Decisions } from "./Decisions";
 import { DesignSystem } from "./DesignSystem";
 import { Overview } from "./Overview";
 import { Mockups, Wireframes } from "./Screens";
 import { useTr } from "./tr";
+import { Usability } from "./Usability";
 import { Band, LightboxProvider } from "./ui";
 
 /** DriveThruRPG redesign: a hand-built case study (ported from the approved prototype). */
@@ -25,11 +27,13 @@ export function DtrpgPage({ c }: { c: ResolvedCase }) {
       {app.narrow && <CaseMobileBar c={c} sections={caseSections(c, t)} />}
       <LightboxProvider>
         <Overview />
-        <Band label={tr("Design track")} nums="02 — 05" />
+        <Band label={tr("Design track")} nums="02 — 07" />
         <Audit />
         <Wireframes />
         <DesignSystem />
         <Mockups />
+        <Decisions />
+        <Usability />
         <Build />
         <Closing c={c} />
         <p className="block px-[max(16px,min(4vw,56px))] pb-5 font-mono text-[11.5px] text-muted">

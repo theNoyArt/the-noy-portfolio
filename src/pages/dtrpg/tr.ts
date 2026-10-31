@@ -78,6 +78,10 @@ const EN_FMT = {
   wireAlt: (label: string, view: "desktop" | "mobile") => `${label} wireframe, ${view}`,
   mockAlt: (label: string, view: "desktop" | "mobile", dark: boolean) =>
     `${label} mockup, ${view}, ${dark ? "dark" : "light"} theme`,
+  num: (n: number) => n.toLocaleString("en-GB"),
+  ofN: (n: number, of: number) => `${n} of ${of}`,
+  severity: (n: number) => `Severity ${n}`,
+  versus: (live: string, proto: string) => `Live site ${live}, prototype ${proto}`,
 };
 
 /** Polish plural: 1 notatka, 2–4 notatki (not 12–14), 5+ notatek. */
@@ -103,6 +107,10 @@ const PL_FMT: typeof EN_FMT = {
   cover: (title) => `okładka · ${title}`,
   wireAlt: (label, view) => `Wireframe: ${label}, ${view}`,
   mockAlt: (label, view, dark) => `Makieta: ${label}, ${view}, motyw ${dark ? "ciemny" : "jasny"}`,
+  num: (n) => n.toLocaleString("pl-PL"),
+  ofN: (n, of) => `${n} z ${of}`,
+  severity: (n) => `Waga ${n}`,
+  versus: (live, proto) => `Obecna strona ${live}, prototyp ${proto}`,
 };
 
 /** English copy in, the current language out. Text without a translation stays English. */

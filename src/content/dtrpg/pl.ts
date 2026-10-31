@@ -33,7 +33,13 @@ export const PL: Record<string, string> = {
     "Jeden z największych marketplace’ów z RPG w PDF i książkami drukowanymi na żądanie",
   "Players and game masters browsing tens of thousands of titles":
     "Gracze i mistrzowie gry przeglądający dziesiątki tysięcy tytułów",
-  "UX/UI Designer, Front-end Developer": "Projektantka UX/UI, Front-end Developerka",
+  "Solo. Research, UX/UI design, design system and front-end development":
+    "Solo. Research, projektowanie UX/UI, design system i front-end",
+  Constraints: "Ograniczenia",
+  "Independent portfolio project, not commissioned by DriveThruRPG":
+    "Niezależny projekt do portfolio, niezlecony przez DriveThruRPG",
+  "No access to analytics, sales data or the real back end, so the API is a mock with generated data. Findings come from an expert audit and published research (Baymard, NN/g), marked as directional where they couldn’t be verified, and were then checked in a usability test with 5 players.":
+    "Brak dostępu do analityki, danych sprzedażowych i prawdziwego back-endu, więc API to mock z wygenerowanymi danymi. Wnioski pochodzą z audytu eksperckiego i opublikowanych badań (Baymard, NN/g), są oznaczone jako kierunkowe tam, gdzie nie dało się ich zweryfikować, a potem sprawdziłam je w teście użyteczności z 5 graczami.",
   "Heuristic audit, wireframes, design system and final designs in Figma, React front-end build on a mock API":
     "Audyt heurystyczny, wireframe’y, design system i finalne projekty w Figmie, front-end w React na mock API",
   "2 weeks": "2 tygodnie",
@@ -147,7 +153,142 @@ export const PL: Record<string, string> = {
   "Not in the mockup yet": "Jeszcze nie ma w makiecie",
   State: "Stan",
   Default: "Domyślny",
-  "[06] Front end": "[06] Front-end",
+  // TL;DR (Overview)
+  "TL;DR": "TL;DR",
+  Problem: "Problem",
+  "What I did": "Co zrobiłam",
+  "Key changes": "Kluczowe zmiany",
+  Result: "Wynik",
+  "DriveThruRPG grew by accumulation. Home stacks about 10 shelves and 3 competing banners, filters hide behind 9 buttons that open modals, and mobile mostly reflows the desktop layout.":
+    "DriveThruRPG rósł przez dokładanie kolejnych elementów. Strona główna to ok. 10 półek i 3 konkurujące banery, filtry chowają się za 9 przyciskami otwierającymi okna modalne, a mobile w większości tylko przełamuje układ desktopu.",
+  "an expert audit of 6 pages (87 findings, 25 of them critical), wireframes, a light and dark design system checked for WCAG AA, and a working React app on a mock API.":
+    "audyt ekspercki 6 stron (87 wniosków, w tym 25 krytycznych), wireframe’y, jasny i ciemny design system sprawdzony pod kątem WCAG AA oraz działająca aplikacja w React na mock API.",
+  "inline filters with result counts, one campaign at a time on Home, a buy path with the total right next to checkout, and a Library built around finding and downloading what you own.":
+    "filtry widoczne od razu na stronie, z liczbą wyników, jedna kampania naraz na stronie głównej, ścieżka zakupu z sumą tuż przy przycisku płatności i Biblioteka zbudowana wokół znajdowania i pobierania tego, co już masz.",
+  "in a test with 5 tabletop RPG players, finding a title took a median of 30 s instead of 175 s, all tasks were done unaided (75% on the live site), and SUS rose from 44 to 84.":
+    "w teście z 5 graczami RPG znalezienie tytułu zajęło (mediana) 30 s zamiast 175 s, wszystkie zadania zostały wykonane bez pomocy (75% na obecnej stronie), a SUS wzrósł z 44 do 84.",
+  // [06] Decisions and changes
+  "[06] Decisions and changes": "[06] Decyzje i zmiany",
+  "Key decisions and trade-offs": "Kluczowe decyzje i kompromisy",
+  "Each one started from an audit finding. Here’s what I considered, what I chose, and what it costs.":
+    "Każda zaczęła się od wniosku z audytu. Oto co rozważałam, co wybrałam i ile to kosztuje.",
+  Considered: "Rozważane",
+  Chose: "Wybór",
+  Why: "Dlaczego",
+  Cost: "Koszt",
+  "Filters: a side panel, not a toolbar": "Filtry: panel boczny, nie pasek narzędzi",
+  "a horizontal filter bar with dropdowns, as on many stores.":
+    "poziomy pasek filtrów z listami rozwijanymi, jak w wielu sklepach.",
+  "a collapsible side panel with result counts and search inside long lists.":
+    "zwijany panel boczny z liczbą wyników i wyszukiwarką w długich listach.",
+  "there are 9 filter groups, and rule systems and publishers run to hundreds of values. A bar would hide them behind dropdowns again.":
+    "jest 9 grup filtrów, a systemów i wydawców są setki. Pasek znowu schowałby je za listami rozwijanymi.",
+  "a narrower results grid on desktop. On mobile the panel becomes a full-screen drawer with “Show N results”.":
+    "węższa siatka wyników na desktopie. Na mobile panel staje się pełnoekranową szufladą z przyciskiem „Pokaż N wyników”.",
+  "Library: checkboxes, not switches": "Biblioteka: pola wyboru, nie przełączniki",
+  "keeping the toggle switches the live Library uses for selection.":
+    "pozostawienie przełączników, którymi obecna Biblioteka zaznacza tytuły.",
+  "row checkboxes, Select all and a selection bar with bulk actions.":
+    "pola wyboru w wierszach, „Zaznacz wszystko” i pasek zaznaczenia z akcjami zbiorczymi.",
+  "a switch means a setting that applies at once; picking titles is a temporary choice before an action. Switches stay only for settings that save instantly.":
+    "przełącznik oznacza ustawienie, które działa od razu; wybór tytułów to tymczasowa decyzja przed akcją. Przełączniki zostają tylko przy ustawieniach zapisywanych natychmiast.",
+  "one extra step (select, then act), and current users have to relearn it.":
+    "jeden krok więcej (zaznacz, potem działaj), a obecni użytkownicy muszą się tego nauczyć od nowa.",
+  "Brand red: two accessible variants": "Czerwień marki: dwa dostępne warianty",
+  "using the one brand red everywhere, as today, or replacing it.":
+    "jedna czerwień marki wszędzie, jak dziś, albo zastąpienie jej inną.",
+  "keep the brand red and add primary-text (#CA2B29, 5.4:1 on cards) for small red text and primary-solid (#D73A38, white text 4.6:1) for buttons.":
+    "zachowanie czerwieni marki i dodanie primary-text (#CA2B29, 5,4:1 na kartach) do małego czerwonego tekstu oraz primary-solid (#D73A38, biały tekst 4,6:1) do przycisków.",
+  "the brand red fails WCAG AA as small text and under white labels (4.42:1).":
+    "czerwień marki nie spełnia WCAG AA jako mały tekst i pod białymi etykietami (4,42:1).",
+  "two more tokens to maintain, and reds slightly darker than the brand.":
+    "dwa tokeny więcej do utrzymania i czerwienie nieco ciemniejsze niż w marce.",
+  "Home: one campaign at a time": "Strona główna: jedna kampania naraz",
+  "keeping the 3 rotating banners and about 10 shelves.":
+    "pozostawienie 3 rotujących banerów i ok. 10 półek.",
+  "one main campaign, time-limited offers in their own row, and fewer shelves, each labelled by what it contains.":
+    "jedna główna kampania, oferty czasowe w osobnym rzędzie i mniej półek, każda podpisana tym, co zawiera.",
+  "when everything is promoted, nothing stands out, and the catalogue is pushed far down, especially on mobile.":
+    "gdy promowane jest wszystko, nic się nie wyróżnia, a katalog ląduje daleko w dole, zwłaszcza na mobile.",
+  "fewer promo slots for publishers and sponsors, a trade-off the business would need to accept.":
+    "mniej miejsc promocyjnych dla wydawców i sponsorów, kompromis, który biznes musiałby zaakceptować.",
+  "Before and after: 4 key changes": "Przed i po: 4 kluczowe zmiany",
+  "Before: the live site, from the audit. After: the redesign, in the mockups and the working app.":
+    "Przed: obecna strona, z audytu. Po: redesign, w makietach i działającej aplikacji.",
+  Before: "Przed",
+  After: "Po",
+  "Live DriveThruRPG home page before the redesign":
+    "Obecna strona główna DriveThruRPG przed redesignem",
+  "Live DriveThruRPG product listing before the redesign":
+    "Obecna lista produktów DriveThruRPG przed redesignem",
+  "Live DriveThruRPG cart before the redesign": "Obecny koszyk DriveThruRPG przed redesignem",
+  "Live DriveThruRPG library before the redesign":
+    "Obecna biblioteka DriveThruRPG przed redesignem",
+  "Redesigned home page, desktop mockup": "Strona główna po redesignie, makieta desktop",
+  "Redesigned product listing, desktop mockup": "Lista produktów po redesignie, makieta desktop",
+  "Redesigned cart, desktop mockup": "Koszyk po redesignie, makieta desktop",
+  "Redesigned library, desktop mockup": "Biblioteka po redesignie, makieta desktop",
+  "About 10 shelves and 3 competing banners. Language, currency, theme and AI settings sit about 2,000px down, in the mobile footer.":
+    "Ok. 10 półek i 3 konkurujące banery. Ustawienia języka, waluty, motywu i AI są ok. 2000 px niżej, w mobilnej stopce.",
+  "One main campaign, time-limited offers kept apart, and those settings in the sticky header.":
+    "Jedna główna kampania, oferty czasowe osobno, a te ustawienia w przyklejonym nagłówku.",
+  "9 filter buttons that open modals, so no filter option is visible by default. 4 shelves repeat titles from the list above it.":
+    "9 przycisków filtrów otwierających okna modalne, więc domyślnie nie widać żadnej opcji filtrowania. 4 półki powtarzają tytuły z listy nad nimi.",
+  "An inline side panel with counts, active-filter chips and quick filters. On mobile, a Filters drawer that shows the result count before you apply.":
+    "Panel boczny na stronie z liczbami wyników, chipami aktywnych filtrów i szybkimi filtrami. Na mobile szuflada Filtry, która pokazuje liczbę wyników przed zastosowaniem.",
+  "“Customers also bought” (about 20 items) is longer than the cart and fills about 90% of the mobile page. The total is far from the checkout button.":
+    "„Klienci kupili również” (ok. 20 pozycji) jest dłuższe niż sam koszyk i zajmuje ok. 90% strony na mobile. Suma jest daleko od przycisku płatności.",
+  "An order summary with Checkout right under the total, sticky on desktop and a bottom bar on mobile. Cross-sell is a short row below the cart.":
+    "Podsumowanie zamówienia z przyciskiem płatności tuż pod sumą, przyklejone na desktopie i jako dolny pasek na mobile. Cross-sell to krótki rząd pod koszykiem.",
+  "Every file is listed with its own Download button, toggle switches select titles, and updates are a bare “NEW UPDATES” tag.":
+    "Każdy plik ma osobny przycisk Download, tytuły zaznacza się przełącznikami, a aktualizacje to sama etykieta „NEW UPDATES”.",
+  "Search first, then views with counts (Updated, Not downloaded, Gifts, Archived), checkboxes with bulk download, and files folded under each title.":
+    "Najpierw wyszukiwarka, potem widoki z liczbami (Zaktualizowane, Niepobrane, Prezenty, Zarchiwizowane), pola wyboru z pobieraniem zbiorczym i pliki zwinięte pod każdym tytułem.",
+  // [07] Usability test
+  "[07] Usability test": "[07] Test użyteczności",
+  "Full usability test in Figma ↗": "Pełny test użyteczności w Figmie ↗",
+  "I tested the redesign against the live DriveThruRPG with 5 tabletop RPG players from the Imaginarium community. Each person did the same 4 tasks on both versions, in alternating order, thinking aloud (about 45 minutes, desktop).":
+    "Przetestowałam redesign w porównaniu z obecnym DriveThruRPG z 5 graczami RPG ze społeczności Imaginarium. Każda osoba wykonała te same 4 zadania w obu wersjach, w naprzemiennej kolejności, myśląc na głos (ok. 45 minut, desktop).",
+  "Live site": "Obecna strona",
+  Prototype: "Prototyp",
+  "Time to find a title": "Czas znalezienia tytułu",
+  "median, task 1": "mediana, zadanie 1",
+  "Tasks done unaided": "Zadania wykonane bez pomocy",
+  "20 tasks per version": "20 zadań na wersję",
+  "SUS score": "Wynik SUS",
+  "average, 0–100, typical 68": "średnia, 0–100, typowo 68",
+  "Ease (SEQ)": "Łatwość (SEQ)",
+  "average, 1–7": "średnia, 1–7",
+  "Median time per task": "Mediana czasu na zadanie",
+  "Find a title": "Znalezienie tytułu",
+  Library: "Biblioteka",
+  "The cart changed the least: everyone finished it on both versions. The live cart already works reasonably well; the redesign mostly makes the total easier to see.":
+    "Koszyk zmienił się najmniej: wszyscy ukończyli to zadanie w obu wersjach. Obecny koszyk działa całkiem nieźle; redesign głównie sprawia, że suma jest lepiej widoczna.",
+  "SUS per participant": "SUS według uczestników",
+  Participant: "Uczestnik",
+  Average: "Średnia",
+  "Top issues": "Najważniejsze problemy",
+  "Severity 0–4": "Waga 0–4",
+  "Can’t tell adventures from other product types":
+    "Nie da się odróżnić przygód od innych typów produktów",
+  "Currency and AI settings hidden in the footer": "Ustawienia waluty i AI schowane w stopce",
+  "Home page overloaded, unclear layout": "Przeładowana strona główna, nieczytelny układ",
+  "Results list buried under carousels on the listing":
+    "Lista wyników zakopana pod karuzelami na liście produktów",
+  "“In your library” on the product page is less visible than on the live site":
+    "„W Twojej bibliotece” na stronie produktu jest mniej widoczne niż na obecnej stronie",
+  "Changes after the test": "Zmiany po teście",
+  "Product page: make “In your library” a clear badge next to the title and replace the buy button with “Download” for owned titles. The live site does this better today, and 2 of 5 people noticed.":
+    "Strona produktu: „W Twojej bibliotece” jako wyraźna plakietka obok tytułu, a przy posiadanych tytułach „Pobierz” zamiast przycisku zakupu. Obecna strona robi to dziś lepiej i zauważyły to 2 z 5 osób.",
+  Limitations: "Ograniczenia",
+  "5 participants show a direction, not statistical significance":
+    "5 uczestników pokazuje kierunek, nie istotność statystyczną",
+  "The prototype runs on a mock catalogue of 32 titles, the live site has many thousands, so task 1 favours the prototype":
+    "Prototyp działa na mockowym katalogu 32 tytułów, a obecna strona ma ich wiele tysięcy, więc zadanie 1 faworyzuje prototyp",
+  "I designed the prototype and moderated the sessions myself":
+    "Sama zaprojektowałam prototyp i moderowałam sesje",
+  "Desktop only": "Tylko desktop",
+  "[08] Front end": "[08] Front-end",
   "A typed React storefront, built, tested and linted with one toolchain.":
     "Typowany sklep w React, budowany, testowany i lintowany jednym narzędziem.",
   "The redesign is a front-end prototype built to look and behave like a real product, without needing a back end. The mock API is one small Node file serving generated JSON data and images, documented with OpenAPI and hosted for free, so the whole prototype can be shared by link and reset in seconds.":
@@ -164,7 +305,7 @@ export const PL: Record<string, string> = {
   Components: "Komponenty",
   Testing: "Testy",
   "Build tooling": "Narzędzia budowania",
-  "[07] Mock API": "[07] Mock API",
+  "[09] Mock API": "[09] Mock API",
   "Not a static prototype: a real storefront on a mock API.":
     "To nie statyczny prototyp: prawdziwy sklep na mock API.",
   "One dependency-free Node file serves generated JSON and images under /api/v1, described by an OpenAPI contract and explorable in Swagger UI.":
@@ -209,6 +350,7 @@ export const PL: Record<string, string> = {
   "What were the main UX problems?": "Jakie były główne problemy UX?",
   "How does the mock API work?": "Jak działa mock API?",
   "Why two extra brand reds?": "Po co dwie dodatkowe czerwienie marki?",
+  "How did the usability test go?": "Jak wypadł test użyteczności?",
   "Thinking…": "Myślę…",
   "The assistant answers when this page is opened in Claude. In the portfolio site it connects to the chat API.":
     "Asystent odpowiada, gdy ta strona jest otwarta w Claude. W portfolio łączy się z API czatu.",

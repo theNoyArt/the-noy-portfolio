@@ -1,6 +1,6 @@
 import { useRef, useState, type PointerEvent } from "react";
 import { useApp } from "../../app/AppContext";
-import { DT_FACTS, DT_IMG, DT_LINKS, DT_TECH } from "../../content/dtrpg/project";
+import { DT_FACTS, DT_IMG, DT_LINKS, DT_TECH, DT_TLDR } from "../../content/dtrpg/project";
 import { cn, tv } from "../../lib/cn";
 import {
   btnRow,
@@ -56,6 +56,7 @@ export function Overview() {
               <span className={caseTitleDot}>.</span>
             </span>
           </h1>
+          <Tldr />
           <div className="flex flex-col gap-[clamp(40px,4.5vw,64px)]">
             <div className="flex flex-col gap-6">
               <p className={lead}>
@@ -94,6 +95,29 @@ export function Overview() {
         <HeroLens />
       </div>
     </section>
+  );
+}
+
+/** Four labelled lines at the top: problem, work, changes, result. */
+function Tldr() {
+  const { tr } = useTr();
+  return (
+    <div
+      className="glass-blur flex flex-col gap-3 rounded-card border border-glass-edge bg-surface px-[clamp(16px,2vw,22px)] py-4 shadow-glass"
+      role="group"
+      aria-labelledby="dt-tldr"
+    >
+      <h2 id="dt-tldr" className={label({ tone: "accent" })}>
+        {tr("TL;DR")}
+      </h2>
+      <ul className="flex list-none flex-col gap-2 p-0 text-[15px] leading-[1.55] text-pretty">
+        {DT_TLDR.map(([k, v]) => (
+          <li key={k}>
+            <b className="font-semibold">{tr(k)}:</b> <span className="text-muted">{tr(v)}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

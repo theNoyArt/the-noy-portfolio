@@ -2,6 +2,7 @@
 // Built from the same content the page renders, so the assistant never drifts from the page.
 
 import { AUDIT_ITEMS, AUDIT_PAGES } from "./audit.js";
+import { DECISION_KEYS, DT_BEFORE_AFTER, DT_DECISIONS } from "./decisions.js";
 import { DS_GROUPS, DS_THEMES } from "./designSystem.js";
 import { MOCKUPS } from "./mockups.js";
 import {
@@ -14,7 +15,20 @@ import {
   DT_PROBLEMS,
   DT_STATS,
   DT_TECH,
+  DT_TLDR,
 } from "./project.js";
+import {
+  UT_CHANGES,
+  UT_INTRO,
+  UT_ISSUES,
+  UT_LIMITS,
+  UT_METRICS,
+  UT_PARTICIPANTS,
+  UT_SUS,
+  UT_TASKS,
+  UT_TASKS_NOTE,
+  susAverage,
+} from "./usability.js";
 import { WIREFRAMES } from "./wireframes.js";
 
 export function dtrpgChatContext(): string {
@@ -34,6 +48,8 @@ export function dtrpgChatContext(): string {
     ...DT_FACTS.map(([k, v]) => `${k}: ${v}`),
     `Design tools: ${DT_TECH.design.join(", ")}. Front-end stack: ${DT_TECH.frontend.join(", ")}.`,
     "Links: " + links.join(" | "),
+    "TL;DR:",
+    ...DT_TLDR.map(([k, v]) => `${k}: ${v}`),
     "",
     "UX AUDIT",
     "Method: heuristic evaluation of drivethrurpg.com against Nielsen's 10 usability heuristics, page by page, with research notes on each pattern.",
@@ -86,6 +102,35 @@ export function dtrpgChatContext(): string {
     "One dependency-free Node file serves generated JSON and images under /api/v1, described by an OpenAPI contract and explorable in Swagger UI.",
     ...DT_FLOW.map((s, i) => `Step ${i + 1}, ${s.t}: ${s.d}`),
     ...DT_API.map((x) => `${x.t}: ${x.d}`),
+    "",
+    "KEY DECISIONS AND TRADE-OFFS (each started from an audit finding)",
+    ...DT_DECISIONS.map(
+      (d, i) =>
+        `${i + 1}. ${d.t}. ` + DECISION_KEYS.map(([k, name]) => `${name}: ${d[k]}`).join(" "),
+    ),
+    "",
+    "BEFORE AND AFTER: 4 KEY CHANGES (before: the live site, from the audit; after: the redesign)",
+    ...DT_BEFORE_AFTER.map((x) => `${x.t}. Before: ${x.before.cap} After: ${x.after.cap}`),
+    "",
+    "USABILITY TEST",
+    `Method: ${UT_INTRO}`,
+    "Results (live site → prototype): " +
+      UT_METRICS.map((m) => {
+        const u = m.unit === "s" ? " s" : (m.unit ?? "");
+        return `${m.l} ${m.live}${u} → ${m.proto}${u} (${m.note})`;
+      }).join("; ") +
+      ".",
+    "Median time per task (live site / prototype): " +
+      UT_TASKS.map((x, i) => `${i + 1}. ${x.t} ${x.live} s / ${x.proto} s`).join(", ") +
+      `. ${UT_TASKS_NOTE}`,
+    "SUS per participant (live / prototype): " +
+      UT_SUS.map((x) => `${x.p} ${x.live} / ${x.proto}`).join(", ") +
+      `, average ${susAverage("live")} / ${susAverage("proto")}.`,
+    "Top issues (version, how many of the participants hit it, severity 0–4):",
+    ...UT_ISSUES.map((x) => `- ${x.t} (${x.v}, ${x.n} of ${UT_PARTICIPANTS}, severity ${x.sev})`),
+    `Change after the test: ${UT_CHANGES}`,
+    `Limitations: ${UT_LIMITS.join("; ")}.`,
+    `Full usability test in Figma: ${DT_LINKS.usability}`,
   ];
   return lines.join("\n");
 }
