@@ -158,7 +158,7 @@ interface CaseBase {
    * A hand-built case-study page instead of the standard template. The standard fields
    * still feed the showcase card, the About links and the AI chat.
    */
-  page?: "dtrpg" | "tamagotchi" | "artpractice" | "portfolio";
+  page?: "dtrpg" | "tamagotchi" | "artpractice" | "portfolio" | "vantgard";
   metrics?: CaseMetrics;
 }
 

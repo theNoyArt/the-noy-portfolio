@@ -1,10 +1,11 @@
 // Plain-text facts about the hand-built project pages (Bond, Art practice assistant, Portfolio
-// website) for the AI chat (server/chat.ts). Built from the same content the pages render, so the
+// website, Vantgard Arms) for the AI chat (server/chat.ts). Built from the same content the pages render, so the
 // assistant never drifts from what the visitor sees. DriveThruRPG has its own: dtrpg/chatContext.ts.
 
 import { AP } from "./artpractice.js";
 import { PF, PF_FACTS, PF_LINKS, PF_WIRES } from "./portfolioCase.js";
 import { TG } from "./tamagotchi.js";
+import { VA, VA_LINKS } from "./vantgard.js";
 
 /** Keys that only drive the layout (icons, ids, colours), not facts worth telling a visitor. */
 const SKIP = new Set(["id", "icon", "img", "src", "image", "hue", "c", "color", "mood"]);
@@ -94,6 +95,50 @@ export function portfolioChatContext(): string {
       designSystem: moods,
       features,
       stack,
+    },
+  );
+}
+
+export function vantgardChatContext(): string {
+  const {
+    meta,
+    title,
+    sub,
+    lead,
+    tldr,
+    overview,
+    goals,
+    facts,
+    scope,
+    process,
+    stack,
+    system,
+    decisions,
+    beforeAfter,
+  } = VA;
+  return page(
+    "VANTGARD ARMS CASE STUDY",
+    "Vantgard Arms is a real client project shown anonymized (fictional name, logo, products and stock photos; layout and flows exactly as delivered). Never name or guess the real client or shop: if asked, say it is anonymized at the client's request. UX/UI only: platform research, UX audit, visual direction and a clickable prototype; the build in Next.js is the next step, so there is no code to show. The Figma file is linked on the page: " +
+      VA_LINKS.figma,
+    {
+      meta,
+      title,
+      sub,
+      lead,
+      tldr,
+      overview,
+      goals,
+      facts,
+      scope,
+      process,
+      plannedStack: stack,
+      designSystem: {
+        name: system.name,
+        tokens: system.tokens.map((t) => `${t.k} ${t.v}`),
+        type: system.type.map((t) => t.label),
+      },
+      decisions,
+      beforeAfter: beforeAfter.map((b) => ({ t: b.t, before: b.before.d, after: b.after.d })),
     },
   );
 }

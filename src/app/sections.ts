@@ -38,7 +38,8 @@ export type CaseSectionId =
   | "concept"
   | "roadmap"
   | "decisions"
-  | "usability";
+  | "usability"
+  | "changes";
 
 export interface CaseSection {
   id: CaseSectionId;
@@ -93,6 +94,17 @@ const AP_ORDER: { id: CaseSectionId; key: keyof UIStrings; track: Track | null }
   { id: "roadmap", key: "apNext", track: null },
 ];
 
+/** Vantgard Arms (src/pages/vantgard): UX/UI only. */
+const VA_ORDER: { id: CaseSectionId; key: keyof UIStrings; track: Track | null }[] = [
+  { id: "overview", key: "overview", track: null },
+  { id: "process", key: "pfProcess", track: "ux" },
+  { id: "system", key: "designSystem", track: "ux" },
+  { id: "decisions", key: "pfFeatures", track: "ux" },
+  { id: "changes", key: "vaChanges", track: "ux" },
+  { id: "mockups", key: "mockups", track: "ux" },
+  { id: "stack", key: "vaStack", track: null },
+];
+
 /** Portfolio website (src/pages/portfolio). */
 const PF_ORDER: { id: CaseSectionId; key: keyof UIStrings; track: Track | null }[] = [
   { id: "overview", key: "overview", track: null },
@@ -108,6 +120,7 @@ export function caseSections(c: ResolvedCase, t: UIStrings): CaseSection[] {
     tamagotchi: TG_ORDER,
     artpractice: AP_ORDER,
     portfolio: PF_ORDER,
+    vantgard: VA_ORDER,
   } as const;
   if (c.page)
     return own[c.page].map((s, i) => ({

@@ -22,6 +22,8 @@ export function Closing({ c }: { c: ResolvedCase }) {
   const app = useApp();
   const media = useRef<HTMLSpanElement>(null);
 
+  const [local, ...rest] = PERSON.email.split("@");
+  const domain = rest.join("@");
   const n = nextCase(c);
   const next = n && n.id !== c.id ? n : null;
 
@@ -50,7 +52,7 @@ export function Closing({ c }: { c: ResolvedCase }) {
       {/* Next case study: text on one side, a cover with the same lens reveal as the hero on the other. */}
       <a
         className={
-          "group/next glass-blur grid min-h-80 grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] max-[799px]:grid-cols-[minmax(0,1fr)] overflow-hidden rounded-card border border-glass-edge bg-surface text-ink shadow-glass " +
+          "group/next glass-blur grid min-h-80 grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] max-[799px]:grid-cols-1 overflow-hidden rounded-card border border-glass-edge bg-surface text-ink shadow-glass " +
           "[transition:border-color_0.25s,box-shadow_0.25s] hover:border-accent hover:text-ink hover:shadow-glow"
         }
         href={next ? `#/case/${next.id}` : "#/"}
@@ -63,7 +65,8 @@ export function Closing({ c }: { c: ResolvedCase }) {
           <span className={label({ tone: "accent" })}>
             {tr(next ? "Next case study →" : "More work")}
           </span>
-          <span className="display text-[clamp(36px,3.6vw,60px)] leading-[0.95] text-balance">
+          {/* Long names ("Portfolio website") wrap instead of running under the cover. */}
+          <span className="display min-w-0 text-[clamp(32px,3.4vw,56px)] leading-[1] text-balance break-words">
             {next ? next.name : tr("All projects.")}
           </span>
           <span className="font-mono text-[12px] text-muted">
@@ -131,8 +134,10 @@ export function Closing({ c }: { c: ResolvedCase }) {
           {tr("Liked how this was put together? I’m open to new work.")}
         </p>
         <a className="group/mail self-start" href={`mailto:${PERSON.email}`}>
-          <span className="block border-b border-current text-[clamp(17px,1.4vw,20px)] font-semibold break-all text-accent group-hover/mail:text-ink">
-            {PERSON.email}
+          <span className="block border-b border-current text-[clamp(17px,1.4vw,20px)] font-semibold break-words text-accent group-hover/mail:text-ink">
+            {/* Wraps after the @ when the card is narrow, never mid-word. */}
+            {local}@<wbr />
+            {domain}
           </span>
         </a>
         <a

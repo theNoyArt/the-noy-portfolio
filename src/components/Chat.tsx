@@ -4,6 +4,7 @@ import { useApp } from "../app/AppContext";
 import { CONFIG } from "../config";
 import { PERSON } from "../content/person";
 import { DT_CHAT_SUGGESTIONS } from "../content/dtrpg/project";
+import { VA_CHAT_SUGGESTIONS } from "../content/vantgard";
 import { getCase } from "../lib/cases";
 import { useI18n } from "../lib/i18n";
 import { iconButton, pulseDot } from "../styles/recipes";
@@ -80,7 +81,12 @@ export function Chat() {
   // On a hand-built case study the assistant also gets that project's full detail.
   const current = app.route.page === "case" ? getCase(app.route.id) : null;
   const caseId = current?.page ? current.id : undefined;
-  const suggestions = caseId === "dtrpg" ? DT_CHAT_SUGGESTIONS[lang] : PERSON.chatSuggestions[lang];
+  const suggestions =
+    caseId === "dtrpg"
+      ? DT_CHAT_SUGGESTIONS[lang]
+      : caseId === "vantgard"
+        ? VA_CHAT_SUGGESTIONS[lang]
+        : PERSON.chatSuggestions[lang];
 
   useEffect(() => {
     const l = listRef.current;

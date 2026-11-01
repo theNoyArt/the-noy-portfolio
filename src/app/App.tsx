@@ -17,6 +17,7 @@ import { HomePage } from "../pages/HomePage";
 import { DtrpgPage } from "../pages/dtrpg/DtrpgPage";
 import { TamagotchiPage } from "../pages/tamagotchi/TamagotchiPage";
 import { ArtPracticePage } from "../pages/artpractice/ArtPracticePage";
+import { VantgardPage } from "../pages/vantgard/VantgardPage";
 import { PortfolioPage } from "../pages/portfolio/PortfolioPage";
 import { Footer } from "../components/Footer";
 
@@ -347,6 +348,8 @@ export function App() {
               <PortfolioPage key={current.id} c={current} />
             ) : current?.page === "artpractice" ? (
               <ArtPracticePage key={current.id} c={current} />
+            ) : current?.page === "vantgard" ? (
+              <VantgardPage key={current.id} c={current} />
             ) : current?.page === "tamagotchi" ? (
               <TamagotchiPage key={current.id} c={current} />
             ) : (

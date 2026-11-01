@@ -10,6 +10,7 @@ import { PF, PF_FACTS, PF_WIRES } from "./portfolioCase";
 import { SHOWCASE, SHOWCASE_UPCOMING } from "./showcase";
 import { TG } from "./tamagotchi";
 import { UI } from "./ui";
+import { VA, VA_IMG } from "./vantgard";
 
 // Tests run from the project root.
 const PUBLIC = join(process.cwd(), "public");
@@ -40,6 +41,7 @@ const CONTENT = {
   PF,
   PF_FACTS,
   PF_WIRES,
+  VA,
 };
 
 describe("content", () => {
@@ -106,5 +108,30 @@ describe("content", () => {
     expect(PF_WIRES.project).toHaveLength(11);
     expect(PF_WIRES.homeMobile).toHaveLength(8);
     expect(PF_WIRES.projectMobile).toHaveLength(7);
+  });
+
+  it("has every Vantgard Arms text in both languages", () => {
+    const empty = texts(VA)
+      .filter(
+        (x) => typeof x.en !== "string" || !x.en.trim() || typeof x.pl !== "string" || !x.pl.trim(),
+      )
+      .map((x) => x.path);
+    expect(empty).toEqual([]);
+  });
+
+  it("only points the Vantgard Arms page to images that exist", () => {
+    /** Every image file name in VA, plus the overview shot the page names directly. */
+    const names = new Set(["after-product.webp"]);
+    (function walk(v: unknown) {
+      if (typeof v === "string" && v.endsWith(".webp")) names.add(v);
+      else if (v && typeof v === "object") Object.values(v).forEach(walk);
+    })(VA);
+    expect(names.size).toBeGreaterThan(10);
+    const missing = [...names].filter((n) => !existsSync(join(PUBLIC, VA_IMG, n)));
+    expect(missing).toEqual([]);
+  });
+
+  it("has no upcoming placeholder cards left", () => {
+    expect(SHOWCASE_UPCOMING).toEqual([]);
   });
 });

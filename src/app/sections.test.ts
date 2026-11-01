@@ -33,4 +33,26 @@ describe("caseSections", () => {
       "Test użyteczności",
     );
   });
+
+  it("lists the 7 Vantgard Arms sections, ending with the planned stack", () => {
+    const s = caseSections(getCase("vantgard")!, UI.en);
+    expect(s.map((x) => x.id)).toEqual([
+      "overview",
+      "process",
+      "system",
+      "decisions",
+      "changes",
+      "mockups",
+      "stack",
+    ]);
+    expect(s.map((x) => x.label)).toEqual([
+      "Overview",
+      "Process",
+      "Design system",
+      "Key decisions",
+      "Before and after",
+      "Mockups",
+      "Planned stack",
+    ]);
+  });
 });

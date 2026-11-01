@@ -15,6 +15,7 @@ import {
   artPracticeChatContext,
   bondChatContext,
   portfolioChatContext,
+  vantgardChatContext,
 } from "../src/content/chatPages.js";
 
 /** Extra detail for case studies with their own page, sent when the visitor is on that page. */
@@ -23,6 +24,7 @@ const CASE_CONTEXT: Record<string, () => string> = {
   tamagotchi: bondChatContext,
   artpractice: artPracticeChatContext,
   portfolio: portfolioChatContext,
+  vantgard: vantgardChatContext,
 };
 
 const MAX_MESSAGES = 20;

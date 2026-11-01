@@ -144,6 +144,76 @@ export const SHOWCASE: ShowcaseProject[] = [
     },
   },
   {
+    // Hand-built page: src/pages/vantgard (content in src/content/vantgard.ts). Client project, UX/UI only, anonymized.
+    id: "vantgard",
+    page: "vantgard",
+    name: "Vantgard Arms",
+    type: { en: "E-commerce · HEMA shop", pl: "E-commerce · Sklep HEMA" },
+    origin: { en: "Client project", pl: "Projekt dla klienta" },
+    year: "2026",
+    hue: 215,
+    short: {
+      en: "A HEMA sword shop redesigned from research to a clickable prototype: platform choice, UX audit, a 4-step sword configurator and a new visual system.",
+      pl: "Sklep z mieczami HEMA od badań po klikalny prototyp: wybór platformy, audyt UX, 4-krokowy konfigurator miecza i nowy system wizualny.",
+    },
+    tech: ["UX audit", "UI design", "Prototyping", "Figma"],
+    tools: "Figma, Claude",
+    role: { en: "UX/UI Designer", pl: "Projektantka UX/UI" },
+    team: { en: "Solo", pl: "Samodzielnie" },
+    duration: { en: "1 week", pl: "1 tydzień" },
+    intro: {
+      en: "A client project, shown anonymized as Vantgard Arms: a small workshop that makes HEMA swords had outgrown its website-builder store. I compared platforms, audited the store, chose a visual direction and designed the key pages as a clickable prototype.",
+      pl: "Projekt dla klienta, pokazany anonimowo jako Vantgard Arms: mały warsztat robiący miecze HEMA wyrósł ze sklepu z kreatora stron. Porównałam platformy, zrobiłam audyt sklepu, wybrałam kierunek wizualny i zaprojektowałam kluczowe strony jako klikalny prototyp.",
+    },
+    product: {
+      en: "An online shop for HEMA swords and gear, in three lines from entry level to premium.",
+      pl: "Sklep internetowy z mieczami i sprzętem HEMA, w trzech liniach od podstawowej do premium.",
+    },
+    audience: {
+      en: "HEMA fencers and clubs, in Europe and worldwide.",
+      pl: "Szermierze i kluby HEMA, w Europie i na świecie.",
+    },
+    problem: {
+      en: "Sword options live on separate guide pages, paid upgrades are separate products, and lead time, VAT and shipping show up only in fine print or in the cart.",
+      pl: "Opcje miecza są na osobnych stronach z poradnikami, płatne ulepszenia to osobne produkty, a czas realizacji, VAT i wysyłka pojawiają się tylko drobnym drukiem albo w koszyku.",
+    },
+    resp: {
+      en: "Platform research, UX audit, visual direction, UI design and a clickable prototype.",
+      pl: "Wybór platformy, audyt UX, kierunek wizualny, projekt UI i klikalny prototyp.",
+    },
+    stages: {
+      research: {
+        en: "Platform comparison and a UX audit of 24 screenshots: 19 fixes, 7 high priority.",
+        pl: "Porównanie platform i audyt UX 24 zrzutów: 19 poprawek, 7 o wysokim priorytecie.",
+      },
+      design: {
+        en: "Three visual directions, Steel chosen; clickable prototype of Home, Store, Product and Contact.",
+        pl: "Trzy kierunki wizualne, wybrany Steel; klikalny prototyp stron Home, Store, Product i Contact.",
+      },
+      frontend: {
+        en: "Next step with the client: Next.js, Tailwind CSS and shadcn/ui on a headless shop.",
+        pl: "Kolejny krok z klientem: Next.js, Tailwind CSS i shadcn/ui na sklepie headless.",
+      },
+      tests: {
+        en: "Planned: a mobile audit and a short usability test with fencers before launch.",
+        pl: "Planowane: audyt mobile i krótki test użyteczności z szermierzami przed startem.",
+      },
+    },
+    ux: [],
+    ui: [],
+    arch: [],
+    challenge: { en: "", pl: "" },
+    solution: { en: "", pl: "" },
+    code: "",
+    results: [],
+    learned: { en: "", pl: "" },
+    improve: { en: "", pl: "" },
+    images: {
+      coverLight: "/images/vantgard/cover-dark.webp",
+      coverDark: "/images/vantgard/cover-dark.webp",
+    },
+  },
+  {
     // Hand-built page: src/pages/portfolio (content in src/content/portfolioCase.ts). This site.
     id: "portfolio",
     page: "portfolio",
@@ -345,15 +415,4 @@ export const SHOWCASE_UPCOMING: {
   meta: Localized;
   desc: Localized;
   muted?: boolean;
-}[] = [
-  {
-    // Not started yet: shown greyed out, not clickable.
-    muted: true,
-    title: { en: "Sword store", pl: "Sklep z mieczami" },
-    meta: { en: "In progress · Redesign + refactor", pl: "W trakcie · Redesign + refaktor" },
-    desc: {
-      en: "Redesign and front-end refactor of an online sword store: clearer product pages and a cleaner codebase.",
-      pl: "Redesign i refaktor front-endu sklepu z mieczami: czytelniejsze karty produktów i porządniejszy kod.",
-    },
-  },
-];
+}[] = [];
