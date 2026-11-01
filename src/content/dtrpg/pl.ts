@@ -38,8 +38,8 @@ export const PL: Record<string, string> = {
   Constraints: "Ograniczenia",
   "Independent portfolio project, not commissioned by DriveThruRPG":
     "Niezależny projekt do portfolio, niezlecony przez DriveThruRPG",
-  "No access to analytics, sales data or the real back end, so the API is a mock with generated data. Findings come from an expert audit and published research (Baymard, NN/g), marked as directional where they couldn’t be verified, and were then checked in a usability test with 5 players.":
-    "Brak dostępu do analityki, danych sprzedażowych i prawdziwego back-endu, więc API to mock z wygenerowanymi danymi. Wnioski pochodzą z audytu eksperckiego i opublikowanych badań (Baymard, NN/g), są oznaczone jako kierunkowe tam, gdzie nie dało się ich zweryfikować, a potem sprawdziłam je w teście użyteczności z 5 graczami.",
+  "No access to analytics, sales data or the real back end, so the API is a mock with generated data. No exploratory user research: the audit findings come from an expert review and published research (Baymard, NN/g), marked as directional where they couldn’t be verified. The redesign was validated at the end in a usability test with 5 players.":
+    "Brak dostępu do analityki, danych sprzedażowych i prawdziwego back-endu, więc API to mock z wygenerowanymi danymi. Bez eksploracyjnych badań z użytkownikami: wnioski z audytu pochodzą z przeglądu eksperckiego i opublikowanych badań (Baymard, NN/g) i są oznaczone jako kierunkowe tam, gdzie nie dało się ich zweryfikować. Na koniec sprawdziłam redesign w teście użyteczności z 5 graczami.",
   "Heuristic audit, wireframes, design system and final designs in Figma, React front-end build on a mock API":
     "Audyt heurystyczny, wireframe’y, design system i finalne projekty w Figmie, front-end w React na mock API",
   "2 weeks": "2 tygodnie",
@@ -59,7 +59,7 @@ export const PL: Record<string, string> = {
   " search, browse, cart and checkout are broadly consistent. None of this needs a full rebuild: it can be fixed as a component-level pass.":
     " wyszukiwanie, przeglądanie, koszyk i płatność są w dużej mierze spójne. Nie trzeba przebudowywać wszystkiego: wystarczy poprawić komponenty.",
   "pages audited": "przeanalizowanych stron",
-  "critical fixes": "krytycznych poprawek",
+  "high-severity fixes": "poprawek o wysokiej wadze",
   improvements: "usprawnień",
   ideas: "pomysłów",
   "Visual inconsistency": "Niespójność wizualna",
@@ -87,7 +87,7 @@ export const PL: Record<string, string> = {
   Page: "Strona",
   "All pages": "Wszystkie strony",
   "All types": "Wszystkie typy",
-  "Critical fix": "Krytyczna poprawka",
+  "High-severity fix": "Poprawka o wysokiej wadze",
   Improvement: "Usprawnienie",
   Idea: "Pomysł",
   Issue: "Problem",
@@ -161,8 +161,8 @@ export const PL: Record<string, string> = {
   Result: "Wynik",
   "DriveThruRPG grew by accumulation. Home stacks about 10 shelves and 3 competing banners, filters hide behind 9 buttons that open modals, and mobile mostly reflows the desktop layout.":
     "DriveThruRPG rósł przez dokładanie kolejnych elementów. Strona główna to ok. 10 półek i 3 konkurujące banery, filtry chowają się za 9 przyciskami otwierającymi okna modalne, a mobile w większości tylko przełamuje układ desktopu.",
-  "an expert audit of 6 pages (87 findings, 25 of them critical), wireframes, a light and dark design system checked for WCAG AA, and a working React app on a mock API.":
-    "audyt ekspercki 6 stron (87 wniosków, w tym 25 krytycznych), wireframe’y, jasny i ciemny design system sprawdzony pod kątem WCAG AA oraz działająca aplikacja w React na mock API.",
+  "an expert audit of 6 pages (87 findings, 25 rated high severity), wireframes, a light and dark design system checked for WCAG AA, and a working React app on a mock API.":
+    "audyt ekspercki 6 stron (87 wniosków, w tym 25 o wysokiej wadze), wireframe’y, jasny i ciemny design system sprawdzony pod kątem WCAG AA oraz działająca aplikacja w React na mock API.",
   "inline filters with result counts, one campaign at a time on Home, a buy path with the total right next to checkout, and a Library built around finding and downloading what you own.":
     "filtry widoczne od razu na stronie, z liczbą wyników, jedna kampania naraz na stronie głównej, ścieżka zakupu z sumą tuż przy przycisku płatności i Biblioteka zbudowana wokół znajdowania i pobierania tego, co już masz.",
   "in a test with 5 tabletop RPG players, finding a title took a median of 30 s instead of 175 s, all tasks were done unaided (75% on the live site), and SUS rose from 44 to 84.":
@@ -217,17 +217,22 @@ export const PL: Record<string, string> = {
     "Przed: obecna strona, z audytu. Po: redesign, w makietach i działającej aplikacji.",
   Before: "Przed",
   After: "Po",
-  "Live DriveThruRPG home page before the redesign":
-    "Obecna strona główna DriveThruRPG przed redesignem",
-  "Live DriveThruRPG product listing before the redesign":
-    "Obecna lista produktów DriveThruRPG przed redesignem",
-  "Live DriveThruRPG cart before the redesign": "Obecny koszyk DriveThruRPG przed redesignem",
-  "Live DriveThruRPG library before the redesign":
-    "Obecna biblioteka DriveThruRPG przed redesignem",
-  "Redesigned home page, desktop mockup": "Strona główna po redesignie, makieta desktop",
-  "Redesigned product listing, desktop mockup": "Lista produktów po redesignie, makieta desktop",
-  "Redesigned cart, desktop mockup": "Koszyk po redesignie, makieta desktop",
-  "Redesigned library, desktop mockup": "Biblioteka po redesignie, makieta desktop",
+  "Live site home page: a Deal of the Day banner and a sale banner competing at the top, above the filter buttons":
+    "Obecna strona główna: baner Deal of the Day i baner promocji konkurują na górze, nad przyciskami filtrów",
+  "Live site product listing: “Newest Fantasy titles” and “Hottest Community Fantasy titles” shelves stacked above the results":
+    "Obecna lista produktów: półki „Newest Fantasy titles” i „Hottest Community Fantasy titles” ułożone nad wynikami",
+  "Live site cart: the subtotal sits below the items, far from the checkout button, with a “Customers also bought” column alongside":
+    "Obecny koszyk: suma jest pod produktami, daleko od przycisku płatności, a obok kolumna „Customers also bought”",
+  "Live site library: one row per file with its own download icon and a bare “NEW UPDATES” tag":
+    "Obecna biblioteka: osobny wiersz dla każdego pliku z własną ikoną pobierania i samym tagiem „NEW UPDATES”",
+  "Redesigned home page: one main campaign under the header, with Discounts & Promos in their own row below":
+    "Strona główna po redesignie: jedna główna kampania pod nagłówkiem, a pod nią osobny rząd Discounts & Promos",
+  "Redesigned product listing: a side panel of filter groups with result counts and search, next to quick filters and the results grid":
+    "Lista produktów po redesignie: panel boczny z grupami filtrów, liczbą wyników i wyszukiwarką, obok szybkich filtrów i siatki wyników",
+  "Redesigned cart: an order summary with the total and “Proceed to checkout” directly below it":
+    "Koszyk po redesignie: podsumowanie zamówienia z sumą i przyciskiem „Proceed to checkout” tuż pod nią",
+  "Redesigned library: search first, status views with counts, checkboxes and files folded under each title":
+    "Biblioteka po redesignie: najpierw wyszukiwarka, widoki statusu z liczbą tytułów, pola wyboru i pliki zwinięte pod każdym tytułem",
   "About 10 shelves and 3 competing banners. Language, currency, theme and AI settings sit about 2,000px down, in the mobile footer.":
     "Ok. 10 półek i 3 konkurujące banery. Ustawienia języka, waluty, motywu i AI są ok. 2000 px niżej, w mobilnej stopce.",
   "One main campaign, time-limited offers kept apart, and those settings in the sticky header.":
@@ -288,6 +293,12 @@ export const PL: Record<string, string> = {
   "I designed the prototype and moderated the sessions myself":
     "Sama zaprojektowałam prototyp i moderowałam sesje",
   "Desktop only": "Tylko desktop",
+  "What I learned": "Czego się nauczyłam",
+  "Testing with real players changed my priorities: filtering mattered far more than the homepage.":
+    "Testy z prawdziwymi graczami zmieniły moje priorytety: filtrowanie okazało się dużo ważniejsze niż strona główna.",
+  "Next steps": "Kolejne kroki",
+  "Exploratory interviews with buyers and publishers, then an A/B test of inline filters on live traffic.":
+    "Wywiady eksploracyjne z kupującymi i wydawcami, a potem test A/B filtrów na stronie na prawdziwym ruchu.",
   "[08] Front end": "[08] Front-end",
   "A typed React storefront, built, tested and linted with one toolchain.":
     "Typowany sklep w React, budowany, testowany i lintowany jednym narzędziem.",

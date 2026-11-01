@@ -22,8 +22,8 @@ export function DtrpgPage({ c }: { c: ResolvedCase }) {
   const app = useApp();
 
   return (
-    // Polish type labels ("Krytyczna poprawka") need a wider type column in the insight table.
-    <article className={cn("case-scope", lang === "pl" && "[--type-col:176px]")}>
+    // Polish type labels ("Poprawka o wysokiej wadze") need a wider type column in the insight table.
+    <article className={cn("case-scope", lang === "pl" && "[--type-col:212px]")}>
       {app.narrow && <CaseMobileBar c={c} sections={caseSections(c, t)} />}
       <LightboxProvider>
         <Overview />

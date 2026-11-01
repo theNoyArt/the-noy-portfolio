@@ -67,7 +67,7 @@ const EN_FMT = {
   showing: (n: number, of: number, page: string | null, pages: number) =>
     `Showing ${n} of ${of} insights` + (page ? ` on ${page}` : ` across ${pages} pages`),
   insights: "insights",
-  critical: "critical",
+  critical: "high severity",
   screen: (i: string, n: string) => `Screen ${i} of ${n}`,
   openInFigma: (label: string) => `Open ${label} in Figma ↗`,
   openCard: (label: string, kind: "wireframe" | "mockup") => `Open ${label} ${kind}`,
@@ -97,7 +97,7 @@ const PL_FMT: typeof EN_FMT = {
   showing: (n, of, page, pages) =>
     `Widoczne ${n} z ${of} wniosków` + (page ? ` · ${page}` : ` z ${pages} stron`),
   insights: "wniosków",
-  critical: "krytycznych",
+  critical: "o wysokiej wadze",
   screen: (i, n) => `Ekran ${i} z ${n}`,
   openInFigma: (label) => `Otwórz ${label} w Figmie ↗`,
   openCard: (label, kind) => `Otwórz ${kind === "wireframe" ? "wireframe" : "makietę"}: ${label}`,

@@ -50,10 +50,18 @@ export const DT_DECISIONS: Decision[] = [
   },
 ];
 
+/** Shows the changed area of a full-page screenshot: width as a multiple of the frame, then a shift in % of the image. */
+export interface Crop {
+  zoom: number;
+  tx?: string;
+  ty?: string;
+}
+
 export interface BeforeAfterSide {
   /** Folder under /images/dtrpg, with a trailing slash. */
   dir: string;
   img: Img;
+  crop: Crop;
   alt: string;
   cap: string;
 }
@@ -70,13 +78,15 @@ export const DT_BEFORE_AFTER: BeforeAfter[] = [
     before: {
       dir: "before/",
       img: { name: "old-home", w: 1200, h: 2200 },
-      alt: "Live DriveThruRPG home page before the redesign",
+      crop: { zoom: 1.6 },
+      alt: "Live site home page: a Deal of the Day banner and a sale banner competing at the top, above the filter buttons",
       cap: "About 10 shelves and 3 competing banners. Language, currency, theme and AI settings sit about 2,000px down, in the mobile footer.",
     },
     after: {
       dir: "mockups/",
       img: { name: "home-desktop-1", w: 1920, h: 2729 },
-      alt: "Redesigned home page, desktop mockup",
+      crop: { zoom: 1.4 },
+      alt: "Redesigned home page: one main campaign under the header, with Discounts & Promos in their own row below",
       cap: "One main campaign, time-limited offers kept apart, and those settings in the sticky header.",
     },
   },
@@ -85,13 +95,15 @@ export const DT_BEFORE_AFTER: BeforeAfter[] = [
     before: {
       dir: "before/",
       img: { name: "old-listing", w: 1200, h: 1100 },
-      alt: "Live DriveThruRPG product listing before the redesign",
+      crop: { zoom: 1.8, ty: "-32.7%" },
+      alt: "Live site product listing: “Newest Fantasy titles” and “Hottest Community Fantasy titles” shelves stacked above the results",
       cap: "9 filter buttons that open modals, so no filter option is visible by default. 4 shelves repeat titles from the list above it.",
     },
     after: {
       dir: "mockups/",
       img: { name: "listing-desktop-1", w: 1920, h: 3301 },
-      alt: "Redesigned product listing, desktop mockup",
+      crop: { zoom: 1.6, ty: "-11.9%" },
+      alt: "Redesigned product listing: a side panel of filter groups with result counts and search, next to quick filters and the results grid",
       cap: "An inline side panel with counts, active-filter chips and quick filters. On mobile, a Filters drawer that shows the result count before you apply.",
     },
   },
@@ -100,13 +112,15 @@ export const DT_BEFORE_AFTER: BeforeAfter[] = [
     before: {
       dir: "before/",
       img: { name: "old-cart", w: 1200, h: 1100 },
-      alt: "Live DriveThruRPG cart before the redesign",
+      crop: { zoom: 1 },
+      alt: "Live site cart: the subtotal sits below the items, far from the checkout button, with a “Customers also bought” column alongside",
       cap: "“Customers also bought” (about 20 items) is longer than the cart and fills about 90% of the mobile page. The total is far from the checkout button.",
     },
     after: {
       dir: "mockups/",
       img: { name: "cart-desktop-1", w: 1920, h: 1358 },
-      alt: "Redesigned cart, desktop mockup",
+      crop: { zoom: 1.6, tx: "-23.9%" },
+      alt: "Redesigned cart: an order summary with the total and “Proceed to checkout” directly below it",
       cap: "An order summary with Checkout right under the total, sticky on desktop and a bottom bar on mobile. Cross-sell is a short row below the cart.",
     },
   },
@@ -115,13 +129,15 @@ export const DT_BEFORE_AFTER: BeforeAfter[] = [
     before: {
       dir: "before/",
       img: { name: "old-library", w: 1200, h: 1100 },
-      alt: "Live DriveThruRPG library before the redesign",
+      crop: { zoom: 1.8, tx: "-5.1%", ty: "-1.5%" },
+      alt: "Live site library: one row per file with its own download icon and a bare “NEW UPDATES” tag",
       cap: "Every file is listed with its own Download button, toggle switches select titles, and updates are a bare “NEW UPDATES” tag.",
     },
     after: {
       dir: "mockups/",
       img: { name: "library-desktop-1", w: 1920, h: 2338 },
-      alt: "Redesigned library, desktop mockup",
+      crop: { zoom: 1.5 },
+      alt: "Redesigned library: search first, status views with counts, checkboxes and files folded under each title",
       cap: "Search first, then views with counts (Updated, Not downloaded, Gifts, Archived), checkboxes with bulk download, and files folded under each title.",
     },
   },

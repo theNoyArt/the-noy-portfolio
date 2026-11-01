@@ -8,6 +8,7 @@ import {
   UT_ISSUES,
   UT_LIMITS,
   UT_METRICS,
+  UT_NEXT,
   UT_PARTICIPANTS,
   UT_SUS,
   UT_TASKS,
@@ -211,6 +212,15 @@ export function Usability() {
             ))}
           </ul>
         </div>
+      </div>
+
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,340px),1fr))] items-start gap-4">
+        {UT_NEXT.map(([t, d]) => (
+          <div key={t} className={card}>
+            <h3 className={sub}>{tr(t)}</h3>
+            <p className="text-[15px] leading-[1.55] text-pretty">{tr(d)}</p>
+          </div>
+        ))}
       </div>
     </section>
   );

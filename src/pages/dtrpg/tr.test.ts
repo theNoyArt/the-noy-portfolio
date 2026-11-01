@@ -10,6 +10,7 @@ import {
   UT_ISSUES,
   UT_LIMITS,
   UT_METRICS,
+  UT_NEXT,
   UT_TASKS,
   UT_TASKS_NOTE,
   susAverage,
@@ -59,6 +60,7 @@ describe("case-study content translations", () => {
     ...UT_TASKS.map((x) => x.t),
     ...UT_ISSUES.map((x) => x.t),
     ...UT_LIMITS,
+    ...UT_NEXT.flat(),
   ];
 
   it("has a Polish version of the TL;DR, facts, decisions and usability test", () => {

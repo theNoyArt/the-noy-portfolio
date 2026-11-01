@@ -38,7 +38,7 @@ export const DT_TLDR: [string, string][] = [
   ],
   [
     "What I did",
-    "an expert audit of 6 pages (87 findings, 25 of them critical), wireframes, a light and dark design system checked for WCAG AA, and a working React app on a mock API.",
+    "an expert audit of 6 pages (87 findings, 25 rated high severity), wireframes, a light and dark design system checked for WCAG AA, and a working React app on a mock API.",
   ],
   [
     "Key changes",
@@ -62,7 +62,7 @@ export const DT_FACTS: [string, string][] = [
   ["Type", "Independent portfolio project, not commissioned by DriveThruRPG"],
   [
     "Constraints",
-    "No access to analytics, sales data or the real back end, so the API is a mock with generated data. Findings come from an expert audit and published research (Baymard, NN/g), marked as directional where they couldn’t be verified, and were then checked in a usability test with 5 players.",
+    "No access to analytics, sales data or the real back end, so the API is a mock with generated data. No exploratory user research: the audit findings come from an expert review and published research (Baymard, NN/g), marked as directional where they couldn’t be verified. The redesign was validated at the end in a usability test with 5 players.",
   ],
 ];
 
@@ -88,7 +88,7 @@ export const DT_TECH = {
 
 export const DT_STATS: { v: string; l: string; c?: string }[] = [
   { v: "6", l: "pages audited" },
-  { v: "25", l: "critical fixes", c: "c-fix" },
+  { v: "25", l: "high-severity fixes", c: "c-fix" },
   { v: "44", l: "improvements", c: "c-improvement" },
   { v: "18", l: "ideas", c: "c-idea" },
 ];

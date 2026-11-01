@@ -76,33 +76,38 @@ export function Decisions() {
   );
 }
 
-/** One half of a pair: the top of the screenshot in a fixed frame; click opens it in full. */
+/** One half of a pair: the changed area of the screenshot in a fixed frame; click opens it in full. */
 function Side({ kind, side }: { kind: "Before" | "After"; side: BeforeAfterSide }) {
   const { tr } = useTr();
   const lightbox = useLightbox();
   const src = `${DT_IMG}/${side.dir}${side.img.name}.webp`;
   const alt = tr(side.alt);
   const after = kind === "After";
+  const { zoom, tx = "0", ty = "0" } = side.crop;
   return (
     <figure className="flex min-w-0 flex-col gap-3">
       <button
         type="button"
         className={cn(
-          "group/shot glass-blur relative block aspect-[4/3] w-full cursor-zoom-in overflow-hidden rounded-card border border-line-2 p-0 shadow-glass",
+          "group/shot glass-blur relative block aspect-[392/243] w-full cursor-zoom-in overflow-hidden rounded-card border border-line-2 p-0 shadow-glass",
           "[transition:border-color_0.2s] hover:border-accent",
           after ? "bg-[#0f0f12]" : "bg-white",
         )}
         onClick={() => lightbox(src, alt)}
       >
-        <img
-          className="absolute inset-0 h-full w-full object-cover object-top [transition:transform_0.4s] group-hover/shot:scale-[1.015] motion-reduce:transition-none"
-          src={src}
-          alt={alt}
-          width={side.img.w}
-          height={side.img.h}
-          loading="lazy"
-          decoding="async"
-        />
+        {/* The hover zoom sits on a wrapper so it doesn't override the crop's transform. */}
+        <span className="absolute inset-0 [transition:transform_0.4s] group-hover/shot:scale-[1.015] motion-reduce:transition-none">
+          <img
+            className="absolute top-0 left-0 h-auto max-w-none"
+            style={{ width: `calc(${zoom} * 100%)`, transform: `translate(${tx}, ${ty})` }}
+            src={src}
+            alt={alt}
+            width={side.img.w}
+            height={side.img.h}
+            loading="lazy"
+            decoding="async"
+          />
+        </span>
         <span
           className={cn(
             "absolute top-3 left-3 rounded-full border px-[10px] py-[3px] font-mono text-[11px] tracking-[0.1em] uppercase",

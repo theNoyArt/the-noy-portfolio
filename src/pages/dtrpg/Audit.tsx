@@ -8,7 +8,7 @@ import { useTr } from "./tr";
 import { Chip, Ext, ReportToggle, pad } from "./ui";
 
 const TYPES: { id: AuditType; label: string }[] = [
-  { id: "fix", label: "Critical fix" },
+  { id: "fix", label: "High-severity fix" },
   { id: "improvement", label: "Improvement" },
   { id: "idea", label: "Idea" },
 ];
@@ -80,8 +80,8 @@ const INSIGHT_K_FIX = INSIGHT_K + " font-semibold text-[color:var(--type-ink,var
 
 /** The insight table's columns; one-page views drop the Page column. */
 const ROW_GRID =
-  "grid grid-cols-[44px_var(--type-col,128px)_minmax(0,1fr)_120px_24px] items-center gap-[14px]";
-const ROW_GRID_ONE_PAGE = "grid-cols-[44px_var(--type-col,128px)_minmax(0,1fr)_24px]";
+  "grid grid-cols-[44px_var(--type-col,144px)_minmax(0,1fr)_120px_24px] items-center gap-[14px]";
+const ROW_GRID_ONE_PAGE = "grid-cols-[44px_var(--type-col,144px)_minmax(0,1fr)_24px]";
 
 /** Splits a page summary into its verdict (first sentence) and the specific problems. */
 function splitSummary(s: string): [string, string[]] {
@@ -189,7 +189,7 @@ function Report() {
 
   const inPage = AUDIT_ITEMS.filter((x) => page === "all" || x.p === page);
   const shown = inPage.filter((x) => type === "all" || x.t === type);
-  // Critical fixes first, then improvements, then ideas; page order inside each type.
+  // High-severity fixes first, then improvements, then ideas; page order inside each type.
   const sorted = shown
     .slice()
     .sort(
@@ -390,7 +390,7 @@ function Report() {
                 <div
                   className={
                     "grid grid-cols-[repeat(auto-fit,minmax(min(100%,280px),1fr))] gap-x-8 gap-y-3 border-l-[3px] border-l-[color:var(--type-color)] bg-surface " +
-                    "pt-1 pr-3 pb-5 pl-[calc(44px_+_var(--type-col,128px)_+_28px_+_15px)] max-[699px]:pb-[18px] max-[699px]:pl-[52px]"
+                    "pt-1 pr-3 pb-5 pl-[calc(44px_+_var(--type-col,144px)_+_28px_+_15px)] max-[699px]:pb-[18px] max-[699px]:pl-[52px]"
                   }
                 >
                   {x.issue ? (

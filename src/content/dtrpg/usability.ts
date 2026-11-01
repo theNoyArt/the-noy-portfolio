@@ -67,3 +67,15 @@ export const UT_LIMITS: string[] = [
   "I designed the prototype and moderated the sessions myself",
   "Desktop only",
 ];
+
+/** What I learned / next steps: a label, then the line. Draft copy. */
+export const UT_NEXT: [string, string][] = [
+  [
+    "What I learned",
+    "Testing with real players changed my priorities: filtering mattered far more than the homepage.",
+  ],
+  [
+    "Next steps",
+    "Exploratory interviews with buyers and publishers, then an A/B test of inline filters on live traffic.",
+  ],
+];
