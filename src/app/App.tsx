@@ -7,7 +7,9 @@ import { readPref, writePref } from "../lib/storage";
 import { useReveal } from "../lib/useReveal";
 import { getCase } from "../lib/cases";
 import { GLITCH_COLORS, themeVars } from "../theme/themes";
-import { AppCtx, type AppApi, type Route } from "./AppContext";
+import { AppCtx, type AppApi } from "./AppContext";
+import { applyMeta, parseUrl, pathFor, type Route } from "./routes";
+import type { HomeView } from "../content/views";
 import { HOME_SECTIONS, type CaseSectionId, type HomeSection } from "./sections";
 import { Sidebar } from "../components/Sidebar";
 import { MobileHeader, MobileMenu } from "../components/MobileNav";
@@ -23,9 +25,14 @@ import { Footer } from "../components/Footer";
 
 const THEMES: ThemeName[] = ["dark", "light"];
 
-function parseHash(): Route {
-  const m = window.location.hash.match(/^#\/case\/([\w-]+)/);
-  return m && getCase(m[1]) ? { page: "case", id: m[1] } : { page: "home" };
+/** The route for the address bar. Old hash links (#/case/<id>) are swapped for their real URL. */
+function readUrl(): Route {
+  const { pathname, hash, search } = window.location;
+  const r = parseUrl(pathname, hash);
+  const routeHash = hash.startsWith("#/");
+  if (routeHash || pathname !== pathFor(r))
+    window.history.replaceState(null, "", pathFor(r) + search + (routeHash ? "" : hash));
+  return r;
 }
 
 /** Offset for the sticky mobile header (and the case-study section bar below it). */
@@ -39,7 +46,12 @@ export function App() {
   const narrow = useNarrow();
   const reduced = useReducedMotion();
 
-  const [route, setRoute] = useState<Route>(parseHash);
+  const [route, setRoute] = useState<Route>(readUrl);
+  // The home view stays in effect on case studies, so going back returns to the same version of home.
+  const [view, setView] = useState<HomeView>(route.page === "home" ? route.view : "all");
+  useEffect(() => {
+    if (route.page === "home") setView(route.view);
+  }, [route]);
   const [theme, setThemeState] = useState<ThemeName>(
     () => readPref("theme", THEMES) ?? CONFIG.defaultTheme,
   );
@@ -153,11 +165,11 @@ export function App() {
   /** Swap pages with a wipe: old content wipes up, new content wipes down in. */
   const navigate = useCallback(
     (next: Route, after?: () => void) => {
-      const hash = next.page === "case" ? `#/case/${next.id}` : "#/";
+      const path = pathFor(next);
       const apply = () => {
         afterRoute.current = after ?? null;
         animateIn.current = !reduced;
-        if (window.location.hash !== hash) window.history.pushState(null, "", hash);
+        if (window.location.pathname !== path) window.history.pushState(null, "", path);
         setRoute(next);
       };
       const el = contentRef.current;
@@ -178,7 +190,7 @@ export function App() {
   );
 
   // After a route change: jump to top, play the wipe-in, then run any follow-up scroll.
-  const routeKey = route.page === "case" ? "case:" + route.id : "home";
+  const routeKey = route.page === "case" ? "case:" + route.id : "home:" + route.view;
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
     if (animateIn.current) {
@@ -197,13 +209,17 @@ export function App() {
     setActiveCaseSection("c-overview");
   }, [routeKey]);
 
-  // Browser back/forward.
+  // Title, description and canonical for the page and language.
+  useEffect(() => applyMeta(route, lang), [route, lang]);
+
+  // Browser back/forward, and old hash links typed into the address bar.
   useEffect(() => {
     const on = () => {
       // In-page anchors like #content are not routes.
       const h = window.location.hash;
       if (h && !h.startsWith("#/")) return;
-      setRoute(parseHash());
+      const next = readUrl();
+      setRoute((cur) => (pathFor(cur) === pathFor(next) ? cur : next));
     };
     window.addEventListener("popstate", on);
     window.addEventListener("hashchange", on);
@@ -217,10 +233,10 @@ export function App() {
     (key: HomeSection) => {
       setMenuOpen(false);
       const run = () => scrollToDom("s-" + key, false);
-      if (route.page !== "home") navigate({ page: "home" }, run);
+      if (route.page !== "home") navigate({ page: "home", view }, run);
       else run();
     },
-    [route.page, navigate, scrollToDom],
+    [route.page, view, navigate, scrollToDom],
   );
 
   const openCase = useCallback(
@@ -287,6 +303,7 @@ export function App() {
   const api = useMemo<AppApi>(
     () => ({
       route,
+      view,
       theme,
       setTheme,
       narrow,
@@ -305,6 +322,7 @@ export function App() {
     }),
     [
       route,
+      view,
       theme,
       setTheme,
       narrow,

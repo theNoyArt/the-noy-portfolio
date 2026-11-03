@@ -12,6 +12,9 @@ export type Stage = "research" | "design" | "frontend" | "tests";
 /** Path under /public, e.g. '/images/ledgerly-hero.jpg'. null = striped placeholder. */
 export type ImagePath = string | null;
 
+/** The two CVs: front-end and UX/UI. */
+export type CvKind = "frontend" | "ux";
+
 export interface Link {
   label: string;
   url: string;
@@ -27,7 +30,8 @@ export interface Person {
   status: Localized;
   yearsExperience: number;
   links: Link[];
-  cv: { label: Localized; url: Localized };
+  /** One CV per role, each with a file per language. */
+  cv: Record<CvKind, { label: Localized; url: Localized }>;
   portrait: { primary: ImagePath; alt: ImagePath; description: Localized };
   /** Starter questions shown in the AI chat. */
   chatSuggestions: LocalizedList;
@@ -229,7 +233,13 @@ export interface Activity {
   desc: Localized;
   /** Short topic tags shown as chips. */
   topics: Localized[];
-  /** Links at the bottom of the card. A "#/case/<id>" url opens that case study. */
+  /** Illustrations shown on the card, opening in a lightbox. Paths under /public. */
+  images?: {
+    src: string;
+    alt: Localized;
+    /** CSS object-position for the square thumbnail. */ position?: string;
+  }[];
+  /** Links at the bottom of the card. A "/case/<id>" url opens that case study. */
   links: { label: Localized; url: string }[];
   /** Optional compact list of events. */
   events?: ActivityEvent[];

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vite-plus/test";
-import { coverFor, hash, imageBg, stripes } from "./visual";
+import { coverFor, imageBg, stripes } from "./visual";
 
 describe("coverFor", () => {
   const images = { coverLight: "/light.webp", coverDark: "/dark.webp" };
@@ -23,12 +23,5 @@ describe("imageBg", () => {
 
   it("uses the fallback without an image", () => {
     expect(imageBg(null, stripes(260, "dark"))).toEqual({ background: stripes(260, "dark") });
-  });
-});
-
-describe("hash", () => {
-  it("is deterministic and differs by key", () => {
-    expect(hash("bond", 1)).toBe(hash("bond", 1));
-    expect(hash("bond", 1)).not.toBe(hash("bond", 2));
   });
 });

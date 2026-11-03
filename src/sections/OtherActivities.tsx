@@ -5,6 +5,7 @@ import type { Activity } from "../content/types";
 import { cn } from "../lib/cn";
 import { useI18n } from "../lib/i18n";
 import { monoLabel, section, sectionDesc, sectionHead, sectionTitle } from "../styles/recipes";
+import { LightboxProvider, useLightbox } from "../pages/dtrpg/ui";
 
 /* Each hobby group's colour (--hc): icon, its glow and the list separators. */
 const HOBBY_COLOR: Record<"make" | "mind" | "road", string> = {
@@ -13,7 +14,7 @@ const HOBBY_COLOR: Record<"make" | "mind" | "road", string> = {
   road: "[--hc:#e8b931]",
 };
 
-/** A compact row of side activities: short text, topic chips and links. No images. */
+/** A compact row of side activities: illustrations, short text, topic chips and links. */
 export function OtherActivities() {
   const { t, L } = useI18n();
   const app = useApp();
@@ -21,83 +22,85 @@ export function OtherActivities() {
 
   return (
     <section id="s-other" data-nav-section className={section()}>
-      <div className={sectionHead()}>
-        <span className={monoLabel({ head: true })}>{t.otherLabel}</span>
-        <h2 className={sectionTitle()}>{t.otherTitle}</h2>
-        <p className={sectionDesc()}>{L(ACTIVITIES_DESC)}</p>
-      </div>
-      <div
-        className={cn(
-          "grid grid-cols-3 items-stretch gap-4",
-          app.narrow && "grid-cols-[minmax(0,1fr)] gap-3",
-        )}
-      >
-        {ACTIVITIES.map((a, i) => (
-          <Card key={a.id} a={a} n={i + 1} />
-        ))}
-        <div className="col-span-full mt-[18px] flex flex-col gap-[18px]">
-          <span
-            className={
-              "flex items-center gap-[14px] font-mono text-[11px] tracking-[0.08em] text-muted uppercase " +
-              "after:h-px after:flex-1 after:bg-line"
-            }
-          >
-            {t.hobbiesLabel}
-          </span>
-          <div
-            className={cn(
-              "grid grid-cols-3 gap-4",
-              app.narrow && "grid-cols-[minmax(0,1fr)] gap-[18px]",
-            )}
-          >
-            {HOBBIES.map((g) => (
-              <div
-                key={g.id}
-                className={cn(
-                  "grid grid-cols-[22px_minmax(0,1fr)] items-start gap-3 p-0",
-                  HOBBY_COLOR[g.id],
-                )}
-              >
-                <span
-                  className="grid h-[21px] w-[22px] place-items-center text-[var(--hc)]"
-                  aria-hidden="true"
+      <LightboxProvider>
+        <div className={sectionHead()}>
+          <span className={monoLabel({ head: true })}>{t.otherLabel}</span>
+          <h2 className={sectionTitle()}>{t.otherTitle}</h2>
+          <p className={sectionDesc()}>{L(ACTIVITIES_DESC)}</p>
+        </div>
+        <div
+          className={cn(
+            "grid grid-cols-3 items-stretch gap-4",
+            app.narrow && "grid-cols-[minmax(0,1fr)] gap-3",
+          )}
+        >
+          {ACTIVITIES.map((a, i) => (
+            <Card key={a.id} a={a} n={i + 1} />
+          ))}
+          <div className="col-span-full mt-[18px] flex flex-col gap-[18px]">
+            <span
+              className={
+                "flex items-center gap-[14px] font-mono text-[11px] tracking-[0.08em] text-muted uppercase " +
+                "after:h-px after:flex-1 after:bg-line"
+              }
+            >
+              {t.hobbiesLabel}
+            </span>
+            <div
+              className={cn(
+                "grid grid-cols-3 gap-4",
+                app.narrow && "grid-cols-[minmax(0,1fr)] gap-[18px]",
+              )}
+            >
+              {HOBBIES.map((g) => (
+                <div
+                  key={g.id}
+                  className={cn(
+                    "grid grid-cols-[22px_minmax(0,1fr)] items-start gap-3 p-0",
+                    HOBBY_COLOR[g.id],
+                  )}
                 >
-                  <svg
-                    viewBox="0 0 24 24"
-                    className={
-                      "h-5 w-5 fill-none stroke-current stroke-[1.7] [stroke-linecap:round] [stroke-linejoin:round] " +
-                      "[filter:drop-shadow(0_0_6px_color-mix(in_srgb,var(--hc)_55%,transparent))]"
-                    }
+                  <span
+                    className="grid h-[21px] w-[22px] place-items-center text-[var(--hc)]"
+                    aria-hidden="true"
                   >
-                    {HOBBY_ICONS[g.id]}
-                  </svg>
-                </span>
-                <div>
-                  <h4 className="display mt-0 mb-1 text-[17px] leading-[21px]">{L(g.label)}</h4>
-                  <p className="m-0 text-[14px] leading-[1.65] text-muted">
-                    {g.items.map((h, i) => (
-                      <Fragment key={h.en}>
-                        <span className="whitespace-nowrap">
-                          {L(h)}
-                          {i < g.items.length - 1 && (
-                            <span
-                              className="text-[color-mix(in_srgb,var(--hc)_70%,transparent)]"
-                              aria-hidden="true"
-                            >
-                              {" /"}
-                            </span>
-                          )}
-                        </span>
-                        {i < g.items.length - 1 && " "}
-                      </Fragment>
-                    ))}
-                  </p>
+                    <svg
+                      viewBox="0 0 24 24"
+                      className={
+                        "h-5 w-5 fill-none stroke-current stroke-[1.7] [stroke-linecap:round] [stroke-linejoin:round] " +
+                        "[filter:drop-shadow(0_0_6px_color-mix(in_srgb,var(--hc)_55%,transparent))]"
+                      }
+                    >
+                      {HOBBY_ICONS[g.id]}
+                    </svg>
+                  </span>
+                  <div>
+                    <h4 className="display mt-0 mb-1 text-[17px] leading-[21px]">{L(g.label)}</h4>
+                    <p className="m-0 text-[14px] leading-[1.65] text-muted">
+                      {g.items.map((h, i) => (
+                        <Fragment key={h.en}>
+                          <span className="whitespace-nowrap">
+                            {L(h)}
+                            {i < g.items.length - 1 && (
+                              <span
+                                className="text-[color-mix(in_srgb,var(--hc)_70%,transparent)]"
+                                aria-hidden="true"
+                              >
+                                {" /"}
+                              </span>
+                            )}
+                          </span>
+                          {i < g.items.length - 1 && " "}
+                        </Fragment>
+                      ))}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      </LightboxProvider>
     </section>
   );
 }
@@ -141,6 +144,7 @@ function Card({ a, n }: { a: Activity; n: number }) {
         <span>{L(a.meta)}</span>
       </header>
       <h3 className="display m-0 text-[clamp(22px,1.9cqi,28px)] leading-[1.1]">{L(a.title)}</h3>
+      {a.images && <Gallery images={a.images} />}
       <p className="m-0 text-[14.5px] leading-[1.55] text-muted">{L(a.desc)}</p>
 
       {a.stats && (
@@ -221,7 +225,7 @@ function Card({ a, n }: { a: Activity; n: number }) {
       {a.links.length > 0 && (
         <div className="mt-auto flex flex-wrap gap-x-4 gap-y-[6px] border-t border-line pt-3">
           {a.links.map((l) => {
-            const caseId = l.url.startsWith("#/case/") ? l.url.slice("#/case/".length) : null;
+            const caseId = l.url.startsWith("/case/") ? l.url.slice("/case/".length) : null;
             return (
               <a
                 key={l.url}
@@ -246,5 +250,36 @@ function Card({ a, n }: { a: Activity; n: number }) {
         </div>
       )}
     </article>
+  );
+}
+
+/** Square thumbnails; each opens the full illustration in the lightbox. */
+function Gallery({ images }: { images: NonNullable<Activity["images"]> }) {
+  const { L } = useI18n();
+  const lightbox = useLightbox();
+  return (
+    <ul className="m-0 grid list-none grid-cols-3 gap-2 p-0">
+      {images.map((im) => (
+        <li key={im.src}>
+          <button
+            type="button"
+            className={
+              "group block aspect-square w-full cursor-zoom-in overflow-hidden rounded-[10px] border border-line2 bg-[repeating-linear-gradient(90deg,var(--ph-a)_0_3px,var(--ph-b)_3px_9px)] p-0 " +
+              "cyber:rounded-none glass:border-glass-edge"
+            }
+            onClick={() => lightbox(im.src, L(im.alt))}
+          >
+            <img
+              className="block h-full w-full object-cover [transition:transform_0.5s_cubic-bezier(0.2,0.7,0.2,1)] group-hover:[transform:scale(1.06)] motion-reduce:transition-none"
+              style={im.position ? { objectPosition: im.position } : undefined}
+              src={im.src}
+              alt={L(im.alt)}
+              loading="lazy"
+              decoding="async"
+            />
+          </button>
+        </li>
+      ))}
+    </ul>
   );
 }

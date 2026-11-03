@@ -25,4 +25,13 @@ describe("cases", () => {
     const portfolio = SHOW_CASES.find((c) => c.id === "portfolio")!;
     expect(nextCase(portfolio).id).toBe("dtrpg");
   });
+
+  it("walks a home view's own list when given one", () => {
+    const get = (id: string) => SHOW_CASES.find((c) => c.id === id)!;
+    const fe = ["dtrpg", "portfolio"];
+    expect(nextCase(get("dtrpg"), fe).id).toBe("portfolio");
+    expect(nextCase(get("portfolio"), fe).id).toBe("dtrpg");
+    // Vantgard isn't on /frontend: its next link starts the list over.
+    expect(nextCase(get("vantgard"), fe).id).toBe("dtrpg");
+  });
 });

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Visible pages only: hidden projects stay out. src/app/routes.test.ts checks this list. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://the-noy-portfolio.vercel.app/</loc></url>
+  <url><loc>https://the-noy-portfolio.vercel.app/frontend</loc></url>
+  <url><loc>https://the-noy-portfolio.vercel.app/ux</loc></url>
+  <url><loc>https://the-noy-portfolio.vercel.app/case/dtrpg</loc></url>
+  <url><loc>https://the-noy-portfolio.vercel.app/case/vantgard</loc></url>
+  <url><loc>https://the-noy-portfolio.vercel.app/case/portfolio</loc></url>
+</urlset>

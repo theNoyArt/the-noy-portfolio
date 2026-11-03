@@ -1,11 +1,15 @@
 import { createContext, useContext } from "react";
 import type { ThemeName } from "../config";
+import type { HomeView } from "../content/views";
+import type { Route } from "./routes";
 import type { CaseSectionId, HomeSection } from "./sections";
 
-export type Route = { page: "home" } | { page: "case"; id: string };
+export type { Route };
 
 export interface AppApi {
   route: Route;
+  /** The home view in effect: the current one, or on a case study the one the visitor came from. */
+  view: HomeView;
   theme: ThemeName;
   setTheme: (t: ThemeName) => void;
   narrow: boolean;

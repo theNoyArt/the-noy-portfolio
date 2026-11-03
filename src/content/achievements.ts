@@ -33,8 +33,8 @@ export const ACHIEVEMENTS: Achievement[] = [
     tier: "gold",
     title: { en: "Decade club", pl: "Klub dekady" },
     desc: {
-      en: "10 years in product teams: 6 in front-end, 4 in UX/UI design.",
-      pl: "10 lat w zespołach produktowych: 6 we front-endzie, 4 w UX/UI.",
+      en: "10 years in product teams: 6 in front-end, 6 in UX/UI, 2 of them combining both.",
+      pl: "10 lat w zespołach produktowych: 6 we front-endzie, 6 w UX/UI, w tym 2 lata łączenia obu ról.",
     },
     when: "2016 — 2026",
   },

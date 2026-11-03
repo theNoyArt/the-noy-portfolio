@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { useApp } from "../app/AppContext";
 import { PERSON } from "../content/person";
+import { VIEWS, roleFor } from "../content/views";
 import { useI18n } from "../lib/i18n";
 import { cn, tv } from "../lib/cn";
 import { button, pulseDot } from "../styles/recipes";
@@ -10,7 +11,7 @@ import { HeroMedia } from "./HeroMedia";
 const SVG_ICON =
   "h-[15px] w-[15px] fill-none stroke-current stroke-[1.8] [stroke-linecap:round] [stroke-linejoin:round]";
 
-/* Profile and CV links in the bottom bar. In Glass light they stay frosted on hover. */
+/* Profile links and CV downloads in the bottom bar. In Glass light they stay frosted on hover. */
 const BAR_LINK =
   "inline-flex items-center gap-[7px] rounded-full border border-line2 px-[13px] py-[7px] text-[14px] font-medium text-ink " +
   "[transition:border-color_0.2s,background-color_0.2s] cyber:rounded-none cyber:hover:border-accent cyber:hover:bg-accent-soft " +
@@ -66,7 +67,7 @@ export function Hero() {
             ))}
           </h1>
           <p className="display flex max-w-[680px] flex-col gap-[0.08em] text-[calc(clamp(30px,3.2cqi,50px)*var(--h1-scale,1))] leading-[1.05]">
-            {L(PERSON.role)
+            {roleFor(app.view, L(PERSON.role))
               .split(" + ")
               .map((part, i) => (
                 <span
@@ -132,6 +133,12 @@ const ICONS: Record<string, ReactNode> = {
   GitHub: (
     <path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" />
   ),
+  LinkedIn: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="2.5" />
+      <path d="M8 10.5V17M8 7.5v.01M12 17v-6.5M12 13.5c0-1.7 1.2-3 2.7-3s2.3 1 2.3 2.8V17" />
+    </>
+  ),
   CV: (
     <>
       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -179,9 +186,15 @@ function HeroBar() {
     }
   }
 
+  // Profiles open in a new tab; the view's CVs (both on /) download in the current language.
   const links = [
-    ...PERSON.links.map((l) => ({ label: l.label, url: l.url, icon: ICONS[l.label] })),
-    { label: L(PERSON.cv.label), url: L(PERSON.cv.url), icon: ICONS.CV },
+    ...PERSON.links.map((l) => ({ label: l.label, url: l.url, icon: ICONS[l.label], cv: false })),
+    ...VIEWS[app.view].cvs.map((k) => ({
+      label: L(PERSON.cv[k].label),
+      url: L(PERSON.cv[k].url),
+      icon: ICONS.CV,
+      cv: true,
+    })),
   ];
 
   return (
@@ -239,13 +252,19 @@ function HeroBar() {
         </button>
       </div>
       <div className="ml-auto flex flex-wrap gap-2 narrow:col-span-2 narrow:ml-0 narrow:grid narrow:grid-cols-2">
-        {links.map((l) => (
+        {links.map((l, i) => (
           <a
             key={l.label}
             href={l.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(BAR_LINK, "narrow:justify-center narrow:py-[10px]")}
+            {...(l.cv
+              ? { download: l.url.split("/").pop(), title: t.cvDownload }
+              : { target: "_blank", rel: "noopener noreferrer" })}
+            className={cn(
+              BAR_LINK,
+              "narrow:justify-center narrow:py-[10px]",
+              // An odd one out on mobile takes the whole row.
+              i === links.length - 1 && links.length % 2 === 1 && "narrow:col-span-2",
+            )}
           >
             {l.icon && (
               <svg viewBox="0 0 24 24" aria-hidden="true" className={SVG_ICON}>
@@ -254,7 +273,7 @@ function HeroBar() {
             )}
             {l.label}
             <span aria-hidden="true" className="text-[14px] text-accent">
-              ↗
+              {l.cv ? "↓" : "↗"}
             </span>
           </a>
         ))}

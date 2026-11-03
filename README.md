@@ -11,6 +11,7 @@ My personal portfolio, designed and built by me from the first sketch to the dep
 - **Two themes, two personalities.** _Glass light_ (frosted panels, soft gradients, inspired by today's glassmorphism and Liquid Glass trends) and _Cyber dark_ (old-school game UI: neon, scanlines, HUD frames and a glitch transition between themes).
 - **A hero for each theme.** A clickable disciplines diagram in Glass, game-style achievements with a quest to start in Cyber.
 - **Hand-built case studies.** DriveThruRPG (UX audit → wireframes → design system → React build on a mock API), Vantgard Arms (a self-initiated HEMA shop redesign proposal: UX audit, visual direction and a clickable prototype) and this portfolio itself, each with its own process and visuals.
+- **A version per role.** [/frontend](https://the-noy-portfolio.vercel.app/frontend) and [/ux](https://the-noy-portfolio.vercel.app/ux) lead with one role, its CV and the projects that fit it; the home page shows both. Real URLs for every case study, and old `#/case/…` links still work.
 - **"Ask AI about me".** A chat that answers only from the site's content and knows which case study you're reading. It runs on Gemini Flash's free tier, with Groq as a backup and a per-visitor limit.
 - **English & Polish.** Every text exists in both languages; TypeScript and tests make sure none is missing.
 - **Mobile-first details.** A sticky section bar on case studies, a pinned company strip in Experience, and compact layouts that fit one screen.

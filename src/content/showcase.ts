@@ -22,8 +22,8 @@ export const SHOWCASE: ShowcaseProject[] = [
     year: "2026",
     hue: 268,
     short: {
-      en: "A UX/UI audit and redesign of the biggest tabletop-RPG marketplace, rebuilt as a working React storefront on a mock API.",
-      pl: "Audyt UX/UI i redesign największego marketplace’u z grami RPG, odtworzony jako działający sklep w React na mock API.",
+      en: "A UX/UI audit and redesign of one of the biggest tabletop-RPG marketplaces, built as a working React storefront. In a test with 5 players, SUS rose from 44 to 84.",
+      pl: "Audyt UX/UI i redesign jednego z największych marketplace’ów RPG, zbudowany jako działający sklep w React. W teście z 5 graczami SUS wzrósł z 44 do 84.",
     },
     tech: ["React 19", "TypeScript", "TanStack", "shadcn/ui", "Figma"],
     tools: "Figma, FigJam, Claude",

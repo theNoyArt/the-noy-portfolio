@@ -1,6 +1,7 @@
 import { useRef, type PointerEvent } from "react";
 import { useApp } from "../../app/AppContext";
 import { PERSON } from "../../content/person";
+import { VIEWS } from "../../content/views";
 import { nextCase, type ResolvedCase } from "../../lib/cases";
 import { useI18n } from "../../lib/i18n";
 import { coverFor, imageBg, stripes } from "../../lib/visual";
@@ -24,7 +25,7 @@ export function Closing({ c }: { c: ResolvedCase }) {
 
   const [local, ...rest] = PERSON.email.split("@");
   const domain = rest.join("@");
-  const n = nextCase(c);
+  const n = nextCase(c, VIEWS[app.view].projects);
   const next = n && n.id !== c.id ? n : null;
 
   const onMove = (e: PointerEvent<HTMLSpanElement>) => {
@@ -55,7 +56,7 @@ export function Closing({ c }: { c: ResolvedCase }) {
           "group/next glass-blur grid min-h-80 grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] max-[799px]:grid-cols-1 overflow-hidden rounded-card border border-glass-edge bg-surface text-ink shadow-glass " +
           "[transition:border-color_0.25s,box-shadow_0.25s] hover:border-accent hover:text-ink hover:shadow-glow"
         }
-        href={next ? `#/case/${next.id}` : "#/"}
+        href={next ? `/case/${next.id}` : VIEWS[app.view].path}
         onClick={(e) => {
           e.preventDefault();
           go();

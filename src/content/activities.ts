@@ -5,7 +5,10 @@ export const ACTIVITIES_DESC: Localized = {
   pl: "Ilustracja, gry fabularne i dzielenie się wiedzą. To, co między projektami utrzymuje w formie moje oko i ręce.",
 };
 
-// links: a "#/case/<id>" url opens that case study; leave the list empty to show no links.
+// links: a "/case/<id>" url opens that case study; leave the list empty to show no links.
+// images: square thumbnails on the card (in /public/images/activities), opening full size in a lightbox.
+const IMG = "/images/activities";
+
 export const ACTIVITIES: Activity[] = [
   {
     id: "rpgbooks",
@@ -20,6 +23,30 @@ export const ACTIVITIES: Activity[] = [
       { en: "Layout & typesetting", pl: "Skład i łamanie" },
       { en: "Print-ready files", pl: "Pliki do druku" },
     ],
+    images: [
+      {
+        src: `${IMG}/rpg-cover.webp`,
+        position: "30% center",
+        alt: {
+          en: "Cover of Mroczny Graal, a tabletop RPG of Arthurian horror: a jewelled grail spilling black ink over old parchment",
+          pl: "Okładka Mrocznego Graala, gry fabularnej o arturiańskiej grozie: zdobiony klejnotami graal, z którego wylewa się czarny tusz na stary pergamin",
+        },
+      },
+      {
+        src: `${IMG}/rpg-2.webp`,
+        alt: {
+          en: "Cover of Każdy jest Johnem, a competitive RPG: a crowd of illustrated characters with a ghost labelled “John” among them",
+          pl: "Okładka gry Każdy jest Johnem, rywalizacyjnej gry fabularnej: tłum ilustrowanych postaci, a wśród nich duch z napisem „John”",
+        },
+      },
+      {
+        src: `${IMG}/rpg-3.webp`,
+        alt: {
+          en: "Noir RPG illustration: a 1920s gangster couple with a tommy gun, surrounded by playing cards, dice and banknotes, with a vintage car below",
+          pl: "Ilustracja RPG w klimacie noir: para gangsterów z lat 20. z pistoletem maszynowym, wokół karty, kości i banknoty, a niżej stary samochód",
+        },
+      },
+    ],
     stats: [
       { v: "7", l: { en: "books published", pl: "wydanych podręczników" } },
       { v: "2", l: { en: "in progress", pl: "w trakcie" } },
@@ -27,7 +54,7 @@ export const ACTIVITIES: Activity[] = [
     links: [
       {
         label: { en: "DriveThruRPG case study", pl: "Case study DriveThruRPG" },
-        url: "#/case/dtrpg",
+        url: "/case/dtrpg",
       },
     ],
   },
@@ -39,6 +66,29 @@ export const ACTIVITIES: Activity[] = [
       en: "My illustration portfolio and live drawing streams, with tutorials and educational content coming up.",
       pl: "Moje portfolio ilustracji i streamy z rysowania, a wkrótce tutoriale i materiały edukacyjne.",
     },
+    images: [
+      {
+        src: `${IMG}/noy-1.webp`,
+        alt: {
+          en: "Digital painting of a girl with hair buns and a red panda on her shoulder, against a pink sunset sky",
+          pl: "Cyfrowa ilustracja: dziewczyna z kokami i pandą czerwoną na ramieniu, na tle różowego zachodu słońca",
+        },
+      },
+      {
+        src: `${IMG}/noy-2.webp`,
+        alt: {
+          en: "Digital painting of a goth girl holding a phone in a misty cemetery, with a raven, candles and a zombie hand reaching out of the ground",
+          pl: "Cyfrowa ilustracja: gotka z telefonem na mglistym cmentarzu, z krukiem, świecami i ręką zombie wychodzącą z ziemi",
+        },
+      },
+      {
+        src: `${IMG}/noy-3.webp`,
+        alt: {
+          en: "Fantasy portrait of three elves framed in a diamond, with white roses, blood and a skull",
+          pl: "Fantastyczny portret trzech elfów w rombowej ramie, z białymi różami, krwią i czaszką",
+        },
+      },
+    ],
     topics: [
       { en: "Digital painting", pl: "Malarstwo cyfrowe" },
       { en: "Character art", pl: "Postacie" },

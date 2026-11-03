@@ -30,10 +30,3 @@ export function imageBg(src: string | null | undefined, fallback: string): CSSPr
     ? { backgroundImage: `url("${src}")`, backgroundSize: "cover", backgroundPosition: "center" }
     : { background: fallback };
 }
-
-/** Deterministic pseudo-random number from a string, used for placeholder metrics. */
-export function hash(str: string, k: number): number {
-  let x = 7 + k * 31;
-  for (const ch of String(str)) x = (x * 33 + ch.charCodeAt(0)) % 9973;
-  return x;
-}

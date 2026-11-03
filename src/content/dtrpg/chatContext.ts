@@ -44,7 +44,7 @@ export function dtrpgChatContext(): string {
 
   const lines: string[] = [
     "DRIVETHRURPG REDESIGN CASE STUDY (the page the visitor is reading now)",
-    "Summary: a UX/UI audit and modernization of the biggest tabletop-RPG marketplace, rebuilt as a working React storefront on a mock API. Every screen of the redesign is clickable: browse, filter, cart, checkout, library. Self-initiated, 2026.",
+    "Summary: a UX/UI audit and modernization of one of the biggest tabletop-RPG marketplaces, rebuilt as a working React storefront on a mock API. In a usability test with 5 players, SUS rose from 44 to 84. Every screen of the redesign is clickable: browse, filter, cart, checkout, library. Self-initiated, 2026.",
     ...DT_FACTS.map(([k, v]) => `${k}: ${v}`),
     `Design tools: ${DT_TECH.design.join(", ")}. Front-end stack: ${DT_TECH.frontend.join(", ")}.`,
     "Links: " + links.join(" | "),

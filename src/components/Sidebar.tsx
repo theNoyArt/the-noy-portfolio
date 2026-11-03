@@ -2,6 +2,7 @@ import { tv } from "../lib/cn";
 import { useApp } from "../app/AppContext";
 import { HOME_SECTIONS, caseSections, homeSectionLabel } from "../app/sections";
 import { PERSON } from "../content/person";
+import { VIEWS, roleFor } from "../content/views";
 import { useI18n } from "../lib/i18n";
 import { useEmailLink } from "../lib/useEmailLink";
 import type { ResolvedCase } from "../lib/cases";
@@ -54,7 +55,6 @@ export function Sidebar({ current }: { current: ResolvedCase | null }) {
   const s = ui();
   const cl = caseLinks();
   const mail = useEmailLink();
-  const cvUrl = L(PERSON.cv.url);
 
   const contact = (
     <div className={cl.root()}>
@@ -71,16 +71,28 @@ export function Sidebar({ current }: { current: ResolvedCase | null }) {
           ↗
         </span>
       </a>
-      <a className={cl.link()} href={cvUrl} download={cvUrl.split("/").pop()}>
-        <svg className={cl.icon()} viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5" />
-          <path d="M5 19h14" />
-        </svg>
-        <span className={cl.text()}>{t.cvDownload}</span>
-        <span className={cl.arrow()} aria-hidden="true">
-          ↓
-        </span>
-      </a>
+      {/* The view's CVs: both on /, one on /frontend and /ux. */}
+      {VIEWS[app.view].cvs.map((k) => {
+        const url = L(PERSON.cv[k].url);
+        return (
+          <a
+            key={k}
+            className={cl.link()}
+            href={url}
+            download={url.split("/").pop()}
+            title={t.cvDownload}
+          >
+            <svg className={cl.icon()} viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5" />
+              <path d="M5 19h14" />
+            </svg>
+            <span className={cl.text()}>{L(PERSON.cv[k].label)}</span>
+            <span className={cl.arrow()} aria-hidden="true">
+              ↓
+            </span>
+          </a>
+        );
+      })}
     </div>
   );
 
@@ -98,7 +110,7 @@ export function Sidebar({ current }: { current: ResolvedCase | null }) {
         )}
         <button type="button" className={s.brand()} onClick={() => app.goSection("home")}>
           <span className={s.brandName()}>{PERSON.name}</span>
-          <span className={s.brandRole()}>{L(PERSON.role)}</span>
+          <span className={s.brandRole()}>{roleFor(app.view, L(PERSON.role))}</span>
         </button>
 
         {!current && (

@@ -270,7 +270,7 @@ export function Experience() {
                 {exProjects.map((pr, i) => (
                   <a
                     key={pr!.id}
-                    href={`#/case/${pr!.id}`}
+                    href={`/case/${pr!.id}`}
                     className={cn(
                       RISE,
                       "group flex flex-col gap-[6px] border-b border-line py-4 text-inherit [transition:opacity_0.3s]",

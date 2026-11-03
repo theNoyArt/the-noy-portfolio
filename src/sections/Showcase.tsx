@@ -1,5 +1,6 @@
 import { useApp } from "../app/AppContext";
-import { SHOWCASE_DESC, SHOWCASE_UPCOMING, VISIBLE_SHOWCASE } from "../content/showcase";
+import { SHOWCASE_DESC, SHOWCASE_UPCOMING } from "../content/showcase";
+import { showcaseFor } from "../content/views";
 import { useI18n } from "../lib/i18n";
 import { coverFor, imageBg, stripes } from "../lib/visual";
 import { Creature } from "../pages/tamagotchi/Creature";
@@ -92,6 +93,8 @@ const TECH = "font-mono text-[11px] text-muted";
 export function Showcase() {
   const { t, L } = useI18n();
   const app = useApp();
+  // The home view's projects: all of them on /, a role's own pick on /frontend and /ux.
+  const projects = showcaseFor(app.view);
 
   return (
     <section id="s-showcase" data-nav-section className={section()}>
@@ -106,11 +109,11 @@ export function Showcase() {
           app.narrow && "grid-cols-1",
         )}
       >
-        {VISIBLE_SHOWCASE.map((x, i) => {
+        {projects.map((x, i) => {
           const big = i === 0 && !app.narrow;
           // The first card spans two columns, so the rest fill rows of three from the second
           // row on. The last card, if it ends up alone in its row, spans the whole row.
-          const total = VISIBLE_SHOWCASE.length + SHOWCASE_UPCOMING.length;
+          const total = projects.length + SHOWCASE_UPCOMING.length;
           const wide = !app.narrow && i > 1 && i === total - 1 && (total - 2) % 3 === 1;
           const cover = coverFor(x.images, app.theme);
           const darkCover = !!cover && app.theme === "light" && !!x.images?.coverLightIsDark;
@@ -122,7 +125,7 @@ export function Showcase() {
               className={big ? "col-span-2" : wide ? "col-span-3" : undefined}
             >
               <a
-                href={`#/case/${x.id}`}
+                href={`/case/${x.id}`}
                 className={c.root()}
                 onClick={(e) => {
                   e.preventDefault();
@@ -226,7 +229,7 @@ export function Showcase() {
         {SHOWCASE_UPCOMING.map((x, i) => {
           const soon = card({ kind: "soon", muted: x.muted });
           return (
-            <div key={i} data-reveal={((VISIBLE_SHOWCASE.length + i) % 3) * 80}>
+            <div key={i} data-reveal={((projects.length + i) % 3) * 80}>
               <div className={soon.root()} aria-disabled={x.muted || undefined}>
                 <div className={cn(soon.cover(), COVER_SOON)}>
                   <span

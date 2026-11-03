@@ -13,19 +13,32 @@ export const PERSON: Person = {
     pl: "Front-end Developerka + Projektantka UX/UI",
   },
   intro: {
-    en: "Hi, I’m Paulina! I’ve spent 6 years building React and Angular apps and 4 years designing them, so I know products from both sides: from the first user interview to tested code in production.",
-    pl: "Cześć, jestem Paulina! Przez 6 lat budowałam aplikacje w React i Angularze, a przez 4 lata je projektowałam, więc znam produkty z obu stron: od pierwszej rozmowy z użytkownikiem po przetestowany kod na produkcji.",
+    en: "Hi, I’m Paulina! I’ve spent 10 years in product teams: 6 building React and Angular apps and 6 designing them, including 2 years combining both roles. I know the whole process, from the first user interview to tested code in production.",
+    pl: "Cześć, jestem Paulina! Od 10 lat pracuję w zespołach produktowych: przez 6 lat budowałam aplikacje w React i Angularze, a przez 6 je projektowałam, w tym przez 2 lata łączyłam obie role. Znam cały proces: od pierwszej rozmowy z użytkownikiem po przetestowany kod na produkcji.",
   },
 
   location: { en: "Poland · CET", pl: "Polska · CET" },
   status: { en: "Open to front-end and UX/UI roles", pl: "Otwarta na role front-endowe i UX/UI" },
   yearsExperience: 10,
-  links: [{ label: "GitHub", url: "https://github.com/theNoyArt" }],
+  links: [
+    { label: "GitHub", url: "https://github.com/theNoyArt" },
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/paulina-targosz" },
+  ],
+  // One CV per role, each in both languages. The home page (/) offers both; /frontend and /ux only their own.
   cv: {
-    label: { en: "CV (PDF)", pl: "CV (PDF)" },
-    url: {
-      en: "/cv/Paulina_Targosz_CV_2026_light.pdf",
-      pl: "/cv/Paulina_Targosz_CV_2026_PL_light.pdf",
+    frontend: {
+      label: { en: "CV Front-end", pl: "CV Front-end" },
+      url: {
+        en: "/cv/Paulina_Targosz_CV_2026_light.pdf",
+        pl: "/cv/Paulina_Targosz_CV_2026_PL_light.pdf",
+      },
+    },
+    ux: {
+      label: { en: "CV UX/UI", pl: "CV UX/UI" },
+      url: {
+        en: "/cv/Paulina_Targosz_CV_UX_2026_EN.pdf",
+        pl: "/cv/Paulina_Targosz_CV_UX_2026_PL.pdf",
+      },
     },
   },
   portrait: {

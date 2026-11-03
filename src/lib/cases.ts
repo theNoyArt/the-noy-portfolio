@@ -1,9 +1,7 @@
-import { CONFIG } from "../config";
 import { CASE_STUDIES } from "../content/caseStudies";
 import { EXPERIENCE } from "../content/experience";
 import { SHOWCASE } from "../content/showcase";
 import type { CaseMetrics, CaseStudy, Localized, ShowcaseProject, Track } from "../content/types";
-import { placeholderMetrics } from "./placeholderMetrics";
 
 /** A case study in the one shape the case-study page renders. */
 export interface ResolvedCase extends CaseStudy {
@@ -14,20 +12,11 @@ export interface ResolvedCase extends CaseStudy {
   origin: Localized | null;
   /** Hidden showcase project: see ShowcaseProject.hidden. */
   hidden?: boolean;
+  /** The project's real metrics; empty when it has none, so those sections stay hidden. */
   metricsResolved: CaseMetrics;
-  metricsArePlaceholder: boolean;
 }
 
 const BOTH_TRACKS: Track[] = ["ux", "dev"];
-
-function resolveMetrics(
-  c: CaseStudy | ShowcaseProject,
-): Pick<ResolvedCase, "metricsResolved" | "metricsArePlaceholder"> {
-  if (c.metrics) return { metricsResolved: c.metrics, metricsArePlaceholder: false };
-  if (CONFIG.showPlaceholderMetrics)
-    return { metricsResolved: placeholderMetrics(c), metricsArePlaceholder: true };
-  return { metricsResolved: {}, metricsArePlaceholder: false };
-}
 
 function fromShowcase(s: ShowcaseProject): ResolvedCase {
   return {
@@ -39,13 +28,13 @@ function fromShowcase(s: ShowcaseProject): ResolvedCase {
     group: "show",
     company: null,
     origin: s.origin,
-    ...resolveMetrics(s),
+    metricsResolved: s.metrics ?? {},
   };
 }
 
 function fromWork(c: CaseStudy): ResolvedCase {
   const company = EXPERIENCE.find((x) => x.projects.some((p) => p.id === c.id))?.company ?? null;
-  return { ...c, group: "work", company, origin: null, ...resolveMetrics(c) };
+  return { ...c, group: "work", company, origin: null, metricsResolved: c.metrics ?? {} };
 }
 
 export const WORK_CASES: ResolvedCase[] = CASE_STUDIES.map(fromWork);
@@ -59,9 +48,15 @@ export function getCase(id: string | null): ResolvedCase | null {
 /** Showcase cases without `hidden`, in showcase order. */
 export const VISIBLE_SHOW_CASES = SHOW_CASES.filter((c) => !c.hidden);
 
-/** The next case in the same group (work or visible showcase), wrapping around. From a hidden case, the first one. */
-export function nextCase(c: ResolvedCase): ResolvedCase {
-  const group = c.group === "show" ? VISIBLE_SHOW_CASES : WORK_CASES;
+/**
+ * The next case in the same group (work or visible showcase), wrapping around. `order` limits
+ * the showcase to a home view's projects (ids, in order). From a case outside the list, the first one.
+ */
+export function nextCase(c: ResolvedCase, order?: readonly string[] | null): ResolvedCase {
+  const show = order
+    ? order.flatMap((id) => VISIBLE_SHOW_CASES.filter((x) => x.id === id))
+    : VISIBLE_SHOW_CASES;
+  const group = c.group === "show" ? show : WORK_CASES;
   const i = group.findIndex((x) => x.id === c.id);
   return group[(i + 1) % group.length];
 }

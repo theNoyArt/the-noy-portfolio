@@ -11,6 +11,7 @@ import { SHOWCASE, SHOWCASE_UPCOMING } from "./showcase";
 import { TG } from "./tamagotchi";
 import { UI } from "./ui";
 import { VA, VA_IMG } from "./vantgard";
+import { VIEWS } from "./views";
 
 // Tests run from the project root.
 const PUBLIC = join(process.cwd(), "public");
@@ -42,6 +43,7 @@ const CONTENT = {
   PF_FACTS,
   PF_WIRES,
   VA,
+  VIEWS,
 };
 
 describe("content", () => {
@@ -79,12 +81,23 @@ describe("content", () => {
 
   it("only points to images and files that exist", () => {
     const paths = [
-      PERSON.cv.url.en,
-      PERSON.cv.url.pl,
+      ...Object.values(PERSON.cv).flatMap((cv) => [cv.url.en, cv.url.pl]),
+      ...ACTIVITIES.flatMap((a) => (a.images ?? []).map((im) => im.src)),
       ...SHOWCASE.flatMap((s) => [s.images?.cover, s.images?.coverLight, s.images?.coverDark]),
     ].filter((p): p is string => typeof p === "string" && p.startsWith("/"));
     const missing = paths.filter((p) => !existsSync(join(PUBLIC, p)));
     expect(missing).toEqual([]);
+  });
+
+  it("offers four CVs, one per role and language, all different files", () => {
+    const urls = Object.values(PERSON.cv).flatMap((cv) => [cv.url.en, cv.url.pl]);
+    expect(new Set(urls).size).toBe(4);
+  });
+
+  it("lists only visible projects that exist in each home view", () => {
+    const visible = SHOWCASE.filter((s) => !s.hidden).map((s) => s.id);
+    for (const v of Object.values(VIEWS))
+      for (const id of v.projects ?? []) expect(visible).toContain(id);
   });
 
   it("keeps the experience timeline consistent", () => {

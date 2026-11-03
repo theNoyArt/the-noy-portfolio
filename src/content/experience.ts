@@ -5,8 +5,7 @@ export const EXPERIENCE_DESC: Localized = {
   pl: "Dziesięć lat w front-endzie i projektowaniu UX/UI. Wybierz firmę na osi czasu, aby zobaczyć, czym się tam zajmowałam.",
 };
 
-/** Month → fractional year: m(2025, 9) is the start of September 2025; end(2026, 10) the end of October 2026. */
-const m = (y: number, month: number) => y + (month - 1) / 12;
+/** Month → fractional year: end(2026, 10) is the end of October 2026. */
 const end = (y: number, month: number) => y + month / 12;
 
 const CONFIDENTIAL: Localized = {
@@ -14,127 +13,96 @@ const CONFIDENTIAL: Localized = {
   pl: "Nazwy klientów pozostają poufne.",
 };
 
-const PHARMA: Localized = { en: "Large pharma company", pl: "Duża firma farmaceutyczna" };
+const PHARMA: Localized = { en: "Pharma client", pl: "Klient z branży farmaceutycznej" };
 
+// Kept general (title, one sentence, years) until the contract terms for client detail are confirmed.
 const CRAFTWARE_WORK: WorkProject[] = [
   {
     id: "ai-csr",
     featured: true,
-    title: {
-      en: "AI clinical study report platform",
-      pl: "Platforma AI do raportów z badań klinicznych",
-    },
+    title: { en: "AI report generation", pl: "Generowanie raportów z AI" },
     client: PHARMA,
     role: { en: "UX/UI Designer", pl: "Projektantka UX/UI" },
-    from: m(2025, 9),
-    to: end(2026, 10),
-    dates: { en: "Sep 2025 — Oct 2026", pl: "wrz 2025 — paź 2026" },
+    dates: { en: "2025 — 2026", pl: "2025 — 2026" },
     desc: {
-      en: "Healthcare professionals create clinical study reports from their source files with medical AI support: live regeneration of sections and real-time collaboration with others to make the report as strong as possible. A data-heavy product built around reviewing and editing AI-generated content.",
-      pl: "Pracownicy ochrony zdrowia tworzą raporty z badań klinicznych na podstawie plików źródłowych, ze wsparciem medycznego AI: regeneracja sekcji na żywo i współpraca z innymi w czasie rzeczywistym, by raport był jak najlepszy. Produkt pełen danych, zbudowany wokół przeglądania i edycji treści generowanych przez AI.",
+      en: "A data-heavy platform for creating and reviewing AI-generated reports.",
+      pl: "Platforma pełna danych do tworzenia i przeglądania raportów generowanych przez AI.",
     },
-    tags: ["AI", "Healthcare", "Data-heavy", "Collaboration", "Figma", "FigJam"],
+    tags: ["AI", "Healthcare", "Data-heavy", "Figma"],
   },
   {
     id: "ai-insights",
     featured: true,
-    title: { en: "AI insights & anomaly detection", pl: "AI: wnioski i wykrywanie anomalii" },
+    title: { en: "AI data insights", pl: "Wnioski z danych z AI" },
     client: PHARMA,
     role: { en: "UX/UI Designer", pl: "Projektantka UX/UI" },
-    from: m(2026, 6),
-    to: end(2026, 10),
-    dates: { en: "Jun 2026 — Oct 2026", pl: "cze 2026 — paź 2026" },
+    dates: { en: "2026", pl: "2026" },
     desc: {
-      en: "An internal platform where employees ask about insights or anomalies in company data and get a real answer with a full report: comparisons, charts and other visuals. I did part of the research and designed the mockups in Figma on shadcn/ui components.",
-      pl: "Wewnętrzna platforma, w której pracownicy pytają o wnioski i anomalie w danych firmy i dostają konkretną odpowiedź z pełnym raportem: porównaniami, wykresami i wizualizacjami. Prowadziłam część badań i projektowałam makiety w Figmie na komponentach shadcn/ui.",
+      en: "An internal AI tool that turns company data into insights.",
+      pl: "Wewnętrzne narzędzie AI, które zamienia dane firmy we wnioski.",
     },
-    tags: ["AI", "Data visualization", "Research", "shadcn/ui", "Figma"],
+    tags: ["AI", "Data visualization", "Research", "Figma"],
   },
   {
     id: "sales-assistant",
     featured: true,
-    title: { en: "AI sales rep assistant", pl: "Asystent AI dla przedstawicieli handlowych" },
+    title: { en: "AI sales assistance", pl: "Wsparcie sprzedaży z AI" },
     client: { en: "Enterprise client", pl: "Klient korporacyjny" },
     role: { en: "UX/UI & Graphic Designer", pl: "Projektantka UX/UI i graficzka" },
-    from: m(2026, 1),
-    to: end(2026, 10),
-    dates: { en: "Jan 2026 — Oct 2026", pl: "sty 2026 — paź 2026" },
+    dates: { en: "2026", pl: "2026" },
     desc: {
-      en: "A chat and planning assistant that organises a sales rep’s work, pulling data from multiple sources. It started with extensive research and stakeholder meetings that shaped the first version of the app. I also created the product branding, logos and visual presentations, including AI-generated images and video.",
-      pl: "Asystent z czatem i planowaniem, który porządkuje pracę przedstawiciela handlowego i zbiera dane z wielu źródeł. Projekt zaczął się od obszernych badań i spotkań z interesariuszami, które ukształtowały pierwszą wersję aplikacji. Stworzyłam też branding produktu, logo i prezentacje, w tym obrazy i wideo generowane przez AI.",
+      en: "An AI assistant for sales teams, designed from research to branding.",
+      pl: "Asystent AI dla zespołów sprzedaży, zaprojektowany od badań po branding.",
     },
-    tags: [
-      "AI",
-      "Research",
-      "Stakeholder workshops",
-      "Branding",
-      "Figma",
-      "FigJam",
-      "Claude Design",
-      "Azure DevOps",
-    ],
+    tags: ["AI", "Research", "Branding", "Figma"],
   },
   {
     id: "pharma-ds-2",
-    title: {
-      en: "Internal pharma tools · UI & design system",
-      pl: "Wewnętrzne narzędzia pharma · UI i design system",
-    },
-    client: { en: "Pharma company", pl: "Firma farmaceutyczna" },
+    title: { en: "Pharma UI & design system", pl: "UI i design system dla pharmy" },
+    client: PHARMA,
     role: { en: "UI Designer", pl: "Projektantka UI" },
-    from: m(2024, 9),
-    to: end(2025, 12),
-    dates: { en: "Sep 2024 — Dec 2025", pl: "wrz 2024 — gru 2025" },
+    dates: { en: "2024 — 2025", pl: "2024 — 2025" },
     desc: {
-      en: "UI support for an internal project, built on the client’s custom design system.",
-      pl: "Wsparcie UI w wewnętrznym projekcie, na autorskim design systemie klienta.",
+      en: "UI support for an internal tool built on the client’s design system.",
+      pl: "Wsparcie UI w wewnętrznym narzędziu opartym na design systemie klienta.",
     },
     tags: ["Pharma", "UI", "Design system"],
   },
   {
     id: "ecommerce",
-    title: { en: "Polish e-commerce platform", pl: "Polska platforma e-commerce" },
-    client: { en: "E-commerce company", pl: "Firma e-commerce" },
+    title: { en: "E-commerce UI", pl: "UI dla e-commerce" },
+    client: { en: "E-commerce client", pl: "Klient z branży e-commerce" },
     role: { en: "UI Designer", pl: "Projektantka UI" },
-    from: m(2025, 1),
-    to: end(2025, 9),
-    dates: { en: "Jan 2025 — Sep 2025", pl: "sty 2025 — wrz 2025" },
+    dates: { en: "2025", pl: "2025" },
     desc: {
-      en: "UI support for a Polish e-commerce platform.",
-      pl: "Wsparcie UI dla polskiej platformy e-commerce.",
+      en: "UI support for an e-commerce platform.",
+      pl: "Wsparcie UI dla platformy e-commerce.",
     },
     tags: ["E-commerce", "UI"],
   },
   {
     id: "pharma-ds-1",
-    title: {
-      en: "Internal pharma tools · UI & design system",
-      pl: "Wewnętrzne narzędzia pharma · UI i design system",
-    },
-    client: { en: "Another pharma company", pl: "Inna firma farmaceutyczna" },
+    title: { en: "Pharma UI & design system", pl: "UI i design system dla pharmy" },
+    client: PHARMA,
     role: { en: "UI Designer", pl: "Projektantka UI" },
-    from: m(2023, 5),
-    to: end(2025, 2),
-    dates: { en: "May 2023 — Feb 2025", pl: "maj 2023 — lut 2025" },
+    dates: { en: "2023 — 2025", pl: "2023 — 2025" },
     desc: {
-      en: "UI support for an internal project on a similar topic, with its own custom design system.",
-      pl: "Wsparcie UI w wewnętrznym projekcie o podobnej tematyce, z własnym design systemem.",
+      en: "UI support for another internal tool with its own design system.",
+      pl: "Wsparcie UI w innym wewnętrznym narzędziu z własnym design systemem.",
     },
     tags: ["Pharma", "UI", "Design system"],
   },
   {
     id: "data-marketplace",
-    title: { en: "Pharma data marketplace", pl: "Marketplace danych dla pharmy" },
+    title: { en: "Pharma data platform", pl: "Platforma danych dla pharmy" },
     client: PHARMA,
     role: { en: "UX/UI Designer", pl: "Projektantka UX/UI" },
-    from: m(2022, 7),
-    to: end(2024, 12),
-    dates: { en: "Jul 2022 — Dec 2024", pl: "lip 2022 — gru 2024" },
+    dates: { en: "2022 — 2024", pl: "2022 — 2024" },
     desc: {
-      en: "Six months of research, then two years designing a data management platform that connects many data sources into one. Started in Adobe XD and moved to Figma; Mural and Miro for research.",
-      pl: "Pół roku badań, a potem dwa lata projektowania platformy do zarządzania danymi, która łączy wiele źródeł w jedno. Zaczęliśmy w Adobe XD, potem przeszliśmy na Figmę; do badań Mural i Miro.",
+      en: "Research and UX/UI design of a platform that brings many data sources together.",
+      pl: "Badania i projekt UX/UI platformy łączącej wiele źródeł danych.",
     },
-    tags: ["Pharma", "Research", "Data management", "Figma", "Adobe XD", "Miro", "Mural"],
+    tags: ["Pharma", "Research", "Data management", "Figma"],
   },
 ];
 
@@ -198,7 +166,7 @@ const FINTECH_WORK: WorkProject[] = [
     id: "fiat-crypto",
     featured: true,
     title: { en: "Fiat & crypto financial dashboard", pl: "Dashboard finansowy fiat i krypto" },
-    client: { en: "Fintech / blockchain platform", pl: "Platforma fintech / blockchain" },
+    client: { en: "BlockchainWares", pl: "BlockchainWares" },
     role: {
       en: "UX/UI Designer & Front-end Developer",
       pl: "Projektantka UX/UI i front-end developerka",
@@ -298,7 +266,7 @@ const JCOMMERCE_WORK: WorkProject[] = [
   },
 ];
 
-// One entry per company, newest first. `to: null` means "now".
+// One entry per company, newest first. `to: null` would mean "now".
 // projects[].id points to a case study in caseStudies.ts; `at` places its pin on the
 // timeline as a fractional year (2024.25 ≈ April 2024).
 // `kind` drives the UX/UI and Development filter.
@@ -307,10 +275,10 @@ export const EXPERIENCE: Experience[] = [
     id: "craftware",
     company: "Craftware",
     from: 2022,
-    to: null,
-    dates: { en: "2022 — Now", pl: "2022 — obecnie" },
+    to: end(2026, 10),
+    dates: { en: "2022 — Oct 2026", pl: "2022 — paź 2026" },
     kind: ["ux", "dev"],
-    role: { en: "Regular–Senior UX/UI Designer", pl: "Regular–Senior UX/UI Designer" },
+    role: { en: "Senior UX/UI Designer", pl: "Senior UX/UI Designer" },
     desc: {
       en: "Diverse projects including AI-powered applications, healthcare, e-commerce and university platforms.",
       pl: "Różnorodne projekty, m.in. aplikacje oparte na AI, medycyna, e-commerce i platformy uczelniane.",
@@ -319,12 +287,16 @@ export const EXPERIENCE: Experience[] = [
       en: [
         "UX & UI: research, UX audits, usability testing, IA, hi-fi mockups, prototypes, design systems; branding",
         "Front-end (Angular): maintenance, bug fixing and improvements of a business data management app as Frontend Support Developer",
-        "Led and mentored junior designers",
+        "Ran a small UX/UI company with two designers working mainly for Craftware, and later took over part of the projects myself",
+        "2 years mentoring 3 UX designers, including those two",
+        "Responsible for recruitment (dozens of interviews) and technical estimates for 3–5 projects",
       ],
       pl: [
         "UX i UI: badania, audyty UX, testy użyteczności, IA, makiety hi-fi, prototypy, design systemy; branding",
         "Front-end (Angular): utrzymanie, poprawki i usprawnienia aplikacji do zarządzania danymi jako Frontend Support Developer",
-        "Prowadzenie i mentoring młodszych projektantów",
+        "Prowadziłam małą firmę UX/UI z dwiema osobami projektującymi głównie dla Craftware, a później przejęłam część projektów",
+        "2 lata mentoringu 3 osób w UX, w tym tych dwóch",
+        "Odpowiadałam za rekrutację (dziesiątki rozmów) i techniczne wyceny 3–5 projektów",
       ],
     },
     tech: ["Figma", "Adobe XD", "Miro", "Angular", "Azure DevOps", "MUI", "Lightning"],
@@ -363,7 +335,7 @@ export const EXPERIENCE: Experience[] = [
   },
   {
     id: "fintech",
-    company: "Fintech / blockchain platform",
+    company: "BlockchainWares",
     from: 2020,
     to: 2022,
     dates: { en: "2020 — 2022", pl: "2020 — 2022" },
@@ -404,11 +376,11 @@ export const EXPERIENCE: Experience[] = [
     resp: {
       en: [
         "Built and maintained web applications in React and Angular",
-        "Led front-end mentoring programs, supporting developers’ technical skills and best practices",
+        "Led front-end mentoring programs: 1 year mentoring 5–7 front-end developers, supporting their technical skills and best practices",
       ],
       pl: [
         "Budowa i utrzymanie aplikacji w React i Angularze",
-        "Prowadzenie programów mentoringowych dla front-endowców: rozwój umiejętności i dobrych praktyk",
+        "Prowadzenie programów mentoringowych dla front-endowców: rok mentoringu 5–7 osób w front-endzie, rozwój umiejętności i dobrych praktyk",
       ],
     },
     tech: [
