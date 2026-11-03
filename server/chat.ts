@@ -7,7 +7,7 @@ import { PERSON } from "../src/content/person.js";
 import { ABOUT, ABOUT_TABS, ABOUT_WORKFLOW } from "../src/content/about.js";
 import { EXPERIENCE } from "../src/content/experience.js";
 import { CASE_STUDIES } from "../src/content/caseStudies.js";
-import { SHOWCASE } from "../src/content/showcase.js";
+import { SHOWCASE, VISIBLE_SHOWCASE } from "../src/content/showcase.js";
 import { ACTIVITIES, HOBBIES } from "../src/content/activities.js";
 import type { Lang, Localized } from "../src/content/types";
 import { dtrpgChatContext } from "../src/content/dtrpg/chatContext.js";
@@ -95,7 +95,7 @@ export function buildSystemPrompt(lang: Lang, caseId?: string, compact = false):
       results: p.results.map((r) => `${r.v} ${E(r.l)}`),
       learned: E(p.learned),
     })),
-    showcase: SHOWCASE.map((s) => ({
+    showcase: VISIBLE_SHOWCASE.map((s) => ({
       name: s.name,
       type: E(s.type),
       origin: E(s.origin),

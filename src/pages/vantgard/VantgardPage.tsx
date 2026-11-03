@@ -25,7 +25,7 @@ import { LightboxProvider, useLightbox } from "../dtrpg/ui";
 import { badge, card, cap, headNote, ov, secLabel, secTitle, tgRoot } from "../tamagotchi/tg-ui";
 
 /*
- * Vantgard Arms: a client project shown anonymized. UX/UI only, so the page ends with the
+ * Vantgard Arms: a self-initiated, unimplemented proposal shown anonymized. UX/UI only, so the page ends with the
  * planned stack instead of a build section, and the only outside link is the Figma file.
  */
 
@@ -80,8 +80,8 @@ export function VantgardPage({ c }: { c: ResolvedCase }) {
         <Closing c={c} />
         <p className="block px-[max(16px,min(4vw,56px))] pb-5 font-mono text-[11.5px] text-muted">
           {L({
-            en: "Client project, shown anonymized · names and photos replaced",
-            pl: "Projekt dla klienta, pokazany anonimowo · nazwy i zdjęcia zastąpione",
+            en: "Self-initiated proposal, not implemented, shown anonymized · names and photos replaced",
+            pl: "Własna propozycja, niewdrożona, pokazana anonimowo · nazwy i zdjęcia zastąpione",
           })}
         </p>
       </LightboxProvider>
@@ -609,8 +609,8 @@ function Stack() {
       >
         <p className={bodyMuted({ class: headNote })}>
           {L({
-            en: "Design only in this portfolio: the build is the next step with the client.",
-            pl: "W tym portfolio tylko projekt: budowa to kolejny krok z klientem.",
+            en: "Design only: the proposal hasn’t been implemented, so this stack is a plan.",
+            pl: "Tylko projekt: propozycja nie została wdrożona, więc ten stack to plan.",
           })}
         </p>
       </SecHead>

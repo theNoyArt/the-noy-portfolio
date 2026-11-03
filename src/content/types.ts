@@ -72,6 +72,8 @@ export interface CaseImages {
   /** Theme-specific covers; used instead of cover when set. */
   coverLight?: ImagePath;
   coverDark?: ImagePath;
+  /** The Glass light cover is a dark image: the labels on it switch to light text. */
+  coverLightIsDark?: boolean;
   hero?: ImagePath;
   flows?: ImagePath;
   ia?: ImagePath;
@@ -174,6 +176,8 @@ export interface CaseStudy extends CaseBase {
 export interface ShowcaseProject extends CaseBase {
   /** Shows an "In progress" chip on the showcase card. */
   inProgress?: boolean;
+  /** Left out of the showcase, the next-project link, About and the AI chat; the page still opens by URL. */
+  hidden?: boolean;
   /** Current stage shown on the showcase card, with how many of `steps` are reached. */
   stage?: { label: Localized; step: number; steps: number };
   type: Localized;

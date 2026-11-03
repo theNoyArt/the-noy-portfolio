@@ -4,7 +4,7 @@ export type ThemeName = "dark" | "light";
 
 export const CONFIG = {
   /** Mode a first-time visitor sees: "dark" is Cyber dark, "light" is Glass light. After that the site remembers their choice. */
-  defaultTheme: "dark" as ThemeName,
+  defaultTheme: "light" as ThemeName,
   /**
    * Case studies without real `metrics` show generated placeholder numbers in the
    * UX audit, testing and analytics sections. Set to false before publishing to hide

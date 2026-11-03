@@ -1,6 +1,6 @@
 import type { Localized } from "./types";
 
-// Vantgard Arms: content for src/pages/vantgard. A client project shown anonymized.
+// Vantgard Arms: content for src/pages/vantgard. A self-initiated, unimplemented proposal shown anonymized.
 // UX/UI only (research, audit, visual direction, clickable prototype); no build in this portfolio.
 // Text matches the Figma file "Vantgard Arms" (Project overview page).
 
@@ -32,20 +32,20 @@ export const VA_CHAT_SUGGESTIONS = {
 export const VA = {
   meta: {
     kind: { en: "E-commerce · HEMA sword shop", pl: "E-commerce · Sklep z mieczami HEMA" },
-    origin: { en: "Client project · UX/UI", pl: "Projekt dla klienta · UX/UI" },
+    origin: { en: "Redesign proposal · Not implemented", pl: "Propozycja redesignu · Niewdrożona" },
   },
   title: { en: "Vantgard Arms", pl: "Vantgard Arms" },
   sub: { en: "HEMA Shop Redesign", pl: "Redesign sklepu HEMA" },
   lead: {
-    en: "Client project, from research to a clickable prototype: platform choice, UX audit, a new visual direction and the key pages of a HEMA sword shop.",
-    pl: "Projekt dla klienta, od badań po klikalny prototyp: wybór platformy, audyt UX, nowy kierunek wizualny i kluczowe strony sklepu z mieczami HEMA.",
+    en: "A self-initiated redesign proposal, not implemented, from research to a clickable prototype: platform choice, UX audit, a new visual direction and the key pages of a HEMA sword shop.",
+    pl: "Własna propozycja redesignu, niewdrożona, od badań po klikalny prototyp: wybór platformy, audyt UX, nowy kierunek wizualny i kluczowe strony sklepu z mieczami HEMA.",
   },
 
   note: {
     title: { en: "A note on names and photos", pl: "Uwaga o nazwach i zdjęciach" },
     body: {
-      en: "This was a real client project. To protect the client’s data, the shop is shown here as the fictional Vantgard Arms. Its name, logo, product lines, product names, address, people and photos have been replaced with invented names and stock photography. Everything else is exactly as delivered to the client: the structure, flows, components, interactions and every element of the pages.",
-      pl: "To był prawdziwy projekt dla klienta. Żeby chronić jego dane, sklep występuje tu jako fikcyjny Vantgard Arms. Nazwa, logo, linie produktów, nazwy produktów, adres, osoby i zdjęcia zostały zastąpione wymyślonymi nazwami i zdjęciami stockowymi. Cała reszta jest dokładnie taka, jak u klienta: struktura, ścieżki, komponenty, interakcje i każdy element stron.",
+      en: "This is a self-initiated proposal based on a real shop’s existing site. It hasn’t been implemented, so the shop is shown here as the fictional Vantgard Arms. Its name, logo, product lines, product names, address, people and photos have been replaced with invented names and stock photography. Everything else is as in the original proposal: the structure, flows, components, interactions and every element of the pages.",
+      pl: "To moja własna propozycja oparta na istniejącej stronie prawdziwego sklepu. Nie została wdrożona, dlatego sklep występuje tu jako fikcyjny Vantgard Arms. Nazwa, logo, linie produktów, nazwy produktów, adres, osoby i zdjęcia zostały zastąpione wymyślonymi nazwami i zdjęciami stockowymi. Cała reszta jest taka jak w pierwotnej propozycji: struktura, ścieżki, komponenty, interakcje i każdy element stron.",
     },
   },
 
@@ -74,21 +74,21 @@ export const VA = {
     {
       k: { en: "Next", pl: "Dalej" },
       v: {
-        en: "client feedback on the prototype, the platform choice, then the build in Next.js.",
-        pl: "opinia klienta o prototypie, wybór platformy, potem budowa w Next.js.",
+        en: "feedback from the owner and fencers, the platform choice, then the build in Next.js, if the proposal is taken forward.",
+        pl: "opinia właściciela i szermierzy, wybór platformy, potem budowa w Next.js, jeśli propozycja zostanie przyjęta.",
       },
     },
   ],
 
   overview: {
-    en: "The client runs a small workshop that makes swords for historical European martial arts (HEMA): feders, sabres, sideswords, messers, bucklers and daggers, in three lines from entry level to premium. The shop works, but it has outgrown its template. The client wanted to manage products and page content without a developer, take secure payments, keep e-mail and social login, and add translations and a choice of currency. The project started with the platform question, audited the current store, and redesigned the key pages as a clickable prototype for the client to review.",
-    pl: "Klient prowadzi mały warsztat, który robi miecze do historycznych europejskich sztuk walki (HEMA): federy, szable, sideswordy, messery, puklerze i sztylety, w trzech liniach od podstawowej do premium. Sklep działa, ale wyrósł ze swojego szablonu. Klient chciał zarządzać produktami i treścią stron bez programisty, przyjmować bezpieczne płatności, zachować logowanie przez e-mail i media społecznościowe oraz dodać tłumaczenia i wybór waluty. Projekt zaczął się od wyboru platformy, objął audyt obecnego sklepu i redesign kluczowych stron jako klikalny prototyp do oceny przez klienta.",
+    en: "The shop belongs to a small workshop that makes swords for historical European martial arts (HEMA): feders, sabres, sideswords, messers, bucklers and daggers, in three lines from entry level to premium. The shop works, but it has outgrown its template. My working assumption: the owner needs to manage products and page content without a developer, take secure payments, keep e-mail and social login, and add translations and a choice of currency. The project started with the platform question, audited the current store, and redesigned the key pages as a clickable prototype.",
+    pl: "Sklep należy do małego warsztatu, który robi miecze do historycznych europejskich sztuk walki (HEMA): federy, szable, sideswordy, messery, puklerze i sztylety, w trzech liniach od podstawowej do premium. Sklep działa, ale wyrósł ze swojego szablonu. Moje założenie robocze: właściciel potrzebuje zarządzać produktami i treścią stron bez programisty, przyjmować bezpieczne płatności, zachować logowanie przez e-mail i media społecznościowe oraz dodać tłumaczenia i wybór waluty. Projekt zaczął się od wyboru platformy, objął audyt obecnego sklepu i redesign kluczowych stron jako klikalny prototyp.",
   },
 
   goals: [
     {
-      en: "Let the client manage products and page content in a CMS, with translations and several currencies.",
-      pl: "Pozwolić klientowi zarządzać produktami i treścią stron w CMS-ie, z tłumaczeniami i kilkoma walutami.",
+      en: "Let the owner manage products and page content in a CMS, with translations and several currencies.",
+      pl: "Pozwolić właścicielowi zarządzać produktami i treścią stron w CMS-ie, z tłumaczeniami i kilkoma walutami.",
     },
     {
       en: "Make choosing a sword clear: every option with a description and a price, on the product page.",
@@ -122,13 +122,16 @@ export const VA = {
     },
     {
       k: { en: "Type", pl: "Typ" },
-      v: { en: "Client project, shown anonymized", pl: "Projekt dla klienta, pokazany anonimowo" },
+      v: {
+        en: "Self-initiated proposal, not implemented, shown anonymized",
+        pl: "Własna propozycja, niewdrożona, pokazana anonimowo",
+      },
     },
     {
       k: { en: "Constraints", pl: "Ograniczenia" },
       v: {
-        en: "The audit is based on 24 desktop screenshots of the live store, with no access to analytics or sales data. Mobile was not audited yet. Product data was copied from the live store, and some details still need the client’s confirmation.",
-        pl: "Audyt opiera się na 24 zrzutach ekranu obecnego sklepu na desktopie, bez dostępu do analityki i danych sprzedaży. Mobile nie był jeszcze audytowany. Dane produktów skopiowano z obecnego sklepu, a część szczegółów wymaga jeszcze potwierdzenia klienta.",
+        en: "The audit is based on 24 desktop screenshots of the live store, with no access to analytics or sales data. Requirements are my own assumptions. Mobile was not audited yet. Product data was copied from the live store, and some details are unconfirmed.",
+        pl: "Audyt opiera się na 24 zrzutach ekranu obecnego sklepu na desktopie, bez dostępu do analityki i danych sprzedaży. Wymagania to moje założenia. Mobile nie był jeszcze audytowany. Dane produktów skopiowano z obecnego sklepu, a część szczegółów nie jest potwierdzona.",
       },
     },
   ],
@@ -172,21 +175,21 @@ export const VA = {
     {
       t: { en: "Discovery and platform research", pl: "Odkrywanie i wybór platformy" },
       goal: {
-        en: "Find a platform the client can run on their own.",
-        pl: "Znaleźć platformę, którą klient obsłuży sam.",
+        en: "Find a platform the owner can run on their own.",
+        pl: "Znaleźć platformę, którą właściciel obsłuży sam.",
       },
       items: [
         {
-          en: "Requirements with the client: a CMS for products and pages, secure payments, e-mail and social login, translations and currencies.",
-          pl: "Wymagania z klientem: CMS do produktów i stron, bezpieczne płatności, logowanie przez e-mail i media społecznościowe, tłumaczenia i waluty.",
+          en: "Assumed requirements: a CMS for products and pages, secure payments, e-mail and social login, translations and currencies.",
+          pl: "Założone wymagania: CMS do produktów i stron, bezpieczne płatności, logowanie przez e-mail i media społecznościowe, tłumaczenia i waluty.",
         },
         {
           en: "Comparison of hosted and open-source platforms and CMSs, free and paid, with pros and cons, currency handling and the cost of support and maintenance.",
           pl: "Porównanie platform i CMS-ów hostowanych i open source, darmowych i płatnych: plusy i minusy, obsługa walut, koszt wsparcia i utrzymania.",
         },
         {
-          en: "Delivered as a shared document and a PDF for the client.",
-          pl: "Oddane jako wspólny dokument i PDF dla klienta.",
+          en: "Written up as a shared document and a PDF.",
+          pl: "Spisane jako wspólny dokument i PDF.",
         },
       ],
     },
@@ -248,8 +251,8 @@ export const VA = {
     {
       t: { en: "Clickable prototype", pl: "Klikalny prototyp" },
       goal: {
-        en: "Let the client click through the real flows before anything is built.",
-        pl: "Dać klientowi przeklikać prawdziwe ścieżki, zanim cokolwiek powstanie.",
+        en: "Let the owner click through the real flows before anything is built.",
+        pl: "Dać właścicielowi przeklikać prawdziwe ścieżki, zanim cokolwiek powstanie.",
       },
       items: [
         {
@@ -261,20 +264,23 @@ export const VA = {
           pl: "Działające filtry, wyszukiwarka, mega menu, język i waluta (EUR, PLN, USD), 4-krokowy konfigurator z ceną na żywo i szuflada koszyka.",
         },
         {
-          en: "Refined in short design loops, then published online for the client’s review.",
-          pl: "Dopracowany w krótkich pętlach projektowych, potem opublikowany online do oceny klienta.",
+          en: "Refined in short design loops, then published online.",
+          pl: "Dopracowany w krótkich pętlach projektowych, potem opublikowany online.",
         },
       ],
     },
     {
-      t: { en: "Build (next)", pl: "Budowa (dalej)" },
+      t: { en: "Build (if taken forward)", pl: "Budowa (jeśli propozycja zostanie przyjęta)" },
       next: true,
       goal: {
         en: "Turn the prototype into the live shop.",
         pl: "Zamienić prototyp w działający sklep.",
       },
       items: [
-        { en: "Choose the platform with the client.", pl: "Wybrać platformę z klientem." },
+        {
+          en: "If taken forward: choose the platform with the owner.",
+          pl: "Jeśli propozycja zostanie przyjęta: wybrać platformę z właścicielem.",
+        },
         {
           en: "Build the storefront in Next.js from the prototype’s tokens and components.",
           pl: "Zbudować sklep w Next.js z tokenów i komponentów prototypu.",
@@ -312,8 +318,8 @@ export const VA = {
     {
       k: { en: "Commerce platform", pl: "Platforma sklepu" },
       v: {
-        en: "To decide with the client: Medusa (official Next.js storefront) or Shopify through its Storefront API",
-        pl: "Do ustalenia z klientem: Medusa (oficjalny storefront w Next.js) albo Shopify przez Storefront API",
+        en: "To decide with the owner: Medusa (official Next.js storefront) or Shopify through its Storefront API",
+        pl: "Do ustalenia z właścicielem: Medusa (oficjalny storefront w Next.js) albo Shopify przez Storefront API",
       },
     },
     {
@@ -326,8 +332,8 @@ export const VA = {
     {
       k: { en: "Prototype", pl: "Prototyp" },
       v: {
-        en: "One self-contained HTML, CSS and JavaScript file, published online for the client",
-        pl: "Jeden samodzielny plik HTML, CSS i JavaScript, opublikowany online dla klienta",
+        en: "One self-contained HTML, CSS and JavaScript file, published online",
+        pl: "Jeden samodzielny plik HTML, CSS i JavaScript, opublikowany online",
       },
     },
   ],
@@ -418,8 +424,8 @@ export const VA = {
         pl: "konfiguracja to sam zakup. Opcje bez kontekstu prowadzą do pytań, pomyłek i zwrotów.",
       },
       cost: {
-        en: "richer product data for the client to maintain in the CMS.",
-        pl: "bogatsze dane produktów, które klient musi utrzymywać w CMS-ie.",
+        en: "richer product data for the owner to maintain in the CMS.",
+        pl: "bogatsze dane produktów, które właściciel musi utrzymywać w CMS-ie.",
       },
     },
     {
@@ -466,8 +472,8 @@ export const VA = {
   ],
 
   beforeAfterLead: {
-    en: "Before: the live store, anonymized (names, contacts and the client’s photos replaced or blurred; layout untouched). After: the redesign in the prototype.",
-    pl: "Przed: obecny sklep po anonimizacji (nazwy, kontakty i zdjęcia klienta zastąpione lub rozmyte; układ bez zmian). Po: redesign w prototypie.",
+    en: "Before: the live store, anonymized (names, contacts and the shop’s photos replaced or blurred; layout untouched). After: the redesign in the prototype.",
+    pl: "Przed: obecny sklep po anonimizacji (nazwy, kontakty i zdjęcia sklepu zastąpione lub rozmyte; układ bez zmian). Po: redesign w prototypie.",
   },
   beforeAfter: [
     {
@@ -573,8 +579,8 @@ export const VA = {
   ],
 
   mockupsLead: {
-    en: "The anonymized Vantgard Arms prototype. Same pages, components and interactions as the client version; names and photos replaced.",
-    pl: "Zanonimizowany prototyp Vantgard Arms. Te same strony, komponenty i interakcje co w wersji dla klienta; nazwy i zdjęcia zastąpione.",
+    en: "The anonymized Vantgard Arms prototype. Same pages, components and interactions as the original proposal; names and photos replaced.",
+    pl: "Zanonimizowany prototyp Vantgard Arms. Te same strony, komponenty i interakcje co w pierwotnej propozycji; nazwy i zdjęcia zastąpione.",
   },
   mockups: {
     desktop: [

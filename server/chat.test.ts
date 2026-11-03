@@ -177,6 +177,18 @@ describe("buildSystemPrompt", () => {
     }
   });
 
+  it("leaves hidden projects out of the showcase facts", () => {
+    const home = buildSystemPrompt("en");
+    expect(home).not.toContain('"name":"Bond"');
+    expect(home).not.toContain('"name":"Art practice assistant"');
+    expect(home).toContain('"name":"Vantgard Arms"');
+    for (const lang of ["en", "pl"] as const) {
+      for (const page of [buildSystemPrompt(lang), buildSystemPrompt(lang, "portfolio")]) {
+        expect(page).not.toMatch(/Bond|Art practice|Tamagotchi|Asystent praktyki/i);
+      }
+    }
+  });
+
   it("keeps only English text in the facts", () => {
     expect(buildSystemPrompt("en", "tamagotchi")).not.toContain('"pl":');
   });

@@ -1,5 +1,5 @@
 import { useApp } from "../app/AppContext";
-import { SHOWCASE, SHOWCASE_DESC, SHOWCASE_UPCOMING } from "../content/showcase";
+import { SHOWCASE_DESC, SHOWCASE_UPCOMING, VISIBLE_SHOWCASE } from "../content/showcase";
 import { useI18n } from "../lib/i18n";
 import { coverFor, imageBg, stripes } from "../lib/visual";
 import { Creature } from "../pages/tamagotchi/Creature";
@@ -20,6 +20,9 @@ const card = tv({
       "[transition:transform_0.4s_cubic-bezier(0.2,0.7,0.2,1),box-shadow_0.4s,border-color_0.3s] " +
       "glass:glass-blur glass:border-glass-edge glass:shadow-glass",
     cover: "relative aspect-[4/3] overflow-hidden rounded-card",
+    body: "flex flex-1 flex-col gap-2 px-1 pt-4 pb-1",
+    /* Tech line and "Open project" sit at the bottom of every card. */
+    foot: "mt-auto flex flex-wrap items-baseline justify-between gap-2 pt-[6px]",
     title:
       "display text-[calc(clamp(24px,2.2cqi,32px)*var(--h1-scale,1))] leading-none [transition:color_0.3s] group-hover:text-accent",
   },
@@ -44,6 +47,17 @@ const card = tv({
         title: "text-[calc(clamp(30px,3.2cqi,48px)*var(--h1-scale,1))] leading-none",
       },
     },
+    /* Alone in the last row: spans it, cover on the left and the text centred beside it,
+       with the tech line right under the description. */
+    wide: {
+      true: {
+        root: "grid grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] gap-x-[clamp(12px,1.6cqi,24px)]",
+        cover: "aspect-[16/8.2]",
+        body: "justify-center px-2 py-2",
+        foot: "mt-2",
+        title: "text-[calc(clamp(30px,3.2cqi,48px)*var(--h1-scale,1))] leading-none",
+      },
+    },
     /* Upcoming project that hasn't started: greyed out and inert. */
     muted: { true: { root: "pointer-events-none opacity-55 grayscale" } },
   },
@@ -58,11 +72,21 @@ const COVER_SOON =
 const MASCOT =
   "relative m-auto w-[42%] max-w-[180px] [transition:transform_0.4s_cubic-bezier(0.3,1.4,0.5,1)] group-hover:[transform:scale(1.08)_rotate(-3deg)]";
 
-const TYPE = "absolute top-3 left-3";
-const BODY = "flex flex-1 flex-col gap-2 px-1 pt-4 pb-1";
+/* The portfolio cover is a 1600px-wide home page screenshot whose sidebar header would sit under
+   the type chip. Crop off the 240px sidebar (1600/1360 = 117.65%) and start the image 44px down,
+   so the chip and year sit on a band of page background above the hero. */
+const PORTFOLIO_COVER =
+  "bg-bg bg-no-repeat [background-size:117.65%_auto]! [background-position:right_top_44px]!";
+
+/* Leaves room for the year on the right, so a long type wraps instead of running into it. */
+const TYPE = "absolute top-3 left-3 max-w-[calc(100%-84px)]";
+const YEAR = "absolute top-3 right-3 font-mono text-[11px]";
+/* Type and year over a dark cover in Glass light: light text on a dark backing (AA on any image). */
+const ON_DARK_TYPE =
+  "text-white glass:border-[rgba(255,255,255,0.3)] glass:bg-[rgba(10,9,16,0.72)] glass:shadow-none";
+const ON_DARK_YEAR =
+  "top-[10px] right-[10px] rounded-full bg-[rgba(10,9,16,0.72)] px-2 py-[2px] text-white";
 const SHORT = "text-[15px] text-pretty text-muted";
-/* Tech line and "Open project" sit at the bottom of every card. */
-const FOOT = "mt-auto flex flex-wrap items-baseline justify-between gap-2 pt-[6px]";
 const TECH = "font-mono text-[11px] text-muted";
 
 export function Showcase() {
@@ -82,12 +106,21 @@ export function Showcase() {
           app.narrow && "grid-cols-1",
         )}
       >
-        {SHOWCASE.map((x, i) => {
+        {VISIBLE_SHOWCASE.map((x, i) => {
           const big = i === 0 && !app.narrow;
+          // The first card spans two columns, so the rest fill rows of three from the second
+          // row on. The last card, if it ends up alone in its row, spans the whole row.
+          const total = VISIBLE_SHOWCASE.length + SHOWCASE_UPCOMING.length;
+          const wide = !app.narrow && i > 1 && i === total - 1 && (total - 2) % 3 === 1;
           const cover = coverFor(x.images, app.theme);
-          const c = card({ big });
+          const darkCover = !!cover && app.theme === "light" && !!x.images?.coverLightIsDark;
+          const c = card({ big, wide });
           return (
-            <div key={x.id} data-reveal={(i % 3) * 80} className={big ? "col-span-2" : undefined}>
+            <div
+              key={x.id}
+              data-reveal={(i % 3) * 80}
+              className={big ? "col-span-2" : wide ? "col-span-3" : undefined}
+            >
               <a
                 href={`#/case/${x.id}`}
                 className={c.root()}
@@ -133,22 +166,22 @@ export function Showcase() {
                       className={cn(
                         "absolute inset-0 [transition:transform_0.8s_cubic-bezier(0.2,0.7,0.2,1),filter_0.4s] group-hover:[filter:var(--cover-filter-hover)] group-hover:[transform:scale(1.06)]",
                         // The portfolio cover is a tall page screenshot: show its top.
-                        x.id === "portfolio" && "bg-top!",
+                        x.id === "portfolio" && PORTFOLIO_COVER,
                       )}
                       style={imageBg(cover, stripes(x.hue, app.theme))}
                     />
                   )}
-                  <span className={cn(chip(), TYPE)}>
+                  <span className={cn(chip(), TYPE, darkCover && ON_DARK_TYPE)}>
                     {x.inProgress ? t.inProgress : L(x.type)}
                   </span>
-                  <span className="absolute top-3 right-3 font-mono text-[11px]">{x.year}</span>
+                  <span className={cn(YEAR, darkCover && ON_DARK_YEAR)}>{x.year}</span>
                   {!cover && !x.inProgress && (
                     <span className="absolute bottom-3 left-[14px] font-mono text-[10.5px] text-muted">
                       {x.name} · {t.coverPh}
                     </span>
                   )}
                 </div>
-                <div className={BODY}>
+                <div className={c.body()}>
                   {x.stage && (
                     // Project stage on in-progress cards.
                     <span
@@ -178,9 +211,10 @@ export function Showcase() {
                       </span>
                     </span>
                   )}
+                  <span className={cn(TECH, "text-pretty")}>{L(x.origin)}</span>
                   <span className={c.title()}>{x.name}</span>
                   <span className={SHORT}>{L(x.short)}</span>
-                  <div className={FOOT}>
+                  <div className={c.foot()}>
                     <span className={TECH}>{x.tech.join(" · ")}</span>
                     <span className="text-[14px] font-medium text-accent">{t.open}</span>
                   </div>
@@ -192,7 +226,7 @@ export function Showcase() {
         {SHOWCASE_UPCOMING.map((x, i) => {
           const soon = card({ kind: "soon", muted: x.muted });
           return (
-            <div key={i} data-reveal={((SHOWCASE.length + i) % 3) * 80}>
+            <div key={i} data-reveal={((VISIBLE_SHOWCASE.length + i) % 3) * 80}>
               <div className={soon.root()} aria-disabled={x.muted || undefined}>
                 <div className={cn(soon.cover(), COVER_SOON)}>
                   <span
@@ -203,10 +237,10 @@ export function Showcase() {
                   </span>
                   <span className={cn(chip(), TYPE)}>{t.inProgress}</span>
                 </div>
-                <div className={BODY}>
+                <div className={soon.body()}>
                   <span className={soon.title()}>{L(x.title)}</span>
                   <span className={SHORT}>{L(x.desc)}</span>
-                  <div className={FOOT}>
+                  <div className={soon.foot()}>
                     <span className={TECH}>{L(x.meta)}</span>
                     <span className="font-mono text-[11px] font-medium tracking-[0.08em] text-muted uppercase">
                       {t.comingSoon}

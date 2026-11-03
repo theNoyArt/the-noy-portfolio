@@ -12,6 +12,8 @@ export interface ResolvedCase extends CaseStudy {
   company: string | null;
   /** "Freelance" / "Self-initiated" for showcase projects. */
   origin: Localized | null;
+  /** Hidden showcase project: see ShowcaseProject.hidden. */
+  hidden?: boolean;
   metricsResolved: CaseMetrics;
   metricsArePlaceholder: boolean;
 }
@@ -54,9 +56,12 @@ export function getCase(id: string | null): ResolvedCase | null {
   return (id && ALL.find((c) => c.id === id)) || null;
 }
 
-/** The next case in the same group (work or showcase), wrapping around. */
+/** Showcase cases without `hidden`, in showcase order. */
+export const VISIBLE_SHOW_CASES = SHOW_CASES.filter((c) => !c.hidden);
+
+/** The next case in the same group (work or visible showcase), wrapping around. From a hidden case, the first one. */
 export function nextCase(c: ResolvedCase): ResolvedCase {
-  const group = c.group === "show" ? SHOW_CASES : WORK_CASES;
+  const group = c.group === "show" ? VISIBLE_SHOW_CASES : WORK_CASES;
   const i = group.findIndex((x) => x.id === c.id);
   return group[(i + 1) % group.length];
 }

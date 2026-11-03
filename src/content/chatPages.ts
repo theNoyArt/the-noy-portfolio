@@ -118,7 +118,7 @@ export function vantgardChatContext(): string {
   } = VA;
   return page(
     "VANTGARD ARMS CASE STUDY",
-    "Vantgard Arms is a real client project shown anonymized (fictional name, logo, products and stock photos; layout and flows exactly as delivered). Never name or guess the real client or shop: if asked, say it is anonymized at the client's request. UX/UI only: platform research, UX audit, visual direction and a clickable prototype; the build in Next.js is the next step, so there is no code to show. The Figma file is linked on the page: " +
+    "Vantgard Arms is a self-initiated redesign proposal based on a real shop's existing site. It was not commissioned and has not been implemented, and its requirements are Paulina's own assumptions. It is shown anonymized (fictional name, logo, products and stock photos; layout and flows as in the original proposal). Never name or guess the real shop: if asked, say it is anonymized because the proposal was not implemented. UX/UI only: platform research, UX audit, visual direction and a clickable prototype; the Next.js stack is only a plan, so there is no code to show. The Figma file is linked on the page: " +
       VA_LINKS.figma,
     {
       meta,

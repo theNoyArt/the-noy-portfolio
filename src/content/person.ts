@@ -18,7 +18,7 @@ export const PERSON: Person = {
   },
 
   location: { en: "Poland · CET", pl: "Polska · CET" },
-  status: { en: "Open to front-end roles", pl: "Otwarta na role front-endowe" },
+  status: { en: "Open to front-end and UX/UI roles", pl: "Otwarta na role front-endowe i UX/UI" },
   yearsExperience: 10,
   links: [{ label: "GitHub", url: "https://github.com/theNoyArt" }],
   cv: {

@@ -61,8 +61,8 @@ export const PF = {
     {
       t: { en: "Case studies", pl: "Case studies" },
       d: {
-        en: "Hand-built pages per project: DriveThruRPG, Bond, Art practice assistant and this one.",
-        pl: "Osobne strony dla projektów: DriveThruRPG, Bond, Asystent praktyki artystycznej i ta.",
+        en: "Hand-built pages per project: DriveThruRPG, Vantgard Arms and this one.",
+        pl: "Osobne strony dla projektów: DriveThruRPG, Vantgard Arms i ta.",
       },
       tag: { en: "Final stage", pl: "Etap końcowy" },
     },
@@ -269,7 +269,7 @@ export const PF = {
       status: "active",
       title: { en: "Finish case studies", pl: "Dokończyć case studies" },
       points: [
-        { en: "Real data for Bond and Art practice", pl: "Prawdziwe dane dla Bond i Asystenta" },
+        { en: "Real data for the projects in progress", pl: "Prawdziwe dane dla projektów w toku" },
       ],
     },
     {
@@ -311,8 +311,8 @@ export const PF_FACTS: [Localized, Localized][] = [
   [
     { en: "Scope", pl: "Zakres" },
     {
-      en: "Home page, 4 case studies, 2 themes, EN/PL, AI chat",
-      pl: "Strona główna, 4 case studies, 2 motywy, EN/PL, czat AI",
+      en: "Home page, 3 case studies, 2 themes, EN/PL, AI chat",
+      pl: "Strona główna, 3 case studies, 2 motywy, EN/PL, czat AI",
     },
   ],
   [
@@ -640,8 +640,8 @@ export const PF_WIRES: {
     {
       t: { en: "One template", pl: "Jeden szablon" },
       d: {
-        en: "Every project reuses this order and shortens it: Bond and Art practice swap audit for research and a roadmap.",
-        pl: "Każdy projekt używa tej kolejności i ją skraca: Bond i Asystent zamieniają audyt na badania i roadmapę.",
+        en: "Every project reuses this order and shortens it where a stage doesn’t apply: Vantgard Arms ends with a planned stack instead of a build.",
+        pl: "Każdy projekt używa tej kolejności i ją skraca, gdy etap nie pasuje: Vantgard Arms kończy się planowanym stackiem zamiast budowy.",
       },
     },
     {

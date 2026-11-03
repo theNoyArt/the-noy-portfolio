@@ -66,7 +66,7 @@ export function Closing({ c }: { c: ResolvedCase }) {
             {tr(next ? "Next case study →" : "More work")}
           </span>
           {/* Long names ("Portfolio website") wrap instead of running under the cover. */}
-          <span className="display min-w-0 text-[clamp(32px,3.4vw,56px)] leading-[1] text-balance break-words">
+          <span className="display min-w-0 text-[clamp(28px,2.7vw,56px)] leading-[1] text-balance break-words">
             {next ? next.name : tr("All projects.")}
           </span>
           <span className="font-mono text-[12px] text-muted">

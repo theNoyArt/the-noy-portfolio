@@ -2,7 +2,7 @@ import { useEffect, useState, type CSSProperties } from "react";
 import { useApp } from "../app/AppContext";
 import { STAGE_SECTION } from "../app/sections";
 import { ABOUT, ABOUT_TABS, ABOUT_WORKFLOW, ABOUT_WORKFLOW_DESC } from "../content/about";
-import { SHOWCASE } from "../content/showcase";
+import { VISIBLE_SHOWCASE } from "../content/showcase";
 import { cn, tv } from "../lib/cn";
 import { useI18n } from "../lib/i18n";
 import { linkList, monoLabel, section, sectionHead, sectionTitle } from "../styles/recipes";
@@ -171,7 +171,7 @@ export function About() {
               <span className={monoLabel()}>{t.seeIn}</span>
               <div className={links.root()}>
                 {cur.links.map((id) => {
-                  const p = SHOWCASE.find((s) => s.id === id);
+                  const p = VISIBLE_SHOWCASE.find((s) => s.id === id);
                   if (!p) return null;
                   return (
                     <button

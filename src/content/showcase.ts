@@ -1,8 +1,8 @@
 import type { Localized, ShowcaseProject } from "./types";
 
 export const SHOWCASE_DESC: Localized = {
-  en: "Self-initiated projects that show the full path, from research and design to a tested front end.",
-  pl: "Własne projekty pokazujące całą drogę: od badań i projektu po przetestowany front-end.",
+  en: "Projects that show how I work, from research and design to a tested front end.",
+  pl: "Projekty pokazujące, jak pracuję: od badań i projektu po przetestowany front-end.",
 };
 
 // Project showcase cards. The first project gets the large card.
@@ -144,12 +144,12 @@ export const SHOWCASE: ShowcaseProject[] = [
     },
   },
   {
-    // Hand-built page: src/pages/vantgard (content in src/content/vantgard.ts). Client project, UX/UI only, anonymized.
+    // Hand-built page: src/pages/vantgard (content in src/content/vantgard.ts). Self-initiated proposal, UX/UI only, anonymized.
     id: "vantgard",
     page: "vantgard",
     name: "Vantgard Arms",
     type: { en: "E-commerce · HEMA shop", pl: "E-commerce · Sklep HEMA" },
-    origin: { en: "Client project", pl: "Projekt dla klienta" },
+    origin: { en: "Redesign proposal · Not implemented", pl: "Propozycja redesignu · Niewdrożona" },
     year: "2026",
     hue: 215,
     short: {
@@ -162,8 +162,8 @@ export const SHOWCASE: ShowcaseProject[] = [
     team: { en: "Solo", pl: "Samodzielnie" },
     duration: { en: "1 week", pl: "1 tydzień" },
     intro: {
-      en: "A client project, shown anonymized as Vantgard Arms: a small workshop that makes HEMA swords had outgrown its website-builder store. I compared platforms, audited the store, chose a visual direction and designed the key pages as a clickable prototype.",
-      pl: "Projekt dla klienta, pokazany anonimowo jako Vantgard Arms: mały warsztat robiący miecze HEMA wyrósł ze sklepu z kreatora stron. Porównałam platformy, zrobiłam audyt sklepu, wybrałam kierunek wizualny i zaprojektowałam kluczowe strony jako klikalny prototyp.",
+      en: "A self-initiated redesign proposal, not implemented, shown anonymized as Vantgard Arms: a small workshop that makes HEMA swords had outgrown its website-builder store. I compared platforms, audited the store, chose a visual direction and designed the key pages as a clickable prototype.",
+      pl: "Własna propozycja redesignu, niewdrożona, pokazana anonimowo jako Vantgard Arms: mały warsztat robiący miecze HEMA wyrósł ze sklepu z kreatora stron. Porównałam platformy, zrobiłam audyt sklepu, wybrałam kierunek wizualny i zaprojektowałam kluczowe strony jako klikalny prototyp.",
     },
     product: {
       en: "An online shop for HEMA swords and gear, in three lines from entry level to premium.",
@@ -191,8 +191,8 @@ export const SHOWCASE: ShowcaseProject[] = [
         pl: "Trzy kierunki wizualne, wybrany Steel; klikalny prototyp stron Home, Store, Product i Contact.",
       },
       frontend: {
-        en: "Next step with the client: Next.js, Tailwind CSS and shadcn/ui on a headless shop.",
-        pl: "Kolejny krok z klientem: Next.js, Tailwind CSS i shadcn/ui na sklepie headless.",
+        en: "If taken forward: Next.js, Tailwind CSS and shadcn/ui on a headless shop.",
+        pl: "Jeśli propozycja zostanie przyjęta: Next.js, Tailwind CSS i shadcn/ui na sklepie headless.",
       },
       tests: {
         en: "Planned: a mobile audit and a short usability test with fencers before launch.",
@@ -211,6 +211,7 @@ export const SHOWCASE: ShowcaseProject[] = [
     images: {
       coverLight: "/images/vantgard/cover-dark.webp",
       coverDark: "/images/vantgard/cover-dark.webp",
+      coverLightIsDark: true,
     },
   },
   {
@@ -235,8 +236,8 @@ export const SHOWCASE: ShowcaseProject[] = [
     team: { en: "Solo", pl: "Samodzielnie" },
     duration: { en: "In progress", pl: "W trakcie" },
     intro: {
-      en: "This portfolio website, as a case study. Three directions were explored in Claude Design (Editorial, Index, Index v2); Index v2 was rebuilt in React 19 + TypeScript on Vite+ with Tailwind CSS and no UI library. Features: Glass light and Cyber dark themes with a glitch transition, English and Polish, typed content files, hand-built case studies (DriveThruRPG, Bond, Art practice assistant), an AI assistant on the free Gemini API (Groq as backup) that answers from the site content and knows which case study is open, WCAG AA contrast checks and reduced-motion support. Next: finish case studies, deploy, tests and real illustrations.",
-      pl: "Ta strona portfolio jako case study. W Claude Design powstały trzy kierunki (Editorial, Index, Index v2); Index v2 został zbudowany w React 19 + TypeScript na Vite+, w Tailwind CSS bez biblioteki UI. Funkcje: motywy Glass light i Cyber dark z przejściem glitch, angielski i polski, typowane pliki treści, ręcznie budowane case studies (DriveThruRPG, Bond, Asystent praktyki artystycznej), asystent AI na darmowym Gemini API (Groq jako zapas), który odpowiada na podstawie treści strony i wie, które case study jest otwarte, kontrast WCAG AA i obsługa ograniczonego ruchu. Dalej: dokończenie case studies, publikacja, testy i prawdziwe ilustracje.",
+      en: "This portfolio website, as a case study. Three directions were explored in Claude Design (Editorial, Index, Index v2); Index v2 was rebuilt in React 19 + TypeScript on Vite+ with Tailwind CSS and no UI library. Features: Glass light and Cyber dark themes with a glitch transition, English and Polish, typed content files, hand-built case studies (DriveThruRPG, Vantgard Arms), an AI assistant on the free Gemini API (Groq as backup) that answers from the site content and knows which case study is open, WCAG AA contrast checks and reduced-motion support. Next: finish case studies, deploy, tests and real illustrations.",
+      pl: "Ta strona portfolio jako case study. W Claude Design powstały trzy kierunki (Editorial, Index, Index v2); Index v2 został zbudowany w React 19 + TypeScript na Vite+, w Tailwind CSS bez biblioteki UI. Funkcje: motywy Glass light i Cyber dark z przejściem glitch, angielski i polski, typowane pliki treści, ręcznie budowane case studies (DriveThruRPG, Vantgard Arms), asystent AI na darmowym Gemini API (Groq jako zapas), który odpowiada na podstawie treści strony i wie, które case study jest otwarte, kontrast WCAG AA i obsługa ograniczonego ruchu. Dalej: dokończenie case studies, publikacja, testy i prawdziwe ilustracje.",
     },
     product: {
       en: "A developer & designer portfolio.",
@@ -291,6 +292,7 @@ export const SHOWCASE: ShowcaseProject[] = [
     id: "tamagotchi",
     page: "tamagotchi",
     inProgress: true,
+    hidden: true,
     stage: { label: { en: "Research & design", pl: "Badania i projektowanie" }, step: 2, steps: 4 },
     name: "Bond",
     type: { en: "Tamagotchi-inspired game", pl: "Gra inspirowana Tamagotchi" },
@@ -350,6 +352,7 @@ export const SHOWCASE: ShowcaseProject[] = [
     id: "artpractice",
     page: "artpractice",
     inProgress: true,
+    hidden: true,
     stage: { label: { en: "Research & design", pl: "Badania i projektowanie" }, step: 1, steps: 4 },
     name: "Art practice assistant",
     type: { en: "App · Art education", pl: "Aplikacja · Edukacja artystyczna" },
@@ -408,6 +411,9 @@ export const SHOWCASE: ShowcaseProject[] = [
     improve: { en: "", pl: "" },
   },
 ];
+
+/** The projects shown on the site: everything without `hidden`. */
+export const VISIBLE_SHOWCASE = SHOWCASE.filter((s) => !s.hidden);
 
 /** Shown after the projects as a "coming soon" card. Remove an entry once it becomes a real case study. */
 export const SHOWCASE_UPCOMING: {
