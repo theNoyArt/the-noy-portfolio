@@ -10,6 +10,7 @@ export const DT_LINKS = {
   figma: FIGMA,
   swagger: "https://drivethrurpg-mock-api.onrender.com/docs",
   openapi: "https://drivethrurpg-mock-api.onrender.com/openapi.json",
+  coverage: "https://thenoyart.github.io/drivethrurpg-redesign/",
   audit: node("4218-130810"),
   wireframes: node("4239-131351"),
   colours: node("4242-1800"),
@@ -162,7 +163,11 @@ export const DT_FRONTEND: { ic: DtIcon; t: string; d: string }[] = [
     t: "Components",
     d: "shadcn/ui (Radix primitives), WCAG AA contrast checked on tokens",
   },
-  { ic: "play", t: "Testing", d: "Vitest (run through Vite+) with Testing Library" },
+  {
+    ic: "play",
+    t: "Testing",
+    d: "440 tests with Vitest (run through Vite+) and Testing Library, 93% statement coverage, GitHub Actions CI on every push and pull request",
+  },
   {
     ic: "wrench",
     t: "Build tooling",

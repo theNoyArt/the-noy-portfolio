@@ -38,6 +38,7 @@ export function dtrpgChatContext(): string {
     "Figma file": DT_LINKS.figma,
     "API docs (Swagger UI)": DT_LINKS.swagger,
     "OpenAPI contract": DT_LINKS.openapi,
+    "Test coverage report": DT_LINKS.coverage,
   })
     .filter(([, url]) => url)
     .map(([k, url]) => `${k}: ${url}`);
@@ -97,6 +98,7 @@ export function dtrpgChatContext(): string {
     "",
     "FRONT END",
     ...DT_FRONTEND.map((x) => `${x.t}: ${x.d}`),
+    `Quality: 440 tests with Vitest and Testing Library, 93% statement coverage, GitHub Actions CI on every push and pull request. Coverage report: ${DT_LINKS.coverage}`,
     "",
     "MOCK API",
     "One dependency-free Node file serves generated JSON and images under /api/v1, described by an OpenAPI contract and explorable in Swagger UI.",

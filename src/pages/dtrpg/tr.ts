@@ -5,6 +5,7 @@ import { useI18n } from "../../lib/i18n";
 /** Polish for copy the prototype left in English (list details, captions). */
 export const PL_MORE: Record<string, string> = {
   "Choose a screen": "Wybierz ekran",
+  "Test coverage ↗": "Pokrycie testami ↗",
   // Mockup state chips (Screens.tsx); screen names stay as in the product.
   "Signed out": "Niezalogowany",
   "Menu · signed in": "Menu · zalogowany",
@@ -34,8 +35,8 @@ export const PL_MORE: Record<string, string> = {
     "Tailwind CSS v4, tokeny jako zmienne CSS, motyw ciemny jako bazowy plus jasny",
   "shadcn/ui (Radix primitives), WCAG AA contrast checked on tokens":
     "shadcn/ui (prymitywy Radix), kontrast WCAG AA sprawdzony na tokenach",
-  "Vitest (run through Vite+) with Testing Library":
-    "Vitest (uruchamiany przez Vite+) z Testing Library",
+  "440 tests with Vitest (run through Vite+) and Testing Library, 93% statement coverage, GitHub Actions CI on every push and pull request":
+    "440 testów w Vitest (uruchamianym przez Vite+) i Testing Library, 93% pokrycia instrukcji, CI w GitHub Actions przy każdym pushu i pull requeście",
   "Vite+ (VoidZero’s unified toolchain). One vp CLI runs the dev server and production builds (Vite and Rolldown), tests (Vitest), linting (Oxlint), formatting (Oxfmt) and type checking (tsgo).":
     "Vite+ (zunifikowany toolchain VoidZero). Jedno CLI vp uruchamia serwer deweloperski i buildy produkcyjne (Vite i Rolldown), testy (Vitest), linting (Oxlint), formatowanie (Oxfmt) i sprawdzanie typów (tsgo).",
   "A single dependency-free Node.js file (server.js, Node 18 or newer, built-in http only). It serves /api/v1/*.":

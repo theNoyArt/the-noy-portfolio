@@ -36,6 +36,9 @@ export function Build() {
               <Ext className={caseBtn({ variant: "devOutline" })} href={DT_LINKS.github}>
                 {tr("</> Source on GitHub ↗")}
               </Ext>
+              <Ext className={caseBtn({ variant: "devOutline" })} href={DT_LINKS.coverage}>
+                {tr("Test coverage ↗")}
+              </Ext>
             </div>
           </div>
         </div>

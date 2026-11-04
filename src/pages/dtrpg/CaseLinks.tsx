@@ -12,6 +12,7 @@ export function CaseLinks({ only }: { only?: { github: string } }) {
     { k: "github", label: "GitHub", url: DT_LINKS.github },
     { k: "figma", label: t.figmaFile, url: DT_LINKS.figma },
     { k: "swagger", label: t.apiDocs, url: DT_LINKS.swagger },
+    { k: "coverage", label: t.testCoverage, url: DT_LINKS.coverage },
   ] as const;
   const links = only ? [{ k: "github" as const, label: "GitHub", url: only.github }] : all;
   return (
