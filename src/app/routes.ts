@@ -1,16 +1,24 @@
 import { CONFIG } from "../config";
 import { PERSON } from "../content/person";
 import type { Lang } from "../content/types";
+import { ILLUSTRATION } from "../content/illustration";
 import { VIEWS, type HomeView } from "../content/views";
 import { getCase } from "../lib/cases";
 
-// Real URLs: /, /frontend, /ux and /case/<id>. vercel.json sends them all to index.html.
-export type Route = { page: "home"; view: HomeView } | { page: "case"; id: string };
+// Real URLs: /, /frontend, /ux, /illustration and /case/<id>. vercel.json sends them all to index.html.
+export type Route =
+  | { page: "home"; view: HomeView }
+  | { page: "case"; id: string }
+  | { page: "illustration" };
+
+const ILLUSTRATION_PATH = "/illustration";
 
 const HOME: Route = { page: "home", view: "all" };
 
 export function pathFor(r: Route): string {
-  return r.page === "case" ? `/case/${r.id}` : VIEWS[r.view].path;
+  if (r.page === "case") return `/case/${r.id}`;
+  if (r.page === "illustration") return ILLUSTRATION_PATH;
+  return VIEWS[r.view].path;
 }
 
 /**
@@ -23,6 +31,7 @@ export function parseUrl(pathname: string, hash = ""): Route {
   const path = pathname.replace(/\/+$/, "") || "/";
   const m = path.match(/^\/case\/([\w-]+)$/);
   if (m) return getCase(m[1]) ? { page: "case", id: m[1] } : HOME;
+  if (path === ILLUSTRATION_PATH) return { page: "illustration" };
   const view = (Object.keys(VIEWS) as HomeView[]).find((v) => VIEWS[v].path === path);
   return view ? { page: "home", view } : HOME;
 }
@@ -36,6 +45,13 @@ export function routeMeta(r: Route, lang: Lang) {
       description: c.short[lang],
       path: `/case/${c.id}`,
       noindex: !!c.hidden,
+    };
+  if (r.page === "illustration")
+    return {
+      title: ILLUSTRATION.pageTitle[lang],
+      description: ILLUSTRATION.description[lang],
+      path: ILLUSTRATION_PATH,
+      noindex: false,
     };
   const v = VIEWS[r.page === "home" ? r.view : "all"];
   return { title: v.title[lang], description: v.description[lang], path: v.path, noindex: false };

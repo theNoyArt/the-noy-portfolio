@@ -11,6 +11,7 @@ import { PrefsButton } from "./PrefsPopover";
 import { caseLinks } from "./shell.styles";
 import { CaseLinks } from "../pages/dtrpg/CaseLinks";
 import { PF_LINKS } from "../content/portfolioCase";
+import { IllustrationLink } from "./IllustrationLink";
 
 const sideNavItem = tv({
   base:
@@ -116,7 +117,7 @@ export function Sidebar({ current }: { current: ResolvedCase | null }) {
         {!current && (
           <nav aria-label={t.navMain} className={s.nav()}>
             {HOME_SECTIONS.map((key, i) => {
-              const active = app.activeSection === key;
+              const active = app.route.page === "home" && app.activeSection === key;
               return (
                 <button
                   key={key}
@@ -130,6 +131,10 @@ export function Sidebar({ current }: { current: ResolvedCase | null }) {
                 </button>
               );
             })}
+            <IllustrationLink
+              className={sideNavItem({ active: app.route.page === "illustration" })}
+              num={<span className={s.num()}>0{HOME_SECTIONS.length + 1}</span>}
+            />
           </nav>
         )}
         {!current && contact}

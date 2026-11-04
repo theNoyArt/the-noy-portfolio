@@ -3,6 +3,7 @@
   "rewrites": [
     { "source": "/frontend", "destination": "/index.html" },
     { "source": "/ux", "destination": "/index.html" },
+    { "source": "/illustration", "destination": "/index.html" },
     { "source": "/case/:id", "destination": "/index.html" }
   ]
 }

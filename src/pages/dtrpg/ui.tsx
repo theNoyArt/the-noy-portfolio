@@ -238,7 +238,14 @@ export function ReportToggle({
 
 /* ---------------------------------------------------------------- lightbox */
 
-type OpenShot = (src: string, alt: string) => void;
+/** Extra options: a heading other than the alt text, several images in a row, fit to the screen. */
+export interface ShotOptions {
+  label?: string;
+  set?: { src: string; alt: string }[];
+  /** Scale each image to fit the dialog instead of showing it at full width (illustrations). */
+  fit?: boolean;
+}
+type OpenShot = (src: string, alt: string, opts?: ShotOptions) => void;
 const LightboxCtx = createContext<OpenShot>(() => {});
 export const useLightbox = () => useContext(LightboxCtx);
 
@@ -246,9 +253,11 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
   const { tr } = useTr();
   const ref = useRef<HTMLDialogElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
-  const [shot, setShot] = useState<{ src: string; alt: string } | null>(null);
+  const [shot, setShot] = useState<({ src: string; alt: string } & ShotOptions) | null>(null);
 
-  const open = useCallback<OpenShot>((src, alt) => setShot({ src, alt }), []);
+  const open = useCallback<OpenShot>((src, alt, opts) => setShot({ src, alt, ...opts }), []);
+  const label = shot?.label ?? shot?.alt ?? "";
+  const images = shot ? (shot.set ?? [{ src: shot.src, alt: shot.alt }]) : [];
 
   useEffect(() => {
     const d = ref.current;
@@ -271,22 +280,43 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
           "glass-blur m-auto h-[calc(100dvh_-_32px)] max-h-none w-[min(1480px,100vw_-_32px)] max-w-none overflow-hidden rounded-card border border-line-2 bg-surface p-0 text-ink " +
           "backdrop:bg-[rgb(0_0_0/0.72)] open:flex open:flex-col glass:bg-[rgba(248,246,255,0.97)]"
         }
-        aria-label={shot?.alt ?? ""}
+        aria-label={label}
         onClose={() => setShot(null)}
         onClick={(e) => {
           if (e.target === ref.current) close();
         }}
       >
         <div className="flex items-center justify-between gap-3 border-b border-line px-[14px] py-[10px]">
-          <span className={monoLabel()}>{shot?.alt}</span>
-          <button className={caseBtn()} type="button" onClick={close}>
+          <span className={monoLabel()}>{label}</span>
+          <button
+            // bg-surface: without it a <button> keeps the browser's grey (light text on grey in Cyber dark).
+            className={caseBtn({ class: "cursor-pointer bg-surface text-ink" })}
+            type="button"
+            onClick={close}
+          >
             {tr("Close ✕")}
           </button>
         </div>
-        <div className="flex-1 overflow-auto overscroll-contain bg-bg p-4" ref={bodyRef}>
-          {shot && (
-            <img className="mx-auto block h-auto max-w-full" src={shot.src} alt={shot.alt} />
+        <div
+          className={cn(
+            "flex-1 overflow-auto overscroll-contain bg-bg p-4",
+            shot?.fit && "flex flex-col items-center gap-4",
           )}
+          ref={bodyRef}
+        >
+          {images.map((im) => (
+            <img
+              key={im.src}
+              className={cn(
+                "mx-auto block h-auto max-w-full",
+                // Fit: the whole image in view (dialog minus its bar and padding), never cropped.
+                shot?.fit &&
+                  "max-h-[calc(100dvh_-_32px_-_66px_-_32px)] w-auto flex-none object-contain",
+              )}
+              src={im.src}
+              alt={im.alt}
+            />
+          ))}
         </div>
       </dialog>
     </LightboxCtx.Provider>

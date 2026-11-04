@@ -5,7 +5,8 @@ export const ACTIVITIES_DESC: Localized = {
   pl: "Ilustracja, gry fabularne i dzielenie się wiedzą. To, co między projektami utrzymuje w formie moje oko i ręce.",
 };
 
-// links: a "/case/<id>" url opens that case study; leave the list empty to show no links.
+// links: a url starting with "/" (e.g. "/case/<id>", "/illustration") opens that page in the app;
+// anything else opens in a new tab. Leave the list empty to show no links.
 // images: square thumbnails on the card (in /public/images/activities), opening full size in a lightbox.
 const IMG = "/images/activities";
 
@@ -15,8 +16,8 @@ export const ACTIVITIES: Activity[] = [
     title: { en: "RPG books", pl: "Podręczniki RPG" },
     meta: { en: "Imaginarium RPG · 2022 — now", pl: "Imaginarium RPG · 2022 — obecnie" },
     desc: {
-      en: "Illustrations and publication layout for a series of tabletop RPG books. Knowing RPG players from the inside is why I picked DriveThruRPG for my case study.",
-      pl: "Ilustracje i skład serii podręczników do gier fabularnych. Znam graczy RPG od środka, dlatego wybrałam DriveThruRPG do mojego case study.",
+      en: "Print-ready layouts for 7 published tabletop RPG books, with illustrations for 4 of them. Knowing RPG players from the inside is why I picked DriveThruRPG for my case study.",
+      pl: "Skład do druku 7 wydanych podręczników do gier fabularnych, w 4 z nich także ilustracje. Znam graczy RPG od środka, dlatego wybrałam DriveThruRPG do mojego case study.",
     },
     topics: [
       { en: "Illustration", pl: "Ilustracja" },
@@ -52,6 +53,7 @@ export const ACTIVITIES: Activity[] = [
       { v: "2", l: { en: "in progress", pl: "w trakcie" } },
     ],
     links: [
+      { label: { en: "Illustration gallery", pl: "Galeria ilustracji" }, url: "/illustration" },
       {
         label: { en: "DriveThruRPG case study", pl: "Case study DriveThruRPG" },
         url: "/case/dtrpg",
@@ -95,6 +97,7 @@ export const ACTIVITIES: Activity[] = [
       { en: "Live streams", pl: "Streamy na żywo" },
     ],
     links: [
+      { label: { en: "Illustration gallery", pl: "Galeria ilustracji" }, url: "/illustration" },
       {
         label: { en: "ArtStation", pl: "ArtStation" },
         url: "https://www.artstation.com/thenoyart",

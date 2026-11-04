@@ -5,6 +5,7 @@ import { HOME_SECTIONS, homeSectionLabel } from "../app/sections";
 import { PERSON } from "../content/person";
 import { useI18n } from "../lib/i18n";
 import { iconButton, monoLabel } from "../styles/recipes";
+import { IllustrationLink } from "./IllustrationLink";
 import { PrefsButton } from "./PrefsPopover";
 import { GLASS_LAYER } from "./shell.styles";
 
@@ -104,6 +105,10 @@ export function MobileMenu() {
             </button>
           );
         })}
+        <IllustrationLink
+          className={s.item({ active: app.route.page === "illustration" })}
+          num={<span className={s.num()}>0{HOME_SECTIONS.length + 1}</span>}
+        />
       </nav>
     </div>
   );

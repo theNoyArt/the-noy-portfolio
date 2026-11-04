@@ -1,10 +1,17 @@
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vite-plus/test";
 import { ABOUT, ABOUT_TABS } from "./about";
 import { ACTIVITIES, HOBBIES } from "./activities";
 import { AP } from "./artpractice";
 import { EXPERIENCE } from "./experience";
+import {
+  ILLU_IMG,
+  ILLUSTRATION,
+  ILLUSTRATION_ROWS,
+  ILLUSTRATIONS,
+  LAYOUT_SPREADS,
+} from "./illustration";
 import { PERSON } from "./person";
 import { PF, PF_FACTS, PF_WIRES } from "./portfolioCase";
 import { SHOWCASE, SHOWCASE_UPCOMING } from "./showcase";
@@ -44,6 +51,9 @@ const CONTENT = {
   PF_WIRES,
   VA,
   VIEWS,
+  ILLUSTRATION,
+  ILLUSTRATIONS,
+  LAYOUT_SPREADS,
 };
 
 describe("content", () => {
@@ -142,6 +152,38 @@ describe("content", () => {
     expect(names.size).toBeGreaterThan(10);
     const missing = [...names].filter((n) => !existsSync(join(PUBLIC, VA_IMG, n)));
     expect(missing).toEqual([]);
+  });
+
+  it("only points the illustration page to images that exist", () => {
+    const names = [...ILLUSTRATIONS, ...LAYOUT_SPREADS].flatMap((x) => {
+      const set = "set" in x ? (x.set ?? []).map((s) => s.image) : [];
+      return [x.image, ...set].flatMap((n) => [`${n}.webp`, `${n}-thumb.webp`]);
+    });
+    const missing = names.filter((n) => !existsSync(join(PUBLIC, ILLU_IMG, n)));
+    expect(missing).toEqual([]);
+  });
+
+  it("gives each illustration its real image size (width and height attributes, row ratios)", () => {
+    /** Width and height from a WebP header (lossy, lossless or extended). */
+    const webpSize = (file: string) => {
+      const b = readFileSync(join(PUBLIC, ILLU_IMG, file));
+      const kind = b.toString("ascii", 12, 16);
+      if (kind === "VP8X") return [1 + b.readUIntLE(24, 3), 1 + b.readUIntLE(27, 3)];
+      if (kind === "VP8L") {
+        const n = b.readUInt32LE(21);
+        return [(n & 0x3fff) + 1, ((n >> 14) & 0x3fff) + 1];
+      }
+      return [b.readUInt16LE(26) & 0x3fff, b.readUInt16LE(28) & 0x3fff];
+    };
+    const wrong = ILLUSTRATIONS.filter((x) => {
+      const [w, h] = webpSize(`${x.image}.webp`);
+      return w !== x.w || h !== x.h;
+    }).map((x) => x.image);
+    expect(wrong).toEqual([]);
+  });
+
+  it("puts every illustration in exactly one gallery row, in order", () => {
+    expect(ILLUSTRATION_ROWS.flat()).toEqual(ILLUSTRATIONS.map((x) => x.image));
   });
 
   it("has no upcoming placeholder cards left", () => {

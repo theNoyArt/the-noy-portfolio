@@ -11,6 +11,7 @@ describe("routes", () => {
     expect(parseUrl("/frontend")).toEqual({ page: "home", view: "frontend" });
     expect(parseUrl("/ux/")).toEqual({ page: "home", view: "ux" });
     expect(parseUrl("/case/dtrpg")).toEqual({ page: "case", id: "dtrpg" });
+    expect(parseUrl("/illustration/")).toEqual({ page: "illustration" });
   });
 
   it("sends unknown pages and projects home", () => {
@@ -26,7 +27,7 @@ describe("routes", () => {
   });
 
   it("round-trips every route through its path", () => {
-    for (const p of ["/", "/frontend", "/ux", "/case/vantgard"])
+    for (const p of ["/", "/frontend", "/ux", "/illustration", "/case/vantgard"])
       expect(pathFor(parseUrl(p))).toBe(p);
   });
 
@@ -38,6 +39,14 @@ describe("routes", () => {
       noindex: false,
     });
     expect(routeMeta({ page: "case", id: "tamagotchi" }, "en").noindex).toBe(true);
+    expect(routeMeta({ page: "illustration" }, "en").title).toBe("Illustration · Paulina Targosz");
+    expect(routeMeta({ page: "illustration" }, "pl")).toMatchObject({
+      title: "Ilustracje · Paulina Targosz",
+      description:
+        "Ilustracja i skład podręczników do gier fabularnych oraz postacie z moich własnych serii.",
+      path: "/illustration",
+      noindex: false,
+    });
   });
 
   it("lists exactly the visible pages in sitemap.xml", () => {
@@ -45,7 +54,7 @@ describe("routes", () => {
     const locs = [...xml.matchAll(/<loc>(.+?)<\/loc>/g)].map((m) => m[1]);
     const visible = SHOWCASE.filter((s) => !s.hidden).map((s) => `/case/${s.id}`);
     expect(locs.sort()).toEqual(
-      ["/", "/frontend", "/ux", ...visible].map((p) => CONFIG.siteUrl + p).sort(),
+      ["/", "/frontend", "/ux", "/illustration", ...visible].map((p) => CONFIG.siteUrl + p).sort(),
     );
   });
 });

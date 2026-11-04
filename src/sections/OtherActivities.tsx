@@ -1,5 +1,6 @@
 import { Fragment, type MouseEvent, type ReactNode } from "react";
 import { useApp } from "../app/AppContext";
+import { parseUrl } from "../app/routes";
 import { ACTIVITIES, ACTIVITIES_DESC, HOBBIES } from "../content/activities";
 import type { Activity } from "../content/types";
 import { cn } from "../lib/cn";
@@ -225,24 +226,27 @@ function Card({ a, n }: { a: Activity; n: number }) {
       {a.links.length > 0 && (
         <div className="mt-auto flex flex-wrap gap-x-4 gap-y-[6px] border-t border-line pt-3">
           {a.links.map((l) => {
-            const caseId = l.url.startsWith("/case/") ? l.url.slice("/case/".length) : null;
+            // Internal pages open in the app without a reload; a modified click keeps the browser's own behaviour.
+            const internal = l.url.startsWith("/");
             return (
               <a
                 key={l.url}
                 className="inline-flex gap-[5px] font-mono text-[12px] text-ink hover:text-accent"
                 href={l.url}
-                {...(caseId
+                {...(internal
                   ? {
                       onClick: (ev: MouseEvent) => {
+                        if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button !== 0)
+                          return;
                         ev.preventDefault();
-                        app.openCase(caseId);
+                        app.goTo(parseUrl(l.url));
                       },
                     }
                   : { target: "_blank", rel: "noopener noreferrer" })}
               >
                 {L(l.label)}
                 <span aria-hidden="true" className="text-accent">
-                  {caseId ? "→" : "↗"}
+                  {internal ? "→" : "↗"}
                 </span>
               </a>
             );

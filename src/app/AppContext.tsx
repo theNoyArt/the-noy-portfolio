@@ -20,6 +20,8 @@ export interface AppApi {
   activeCaseSection: string;
   goSection: (key: HomeSection) => void;
   openCase: (id: string, section?: CaseSectionId) => void;
+  /** Client-side navigation to any route, for internal links. */
+  goTo: (route: Route) => void;
   scrollToCaseSection: (id: CaseSectionId) => void;
   menuOpen: boolean;
   setMenuOpen: (v: boolean) => void;

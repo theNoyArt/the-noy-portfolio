@@ -21,6 +21,7 @@ import { TamagotchiPage } from "../pages/tamagotchi/TamagotchiPage";
 import { ArtPracticePage } from "../pages/artpractice/ArtPracticePage";
 import { VantgardPage } from "../pages/vantgard/VantgardPage";
 import { PortfolioPage } from "../pages/portfolio/PortfolioPage";
+import { IllustrationPage } from "../pages/illustration/IllustrationPage";
 import { Footer } from "../components/Footer";
 
 const THEMES: ThemeName[] = ["dark", "light"];
@@ -190,7 +191,12 @@ export function App() {
   );
 
   // After a route change: jump to top, play the wipe-in, then run any follow-up scroll.
-  const routeKey = route.page === "case" ? "case:" + route.id : "home:" + route.view;
+  const routeKey =
+    route.page === "case"
+      ? "case:" + route.id
+      : route.page === "illustration"
+        ? "illustration"
+        : "home:" + route.view;
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
     if (animateIn.current) {
@@ -246,6 +252,17 @@ export function App() {
       navigate({ page: "case", id }, section ? () => scrollToDom("c-" + section, true) : undefined);
     },
     [navigate, scrollToDom],
+  );
+
+  /** Client-side navigation to any route (internal links). */
+  const goTo = useCallback(
+    (next: Route) => {
+      setPrefsOpen(false);
+      setMenuOpen(false);
+      if (pathFor(next) === pathFor(route)) window.scrollTo({ top: 0 });
+      else navigate(next);
+    },
+    [route, navigate],
   );
 
   const scrollToCaseSection = useCallback(
@@ -312,6 +329,7 @@ export function App() {
       activeCaseSection,
       goSection,
       openCase,
+      goTo,
       scrollToCaseSection,
       menuOpen,
       setMenuOpen,
@@ -331,6 +349,7 @@ export function App() {
       activeCaseSection,
       goSection,
       openCase,
+      goTo,
       scrollToCaseSection,
       menuOpen,
       prefsOpen,
@@ -370,6 +389,8 @@ export function App() {
               <VantgardPage key={current.id} c={current} />
             ) : current?.page === "tamagotchi" ? (
               <TamagotchiPage key={current.id} c={current} />
+            ) : route.page === "illustration" ? (
+              <IllustrationPage />
             ) : (
               <HomePage />
             )}
@@ -378,8 +399,12 @@ export function App() {
         </main>
       </div>
 
+      {/* Cyber scanlines. Off on /illustration, so nothing darkens the artwork. */}
       <div
-        className="pointer-events-none fixed inset-0 z-30 bg-[repeating-linear-gradient(0deg,rgba(0,0,0,0.22)_0_1px,transparent_1px_3px)] opacity-[calc(var(--hud)*0.3)] transition-opacity duration-[600ms]"
+        className={cn(
+          "pointer-events-none fixed inset-0 z-30 bg-[repeating-linear-gradient(0deg,rgba(0,0,0,0.22)_0_1px,transparent_1px_3px)] opacity-[calc(var(--hud)*0.3)] transition-opacity duration-[600ms]",
+          route.page === "illustration" && "opacity-0",
+        )}
         aria-hidden="true"
       />
       <Chat />
