@@ -47,7 +47,7 @@ const CRAFTWARE_WORK: WorkProject[] = [
     id: "sales-assistant",
     featured: true,
     title: { en: "AI sales assistance", pl: "Wsparcie sprzedaży z AI" },
-    client: { en: "Enterprise client", pl: "Klient korporacyjny" },
+    client: { en: "Enterprise client", pl: "Duże przedsiębiorstwo" },
     role: { en: "UX/UI & Graphic Designer", pl: "Projektantka UX/UI i graficzka" },
     dates: { en: "2026", pl: "2026" },
     desc: {
@@ -137,7 +137,7 @@ const ITTI_WORK: WorkProject[] = [
     id: "transcription",
     featured: true,
     title: { en: "Text transcription & classification", pl: "Transkrypcja i klasyfikacja tekstu" },
-    client: { en: "Enterprise client", pl: "Klient korporacyjny" },
+    client: { en: "Enterprise client", pl: "Duże przedsiębiorstwo" },
     role: { en: "UX/UI Designer", pl: "Projektantka UX/UI" },
     dates: { en: "2023 — 2025", pl: "2023 — 2025" },
     desc: {

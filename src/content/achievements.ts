@@ -78,7 +78,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     title: { en: "Healer’s path", pl: "Ścieżka uzdrowicielki" },
     desc: {
       en: "6 healthcare and pharma projects, from transplants to clinical reports.",
-      pl: "6 projektów medycznych i pharma, od przeszczepów po raporty kliniczne.",
+      pl: "6 projektów medycznych i farmaceutycznych, od przeszczepów po raporty kliniczne.",
     },
     when: "JCommerce — 2026",
   },
